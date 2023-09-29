@@ -225,11 +225,9 @@ class UserRoomController extends Controller
         $price           = $configPriceType[$roomType];
         $day             = $request->day;
 
-        // Tổng tiền
+      
         $totalMoney = $day * $price;
        
-        // //
-        // $sodukhadung = get_data_user('web', 'account_balance');
         $sodukhadung = Auth::user()->account_balance;
         // dd($sodukhadung);
         if ($sodukhadung < $totalMoney) {
@@ -238,7 +236,7 @@ class UserRoomController extends Controller
 
         try {
             DB::beginTransaction();
-            // lưu vào payment history
+           
             PaymentHistory::create([
                 // 'user_id'    => Auth::user()->id,
                 'room_id'    => $id,
