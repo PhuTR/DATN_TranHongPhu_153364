@@ -36,11 +36,16 @@
     color: #999;
     background: transparent url(../img/loading.gif) top left no-repeat;
 }
-
+.btn-width{
+    min-width: 50%;
+    text-align: center !important;
+    background-color: #E7E8E3!important;
+    color: #444 !important;
+}
 .btn-admin{
     background-color: #FF385C;
     top: 0;
-    color: #fff!important;
+    color: #fff;
     position: relative;
     text-decoration: none;
     font-size: 15px;

@@ -9,8 +9,14 @@ use App\Models\Location;
 use App\Models\Category;
 use App\Models\Room;
 use App\Models\Option;
+use App\Models\PaymentHistory;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Date;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
+
 class UserRoomController extends Controller
 {
     public function index(Request $request){
@@ -44,7 +50,7 @@ class UserRoomController extends Controller
         $data['created_at'] = Carbon::now();
         $data['auth_id'] = Auth::user()->id;
         $data['slug'] = Str::slug($request->name);
-
+        $data['status']     = Room::STATUS_EXPIRED;
         if ($request->hasFile('avatar')){
             $file = $request->file('avatar');
             var_dump($file);
@@ -89,6 +95,9 @@ class UserRoomController extends Controller
            return redirect()->back();
         }
     }
+
+   
+
 
     public function edit($id,Request $request){
 
@@ -189,5 +198,78 @@ class UserRoomController extends Controller
             return response()->json($location);
         }
 
+    }
+
+
+    public function payRoom($id)
+    {
+        $room = Room::where([
+            'id'      => $id,
+            'auth_id' => Auth::user()->id,
+            'status'  => Room::STATUS_EXPIRED
+        ])->first();
+
+        $viewData = [
+            'room' => $room
+        ];
+  
+        return view('user.pay.pay', $viewData);
+    }
+
+    public function savePayRoom($id, Request $request)
+    {
+        $room            = Room::find($id);
+        $data            = $request->all();
+        $roomType        = $request->room_type;
+        $configPriceType = config('payment.type_price');
+        $price           = $configPriceType[$roomType];
+        $day             = $request->day;
+
+        // Tổng tiền
+        $totalMoney = $day * $price;
+       
+        // //
+        // $sodukhadung = get_data_user('web', 'account_balance');
+        $sodukhadung = Auth::user()->account_balance;
+        // dd($sodukhadung);
+        if ($sodukhadung < $totalMoney) {
+            return redirect()->back();
+        }
+
+        try {
+            DB::beginTransaction();
+            // lưu vào payment history
+            PaymentHistory::create([
+                // 'user_id'    => Auth::user()->id,
+                'room_id'    => $id,
+                'money'      => $totalMoney,
+                'type'       => $roomType,
+                'service_id' => 0,
+                'status'     => PaymentHistory::STATUS_SUCCESS,
+                'created_at' => Carbon::now()
+            ]);
+            
+            // Trừ tiền
+           
+            DB::table('users')->where('id', Auth::user()->id)
+                ->decrement('account_balance', $totalMoney);
+           
+            $timeStartNow = Carbon::parse($request->thoigian_batdau);
+            $timeStop     = $timeStartNow->addDay($request->day);
+            // Update tin
+            $room->status      = Room::STATUS_PAID;
+            $room->time_start  = $request->thoigian_batdau;
+            $room->time_stop   = $timeStop->format('Y-m-d');
+            $room->service_hot = $roomType;
+            $room->updated_at  = Carbon::now();
+            $room->save();
+            DB::commit();
+
+            return redirect()->route('get_user.room.home');
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            Log::error("---------------------  " . $exception->getMessage());
+            return redirect()->back();
+        }
     }
 }

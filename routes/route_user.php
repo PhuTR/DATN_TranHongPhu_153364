@@ -34,6 +34,9 @@ Route::group(['namespace' => 'User', 'prefix' => 'user'], function(){
         Route::get('district','UserRoomController@loadDistrict')->name('get_user.load.district');
         Route::get('wards','UserRoomController@loadWards')->name('get_user.load.wards');
 
+        Route::get('pay/{id}', 'UserRoomController@payRoom')->name('get_user.room.pay');
+        Route::post('pay/{id}', 'UserRoomController@savePayRoom');
+
     });
 
 
@@ -43,6 +46,15 @@ Route::group(['namespace' => 'User', 'prefix' => 'user'], function(){
         Route::get('pay','UserPayController@index_pay')->name('get_user.pay.index_pay');
         Route::get('depposit-history','UserPayController@deposit_history')->name('get_user.pay.deposit_history');
         Route::get('payment_history','UserPayController@payment_history')->name('get_user.pay.paymet_history');
+
+        Route::get('chuyen-khoan.html','UserPayController@transfer_money')->name('get_user.pay.transfer_money');
+        Route::get('atm-internet-banking.html','UserPayController@atm')->name('get_user.pay.atm');
+        Route::get('tien-mat.html','UserPayController@cash')->name('get_user.pay.cash');
+        Route::get('zalo-pay.html','UserPayController@zalopay')->name('get_user.pay.zalo_pay');
+
+ 
+
+
     });
 
    
