@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->string('slug')->nullable();
             $table->string('avatar')->nullable();
-            $table->string('description',300)->nullable();
+            $table->text('description')->nullable();
             $table->bigInteger('city_id')->default(0);
             $table->bigInteger('district_id')->default(0);
             $table->bigInteger('wards_id')->default(0);
