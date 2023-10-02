@@ -72,6 +72,12 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function(){
         Route::get('','AdminUserController@index')->name('get_admin.user.index');
 
     });
+
+
+    Route::group(['prefix' => 'pay'],function(){
+        Route::get('depposit-history','AdminPayController@deposit_history')->name('get_admin.pay.deposit_history');
+        Route::get('payment-history','AdminPayController@payment_history')->name('get_admin.pay.paymet_history');
+    });
    
 
 

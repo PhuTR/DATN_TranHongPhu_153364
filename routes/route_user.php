@@ -45,7 +45,7 @@ Route::group(['namespace' => 'User', 'prefix' => 'user'], function(){
     Route::group(['prefix' => 'pay'],function(){
         Route::get('pay','UserPayController@index_pay')->name('get_user.pay.index_pay');
         Route::get('depposit-history','UserPayController@deposit_history')->name('get_user.pay.deposit_history');
-        Route::get('payment_history','UserPayController@payment_history')->name('get_user.pay.paymet_history');
+        Route::get('payment-history','UserPayController@payment_history')->name('get_user.pay.paymet_history');
 
         Route::get('chuyen-khoan.html','UserPayController@transfer_money')->name('get_user.pay.transfer_money');
         Route::get('atm-internet-banking.html','UserPayController@atm')->name('get_user.pay.atm');

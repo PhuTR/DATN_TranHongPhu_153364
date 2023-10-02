@@ -238,7 +238,7 @@ class UserRoomController extends Controller
             DB::beginTransaction();
            
             PaymentHistory::create([
-                // 'user_id'    => Auth::user()->id,
+                'user_id'    => Auth::user()->id,
                 'room_id'    => $id,
                 'money'      => $totalMoney,
                 'type'       => $roomType,

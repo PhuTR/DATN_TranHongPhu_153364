@@ -116,16 +116,16 @@ if (!function_exists('apart_time')) {
     }
 }
 
-if (!function_exists('detect_category_expenditure')) {
-    function detect_category_expenditure($id)
-    {
-        $categories = (new \TrungPhuNA\Admin\Entities\Expenditure())->getCategories();
-        foreach ($categories as $item) {
-            if ($item['id'] === $id) return $item;
-        }
-        return  "[N\A]";
-    }
-}
+// if (!function_exists('detect_category_expenditure')) {
+//     function detect_category_expenditure($id)
+//     {
+//         $categories = (new \TrungPhuNA\Admin\Entities\Expenditure())->getCategories();
+//         foreach ($categories as $item) {
+//             if ($item['id'] === $id) return $item;
+//         }
+//         return  "[N\A]";
+//     }
+// }
 
 
 if (!function_exists('get_name_short')) {

@@ -1,5 +1,6 @@
-@extends('user.layouts.master_user')
-@section('content_user')
+@extends('admin.layouts.app_master')
+@section('content_admin')
+
 
 <div class="col-lg-9 col-md-12 col-xs-12 pl-0 user-dash2">
     <section class="headings-2 pt-0 pb-0">

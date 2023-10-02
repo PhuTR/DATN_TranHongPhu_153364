@@ -36,12 +36,17 @@
                 </li>
                 <li>
                     <a href="{{route('get_admin.room.index')}}">
-                        <i class="fas fa-credit-card"></i>Quản lý bài đăng
+                        <i class="fa-solid fa-newspaper"></i>Quản lý bài đăng
                     </a>
                 </li>
                 <li>
-                    <a href="invoice.html">
-                        <i class="fas fa-paste"></i>Invoices
+                    <a href="{{route('get_admin.pay.paymet_history')}}">
+                        <i class="fa-solid fa-money-bills"></i>Quản lý thanh toán
+                    </a>
+                </li>
+                <li>
+                    <a href="{{route('get_admin.pay.deposit_history')}}">
+                        <i class="fa-regular fa-credit-card"></i>Quản lý nạp tiền
                     </a>
                 </li>
                 <li>

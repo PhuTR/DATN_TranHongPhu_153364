@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\PaymentHistory;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -21,7 +22,16 @@ class UserPayController extends Controller
     public function deposit_history(){
         return view('user.pay.deposit_history');
     }
+  
+    public function  payment_history(){
+        $paymentHistory = PaymentHistory::where('user_id', Auth::user()->id)
+        ->orderByDesc('id')->paginate(20);
 
+    $viewData = [
+        'paymentHistory' => $paymentHistory
+    ];
+        return view('user.pay.payment_history', $viewData);
+    }
     public function cash(){
         $user = User::find(Auth::user()->id);
         if(!$user) return abort(404);
