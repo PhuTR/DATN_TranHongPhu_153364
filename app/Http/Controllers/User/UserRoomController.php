@@ -86,7 +86,7 @@ class UserRoomController extends Controller
             $json_img = json_encode($arr_images,JSON_FORCE_OBJECT);
          }
          $data['images'] = $json_img;
-
+      
 
         $room = Room::create($data);
         if($room){
@@ -149,29 +149,30 @@ class UserRoomController extends Controller
             $data['avatar'] = $Hinh;
          }  
 
-         $json_img ="";
-         if ($request->hasFile('hinhanh')){
+ 
+
+        $json_img = "";
+
+        if ($request->hasFile('images')) {
             $arr_images = array();
-            $inputfile =  $request->file('hinhanh');
+            $inputfile = $request->file('images');
             foreach ($inputfile as $filehinh) {
-               $namefile = "phongtro-".str_random(5)."-".$filehinh->getClientOriginalName();
-               while (file_exists('uploads/images'.$namefile)) {
-                 $namefile = "phongtro-".str_random(5)."-".$filehinh->getClientOriginalName();
-               }
-              $arr_images[] = $namefile;
-              $filehinh->move('uploads/images',$namefile);
+                $namefile = "phongtro-" . str_random(5) . "-" . $filehinh->getClientOriginalName();
+                while (file_exists('uploads/images' . $namefile)) {
+                    $namefile = "phongtro-" . str_random(5) . "-" . $filehinh->getClientOriginalName();
+                }
+                $arr_images[] = $namefile;
+                $filehinh->move('uploads/images', $namefile);
             }
-            $json_img =  json_encode($arr_images,JSON_FORCE_OBJECT);
+            $json_img = json_encode($arr_images, JSON_FORCE_OBJECT);
             $data['images'] = $json_img;
 
-         }
-         else {
-            $arr_images[] = "no_img_room.png";
-            $json_img = json_encode($arr_images,JSON_FORCE_OBJECT);
-            $data['images'] = $json_img;
-         }
+        }
+    
         $room = Room::where(['id' => $id,'auth_id' => Auth::user()->id])->update($data);
         if($room){
+            // $room->images = $json_img;
+            
             return redirect()->route('get_user.room.home');
         }else{
            return redirect()->back();

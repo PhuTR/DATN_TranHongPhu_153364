@@ -179,22 +179,29 @@
         <p style="margin-top:1%;color: #333;display: inline-block;font-size: 15px;font-weight: 600;text-transform: capitalize;">
             Ảnh chi tiết
          </p>
+         @php
+             $room_img = json_decode($room->images, true);
+         @endphp
+         @if (isset($room_img))
+       
+         <div class="row" style="margin-bottom: 15px;display: flex">
+             @foreach($room_img as $index => $item)
+             <div class="col-sm-2" style="margin-right: 10px;">
+                 <a href="" style="display: block;">
+                     <img src="{{ asset('uploads/images/' . $item) }}" style="width: 300px;height: auto">
+                 </a>
+             </div>
+             @endforeach
+         </div>
+         @endif
          <div class="form-group">
             <label for="comment">Thêm hình ảnh:</label>
             <div class="file-loading">
-              <input id="file-5" type="file" class="file" name="hinhanh[]"  multiple 
+              <input id="file-5" type="file" class="file" name="images[]"  multiple 
               data-show-upload="false" data-show-caption="true" data-msg-placeholder="Select {files} for upload...">
             </div>
           </div>
   
-
-
-
-
-          
-
-
-
     </div>
 
     <div class="add-property-button pt-5" >

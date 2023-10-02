@@ -96,10 +96,25 @@
                                 </h2>
                              </a>
                              <p class="actions">
-                                {{-- <a href="#" class="edit btn-properties"><i class="fa-regular fa-credit-card icon"></i></i>Thanh toán tin</a> --}}
-                                <a href="{{route('get_user.room.pay',$item->id)}}" class="edit btn-properties"><i class="fa-solid fa-repeat icon"></i></i>Đăng lại</a>
-                                <a href="#" class="edit btn-properties"><i class="fa fa-eye-slash icon"></i>Ẩn tin</a>
-                                <a href="{{route('get_user.room.update',$item->id)}}" class="edit btn-properties"><i class="fa-solid fa-pen icon"></i></i>Sửa tin</a>
+
+                                    @if ($item->status == \App\Models\Room::STATUS_ACTIVE)
+                                    <a href="#" class="edit btn-properties"><i class="fa fa-eye-slash icon"></i>Ẩn tin</a>
+                                    @endif
+                                    @if ($item->status == \App\Models\Room::STATUS_EXPIRED || $item->status ==
+                                    \App\Models\Room::STATUS_DEFAULT)
+                                    <a href="{{ route('get_user.room.pay', $item->id) }}" class="edit btn-properties"><i class="fa fa-refresh icon"></i> Thanh
+                                        toán
+                                        hoặc gia hạn</a>
+                                        <a href="{{route('get_user.room.update',$item->id)}}" class="edit btn-properties"><i class="fa-solid fa-pen icon"></i></i>Sửa tin</a>
+                                    @endif
+                                    @if ($item->status == \App\Models\Room::STATUS_DEFAULT &&
+                                    ($item->paymentHistory->count() ??
+                                    0)
+                                    > 0)
+                                     <a href="#" class="edit btn-properties"><i class="fa-solid fa-eye icon"></i> Hiển thị</a>
+                                    @endif
+                               
+                              
                             </p>
                             
                          </div>

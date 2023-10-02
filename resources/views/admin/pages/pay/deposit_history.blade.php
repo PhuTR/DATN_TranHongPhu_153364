@@ -3,7 +3,9 @@
 
 
 <div class="col-lg-9 col-md-12 col-xs-12 pl-0 user-dash2">
-  
+    <div class="header-widget">
+        <a href="{{route('get_admin.location.create')}}" class="btn-admin" ><i class="fa-solid fa-circle-plus"></i>Thêm mới</a>
+    </div>
     <section class="headings-2 pt-0 pb-0">
         <div class="pro-wrapper">
             <div class="detail-wrapper-body">
@@ -19,6 +21,7 @@
             </div>
         </div>
     </section>
+    
      <div class="dashborad-box">
          <h4 class="title">Lịch sử nạp tiền</h4>
          <div class="section-body listing-table">
