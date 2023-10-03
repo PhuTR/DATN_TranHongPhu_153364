@@ -16,7 +16,7 @@ class CategoryController extends Controller
 
         $orderBy = $request->input('sort', 'desc'); 
         $rooms = Room::where('category_id', $slug)
-            ->where('status',1)
+            ->where('status',[Room::STATUS_ACTIVE, Room::STATUS_EXPIRED])
             ->orderBy('id', $orderBy) 
             ->paginate(4);
         

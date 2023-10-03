@@ -92,16 +92,16 @@
                                 <h5>{{ number_format($user->account_balance,0,',','.') }} đ</h5>
                             </div>
                             <div class="col-sm-12 " >
-                                <a href="{{route('get_user.pay.transfer_money')}}" class="btn-width btn-admin ">Chuyển khoản</a>
+                                <a href="{{route('get_user.pay.transfer_money')}}" class="btn-width btn-pay ">Chuyển khoản</a>
                             </div>
                             <div class="col-sm-12 " >
-                                <a href="{{route('get_user.pay.atm')}}" class="btn-width btn-admin">Thẻ ATM Internet Banking</a>
+                                <a href="{{route('get_user.pay.atm')}}" class="btn-width btn-pay">Thẻ ATM Internet Banking</a>
                             </div>
                             <div class="col-sm-12 " >
-                                <a href="{{route('get_user.pay.cash')}}" class="btn-width btn-admin">Tiền mặt</a>
+                                <a href="{{route('get_user.pay.cash')}}" class="btn-width btn-pay">Tiền mặt</a>
                             </div>
                             <div class="col-sm-12 " >
-                                <a href="{{route('get_user.pay.zalo_pay')}}" class="btn-width btn-admin">Zalo Pay</a>
+                                <a href="{{route('get_user.pay.zalo_pay')}}" class="btn-width btn-pay">Zalo Pay</a>
                             </div>
                          </div>
                      </div>
