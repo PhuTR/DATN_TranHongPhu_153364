@@ -68,7 +68,11 @@
             </div>
         </div>
     </div>
-  
+    <div class="pagination-container">
+        <nav>
+          {{$paymentHistory->links()}}
+        </nav>
+    </div>
    
    
 </div>

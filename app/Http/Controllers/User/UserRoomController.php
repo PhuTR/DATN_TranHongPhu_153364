@@ -271,4 +271,42 @@ class UserRoomController extends Controller
             return redirect()->back();
         }
     }
+
+
+    public function hideRoom($id)
+    {
+        $room         = Room::find($id);
+        $room->status = Room::STATUS_DEFAULT;
+        $room->save();
+
+        return redirect()->back();
+    }
+
+    public function activeRoom($id)
+    {
+        $today         = Date::today()->format('Y-m-d');
+        $checkTimeRoom = Room::with('category:id,name,slug', 'district:id,name,slug')
+            ->whereDate('time_start', '<=', $today)
+            ->whereDate('time_stop', '>=', $today)
+            ->find($id);
+
+        if (!$checkTimeRoom) {
+            DB::table('rooms')->where('id', $id)
+                ->update([
+                    'status'      => Room::STATUS_EXPIRED,
+                    'service_hot' => 0
+                ]);
+        } else {
+            DB::table('rooms')->where('id', $id)
+                ->update([
+                    'status' => Room::STATUS_ACTIVE,
+                ]);
+        }
+
+        return redirect()->back();
+    }
+
+
+
+
 }

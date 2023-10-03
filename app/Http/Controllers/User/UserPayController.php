@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\PaymentHistory;
+use App\Models\RechargeHistory;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -20,7 +21,13 @@ class UserPayController extends Controller
     }
 
     public function deposit_history(){
-        return view('user.pay.deposit_history');
+        $depositHistory = RechargeHistory::where('user_id', Auth::user()->id)
+        ->orderByDesc('id')->paginate(20);
+
+    $viewData = [
+        'depositHistory' => $depositHistory
+    ];
+        return view('user.pay.deposit_history',$viewData);
     }
   
     public function  payment_history(){

@@ -31,11 +31,12 @@
                          <tr>
                              <th>#</th>
                              <th>Hình ảnh</th>
-                             <th>Tiêu đề</th>
+                             <th>Thông tin</th>
                              <th>Danh mục</th>
                              <th>Giá phòng</th>
+                             <th>Ngày bắt đầu</th>
+                             <th>Ngày kết thúc</th>
                              <th>Trạng thái</th>
-                             <th>Thao tác</th>
                            
                          </tr>
                      </thead>
@@ -50,35 +51,67 @@
                                     <img src="{{ asset('uploads/avatars/' . $item->avatar) }}" style="width:80px; height:80px; border-radius:50%" alt="">
                                 @endif
                             </td>
-                            <td style="vertical-align: middle">{{$item->name}}</td>
+                            {{-- <td style="vertical-align: middle">{{$item->name}}</td> --}}
+                            <td style="vertical-align: middle; width:40%">
+                                <a href="" target="_blank"
+                                    style="color: #007aff;text-decoration: none">
+                                    @if ($item->service_hot > 0)
+                                    @for($i = 1 ; $i <= $item->service_hot ; $i ++)
+                                        <span style="color: #fed553" class="fa fa-star"></span>
+                                        @endfor
+                                        @endif
+                                        {{ $item->name }}
+                                </a>
+                                <p style="font-size: 14px;font-weight: 400;color: #212121;text-decoration: none;margin-bottom: 5px">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                    
+                                    @if (isset($item->wards))
+                                    <span>{{ $item->wards->name ?? "" }} - </span>
+                                    @endif
+                                    @if (isset($item->district))
+                                    <span>{{ $item->district->name }} - </span>
+                                    @endif
+                                    @if (isset($item->city))
+                                    <span>{{ $item->city->name ?? "" }}  </span>
+                                    @endif
+                                </p>
+                                <p style="margin-bottom: 2px">
+                                    @if ($item->status != \App\Models\Room::STATUS_ACTIVE)
+                                    <a href="{{ route('get_admin.room.success', $item->id) }}" class="text-success"
+                                        style="margin-right:8px; font-size: 13px;text-decoration: none;font-weight: 500"><i class="fa fa-refresh"></i>
+                                        Duyệt</a>
+                                    <a href="{{ route('get_admin.room.expires', $item->id) }}" class="text-warning"
+                                        style="margin-right:8px; font-size: 13px;text-decoration: none;font-weight: 500"><i
+                                            class="fa fa-credit-card"></i> Hết hạn</a>
+                                    @endif
+                                    @if ($item->status == \App\Models\Room::STATUS_ACTIVE)
+                                    <a href="{{ route('get_admin.room.hide', $item->id) }}" class="text-secondary"
+                                        style="margin-right:8px; font-size: 13px;text-decoration: none"> <i class="fa fa-eye-slash"></i> Ẩn tin</a>
+                                    @endif
+                                    <!-- <a href="" class="text-danger"
+                                        style="font-size: 13px;text-decoration: none;font-weight: 500"><i class="fa fa-times"></i>
+                                        Huỷ</a> -->
+                                    <a href="{{ route('get_admin.room.delete', $item->id) }}" class="text-danger"
+                                        style="margin-right:8px; font-size: 13px;text-decoration: none;font-weight: 500"> <i
+                                            class="fa fa-trash"></i> Delete</a>
+                                </p>
+                                @if ($item->status == \App\Models\Room::STATUS_CANCEL)
+                                <p style="margin-bottom: 2px;font-size: 12px"><i class="text-danger">{{ $item->lydo }}</i></p>
+                                @endif
+                            </td>
                             <td style="vertical-align: middle">{{$item->category->name}}</td>                          
-                            <td style="vertical-align: middle">{{number_format($item->price ?? 0,0,',','.') ?? 0}}</td>
+                            <td style="vertical-align: middle">{{number_format($item->price ?? 0,0,',','.') ?? 0}} đ</td>
                             <td style="vertical-align: middle">
-                                @if($item->status == 1)
-                                <span  style="color:#1CA345">Đã kiểm duyệt</span>
-                            @else
-                                <span  style="color: #FFC001">Chờ kiểm duyệt</span>
-                            @endif   
+                                {{$item->time_start}}
+                            </td>
+                            <td style="vertical-align: middle">
+                                {{$item->time_stop}}
+                            </td>
+                            <td style="vertical-align: middle">
+                                <span class="{{ $item->getStatus($item->trangthai)['class'] ?? '...' }}">{{ $item->getStatus($item->trangthai)['name'] ?? "..." }}</span> 
                             
                             </td>
-                            <td style="vertical-align: middle">
-                                <div class="user-menu" style="margin-left: 0;padding-left:15%;padding-right:0; top:0">
-                                    <div class="">
-                                        <i class="fa-solid fa-list-ul"></i>
-                                    </div>
-                                    <ul style="top:25px">
-                                        @if ($item->status==1)
-                                             <li><a style="color: #FFC001" href="{{route('get_admin.room.unapprove',$item->id)}}"> Bỏ kiểm duyệt</a></li>
-                                        @else
-                                            <li><a style="color:#1CA345" href="{{route('get_admin.room.approve',$item->id)}}"> Kiểm duyệt</a></li>
-                                        @endif
-                                     
-                                        <li><a style="color: #DE3F44" href="{{route('get_admin.room.delete',$item->id)}}'">  Xoá</a></li>
-                                      
-                                    </ul>
-                                </div>
-                            </td>
-                            {{-- <td ><a href="{{route('get_admin.category.edit_category',$item->id)}}"><i class="fa-solid fa-pen-to-square"></i></a></td> --}}
+                            
                         </tr>
                         @endforeach
                         

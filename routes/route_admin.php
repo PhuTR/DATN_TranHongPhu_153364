@@ -57,11 +57,17 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function(){
 
         Route::get('','AdminRoomController@index')->name('get_admin.room.index');
 
-        Route::get('approve/{id}','AdminRoomController@ApproveRoom')->name('get_admin.room.approve');
+        Route::get('success/{id}', 'AdminRoomController@success')->name('get_admin.room.success');
 
-        Route::get('unapprove/{id}','AdminRoomController@UnApproveRoom')->name('get_admin.room.unapprove');
+        Route::get('expires/{id}', 'AdminRoomController@expires')->name('get_admin.room.expires');
 
-        Route::get('Delete/{id}','AdminRoomController@delete')->name('get_admin.room.delete');
+        Route::get('hide/{id}', 'AdminRoomController@hide')->name('get_admin.room.hide');
+
+        Route::get('cancel/{id}', 'AdminRoomController@cancel')->name('get_admin.room.cancel');
+        Route::post('cancel/{id}', 'AdminRoomController@processCancelRoom');
+
+        Route::get('delete/{id}', 'AdminRoomController@delete')->name('get_admin.room.delete');
+
 
     });
 
@@ -77,6 +83,14 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function(){
     Route::group(['prefix' => 'pay'],function(){
         Route::get('depposit-history','AdminPayController@deposit_history')->name('get_admin.pay.deposit_history');
         Route::get('payment-history','AdminPayController@payment_history')->name('get_admin.pay.paymet_history');
+
+        Route::get('create-transaction.html', 'AdminPayController@create_transaction')->name('get_admin.pay.create_transaction');
+        Route::post('create-transaction.html', 'AdminPayController@store_transaction');
+
+        Route::get('update-transaction/{id}', 'AdminPayController@edit_transaction')->name('get_admin.pay.update_transaction');
+        Route::post('update-transaction/{id}', 'AdminPayController@update_transaction');
+
+
     });
    
 

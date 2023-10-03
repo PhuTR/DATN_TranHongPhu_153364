@@ -36,36 +36,33 @@
                          </tr>
                      </thead>
                      <tbody>
-                         <tr>
-                             <td>22:59 27/8/2023</td>
-                             <td>PT12327082023225905</td>
-                             <td class="rating"><span>MOMO  </span></td>
-                             <td class="status"><span>50.000</span></td>
-                             <td class="edit">0</td>
-                             <td class="edit">0</td>
-                             <td class="edit">1</td>
-                             <td class="edit">ghi chú</td>
-                         </tr>
-                         <tr>
-                            <td>22:59 27/8/2023</td>
-                            <td>PT12327082023225905</td>
-                            <td class="rating"><span>MOMO  </span></td>
-                            <td class="status"><span>50.000</span></td>
-                            <td class="edit">0</td>
-                            <td class="edit">0</td>
-                            <td class="edit">1</td>
-                            <td class="edit">ghi chú</td>
-                        </tr>
+                        @foreach ($depositHistory ?? [] as $item)
                         <tr>
-                            <td>22:59 27/8/2023</td>
-                            <td>PT12327082023225905</td>
-                            <td class="rating"><span>MOMO  </span></td>
-                            <td class="status"><span>50.000</span></td>
-                            <td class="edit">0</td>
-                            <td class="edit">0</td>
-                            <td class="edit">1</td>
-                            <td class="edit">ghi chú</td>
+                            <td>{{$item->created_at}}</td>
+                            <td>{{$item->code}}</td>
+                            <td>
+                                @if ($item->type == 1)
+                                <span>Chuyển khoản</span>
+                                @elseif($item->type == 2)
+                                <span>Tiền mặt</span>
+                                @elseif($item->type == 3)
+                                <span>Thẻ ATM Internet Banking</span>
+                                @else
+                                @endif
+                            </td>
+                            <td class="status"><span>{{ number_format($item->money,0,',','.') }}đ</span></td>
+                            <td class="edit">{{ number_format($item->discount,0,',','.') }}đ</td>
+                            <td class="edit">{{ number_format($item->total_money,0,',','.') }}đ</td>
+                            <td>
+                                <span class="{{ $item->getStatus($item->status)['class'] }}">{{ $item->getStatus($item->status)['name'] }}</span>          
+                            </td>
+                            <td>
+                                @if ($item->status == \App\Models\RechargeHistory::STATUS_CANCEL)
+                                <span class="text-danger" style="font-size: 13px;">{{ $item->note }}</span>
+                                @endif
+                            </td>
                         </tr>
+                    @endforeach
                      </tbody>
                  </table>
              </div>

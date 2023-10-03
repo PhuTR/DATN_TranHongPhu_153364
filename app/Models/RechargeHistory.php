@@ -38,7 +38,7 @@ class RechargeHistory extends Model
 
     public function getStatus()
     {
-        return Arr::get($this->setStatus, $this->staus, []);
+        return Arr::get($this->setStatus, $this->status, []);
     }
 
     public function user()

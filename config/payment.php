@@ -4,19 +4,19 @@
 return [
     'method' => [
         [
-            'ten'   => 'Chuyển khoản',
+            'name'   => 'Chuyển khoản',
             'anhdaidien' => 'https://phongtro123.com/images/bank-transfer.png',
-            'ma'   => 1
+            'code'   => 1
         ],
         [
-            'ten'   => 'Tiền mặt',
+            'name'   => 'Tiền mặt',
             'anhdaidien' => 'https://phongtro123.com/images/cash.svg',
-            'ma'   => 2
+            'code'   => 2
         ],
         [
-            'ten'   => 'Thẻ ATM Internet Banking',
+            'name'   => 'Thẻ ATM Internet Banking',
             'anhdaidien' => 'https://phongtro123.com/images/payment-method.svg',
-            'ma'   => 3
+            'code'   => 3
         ],
     ],
     'type_price' => [

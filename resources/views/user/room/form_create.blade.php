@@ -110,7 +110,7 @@
                     <div class="col-lg-4 col-md-12">
                         <p class="no-mb">
                             <label for="price">Thông tin liên hệ</label>
-                            <input type="text" name="" placeholder="" id="price" disabled value="{{Auth::user()->name}}">
+                            <input type="text" name="name" placeholder="" id="price" disabled value="{{Auth::user()->name}}">
                         </p>
                     </div>
                     <div class="col-lg-4 col-md-12">

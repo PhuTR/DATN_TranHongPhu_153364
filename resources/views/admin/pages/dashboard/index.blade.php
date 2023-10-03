@@ -89,7 +89,7 @@
                          </div>
                          <div class="info">
                              <h6 class="number">{{ $totalPay }}</h6>
-                             <p class="type ml-1">Giao dịch thanh toán</p>
+                             <a href="{{route('get_admin.pay.paymet_history')}}" class="type ml-1">Giao dịch thanh toán</a>
                          </div>
                      </div>
                  </div>
@@ -99,8 +99,8 @@
                             <i class="fa-regular fa-credit-card" style="color: #ffff"></i>
                          </div>
                          <div class="info">
-                             <h6 class="number">432</h6>
-                             <p class="type ml-1">Lịch sử nạp tiền</p>
+                             <h6 class="number">{{$totalRechargeHistory}}</h6>
+                             <a href="{{route('get_admin.pay.deposit_history')}}" class="type ml-1">Lịch sử nạp tiền</a>
                          </div>
                      </div>
                  </div>
@@ -150,7 +150,7 @@
     
                         @foreach ($rechargeHistory ?? [] as $item)
                         @php
-                        $total += $item->tien;
+                        $total += $item->money;
                         @endphp
                         @endforeach
     
@@ -203,6 +203,7 @@
                     @endforeach
                 </tbody>
             </table>
+            
         </div>
     
     </div>

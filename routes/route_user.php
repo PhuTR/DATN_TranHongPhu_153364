@@ -37,6 +37,9 @@ Route::group(['namespace' => 'User', 'prefix' => 'user'], function(){
         Route::get('pay/{id}', 'UserRoomController@payRoom')->name('get_user.room.pay');
         Route::post('pay/{id}', 'UserRoomController@savePayRoom');
 
+        Route::get('hide/{id}', 'UserRoomController@hideRoom')->name('get_user.room.hide');
+        Route::get('active/{id}', 'UserRoomController@activeRoom')->name('get_user.room.active');
+
     });
 
 

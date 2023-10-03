@@ -84,21 +84,34 @@
                         @endif
                          {{-- <a href="single-property-1.html"><img alt="my-properties-3" src="{{asset('images/feature-properties/fp-1.jpg')}}" class="img-fluid"></a> --}}
                      </td>
-                     <td>
+                     <td style="width:40% ">
                          <div class="inner">
                              <a href="single-property-1.html">
                                 <h2>
                                    <span class="label label-danger-warning">
                                     {{$item->category->name ?? "[N\A]"}}
-                                    </span> 
+                                    </span>                                 
                                     {{$item->name}}
                                 
                                 </h2>
                              </a>
+                             <p style="font-size: 14px;font-weight: 400;color: #212121;text-decoration: none;margin-bottom: 5px">
+                                <i class="fa-solid fa-location-dot"></i>
+                                
+                                @if (isset($item->wards))
+                                <span>{{ $item->wards->name ?? "" }} - </span>
+                                @endif
+                                @if (isset($item->district))
+                                <span>{{ $item->district->name }} - </span>
+                                @endif
+                                @if (isset($item->city))
+                                <span>{{ $item->city->name ?? "" }}  </span>
+                                @endif
+                            </p>
                              <p class="actions">
 
                                     @if ($item->status == \App\Models\Room::STATUS_ACTIVE)
-                                    <a href="#" class="edit btn-properties"><i class="fa fa-eye-slash icon"></i>Ẩn tin</a>
+                                    <a href="{{ route('get_user.room.hide', $item->id) }}" class="edit btn-properties"><i class="fa fa-eye-slash icon"></i>Ẩn tin</a>
                                     @endif
                                     @if ($item->status == \App\Models\Room::STATUS_EXPIRED || $item->status ==
                                     \App\Models\Room::STATUS_DEFAULT)
@@ -108,28 +121,19 @@
                                         <a href="{{route('get_user.room.update',$item->id)}}" class="edit btn-properties"><i class="fa-solid fa-pen icon"></i></i>Sửa tin</a>
                                     @endif
                                     @if ($item->status == \App\Models\Room::STATUS_DEFAULT &&
-                                    ($item->paymentHistory->count() ??
-                                    0)
-                                    > 0)
-                                     <a href="#" class="edit btn-properties"><i class="fa-solid fa-eye icon"></i> Hiển thị</a>
+                                    ($item->paymentHistory->count() ?? 0) > 0)
+                                     <a href="{{ route('get_user.room.active', $item->id) }}" class="edit btn-properties"><i class="fa-solid fa-eye icon"></i> Hiển thị</a>
                                     @endif
-                               
-                              
                             </p>
                             
                          </div>
                      </td>
+                    
                      <td>{{number_format($item->price /1000000,1)}} triệu/tháng</td>
-                     <td>{{$item->created_at}}</td>
-                     <td>08.14.2020</td>
+                     <td>{{$item->time_start}}</td>
+                     <td>{{$item->time_stop}}</td>
                      <td >
-                        @if ($item->status == 1)
-                            <span style="color: #1CA345">Đã kiểm duyệt</span>
-                        @elseif ($item->status == 0)
-                            <span style="color: #FFC001">Chờ kiểm duyệt</span>
-                        @else
-                            <span style="color:#DE3F44">Tin hết hạn</span>
-                        @endif
+                        <span class="{{ $item->getStatus($item->trangthai)['class'] ?? '...' }}">{{ $item->getStatus($item->trangthai)['name'] ?? "..." }}</span>
                        
                      </td>
                  </tr>

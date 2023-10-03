@@ -64,5 +64,16 @@ class Room extends Model
     {
         return $this->hasMany(PaymentHistory::class, 'user_id');
     }
-   
+    public function district()
+    {
+        return $this->belongsTo(Location::class, 'district_id');
+    }
+    public function wards()
+    {
+        return $this->belongsTo(Location::class, 'wards_id');
+    }
+    public function city()
+    {
+        return $this->belongsTo(Location::class, 'city_id');
+    }
 }
