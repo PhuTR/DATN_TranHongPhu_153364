@@ -3,9 +3,7 @@
 
 
 <div class="col-lg-9 col-md-12 col-xs-12 pl-0 user-dash2">
-    <div class="header-widget">
-        <a href="{{route('get_admin.pay.create_transaction')}}" class="btn-admin" ><i class="fa-solid fa-circle-plus"></i>Thêm mới</a>
-    </div>
+    
     <section class="headings-2 pt-0 pb-0">
         <div class="pro-wrapper">
             <div class="detail-wrapper-body">
@@ -24,6 +22,20 @@
     
      <div class="dashborad-box">
          <h4 class="title">Lịch sử nạp tiền</h4>
+         {{-- <div class="header-widget">
+            <form action="" class="row">
+                <div class="col-sm-3">
+                    <input type="text" placeholder="Tên danh mục" value="{{ Request::get('n') }}" name="n" class="form-control">
+                </div>
+                <div class="">
+                    <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+                </div>
+            </form>
+
+        </div> --}}
+         <div class="btn-admin">
+            <a href="{{route('get_admin.pay.create_transaction')}}" class="" ><i class="fa-solid fa-circle-plus"></i>Thêm mới</a>
+        </div>
          <div class="section-body listing-table">
              <div class="table-responsive">
                  <table class="table table-striped">

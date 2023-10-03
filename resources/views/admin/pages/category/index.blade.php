@@ -20,9 +20,21 @@
         </div>
     </section>
      <div class="dashborad-box">
+        
          <h4 class="title">Danh sách danh mục </h4>
          <div class="header-widget">
-             <a href="{{route('get_admin.category.create')}}" class="btn-admin" ><i class="fa-solid fa-circle-plus"></i>Thêm mới</a>
+            <form action="" class="row">
+                <div class="col-sm-3">
+                    <input type="text" placeholder="Tên danh mục" value="{{ Request::get('n') }}" name="n" class="form-control">
+                </div>
+                <div class="">
+                    <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+                </div>
+            </form>
+
+        </div>
+         <div class=" btn-admin">
+             <a href="{{route('get_admin.category.create')}}" class="" ><i class="fa-solid fa-circle-plus icon"></i>Thêm mới</a>
          </div>
          <div class="section-body listing-table">
              <div class="table-responsive">

@@ -11,10 +11,17 @@ use Carbon\Carbon;
 use Exception;
 class AdminLocationController extends Controller
 {
-    public function index(){
-        $locations = Location::orderByDesc('id')->paginate(15);;
+    public function index(Request $request){
+        $locations = Location::whereRaw(1);
+
+        if ($request->n)
+            $locations->where('name', 'like', '%' . $request->n . '%');
+
+        $locations = $locations->orderByDesc('id')->paginate(10);
+
         $viewData = [
             'locations' => $locations,
+            'query'     => $request->query()
         ];
         return view('admin.pages.location.index', $viewData);
     }

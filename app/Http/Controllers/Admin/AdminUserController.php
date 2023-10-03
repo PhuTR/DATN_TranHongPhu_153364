@@ -8,10 +8,18 @@ use Illuminate\Support\Str;
 use Carbon\Carbon;
 class AdminUserController extends Controller
 {
-    public function index(){
-        $user = User::paginate(15);
+    public function index(Request $request){
+        $users = User::whereRaw(1);
+
+        if ($request->n)
+            $users->where('name', 'like', '%' . $request->n . '%');
+
+        $users = $users->orderByDesc('id')->paginate(20);
+
+       
         $viewData =[
-            'user' => $user,
+            'user' => $users,
+            'query' => $request->query()
         ];
         return view('admin.pages.user.index',$viewData);
     }

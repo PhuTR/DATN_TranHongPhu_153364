@@ -21,9 +21,17 @@
     </section>
      <div class="dashborad-box">
          <h4 class="title">Danh sách thành viên</h4>
-         {{-- <div class="header-widget">
-             <a href="{{route('get_admin.category.create')}}" class="btn-admin" ><i class="fa-solid fa-circle-plus"></i>Thêm mới</a>
-         </div> --}}
+         <div class="header-widget">
+            <form action="" class="row">
+                <div class="col-sm-3">
+                    <input type="text" placeholder="Tên khách hàng" value="{{ Request::get('n') }}" name="n" class="form-control">
+                </div>
+                <div class="">
+                    <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+                </div>
+            </form>
+
+        </div>
          <div class="section-body listing-table">
              <div class="table-responsive">
                  <table class="table table-striped">
@@ -35,6 +43,7 @@
                              <th>Email</th>
                              <th>Số điện thoại</th>
                              <th>Ngày tạo</th>
+                             <th>Tuỳ chọn</th>
                            
                          </tr>
                      </thead>
@@ -53,7 +62,10 @@
                             <td>{{$item->email}}</td>
                             <td>{{$item->phone}}</td>
                             <td class="edit">{{$item->created_at}}</td>
-                            <td ><a href="#"><i class="fa-solid fa-eye-slash"></i></a></td>
+                            <td >
+                                <a href="#"><i class="fa-regular fa-pen-to-square " style="margin-right: 20px"></i></a>
+                                <a href="#"><i class="fa-solid fa-trash"></i></a>
+                            </td>
                         </tr>
                         @endforeach
                         

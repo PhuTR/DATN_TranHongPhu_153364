@@ -10,11 +10,18 @@ use Carbon\Carbon;
 use Exception;
 class AdminCategoryController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
 
-        $categories = Category::orderByDesc('id')->paginate(15);;
+        $categories = Category::whereRaw(1);
+
+        if ($request->n)
+            $categories->where('name', 'like', '%' . $request->n . '%');
+        $categories = $categories->orderByDesc('id')->paginate(15);;
+     
         $viewData = [
             'categories' => $categories,
+            'query'      => $request->query()
+
         ];
         return view('admin.pages.category.index', $viewData);
        

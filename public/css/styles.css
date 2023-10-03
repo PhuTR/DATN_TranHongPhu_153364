@@ -18578,6 +18578,7 @@ a.button {
 }
 
 .dashborad-box {
+  position: relative;
   background: #fff;
   padding: 30px;
   margin-bottom: 2.5rem;

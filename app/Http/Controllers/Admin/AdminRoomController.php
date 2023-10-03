@@ -3,15 +3,24 @@
 namespace App\Http\Controllers\Admin;
 use App\Models\Room;
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class AdminRoomController extends Controller
 {
-    public function index(){
-        $rooms = Room::orderByDesc('id')->paginate(6);
+    public function index(Request $request){
+        $rooms = Room::with('category:id,name,slug', 'district:id,name,slug', 'wards:id,name,slug');
+        if ($request->category_id)
+            $rooms->where('category_id', $request->category_id);
 
+        if ($request->n)
+            $rooms->where('name', 'like', '%' . $request->n . '%');
+        $rooms      = $rooms->orderByDesc('id')->paginate(10);
+        $categories = Category::select('id', 'name')->get();
         $viewData = [
-            'rooms' => $rooms
+            'rooms' => $rooms,
+            'categories' => $categories,
+            'query'      => $request->query()
         ];
         return view('admin.pages.room.index', $viewData);
     }

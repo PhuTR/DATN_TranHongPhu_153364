@@ -21,9 +21,27 @@
     </section>
      <div class="dashborad-box">
          <h4 class="title">Danh sách tin đăng </h4>
-         {{-- <div class="header-widget">
-             <a href="{{route('get_admin.category.create')}}" class="btn-admin" ><i class="fa-solid fa-circle-plus"></i>Thêm mới</a>
-         </div> --}}
+         <div class="header-widget">
+            <form action="" class="row">
+                <div class="col-sm-3">
+                    <input type="text" placeholder="Tên tiêu đề" value="{{ Request::get('n') }}" name="n" class="form-control">
+                </div>
+                <div class="col-sm-3">
+                    <select name="category_id" class="form-control" id="">
+                        <option value="">Danh mục</option>
+                        @foreach($categories as $item)
+                        <option {{ Request::get('category_id') == $item->id ? "selected" : "" }} value="{{ $item->id }}">
+                            {{ $item->name }}
+                        </option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="">
+                    <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+                </div>
+            </form>
+
+        </div>
          <div class="section-body listing-table">
              <div class="table-responsive">
                  <table class="table table-striped">
