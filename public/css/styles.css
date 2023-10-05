@@ -2810,7 +2810,7 @@ section.portfolio {
 }
 
 .portfolio .homes-content {
-  background: #fff !important;
+  background: #fff ;
   padding: 20px 20px !important;
 }
 
@@ -7631,7 +7631,7 @@ html input[disabled] {
 .hp-6 .rld-main-search .rld-single-select .single-select {
   margin-bottom: 0px;
   border-radius: 8px;
-  margin-right: 15px;
+  margin-right: 10px;
   border: 1px solid #ebebeb;
   -webkit-box-shadow: 0px 0px 0px 8px rgba(255, 255, 255, 0.2);
           box-shadow: 0px 0px 0px 8px rgba(255, 255, 255, 0.2);
@@ -7813,7 +7813,7 @@ html input[disabled] {
 }
 
 .hp-6 .rld-single-select .single-select {
-  width: 180px;
+  width: 216px;
 }
 
 .hp-6 .rld-single-input input {
@@ -11958,7 +11958,7 @@ section.visited-cities {
   position: relative;
   width: 100%;
   overflow: hidden;
-  margin-bottom: 1rem;
+  /* margin-bottom: 1rem; */
   z-index: 90;
   border-radius: 3px;
 }
@@ -14935,11 +14935,15 @@ a.button {
 }
 
 .inner-pages.hp-6.full .rld-main-search {
-  padding: 30px 0px 30px 20px;
-  background: #f5f7fb;
+  padding: 10px 0px 30px 20px;
+
+  background: #fff;
   border: 0px;
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: 0px 0px 0px 8px rgba(190, 220, 255, 0.2);
+
+  /* -webkit-box-shadow: none;
+          box-shadow: none; */
+
 }
 
 .inner-pages.hp-6.full .rld-main-search .single-select,
@@ -14986,6 +14990,22 @@ a.button {
 @media only screen and (max-width: 1024px) {
   .inner-pages.hp-6.full .rld-single-input input {
     width: 160px;
+  }
+
+
+}
+@media only screen and (min-width: 1024px) {
+  .inner-pages.hp-6.full .rld-main-search{
+    max-height: 70px;
+
+  }
+  .sp-1{
+    margin-left: 60px;
+  }
+
+
+  .inner-pages .properties-right.list .mb-44 .vip0{
+    max-height: 200px !important;
   }
 }
 @media screen and (max-width: 768px) {

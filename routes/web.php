@@ -40,6 +40,9 @@ Route::group(['namespace' => 'Frontend'], function(){
     Route::get('{slug}-{id}.html','CategoryController@detail_rooms')->name('get.category.detail)')
     ->where(['slug' => '[a-z-0-9-]+', 'id' => '[0-9]+',]);;
 
+    Route::get('tim-kiem', 'SearchRoomController@index')->name('get.room.search');
+
+
 
 });
 

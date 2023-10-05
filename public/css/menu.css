@@ -1,7 +1,76 @@
 /* ---------------------------------- */
 /* Header
 ------------------------------------- */
+.section .section-header {
+    margin-top: 0;
+    margin-bottom: 15px;
+}
 
+.section .section-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin: 0;
+    padding: 0;
+}
+
+.list-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.list-links.acreage>li,
+.list-links.price>li {
+    width: 50%;
+    float: left;
+}
+
+.list-links>li {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    border-bottom: 1px dashed #eee;
+}
+
+.list-links>li:before {
+    display: inline-block;
+    content: "";
+    width: 14px;
+    height: 14px;
+    background: url(../images/chevron-right.svg) center no-repeat;
+    background-size: contain;
+    position: absolute;
+    left: 0;
+    opacity: .3;
+}
+
+.list-links>li a {
+    padding: 5px 0;
+    display: inline-flex;
+    align-items: center;
+    color: #333;
+    width: 100%;
+    line-height: 1.4;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.txt-title{
+    display: block;
+    font-weight: 700;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 100%;
+    overflow: hidden;
+    text-align: center;
+}
+.bg-location{
+    border-radius: 30px;
+    background-color: #fff;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
 .fixed-size {
     width: 730px !important; /* Đặt kích thước chiều rộng */
     height: 450px !important; /* Đặt kích thước chiều cao */

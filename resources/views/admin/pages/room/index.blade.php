@@ -76,8 +76,8 @@
                                     @if ($item->service_hot > 0)
                                     @for($i = 1 ; $i <= $item->service_hot ; $i ++)
                                         <span style="color: #fed553" class="fa fa-star"></span>
-                                        @endfor
-                                        @endif
+                                    @endfor
+                                    @endif
                                         {{ $item->name }}
                                 </a>
                                 <p style="font-size: 14px;font-weight: 400;color: #212121;text-decoration: none;margin-bottom: 5px">

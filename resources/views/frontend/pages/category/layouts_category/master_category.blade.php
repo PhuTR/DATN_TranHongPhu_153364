@@ -94,7 +94,7 @@
             var originalText = element.textContent;
 
             // Giới hạn độ dài của văn bản và thêm dấu "..."
-            var maxLength = 20;
+            var maxLength = 50;
             if (originalText.length > maxLength) {
                 var truncatedText = originalText.slice(0, maxLength) + '...';
                 element.textContent = truncatedText;
@@ -105,7 +105,7 @@
             var originalText = element.textContent;
 
             // Giới hạn độ dài của văn bản và thêm dấu "..."
-            var maxLength = 70;
+            var maxLength = 65;
             if (originalText.length > maxLength) {
                 var truncatedText = originalText.slice(0, maxLength) + '...';
                 element.textContent = truncatedText;

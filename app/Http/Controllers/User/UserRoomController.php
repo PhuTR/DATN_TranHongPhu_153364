@@ -51,6 +51,8 @@ class UserRoomController extends Controller
         $data['auth_id'] = Auth::user()->id;
         $data['slug'] = Str::slug($request->name);
         $data['status']     = Room::STATUS_EXPIRED;
+        $data = $this->switchPrice($data);
+        $data = $this->switchArea($data);
         if ($request->hasFile('avatar')){
             $file = $request->file('avatar');
             var_dump($file);
@@ -131,7 +133,8 @@ class UserRoomController extends Controller
         $data['updated_at'] = Carbon::now();
         $data['price'] = str_replace('.', '', $request->price);
         $data['slug'] = Str::slug($request->name);
-     
+        $data = $this->switchPrice($data);
+        $data = $this->switchArea($data);
         if ($request->hasFile('avatar')){
             $file = $request->file('avatar');
             var_dump($file);
@@ -305,7 +308,91 @@ class UserRoomController extends Controller
 
         return redirect()->back();
     }
+    protected function switchPrice($data)
+    {
+        switch ($data['price']) {
+            case $data['price'] < 1000000:
+                $data['range_price'] = 1;
+                break;
 
+            case ($data['price'] >= 1000000 && $data['price'] < 2000000):
+                $data['range_price'] = 2;
+                break;
+
+            case ($data['price'] >= 2000000 && $data['price'] < 3000000):
+                $data['range_price'] = 3;
+                break;
+
+            case ($data['price'] >= 3000000 && $data['price'] < 5000000):
+                $data['range_price'] = 4;
+                break;
+
+            case ($data['price'] >= 5000000 && $data['price'] < 7000000):
+                $data['range_price'] = 5;
+                break;
+
+            case ($data['price'] >= 7000000 && $data['price'] < 10000000):
+                $data['range_price'] = 6;
+                break;
+
+            case ($data['price'] >= 10000000 && $data['price'] < 15000000):
+                $data['range_price'] = 7;
+                break;
+
+            case ($data['price'] >= 15000000):
+                $data['range_price'] = 8;
+                break;
+        }
+
+        return $data;
+    }
+
+    protected function switchArea($data)
+    {
+        switch ($data['area']) {
+            case $data['area'] < 20:
+                $data['range_area'] = 1;
+                break;
+
+            case ($data['area'] >= 20 && $data['area'] < 30):
+                $data['range_area'] = 2;
+                break;
+
+            case ($data['area'] >= 30 && $data['area'] < 50):
+                $data['range_area'] = 3;
+                break;
+
+            case ($data['area'] >= 50 && $data['area'] < 60):
+                $data['range_area'] = 4;
+                break;
+
+            case ($data['area'] >= 60 && $data['area'] < 70):
+                $data['range_area'] = 5;
+                break;
+
+            case ($data['area'] >= 70 && $data['area'] < 80):
+                $data['range_area'] = 6;
+                break;
+
+            case ($data['area'] >= 80 && $data['area'] < 100):
+                $data['range_area'] = 7;
+                break;
+
+            case ($data['area'] >= 100 && $data['area'] < 120):
+                $data['range_area'] = 8;
+                break;
+
+            case ($data['area'] >= 120 && $data['area'] < 150):
+                $data['range_area'] = 9;
+                break;
+
+            case ($data['area'] >= 150):
+                $data['range_area'] = 10;
+                break;
+        }
+
+        return $data;
+    }
 
 
 
