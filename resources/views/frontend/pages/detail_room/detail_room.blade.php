@@ -15,7 +15,6 @@
                                         &nbsp;/&nbsp; <span>{{$room->location->name}}</span>
                                     </p>
                                 </div>
-                                {{-- <h3>{{$room->category->title}}</h3> --}}
                             </div>
                         </div>
                     </div>
@@ -28,28 +27,33 @@
                                     <div class="pro-wrapper">
                                         <div class="detail-wrapper-body">
                                             <div class="listing-title-bar">
-                                                <h3>{{$room->name}}
-                                                    {{-- <span class="mrg-l-5 category-tag">For Sale</span> --}}
+                                                <h3 style="font-size: 25px">
+                                                    @if ($room->service_hot > 0)
+                                                    @for($i = 1 ; $i <= $room->service_hot ; $i ++)
+                                                        <span style="color: #fed553;font-size:20px" class="fa fa-star"></span>
+                                                    @endfor
+                                                    @endif
+                                                    @if ($room->service_hot == 1)
+                                                    <span style="color:#055699">{{$room->name}}</span>
+                                                    @elseif($room->service_hot == 2)
+                                                    <span style="color:#055699">{{$room->name}}</span>
+                                                    @elseif($room->service_hot == 3)
+                                                    <span style="color:#f60">{{$room->name}}</span>
+                                                    @elseif($room->service_hot == 4)
+                                                    <span style="color:#ea2e9d">{{$room->name}}</span>
+                                                    @else
+                                                    <span style="color: #E13427">{{$room->name}}</span> 
+                                                    @endif
+                                                   
                                                 </h3>
                                                 <div class="mt-0">
                                                     <a href="#listing-location" class="listing-address">
-                                                        <i class="fa fa-map-marker pr-2 ti-location-pin mrg-r-5"></i>{{$room->full_address ?? 'N\A'}}</a>
+                                                        <i class="fa-solid fa-location-dot icon"></i>{{$room->full_address ?? 'N\A'}}</a>
                                                     </a>
                                                 </div>
                                             </div>
                                         </div>
-                                        {{-- <div class="single detail-wrapper mr-2">
-                                            <div class="detail-wrapper-body">
-                                                <div class="listing-title-bar">
-                                                    <h4>{{number_format($room->price/1000000,1)}} triệu/tháng</h4>
-                                                    <div class="mt-0">
-                                                        <a href="#listing-location" class="listing-address">
-                                                            <p>$ 1,200 / sq ft</p>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div> --}}
+                                       
                                     </div>
                                 </section>
                                 <!-- main slider carousel items -->
@@ -147,6 +151,22 @@
                                     <span class="font-weight-bold mr-1">Ngày hết hạn:</span>
                                     <span class="det">{{$room->time_stop}}</span>
                                 </li>
+                                <li>
+                                    <span class="font-weight-bold mr-1">Gói tin:</span>
+                                    <span class="det">
+                                        @if ($room->service_hot == 1)
+                                        <span style="color:#055699">Tin thường</span>
+                                        @elseif($room->service_hot == 2)
+                                        <span style="color:#055699">Tin Vip 3</span>
+                                        @elseif($room->service_hot == 3)
+                                        <span style="color:#f60">Tin Vip 2</span>
+                                        @elseif($room->service_hot == 4)
+                                        <span style="color:#ea2e9d">Tin Vip 1</span>
+                                        @else
+                                        <span style="color:#E13427">Tin Đặc biệt</span>
+                                        @endif    
+                                    </span>
+                                </li>
                                 
                                
                                 
@@ -175,132 +195,7 @@
                        
                         
                     </div>
-                    <aside class="col-lg-4 col-md-12 car">
-                        <div class="single widget">
-                         
-                            <!-- end author-verified-badge -->
-                            <div class="sidebar">
-                                <div class="widget-boxed mt-33 mt-5">
-                                    <div class="widget-boxed-header">
-                                        <h4>Thông tin liên hệ</h4>
-                                    </div>
-                                    <div class="widget-boxed-body">
-                                        <div class="sidebar-widget author-widget2">
-                                            <div class="author-box clearfix">
-                                                {{-- <img src="{{asset('images/testimonials/ts-1.jpg')}}" alt="author-image" class="author__img"> --}}
-                                               
-                                                    @if(empty($room->user->avatar) || is_null($room->user->avatar) || $room->user->avatar == 'no-avatar.jpg')
-                                                        <img   class="author__img" id="output1" src="{{ asset('images/no-avatar.jpg') }}">
-                                                    @else
-                                                        <img  class="author__img" id="output1" src="{{ asset('uploads/avatars/' . $room->user->avatar) }}">
-                                                    @endif
-
-                                               
-                                                <h4 class="author__title">{{$room->user->name ?? 'N\A'}}</h4>
-                                                <p class="author__meta"><i class="fa-solid fa-hashtag"></i>{{$room->user->id}}</p>
-                                            </div>
-                                            <ul class="author__contact">
-                                                <li><span class="la la-map-marker"><i class="fa fa-map-marker"></i></span>{{$room->location->name}}</li>
-                                                <li><span class="la la-phone"><i class="fa fa-phone" aria-hidden="true"></i></span><a href="tel:{{$room->user->phone}}" >{{$room->user->phone}}</a></li>
-                                                <li><span class="la la-phone"><i class="fa fa-phone" aria-hidden="true"></i></span><a href="tel:{{$room->user->phone}}">Nhắn Zalo</a></li>
-                                                <li><span class="la la-envelope-o"><i class="fa fa-envelope" aria-hidden="true"></i></span><a href="mailto:{{$room->user->email}}">{{$room->user->email}}</a></li>
-                                            </ul>
-                                            
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="main-search-field-2">
-                                    <div class="widget-boxed mt-5">
-                                        <div class="widget-boxed-header">
-                                            <h4>Tin nổi bật</h4>
-                                        </div>
-                                        <div class="widget-boxed-body">
-                                            <div class="recent-post">
-                                                <div class="recent-main">
-                                                    <div class="recent-img">
-                                                        <a href="blog-details.html"><img src="{{asset('images/feature-properties/fp-1.jpg')}}" alt=""></a>
-                                                    </div>
-                                                    <div class="info-img">
-                                                        <a href="blog-details.html"><h6>Family Home</h6></a>
-                                                        <p>$230,000</p>
-                                                    </div>
-                                                </div>
-                                                <div class="recent-main my-4">
-                                                    <div class="recent-img">
-                                                        <a href="blog-details.html"><img src="{{asset('images/feature-properties/fp-2.jpg')}}" alt=""></a>
-                                                    </div>
-                                                    <div class="info-img">
-                                                        <a href="blog-details.html"><h6>Family Home</h6></a>
-                                                        <p>$230,000</p>
-                                                    </div>
-                                                </div>
-                                                <div class="recent-main">
-                                                    <div class="recent-img">
-                                                        <a href="blog-details.html"><img src="{{asset('images/feature-properties/fp-3.jpg')}}" alt=""></a>
-                                                    </div>
-                                                    <div class="info-img">
-                                                        <a href="blog-details.html"><h6>Family Home</h6></a>
-                                                        <p>$230,000</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="widget-boxed mt-5">
-                                        <div class="widget-boxed-header">
-                                            <h4>Tin mới đăng</h4>
-                                        </div>
-                                        <div class="widget-boxed-body">
-                                            <div class="recent-post">
-                                                @foreach ($rooms_new as $item )
-                                                <div class="recent-main my-4" >
-                                                    <div class="recent-img">
-                                                        {{-- <a href="blog-details.html"><img src="{{asset('images/feature-properties/fp-1.jpg')}}" alt=""></a> --}}
-
-                                                        <a href="{{route('get.category.detail)',['slug' => $item->slug,'id' => $item->id])}}" >
-                                                            @if(empty($item->avatar) || is_null($item->avatar) || $item->avatar == 'no-avatar.jpg')
-                                                                <img   class="img-responsive" id="output1" src="{{ asset('images/no-avatar.jpg') }}">
-                                                            @else
-                                                                <img  class="img-responsive" id="output1" src="{{ asset('uploads/avatars/' . $item->avatar) }}">
-                                                            @endif
-        
-                                                        </a>
-                                                    </div>
-                                                    <div class="info-img">
-                                                        <a href="{{route('get.category.detail)',['slug' => $item->slug,'id' => $item->id])}}" class="title_room_new"><h6>{{$item->name}}</h6></a>
-                                                        <p >{{number_format($item->price ?? 0,0,',','.') ?? 0}} vnđ</p>
-                                                    </div>
-                                                </div>
-                                                    
-                                                @endforeach
-
-                                                {{-- <div class="recent-main my-4">
-                                                    <div class="recent-img">
-                                                        <a href="blog-details.html"><img src="{{asset('images/feature-properties/fp-2.jpg')}}" alt=""></a>
-                                                    </div>
-                                                    <div class="info-img">
-                                                        <a href="blog-details.html"><h6>Family Home</h6></a>
-                                                        <p>$230,000</p>
-                                                    </div>
-                                                </div>
-                                                <div class="recent-main">
-                                                    <div class="recent-img">
-                                                        <a href="blog-details.html"><img src="{{asset('images/feature-properties/fp-3.jpg')}}" alt=""></a>
-                                                    </div>
-                                                    <div class="info-img">
-                                                        <a href="blog-details.html"><h6>Family Home</h6></a>
-                                                        <p>$230,000</p>
-                                                    </div>
-                                                </div> --}}
-                                            </div>
-                                        </div>
-                                    </div>
-                                 
-                         
-                                </div>
-                            </div>
-                        </div>
-                    </aside>
+               @include('frontend.pages.detail_room.sidebar_detail')
                 </div>
                 <!-- START SIMILAR PROPERTIES -->
                 <section class="similar-property featured portfolio p-0 bg-white-inner">

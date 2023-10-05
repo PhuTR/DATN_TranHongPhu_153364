@@ -24,6 +24,7 @@ return new class extends Migration
             $table->tinyInteger('range_price')->default(1);
             $table->tinyInteger('range_area')->default(1);
             $table->tinyInteger('status')->default(0);
+            $table->tinyInteger('hot')->default(0);
             $table->integer('area')->default(0);
             $table->string('images')->nullable();
             $table->integer('count_view')->default(0);

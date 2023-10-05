@@ -129,7 +129,7 @@
                             @if(empty($item->avatar) || is_null($item->avatar) || $item->avatar == 'no-avatar.jpg')
                                 <img   style="width: 60px;height: 60px;border-radius: 50%" id="output" src="{{ asset('images/no-avatar.jpg') }}">
                             @else
-                                <img   style="width: 60px;height: 60px;border-radius: 50%" id="output" src="../uploads/avatars/{{ $admin->avatar }}">
+                                <img   style="width: 60px;height: 60px;border-radius: 50%" id="output" src="../uploads/avatars/{{ $item->avatar }}">
                             @endif
                            
                         </td>

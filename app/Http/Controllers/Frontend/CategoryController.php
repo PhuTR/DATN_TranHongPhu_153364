@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Service\RoomService;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Room;
@@ -24,10 +25,13 @@ class CategoryController extends Controller
         $room->save();
         $category = Category::all();
         $orderBy = $request->input('sort', 'asc'); 
-        $rooms_new = Room::orderBy('id', $orderBy) ->paginate(4);
-
+        $rooms_new = RoomService::getRoomsNewVip($limit =  10);
+        $rooms_hot = RoomService::getListsRoomVip($limit = 6, [
+            'service_hot' => 5
+        ]);
         $viewData = [
             'room' => $room,
+            'rooms_hot' => $rooms_hot,
             'rooms_new' => $rooms_new,
             'category' => $category,
             'query' => $request->query()

@@ -4,7 +4,11 @@
        <!-- START SECTION PROPERTIES LISTING -->
     <section class="properties-right list featured portfolio blog pt-5">
         <div class="container">
-          @include('frontend.pages.category.layouts_category.search_category')
+            @include('frontend.pages.category.layouts_category.form_search')
+
+            @include('frontend.pages.category.layouts_category.info_category')
+            
+            @include('frontend.pages.category.layouts_category.location_hot')
             
                 <div class="row">
                     <div class="col-lg-8 col-md-12 blog-pots">

@@ -1,18 +1,3 @@
-@include('frontend.pages.category.layouts_category.form_search')
-
-
-<section class="headings-2 pt-0 pb-0">
-    <div class="pro-wrapper">
-        <div class="detail-wrapper-body">
-            <div class="listing-title-bar">
-                <div class="text-heading text-left">
-                    <p><a href="{{route('get.home')}}">Trang chủ  </a> &nbsp;/&nbsp; <span>{{$category->name}}</span></p>
-                </div>
-                <h3>{{$category->title}}</h3>
-            </div>
-        </div>
-    </div>
-</section>
 <section class="visited-cities rec-pro" style="padding: 1em 0;">
     <div class="container-fluid">
         <div class="row sp-1">
@@ -27,10 +12,14 @@
                         @else
                             <img  class="img-responsive" id="output1" src="{{ asset('uploads/avatars/' . $item->avatar) }}">
                         @endif
-                        {{-- <img src="images/popular-places/7.jpg" class="img-responsive" alt=""> --}}
-                        <!-- Badge -->
+                       
                     </a>
-                    <p class="txt-title">{{$category->name}} {{$item->name}}</p>
+                    <p class="txt-title">
+                        @if(isset($category->name))
+                            {{$category->name}} 
+                        @endif
+                        {{$item->name}}
+                    </p>
                 </div>
                   
        

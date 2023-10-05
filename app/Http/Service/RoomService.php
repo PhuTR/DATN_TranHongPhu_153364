@@ -63,27 +63,22 @@ class RoomService
         $rooms = Room::whereIn('status', [Room::STATUS_ACTIVE, Room::STATUS_EXPIRED]);
 
         if ($categoryId = Arr::get($params, 'category_id')) {
-            // dd("Hello danh muc" . Arr::get($params, 'danhmuc_id'));
             $rooms->where('category_id', $categoryId);
         }
 
         if ($cityId = Arr::get($params, 'city_id')) {
-            // dd("Hello city" . Arr::get($params, 'location_city_id'));
             $rooms->where('city_id', $cityId);
         }
 
         if ($phuongxa_id = Arr::get($params, 'district_id')) {
-            // dd("Hello px" . Arr::get($params, 'phuongxa_id'));
             $rooms->where('district_id', $phuongxa_id);
         }
 
         if ($range_price = Arr::get($params, 'price')) {
-            // dd("Hello gia " . Arr::get($params, 'price'));
             $rooms->where('range_price', $range_price);
         }
 
         if ($range_area = Arr::get($params, 'range_area')) {
-            // dd("Hello" . Arr::get($params, 'khuvuc'));
             $rooms->where('range_area', $range_area);
         }
 
