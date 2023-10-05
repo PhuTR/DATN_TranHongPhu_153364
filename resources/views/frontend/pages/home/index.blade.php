@@ -184,7 +184,8 @@
                             </li>
                             <li class="the-icons">
                                 <i class="fa-solid fa-clock " aria-hidden="true"></i>
-                                <span><?php echo time_elapsed_string($item->created_at); ?></span>
+                                <span><?php echo time_elapsed_string($item->time_start) ?></span>
+                             
                             </li>
                         </ul>
                         <div class="price-properties footer pt-3 pb-0" style="padding-top: 0px!important">
@@ -327,7 +328,7 @@
                                     </li>
                                     <li class="the-icons">
                                         <i class="fa-solid fa-clock " aria-hidden="true"></i>
-                                        <span><?php echo time_elapsed_string($item->created_at); ?></span>
+                                        <span><?php echo time_elapsed_string($item->time_start); ?></span>
                                     </li>
                                 </ul>
                                 <div class="price-properties footer pt-3 pb-0">

@@ -112,7 +112,7 @@
                                         </li>
                                         <li>
                                             <i class="fa-solid fa-clock " style="color: #ffff"></i></i>
-                                            <span><?php echo time_elapsed_string($room->created_at) ?></span>
+                                            <span><?php echo time_elapsed_string($room->time_start) ?></span>
                                         </li>
                                     </ul>
                                 </div>

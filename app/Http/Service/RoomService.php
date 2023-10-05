@@ -7,7 +7,7 @@ use Illuminate\Support\Arr;
 
 class RoomService
 {
-    protected $column = ['id', 'avatar', 'name', 'description', 'full_address', 'price', 'updated_at', 'area', 'slug', 'service_hot','auth_id','count_view','city_id','district_id','wards_id'];
+    protected $column = ['id', 'avatar', 'name', 'description', 'full_address', 'price', 'updated_at', 'area', 'slug', 'service_hot','auth_id','count_view','city_id','district_id','wards_id','created_at','time_start','time_stop' ];
 
     public static function getRoomsHot($limit = 8)
     {

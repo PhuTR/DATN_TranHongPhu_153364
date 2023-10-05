@@ -257,10 +257,12 @@ class UserRoomController extends Controller
                 ->decrement('account_balance', $totalMoney);
            
             $timeStartNow = Carbon::parse($request->thoigian_batdau);
+      
             $timeStop     = $timeStartNow->addDay($request->day);
             // Update tin
             $room->status      = Room::STATUS_PAID;
-            $room->time_start  = $request->thoigian_batdau;
+            $room->time_start  = Carbon::parse($request->thoigian_batdau);
+          
             $room->time_stop   = $timeStop->format('Y-m-d');
             $room->service_hot = $roomType;
             $room->updated_at  = Carbon::now();

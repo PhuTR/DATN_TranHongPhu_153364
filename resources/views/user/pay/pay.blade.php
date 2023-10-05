@@ -65,7 +65,7 @@
                                         </div>
                                         <div class="form-group row-lists-3">
                                             <label for="name">Ngày bắt đầu</label>
-                                            <input style="max-width:50%" type="date" class="form-control" min="{{ date('Y-m-d') }}" name="thoigian_batdau">
+                                            <input style="max-width:50%" type="datetime-local" class="form-control" min="{{ date('Y-m-d\TH:i'); }}" name="thoigian_batdau">
                                         </div>
                                         <div class="form-group row-lists-3">
                                             <label for="name">Thành tiền</label>

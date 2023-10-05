@@ -31,7 +31,7 @@ return new class extends Migration
             $table->text('apartment_number')->nullable();
             $table->text('full_address')->nullable();
             $table->text('contents')->nullable();
-            $table->date('time_start')->nullable()->comment('ngày bắt đầu');
+            $table->datetime('time_start')->nullable()->comment('ngày bắt đầu');
             $table->date('time_stop')->nullable()->comment('ngày kết thúc');
             $table->bigInteger('category_id')->default(0);
             $table->tinyInteger('service_hot')->default(0);

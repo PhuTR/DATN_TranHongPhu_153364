@@ -87,7 +87,7 @@
                                                 <i class="fa fa-map-marker"></i><span>{{$item->district->name}} - {{$item->city->name}}</span>
                                             </a>
                                             <a href="single-property-1.html" style="float: right">
-                                                <span><?php echo time_elapsed_string($item->created_at); ?></span>
+                                                <span><?php echo time_elapsed_string($item->time_start); ?></span>
                                             </a>
                                         </p>
                                         <!-- homes List -->
@@ -120,7 +120,7 @@
                                                 @endif
                                                 {{$item->user->name ?? 'N\A'}}</a>
                                             </a>
-                                            {{-- <div><?php echo time_elapsed_string($item->created_at); ?></div> --}}
+                                            {{-- <div><?php echo time_elapsed_string($item->time_start); ?></div> --}}
 
                                             <a href="https://zalo.me/{{$item->user->phone ?? 'N\A'}}" target="_blank" class="btn-contact-zalo">Nhắn Zalo</a>
                                             <br />
@@ -183,7 +183,7 @@
                                             
                                                 {{-- <li class="the-icons" style="margin-top: -10%;margin-left: 76%;">
                                                     <i class="flaticon-bathtub mr-2" aria-hidden="true" ></i>
-                                                    <span><?php echo time_elapsed_string($item->created_at); ?></span>
+                                                    <span><?php echo time_elapsed_string($item->time_start); ?></span>
                                                 </li> --}}
                                                 <li class="the-icons" style="width:100% !important; margin-top:-3%;margin-bottom:-4%">
                                                     <i class="flaticon-square mr-2" aria-hidden="true"></i>
@@ -262,7 +262,7 @@
                                             
                                                 {{-- <li class="the-icons" style="margin-top: -10%;margin-left: 76%;">
                                                     <i class="flaticon-bathtub mr-2" aria-hidden="true" ></i>
-                                                    <span><?php echo time_elapsed_string($item->created_at); ?></span>
+                                                    <span><?php echo time_elapsed_string($item->time_start); ?></span>
                                                 </li> --}}
                                                 <li class="the-icons" style="width:100% !important; margin-top:-3%;margin-bottom:-4%">
                                                     <i class="flaticon-square mr-2" aria-hidden="true"></i>
@@ -340,7 +340,7 @@
                                             
                                                 {{-- <li class="the-icons" style="margin-top: -10%;margin-left: 76%;">
                                                     <i class="flaticon-bathtub mr-2" aria-hidden="true" ></i>
-                                                    <span><?php echo time_elapsed_string($item->created_at); ?></span>
+                                                    <span><?php echo time_elapsed_string($item->time_start); ?></span>
                                                 </li> --}}
                                                 <li class="the-icons" style="width:100% !important; margin-top:-3%;margin-bottom:-4%">
                                                     <i class="flaticon-square mr-2" aria-hidden="true"></i>
