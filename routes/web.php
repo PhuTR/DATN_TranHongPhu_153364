@@ -31,18 +31,20 @@ Route::group(['namespace' => 'Auth'], function(){
 Route::group(['namespace' => 'Frontend'], function(){
     Route::get('','HomeController@index')->name('get.home');
 
-    Route::get('all-view.html','HomeController@allview')->name('get.home.allview');
+    Route::get('xem-tat-ca.html','HomeController@allview')->name('get.home.allview');
 
 
     Route::get('{slug}-{id}','CategoryController@index')->name('get.category.item')
     ->where(['slug' => '[a-z-0-9-]+', 'id' => '[0-9]+',]);
 
-    Route::get('{slug}-{id}.html','CategoryController@detail_rooms')->name('get.category.detail)')
-    ->where(['slug' => '[a-z-0-9-]+', 'id' => '[0-9]+',]);;
+    Route::get('{slug}-{id}.html','CategoryController@detail_rooms')->name('get.category.detail')
+    ->where(['slug' => '[a-z-0-9-]+', 'id' => '[0-9]+',]);
 
     Route::get('tim-kiem', 'SearchRoomController@index')->name('get.room.search');
 
-
+    Route::get('blog.html', 'ArticlesController@index')->name('get.articles.index');
+    Route::get('{slug}/{id}.html', 'ArticlesController@detail')->name('get.articles.detail')
+    ->where(['slug' => '[a-z-0-9-]+', 'id' => '[0-9]+',]);
 
 });
 

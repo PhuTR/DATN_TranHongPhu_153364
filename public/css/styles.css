@@ -3906,7 +3906,7 @@ section.blog-section {
   background: #fff;
   -webkit-box-shadow: 0px 0px 1px #e7e7e7 !important;
           box-shadow: 0px 0px 1px #e7e7e7 !important;
-  border: 1px solid #e7e7e7;
+ 
   overflow: hidden;
 }
 
@@ -21096,8 +21096,8 @@ a.btn_1 {
 }
 
 .agents .blog-section .news-item-sm .news-img-link {
-  -ms-flex-preferred-size: 48.5%;
-      flex-basis: 48.5%;
+  -ms-flex-preferred-size: 34.5%;
+      flex-basis: 34.5%;
   position: relative;
 }
 

@@ -34,6 +34,8 @@
             </div>
            @include('frontend.pages.detail_room.sidebar_roomhot')
            @include('frontend.pages.category.layouts_category.sidebar_news')
+           @include('frontend.pages.articles.sidebar_articles.sidebar_articles_new')
+           @include('frontend.pages.articles.sidebar_articles.sidebar_articles_care')
         </div>
     </div>
 </aside>

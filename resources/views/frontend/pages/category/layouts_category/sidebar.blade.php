@@ -30,5 +30,7 @@
             </section>
         </div>
         @include('frontend.pages.category.layouts_category.sidebar_news')
+        @include('frontend.pages.articles.sidebar_articles.sidebar_articles_new')
+        @include('frontend.pages.articles.sidebar_articles.sidebar_articles_care')
     </div>
 </aside>

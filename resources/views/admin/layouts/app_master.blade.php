@@ -30,8 +30,10 @@
     <link rel="stylesheet" href="{{asset('css/slick.css')}}">
     <link rel="stylesheet" href="{{asset('css/styles.css')}}">
     <link rel="stylesheet" id="color" href="{{asset('css/default.css')}}">
+    <script src="{{asset('js/ckeditor.js')}}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
-<body class="maxw1600 m0a dashboard-bd">
+<body class="inner-pages maxw1600 m0a dashboard-bd">
     <div id="wrapper" class="int_main_wraapper">
         @include('admin.layouts.app_header')
         <section class="user-page section-padding">

@@ -15,8 +15,24 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('get_admin.profile.index')}}">
-                        <i class="fa fa-user"></i>Hồ sơ
+                    <a href="{{route('get_admin.room.index')}}">
+                        <i class="fa-solid fa-newspaper"></i>Quản lý bài đăng
+                    </a>
+                </li>
+                <li>
+                    <a href="{{route('get_admin.user.index')}}">
+                        <i class="fa-solid fa-users"></i>Quản lý thành viên
+                    </a>
+                </li>
+              
+                <li>
+                    <a href="{{route('get_admin.pay.paymet_history')}}">
+                        <i class="fa-solid fa-money-bills"></i>Quản lý thanh toán
+                    </a>
+                </li>
+                <li>
+                    <a href="{{route('get_admin.pay.deposit_history')}}">
+                        <i class="fa-regular fa-credit-card"></i>Quản lý nạp tiền
                     </a>
                 </li>
                 <li>
@@ -29,24 +45,15 @@
                         <i class="fa-solid fa-location-dot"></i>Quản lý địa điểm
                     </a>
                 </li>
+              
                 <li>
-                    <a href="{{route('get_admin.user.index')}}">
-                        <i class="fa-solid fa-users"></i>Quản lý thành viên
+                    <a href="{{route('get_admin.article.index')}}">
+                        <i class="fa-solid fa-newspaper"></i>Quản lý tin tức
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('get_admin.room.index')}}">
-                        <i class="fa-solid fa-newspaper"></i>Quản lý bài đăng
-                    </a>
-                </li>
-                <li>
-                    <a href="{{route('get_admin.pay.paymet_history')}}">
-                        <i class="fa-solid fa-money-bills"></i>Quản lý thanh toán
-                    </a>
-                </li>
-                <li>
-                    <a href="{{route('get_admin.pay.deposit_history')}}">
-                        <i class="fa-regular fa-credit-card"></i>Quản lý nạp tiền
+                    <a href="{{route('get_admin.profile.index')}}">
+                        <i class="fa fa-user"></i>Hồ sơ
                     </a>
                 </li>
                 <li>

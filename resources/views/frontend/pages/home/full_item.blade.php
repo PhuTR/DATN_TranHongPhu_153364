@@ -52,7 +52,7 @@
                                                 <div class="homes">
                                                     <!-- homes img -->
                                                 
-                                                    <a href="{{route('get.category.detail)',['slug' => $item->slug,'id' => $item->id])}}" class="homes-img">
+                                                    <a href="{{route('get.category.detail',['slug' => $item->slug,'id' => $item->id])}}" class="homes-img">
                                                         <div class="homes-price">{{number_format($item->price/1000000,1)}} triệu/tháng</div>
                                                         @if(empty($item->avatar) || is_null($item->avatar) || $item->avatar == 'no-avatar.jpg')
                                                             <img   class="img-responsive" id="output1" src="{{ asset('images/no-avatar.jpg') }}">
@@ -73,7 +73,7 @@
                                     <div class="col-lg-7 col-md-12 homes-content pb-0 mb-44 item-margin" data-aos="fade-up" style="background-color: #FFF9F3">
 
                                         <h3>
-                                            <a style="color: #FF385C" href="{{route('get.category.detail)',['slug' => $item->slug,'id' => $item->id])}}">
+                                            <a style="color: #FF385C" href="{{route('get.category.detail',['slug' => $item->slug,'id' => $item->id])}}">
                                                 @if ($item->service_hot > 0)
                                                 @for($i = 1 ; $i <= $item->service_hot ; $i ++)
                                                     <span style="color: #fed553;font-size:15px" class="fa fa-star"></span>
@@ -157,7 +157,7 @@
                                     <div class="col-lg-7-7 col-md-12 homes-content pb-0 mb-44 vip0 item-margin" data-aos="fade-up" >
                                         <!-- homes address -->
                                         <h3>
-                                            <a style="font-size:0.9em;color:#ea2e9d" href="{{route('get.category.detail)',['slug' => $item->slug,'id' => $item->id])}}">
+                                            <a style="font-size:0.9em;color:#ea2e9d" href="{{route('get.category.detail',['slug' => $item->slug,'id' => $item->id])}}">
                                                 @if ($item->service_hot > 0)
                                                 @for($i = 1 ; $i <= $item->service_hot ; $i ++)
                                                     <span style="color: #fed553;font-size:15px" class="fa fa-star"></span>
@@ -236,7 +236,7 @@
                                     <div class="col-lg-7-7 col-md-12 homes-content pb-0 mb-44 vip0 item-margin" data-aos="fade-up" >
                                         <!-- homes address -->
                                         <h3>
-                                            <a style="font-size:0.9em;color:#f60" href="{{route('get.category.detail)',['slug' => $item->slug,'id' => $item->id])}}">
+                                            <a style="font-size:0.9em;color:#f60" href="{{route('get.category.detail',['slug' => $item->slug,'id' => $item->id])}}">
                                                 @if ($item->service_hot > 0)
                                                 @for($i = 1 ; $i <= $item->service_hot ; $i ++)
                                                     <span style="color: #fed553;font-size:15px" class="fa fa-star"></span>
@@ -314,7 +314,7 @@
                                     <div class="col-lg-7-7 col-md-12 homes-content pb-0 mb-44 vip0 item-margin" data-aos="fade-up" >
                                         <!-- homes address -->
                                         <h3>
-                                            <a style="font-size:0.9em;color:#055699" href="{{route('get.category.detail)',['slug' => $item->slug,'id' => $item->id])}}">
+                                            <a style="font-size:0.9em;color:#055699" href="{{route('get.category.detail',['slug' => $item->slug,'id' => $item->id])}}">
                                                 @if ($item->service_hot > 0)
                                                 @for($i = 1 ; $i <= $item->service_hot ; $i ++)
                                                     <span style="color: #fed553;font-size:15px" class="fa fa-star"></span>

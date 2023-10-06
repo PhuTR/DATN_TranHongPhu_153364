@@ -92,6 +92,21 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function(){
 
 
     });
+
+    Route::group(['prefix' => 'article'],function(){
+
+        Route::get('','AdminArticlesController@index')->name('get_admin.article.index');
+
+        Route::get('create','AdminArticlesController@create')->name('get_admin.article.create');
+        Route::post('create','AdminArticlesController@store');
+
+        Route::get('update/{id}','AdminArticlesController@edit')->name('get_admin.article.edit');
+        Route::post('update/{id}','AdminArticlesController@update');
+
+        Route::get('delete/{id}', 'AdminArticlesController@delete')->name('get_admin.article.delete');
+
+
+    });
    
 
 

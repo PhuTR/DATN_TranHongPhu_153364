@@ -155,7 +155,7 @@
                     <!-- homes content -->
                     <div class="homes-content">
                         <!-- homes address -->
-                        <h3><a href="{{route('get.category.detail)',['slug' => $item->slug,'id' => $item->id])}}" >
+                        <h3><a href="{{route('get.category.detail',['slug' => $item->slug,'id' => $item->id])}}" >
                             @if ($item->service_hot > 0)
                             @for($i = 1 ; $i <= $item->service_hot ; $i ++)
                                 <span style="color: #fed553;font-size:15px" class="fa fa-star"></span>
@@ -299,7 +299,7 @@
                             <div class="homes-content">
                                 <!-- homes address -->
                              
-                                <h3><a href="{{route('get.category.detail)',['slug' => $item->slug,'id' => $item->id])}}" >
+                                <h3><a href="{{route('get.category.detail',['slug' => $item->slug,'id' => $item->id])}}" >
                                     @if ($item->service_hot > 0)
                                     @for($i = 1 ; $i <= $item->service_hot ; $i ++)
                                         <span style="color: #fed553;font-size:15px" class="fa fa-star"></span>
