@@ -20367,11 +20367,8 @@ section.pricing-table {
 }
 
 .plan-price {
-  font-size: 48px;
-  padding: 30px 0;
-  margin-bottom: 30px;
   position: relative;
-  background: #FF385C;
+
   color: #fff;
 }
 
@@ -20381,7 +20378,6 @@ section.pricing-table {
   content: " ";
   position: absolute;
   border-width: 15px;
-  border-top-color: #FF385C;
   left: 50%;
   margin-left: -16px;
 }

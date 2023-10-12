@@ -35,7 +35,7 @@
                                    
                                 @endforeach
                                 <li><a href="{{route('get.articles.index')}}">Tin Tức</a> </li>
-                                <li><a href="#">Bảng giá dịch vụ</a> </li>
+                                <li><a href="{{route('get.pricelist.index')}}">Bảng giá dịch vụ</a> </li>
                                 @if (isset(Auth::user()->name))
                                      <li class="d-none d-xl-none d-block d-lg-block mt-5 pb-4 ml-5 border-bottom-0"><a href="add-property.html" class="button border btn-lg btn-block text-center">Đăng tin mới<i class="fas fa-laptop-house ml-2"></i></a></li>
                                 @else

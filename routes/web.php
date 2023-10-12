@@ -46,6 +46,9 @@ Route::group(['namespace' => 'Frontend'], function(){
     Route::get('{slug}/{id}.html', 'ArticlesController@detail')->name('get.articles.detail')
     ->where(['slug' => '[a-z-0-9-]+', 'id' => '[0-9]+',]);
 
+    Route::get('bang-gia-đich-vu', 'PriceListController@index')->name('get.pricelist.index');
+
+
 });
 
 
