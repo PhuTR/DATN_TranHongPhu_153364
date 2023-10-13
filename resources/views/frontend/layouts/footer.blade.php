@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-lg-3 col-md-6">
                     <div class="netabout">
-                        <a href="index-2.html" class="logo">
+                        <a href="{{route('get.home')}}" class="logo">
                             <img src="images/logo-footer.svg" alt="netcom">
                         </a>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum incidunt architecto soluta laboriosam, perspiciatis, aspernatur officiis esse.</p>

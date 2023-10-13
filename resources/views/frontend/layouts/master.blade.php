@@ -40,7 +40,7 @@
         @include('frontend.layouts.header')
   
         @yield('content')
-        @include('frontend.layouts.footer')
+        @include('frontend.pages.category.layouts_category.footer_category')
 
           <!-- ARCHIVES JS -->
           <script src="js/jquery-3.5.1.min.js"></script>

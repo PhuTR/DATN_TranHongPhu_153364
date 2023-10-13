@@ -5,119 +5,97 @@
             <div class="row">
                 <div class="col-lg-3 col-md-6">
                     <div class="netabout">
-                        <a href="index-2.html" class="logo">
+                        <a href="{{route('get.home')}}" class="logo">
                             <img src="images/logo-footer.svg" alt="netcom">
                         </a>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum incidunt architecto soluta laboriosam, perspiciatis, aspernatur officiis esse.</p>
+                        <p>Phongtro123.com tự hào có lượng dữ liệu bài đăng lớn nhất trong lĩnh vực cho thuê phòng trọ.</p>
                     </div>
-                    <div class="contactus">
-                        <ul>
-                            <li>
-                                <div class="info">
-                                    <i class="fa fa-map-marker" aria-hidden="true"></i>
-                                    <p class="in-p">95 South Park Avenue, USA</p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="info">
-                                    <i class="fa fa-phone" aria-hidden="true"></i>
-                                    <p class="in-p">+456 875 369 208</p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="info">
-                                    <i class="fa fa-envelope" aria-hidden="true"></i>
-                                    <p class="in-p ti">support@findhouses.com</p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+                 
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <div class="navigation">
-                        <h3>Navigation</h3>
+                        <h3>Về PHONGTRO123.COM</h3>
                         <div class="nav-footer">
-                            <ul>
-                                <li><a href="index-2.html">Home One</a></li>
-                                <li><a href="properties-right-sidebar.html">Properties Right</a></li>
-                                <li><a href="properties-full-list.html">Properties List</a></li>
-                                <li><a href="properties-details.html">Property Details</a></li>
-                                <li class="no-mgb"><a href="agents-listing-grid.html">Agents Listing</a></li>
+                            <ul> 
+                                <li> <a  href="{{route('get.home')}}" >Trang chủ</a> </li>
+                                @foreach ($categoriesGlobal ?? [] as $item)
+                                    @if ($item->status == 1)
+                                        <li >
+                                            <a href="{{route('get.category.item',['slug' => $item->slug,'id' => $item->id])}}" 
+                                                title="{{$item->name}}" >{{$item->name}} 
+                                            </a> 
+                                        </li>
+                                    @endif
+                                   
+                                @endforeach
+                                <li ><a href="agents-listing-grid.html">Giới thiệu</a></li>
+                                <li ><a href="{{route('get.articles.index')}}">Blog</a></li>
+                                {{-- <li ><a href="agents-listing-grid.html">Quy chế hoạt động</a></li>
+                                <li ><a href="agents-listing-grid.html">Quy định sử dụng</a></li>
+                                <li ><a href="agents-listing-grid.html">Chính sách bảo mật</a></li> --}}
+                                <li ><a href="{{route('get_user.contact')}}">Liên hệ</a></li>
                             </ul>
-                            <ul class="nav-right">
-                                <li><a href="agent-details.html">Agents Details</a></li>
-                                <li><a href="about.html">About Us</a></li>
-                                <li><a href="blog.html">Blog Default</a></li>
-                                <li><a href="blog-details.html">Blog Details</a></li>
-                                <li class="no-mgb"><a href="contact-us.html">Contact Us</a></li>
-                            </ul>
+                           
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <div class="widget">
-                        <h3>Twitter Feeds</h3>
-                        <div class="twitter-widget contuct">
-                            <div class="twitter-area">
-                                <div class="single-item">
-                                    <div class="icon-holder">
-                                        <i class="fa fa-twitter" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="text">
-                                        <h5><a href="#">@findhouses</a> all share them with me baby said inspet.</h5>
-                                        <h4>about 5 days ago</h4>
-                                    </div>
-                                </div>
-                                <div class="single-item">
-                                    <div class="icon-holder">
-                                        <i class="fa fa-twitter" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="text">
-                                        <h5><a href="#">@findhouses</a> all share them with me baby said inspet.</h5>
-                                        <h4>about 5 days ago</h4>
-                                    </div>
-                                </div>
-                                <div class="single-item">
-                                    <div class="icon-holder">
-                                        <i class="fa fa-twitter" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="text">
-                                        <h5><a href="#">@findhouses</a> all share them with me baby said inspet.</h5>
-                                        <h4>about 5 days ago</h4>
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="navigation">
+                        <h3>Hỗ trợ khách hàng</h3>
+                        <div class="nav-footer">
+                            <ul> 
+                                <li> <a  href="{{route('get.home')}}" >Câu hỏi thường gặp</a> </li>
+                                <li ><a href="agents-listing-grid.html">Hướng dẫn đăng tin</a></li>
+                                <li ><a href="{{route('get.pricelist.index')}}">Bảng giá dịch vụ</a></li>
+                                <li ><a href="agents-listing-grid.html">Quy định đăng tin</a></li>
+                                <li ><a href="agents-listing-grid.html">Giải quyết khiếu nại</a></li>
+                            </ul>
+                           
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <div class="newsletters">
-                        <h3>Newsletters</h3>
-                        <p>Sign Up for Our Newsletter to get Latest Updates and Offers. Subscribe to receive news in your inbox.</p>
-                    </div>
-                    <form class="bloq-email mailchimp form-inline" method="post">
-                        <label for="subscribeEmail" class="error"></label>
-                        <div class="email">
-                            <input type="email" id="subscribeEmail" name="EMAIL" placeholder="Enter Your Email">
-                            <input type="submit" value="Subscribe">
-                            <p class="subscription-success"></p>
+                        <h3>Liên hệ với chúng tôi</h3>
+                        <div class="contact">
+                            <a target="_blank" href="">
+                                <i class="fa-brands fa-facebook"></i>
+                            </a>
+                            <a style="color: #DC362E" target="_blank" href="">
+                                <i class="fa-brands fa-youtube"></i>
+                            </a>
+                            <a style="color: #fff" target="_blank" href="">
+                                <i class="fa-brands fa-square-x-twitter"></i>
+                            </a>
                         </div>
-                    </form>
+                    </div>
+                    <div class="newsletters" style="margin-top: 20px">
+                        <h3>Phương thức thanh toán</h3>
+                        <div class="contact">
+                            <a target="_blank" href="">
+                                <img src="{{asset('images/bank-transfer.png')}}" alt="">
+                            </a>
+                            <a target="_blank" href="">
+                                <img src="{{asset('images/payment-method.png')}}" alt="">
+                            </a>
+                            <a target="_blank" href="">
+                                <img src="{{asset('images/cash.png')}}" alt="">
+                            </a>
+                            <a target="_blank" href="">
+                                <img style="border-radius:10px" src="{{asset('images/zalopay.png')}}" alt="">
+                            </a>
+                            <a target="_blank" href="">
+                                <img style="border-radius:10px" src="{{asset('images/momo.png')}}" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    
                 </div>
+                
             </div>
         </div>
     </div>
-    <div class="second-footer">
-        <div class="container">
-            <p>2021 © Copyright - All Rights Reserved.</p>
-            <ul class="netsocials">
-                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                <li><a href="#"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
-            </ul>
-        </div>
-    </div>
+   
 </footer>
 
 <a data-scroll href="#wrapper" class="go-up"><i class="fa fa-angle-double-up" aria-hidden="true"></i></a>
