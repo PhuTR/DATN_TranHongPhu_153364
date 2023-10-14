@@ -34,6 +34,7 @@
                                 <li ><a href="agents-listing-grid.html">Quy định sử dụng</a></li>
                                 <li ><a href="agents-listing-grid.html">Chính sách bảo mật</a></li> --}}
                                 <li ><a href="{{route('get_user.contact')}}">Liên hệ</a></li>
+                             
                             </ul>
                            
                         </div>

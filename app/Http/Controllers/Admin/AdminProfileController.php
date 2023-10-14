@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Hash;
 class AdminProfileController extends Controller
 {
     public function index(){
-        $admin = Admin::find(Auth::guard('admin')->id());
+        $admin = Admin::find(Auth::guard('admins')->id());
 
         if(!$admin) return abort(404);
         $viewData = [
@@ -26,7 +26,7 @@ class AdminProfileController extends Controller
 
 
     public function update(Request $request){
-        $admin = Admin::find(Auth::guard('admin')->user()->id);
+        $admin = Admin::find(Auth::guard('admins')->user()->id);
         if(!$admin) return abort(404);
         
         if ($request->hasFile('avatar')){
@@ -54,7 +54,7 @@ class AdminProfileController extends Controller
     }
 
     public function updatePassword(){
-        $admin = Admin::find(Auth::guard('admin')->user()->id);
+        $admin = Admin::find(Auth::guard('admins')->user()->id);
         if(!$admin) return abort(404);
         $viewData =[
             'admin' => $admin,
@@ -63,7 +63,7 @@ class AdminProfileController extends Controller
     }
 
     public function changeUpdate(AdminUpdatePasswordRequest $request){
-        $admin = Admin::find(Auth::guard('admin')->user()->id);
+        $admin = Admin::find(Auth::guard('admins')->user()->id);
         if(Hash::check($request->password, $admin->password))
         {
             $admin->password = bcrypt($request->password_new);

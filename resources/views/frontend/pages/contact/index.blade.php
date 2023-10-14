@@ -23,6 +23,7 @@
             <div class="col-lg-8 col-md-12">
                 <h3 class="mb-4">Liên hệ</h3>
                 <form id="contactform" class="contact-form" name="contactform" method="post" novalidate>
+                    @csrf
                     <div id="success" class="successform">
                         <p class="alert alert-success font-weight-bold" role="alert">Your message was sent successfully!</p>
                     </div>
@@ -33,13 +34,10 @@
                         <input type="text" required class="form-control input-custom input-full" name="name" placeholder="Họ tên của bạn">
                     </div>
                     <div class="form-group">
-                        <input type="text" required class="form-control input-custom input-full" name="lastname" placeholder="Số điện thoại">
+                        <input type="text" required class="form-control input-custom input-full" name="phone" placeholder="Số điện thoại">
                     </div>
-                    {{-- <div class="form-group">
-                        <input type="text" class="form-control input-custom input-full" name="email" placeholder="Email">
-                    </div> --}}
                     <div class="form-group">
-                        <textarea class="form-control textarea-custom input-full" id="ccomment" name="message" required rows="8" placeholder="Nội dung"></textarea>
+                        <textarea class="form-control textarea-custom input-full" id="ccomment" name="content" required rows="8" placeholder="Nội dung"></textarea>
                     </div>
                     <button type="submit" id="submit-contact" class="btn btn-primary btn-lg">Gửi liên hệ</button>
                 </form>

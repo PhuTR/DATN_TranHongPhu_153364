@@ -3,7 +3,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Route;
 
 
-Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function(){
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin',], function(){
     
     Route::get('dang-ky.html','RegisterAdminController@index')->name('get_admin.register');
     Route::post('dang-ky.html','RegisterAdminController@register')->name('get_admin.register_post');

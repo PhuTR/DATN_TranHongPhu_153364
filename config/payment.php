@@ -5,17 +5,18 @@ return [
     'method' => [
         [
             'name'   => 'Chuyển khoản',
-            'anhdaidien' => 'https://phongtro123.com/images/bank-transfer.png',
+            'avatar' => 'https://phongtro123.com/images/payment-method.svg',
             'code'   => 1
         ],
         [
             'name'   => 'Tiền mặt',
-            'anhdaidien' => 'https://phongtro123.com/images/cash.svg',
+            'avatar' => 'https://cdn.pixabay.com/photo/2020/04/16/23/09/dollar-5052608_1280.png',
             'code'   => 2
         ],
         [
             'name'   => 'Thẻ ATM Internet Banking',
-            'anhdaidien' => 'https://phongtro123.com/images/payment-method.svg',
+            'avatar' => 'https://phongtro123.com/images/bank-transfer.png',
+         
             'code'   => 3
         ],
     ],

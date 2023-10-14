@@ -13,62 +13,22 @@
                             <h4><i class="far fa-credit-card pr-2"></i>Chọn phương thức thanh toán</h4>
                         </div>
                         <!-- Paypal Option -->
-                        <a href="{{route('get_user.pay.transfer_money')}}">
-                            <div class="payment-card">
-                                <header class="payment-card-header cursor-pointer" data-toggle="collapse" data-target="#paypal" aria-expanded="true">
-                                    <div class="payment-card-title flexbox">
-                                        <h4>Chuyển khoản</h4>
-                                    </div>
-                                    <div class="pull-right">
-                                        <img src="{{asset('images/bank-transfer.png')}}" class="img-responsive" alt="">
-                                    </div>
-                                </header>
-                              
-                            </div>
-                        </a>
-                    
-                        <!-- Debit card option -->
-                        <a href="{{route('get_user.pay.atm')}}">
-                            <div class="payment-card">
-                                <header class="payment-card-header cursor-pointer" data-toggle="collapse" data-target="#paypal" aria-expanded="true">
-                                    <div class="payment-card-title flexbox">
-                                        <h4>Thẻ ATM Internet Banking</h4>
-                                    </div>
-                                    <div class="pull-right">
-                                        <img src="{{asset('images/payment-method.png')}}" class="img-responsive" alt="">
-                                    </div>
-                                </header>
-                              
-                            </div>
-                        </a>
-                       
-                        <a href="{{route('get_user.pay.cash')}}">
-                            <div class="payment-card">
-                                <header class="payment-card-header cursor-pointer" data-toggle="collapse" data-target="#paypal" aria-expanded="true">
-                                    <div class="payment-card-title flexbox">
-                                        <h4>Tiền mặt</h4>
-                                    </div>
-                                    <div class="pull-right">
-                                        <img src="{{asset('images/cash.png')}}" class="img-responsive" alt="">
-                                    </div>
-                                </header>
-                              
-                            </div>
-                        </a>
-                      
-                        <a href="{{route('get_user.pay.zalo_pay')}}" >
-                            <div class="payment-card">
-                                <header class="payment-card-header cursor-pointer" data-toggle="collapse" data-target="#paypal" aria-expanded="true">
-                                    <div class="payment-card-title flexbox">
-                                        <h4>ZaloPay</h4>
-                                    </div>
-                                    <div class="pull-right">
-                                        <img src="{{asset('images/zalopay.png')}}" class="img-responsive" alt="">
-                                    </div>
-                                </header>
-                              
-                            </div>
-                        </a>
+                        @foreach ( $recharge ?? [] as $item )
+                            <a href="{{ route('get_user.recharge.switch', ['slug' => \Illuminate\Support\Str::slug($item['name']), 'id' => $item['code']]) }}">
+                                <div class="payment-card">
+                                    <header class="payment-card-header cursor-pointer" data-toggle="collapse" data-target="#paypal" aria-expanded="true">
+                                        <div class="payment-card-title flexbox">
+                                            <h4>{{ $item['name'] }}</h4>
+                                        </div>
+                                        <div class="pull-right">
+                                            <img src="{{ $item['avatar'] }}" class="img-responsive" alt="{{ $item['name'] }}">
+                                        </div>
+                                    </header>
+                                
+                                </div>
+                            </a>
+                        @endforeach
+
                     </div>
                 </div>
             </div>
@@ -91,11 +51,12 @@
                                 <h5>Số dư tài khoản</h5>
                                 <h5>{{ number_format($user->account_balance,0,',','.') }} đ</h5>
                             </div>
+                           
                             <div class="col-sm-12 " >
                                 <a href="{{route('get_user.pay.transfer_money')}}" class="btn-width btn-pay ">Chuyển khoản</a>
                             </div>
                             <div class="col-sm-12 " >
-                                <a href="{{route('get_user.pay.atm')}}" class="btn-width btn-pay">Thẻ ATM Internet Banking</a>
+                                <a href="" class="btn-width btn-pay">Thẻ ATM Internet Banking</a>
                             </div>
                             <div class="col-sm-12 " >
                                 <a href="{{route('get_user.pay.cash')}}" class="btn-width btn-pay">Tiền mặt</a>

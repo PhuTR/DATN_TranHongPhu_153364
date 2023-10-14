@@ -57,7 +57,7 @@
      </div>
      <div class="sidebar-widget author-widget2">
          <div class="author-box clearfix">
-            @if(empty(Auth::guard('admin')->user()->avatar) || is_null(Auth::guard('admin')->user()->avatar) || Auth::guard('admin')->user()->avatar == 'no-avatar.jpg')
+            @if(empty(Auth::guard('admins')->user()->avatar) || is_null(Auth::guard('admins')->user()->avatar) || Auth::guard('admins')->user()->avatar == 'no-avatar.jpg')
                 <img  class="author__img" id="output" src="{{ asset('images/no-avatar.jpg') }}">
             @else
                 <img  class="author__img" id="output" src="../uploads/avatars/{{ $admin->avatar }}">
@@ -93,7 +93,7 @@
                 </div>
                 <label for="area">Ảnh đại diện</label>
                 <div class="" style="margin-left: 17%;margin-top:-3%">
-                    @if(empty(Auth::guard('admin')->user()->avatar) || is_null(Auth::guard('admin')->user()->avatar) || Auth::guard('admin')->user()->avatar == 'no-avatar.jpg')
+                    @if(empty(Auth::guard('admins')->user()->avatar) || is_null(Auth::guard('admins')->user()->avatar) || Auth::guard('admins')->user()->avatar == 'no-avatar.jpg')
                         <img  class="author__img" id="output" src="{{ asset('images/no-avatar.jpg') }}">
                      @else
                         <img  class="author__img" id="output" src="../uploads/avatars/{{ $admin->avatar }}">

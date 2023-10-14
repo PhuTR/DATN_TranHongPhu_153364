@@ -28,7 +28,7 @@ class LoginAdminController extends Controller
         
         // return redirect()->back();
 
-        if (Auth::guard('admin')->attempt(['phone' => $request->phone, 'password' => $request->password])) {
+        if (Auth::guard('admins')->attempt(['phone' => $request->phone, 'password' => $request->password])) {
             // Quản trị viên đã đăng nhập thành công
             return redirect()->route('get_admin.admin.dashbord');
         } else {

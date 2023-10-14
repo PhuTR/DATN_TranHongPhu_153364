@@ -49,7 +49,7 @@
                     <th></th>
                     <th class="col-lg-2 col-md-6 col-xs-12">
                         <div class=" text-center">
-                            <p class="plan-price" style="background-color: #E13427">
+                            <p class="plan-price" style="background-color: #E13427;margin-bottom: 0rem;">
                                 Tin VIP nổi bật
                                 <br>
                                 @for($i = 1 ; $i <= 5 ; $i ++)
@@ -60,7 +60,7 @@
                     </th>
                     <th class="col-lg-2 col-md-6 col-xs-12">
                         <div class=" text-center">
-                            <p class="plan-price" style="background-color: #EA2E9D">
+                            <p class="plan-price" style="background-color: #EA2E9D;margin-bottom: 0rem;">
                                 Tin VIP 1
                                 <br>
                                 @for($i = 1 ; $i <= 4 ; $i ++)
@@ -71,7 +71,7 @@
                     </th>
                     <th class="col-lg-2 col-md-6 col-xs-12">
                         <div class=" text-center">
-                            <p class="plan-price" style="background-color: #FF6600">
+                            <p class="plan-price" style="background-color: #FF6600;margin-bottom: 0rem;">
                                 Tin VIP 2
                                 <br>
                                 @for($i = 1 ; $i <= 3 ; $i ++)
@@ -82,7 +82,7 @@
                     </th>
                     <th class="col-lg-2 col-md-6 col-xs-12">
                         <div class=" text-center">
-                            <p class="plan-price" style="background-color: #007BFF">
+                            <p class="plan-price" style="background-color: #007BFF;margin-bottom: 0rem;">
                                 Tin VIP 1
                                 <br>
                                 @for($i = 1 ; $i <= 2 ; $i ++)
@@ -93,7 +93,7 @@
                     </th>
                     <th class="col-lg-2 col-md-6 col-xs-12">
                         <div class=" text-center">
-                            <p class="plan-price" style="background-color: #055699">
+                            <p class="plan-price" style="background-color: #055699;margin-bottom: 0rem;">
                                 Tin thường
                                 <br>
                                 @for($i = 1 ; $i <= 1 ; $i ++)
@@ -106,15 +106,18 @@
                 <tr>
                     <td><label for="">Ưu điểm</label></td>
                     <td>
-                        - Lượt xem nhiều gấp 30 lần so với tin thường
-                        <br>
-                        - Ưu việt, tiếp cận tối đa khách hàng.
-                        <br>
-                        - Xuất hiện vị trí đầu tiên ở trang chủ
-                        <br>
-                        - Đứng trên tất cả các loại tin VIP khác
-                        <br>
-                        - Xuất hiện đầu tiên ở mục tin nổi bật xuyên suốt khu vực chuyên mục đó.
+                        <div>
+                            - Lượt xem nhiều gấp 30 lần so với tin thường
+                            <br>
+                            - Ưu việt, tiếp cận tối đa khách hàng.
+                            <br>
+                            - Xuất hiện vị trí đầu tiên ở trang chủ
+                            <br>
+                            - Đứng trên tất cả các loại tin VIP khác
+                            <br>
+                            - Xuất hiện đầu tiên ở mục tin nổi bật xuyên suốt khu vực chuyên mục đó.
+                        </div>
+                    
                     </td>
                     <td>
                         - Lượt xem nhiều gấp 15 lần so với tin thường

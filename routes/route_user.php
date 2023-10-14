@@ -3,7 +3,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Route;
 
 
-Route::group(['namespace' => 'User', 'prefix' => 'user'], function(){
+Route::group(['namespace' => 'User', 'prefix' => 'user','middleware' => 'checkLoginUser'], function(){
     Route::get('cap-nhat.html','UserProfileController@index')->name('get_user.profile.index');
     Route::post('cap-nhat.html','UserProfileController@update')->name('get_user.profile.edit');
 
@@ -44,20 +44,28 @@ Route::group(['namespace' => 'User', 'prefix' => 'user'], function(){
 
 
     Route::get('contact','UserContactController@index')->name('get_user.contact');
+    Route::post('contact','UserContactController@store');
 
     Route::group(['prefix' => 'pay'],function(){
-        Route::get('pay','UserPayController@index_pay')->name('get_user.pay.index_pay');
+       
         Route::get('depposit-history','UserPayController@deposit_history')->name('get_user.pay.deposit_history');
         Route::get('payment-history','UserPayController@payment_history')->name('get_user.pay.paymet_history');
 
         Route::get('chuyen-khoan.html','UserPayController@transfer_money')->name('get_user.pay.transfer_money');
-        Route::get('atm-internet-banking.html','UserPayController@atm')->name('get_user.pay.atm');
+       
         Route::get('tien-mat.html','UserPayController@cash')->name('get_user.pay.cash');
         Route::get('zalo-pay.html','UserPayController@zalopay')->name('get_user.pay.zalo_pay');
 
- 
+    });
 
-
+    Route::group(['prefix' => 'nap-tien'], function () {
+        Route::get('','UserPayController@index_pay')->name('get_user.pay.index_pay');
+        Route::get('atm-internet-banking', 'UserPayController@atmInternet')->name('get_user.recharge.atm');
+        Route::post('atm-internet-banking', 'UserPayController@processAtmInternet');
+        Route::get('post-back-atm-internet-banking', 'UserPayController@postbackAtm');
+        Route::get('{slug}-{id}', 'UserPayController@switchRecharge')->name('get_user.recharge.switch')
+        ->where(['slug' => '[a-z-0-9-]+', 'id' => '[0-9]+',]);
+    
     });
 
    

@@ -56,7 +56,7 @@
      </div>
      <div class="sidebar-widget author-widget2">
          <div class="author-box clearfix">
-            @if(empty(Auth::guard('admin')->user()->avatar) || is_null(Auth::guard('admin')->user()->avatar) || Auth::guard('admin')->user()->avatar == 'no-avatar.jpg')
+            @if(empty(Auth::guard('admins')->user()->avatar) || is_null(Auth::guard('admins')->user()->avatar) || Auth::guard('admins')->user()->avatar == 'no-avatar.jpg')
                 <img   class="author__img" id="output" src="{{ asset('images/no-avatar.jpg') }}">
             @else
                 <img   class="author__img" id="output" src="{{ asset('uploads/avatars/' . Auth::guard('admin')->user()->avatar) }}">

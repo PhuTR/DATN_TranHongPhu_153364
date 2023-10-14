@@ -11,7 +11,7 @@
                     <div class="text-heading text-left">
                         <p>
                             <a href="{{route('get.home')}}">Trang chủ  </a> &nbsp;/&nbsp; <a href="{{route('get_user.room.home')}}">Quản lý</a>
-                            &nbsp;/&nbsp; <a href="{{route('get_user.pay.index_pay')}}">Nạp tiền vào tài khoản</a>   &nbsp;/&nbsp; <span>Chuyển khoản</span>
+                            &nbsp;/&nbsp; <a href="{{route('get_user.pay.index_pay')}}">Nạp tiền vào tài khoản</a>   &nbsp;/&nbsp; <span>Thẻ ATM Internet Banking</span>
                         </p>
                     </div>
                  
@@ -37,7 +37,7 @@
                                         <input style="height:50px" type="number" class="form-control" placeholder="" name="gia" value="">
                                     </div>
                                     <div class="form-group">
-                                        <button type="submit" class="btn-admin" style="width:20%"> Tiếp tục </button>
+                                        <button type="submit" class="btn-atm" style="width:20%"> Tiếp tục </button>
                                     </div>
                                 </form>
                             </div>
