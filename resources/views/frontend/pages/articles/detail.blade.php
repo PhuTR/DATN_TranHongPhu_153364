@@ -20,7 +20,7 @@ p{
 }
 </style>
 <section class="blog blog-section">
-    <div class="container">
+    <div class="container" style="min-width: 1200px">
         <div class="row">
             <div class="col-lg-8 col-md-12 col-xs-12">
                 <div class="row">

@@ -21,7 +21,7 @@
                                             <h4>{{ $item['name'] }}</h4>
                                         </div>
                                         <div class="pull-right">
-                                            <img src="{{ $item['avatar'] }}" class="img-responsive" alt="{{ $item['name'] }}">
+                                            <img src="{{ asset($item['avatar']) }}" class="img-responsive" alt="{{ $item['name'] }}">
                                         </div>
                                     </header>
                                 
@@ -51,19 +51,12 @@
                                 <h5>Số dư tài khoản</h5>
                                 <h5>{{ number_format($user->account_balance,0,',','.') }} đ</h5>
                             </div>
+                            @foreach($recharge ?? [] as $item)
+                                <div class="col-sm-12 " >
+                                    <a href="{{ route('get_user.recharge.switch', ['slug' => \Illuminate\Support\Str::slug($item['name']), 'id' => $item['code']]) }}" class="btn-width btn-pay ">{{$item['name']}}</a>
+                                </div>
+                            @endforeach
                            
-                            <div class="col-sm-12 " >
-                                <a href="{{route('get_user.pay.transfer_money')}}" class="btn-width btn-pay ">Chuyển khoản</a>
-                            </div>
-                            <div class="col-sm-12 " >
-                                <a href="" class="btn-width btn-pay">Thẻ ATM Internet Banking</a>
-                            </div>
-                            <div class="col-sm-12 " >
-                                <a href="{{route('get_user.pay.cash')}}" class="btn-width btn-pay">Tiền mặt</a>
-                            </div>
-                            <div class="col-sm-12 " >
-                                <a href="{{route('get_user.pay.zalo_pay')}}" class="btn-width btn-pay">Zalo Pay</a>
-                            </div>
                          </div>
                      </div>
                  </div>

@@ -49,7 +49,7 @@
                 <div class="right-side d-none d-none d-lg-none d-xl-flex">
                     <!-- Header Widget -->
                     <div class="header-widget">
-                        <a href="{{route('get_user.room.home')}}" class="button border">Đăng tin mới<i class="fas fa-laptop-house ml-2"></i></a>
+                        <a href="{{route('get_user.room.create')}}" class="button border">Đăng tin mới<i class="fas fa-laptop-house ml-2"></i></a>
                     </div>
                     <!-- Header Widget / End -->
                 </div>
@@ -66,9 +66,9 @@
                     </div>
                     <ul>
                         <li><a href="{{route('get_user.profile.index')}}"> Thông tin cá nhân</a></li>
-                        <li><a href="add-property.html"> Quản lý tin đăng</a></li>
-                        <li><a href="payment-method.html">  Nạp tiền</a></li>
-                        <li><a href="change-password.html"> Đổi mật khẩu</a></li>
+                        <li><a href="{{route('get_user.room.home')}}"> Quản lý tin đăng</a></li>
+                        <li><a href="{{route('get_user.pay.index_pay')}}">  Nạp tiền</a></li>
+                        <li><a href="{{route('get_user.profile.update_password')}}"> Đổi mật khẩu</a></li>
                         <li><a href="{{route('get.logout')}}">Đăng xuất</a></li>
                     </ul>
                 </div>

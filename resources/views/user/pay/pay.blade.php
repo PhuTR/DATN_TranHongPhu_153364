@@ -50,9 +50,9 @@
                                             <label for="room_type">Chọn loại tin</label>
                                             <select style="max-width:50%" name="room_type" id="" class="js-change-type">
                                                 <option value="1">Tin thường ( 2.000đ / ngày )</option>
-                                                <option value="2">Vip 3 ( 20.000đ / ngày )</option>
-                                                <option value="3">Vip 2 ( 30.000đ / ngày )</option>
-                                                <option value="4">Vip 1 ( 50.000đ / ngày )</option>
+                                                <option value="2">Vip 3 ( 10.000đ / ngày )</option>
+                                                <option value="3">Vip 2 ( 20.000đ / ngày )</option>
+                                                <option value="4">Vip 1 ( 40.000đ / ngày )</option>
                                                 <option value="5">Nổi bật ( 80.000đ / ngày )</option>
                                             </select>
                                         </div>

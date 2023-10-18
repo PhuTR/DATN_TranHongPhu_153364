@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Brian2694\Toastr\Facades\Toastr;
 class UserPayController extends Controller
 {
     public function index_pay(){
@@ -43,6 +44,8 @@ class UserPayController extends Controller
                 return view('user.pay.method_pay.cash',$viewData);
             case 3;
                 return redirect()->route('get_user.recharge.atm');
+            case 4;
+                return redirect()->route('get_user.recharge.momo');
         }
     }
 
@@ -68,6 +71,10 @@ class UserPayController extends Controller
     public function atmInternet(Request $request)
     {
         return view('user.pay.method_pay.atm');
+    }
+    public function momoPayment(Request $request)
+    {
+        return view('user.pay.method_pay.momo');
     }
     
 
@@ -190,9 +197,6 @@ class UserPayController extends Controller
         try {
             DB::beginTransaction();
             $code = $request->vnp_TxnRef;
-           
-           
-        
             $rechargeHistory     = RechargeHistory::where('code', $code)->first();
             
             if (!$rechargeHistory) {
@@ -219,9 +223,10 @@ class UserPayController extends Controller
                     Log::info("--- cộng tiền");
                     $user->account_balance += $rechargeHistory->total_money;
                     $user->save();
+                    Toastr::success('Nạp tiền thành công', 'Thành công');
                 }
                 DB::commit();
-                return  redirect()->route('get_user.recharge.history');
+                return  redirect()->route('get_user.pay.index_pay');
             }
        
             switch ($statusCode) {
@@ -253,7 +258,7 @@ class UserPayController extends Controller
             $rechargeHistory->save();
             // show thông báo
             DB::commit();
-            return redirect()->route('get_user.recharge.atm');
+            return redirect()->route('get_user.pay.index_pay');
         } catch (\Exception $exception) {
             DB::rollBack();
             Log::error("------------ postbackAtm" . $exception->getMessage());
@@ -261,6 +266,169 @@ class UserPayController extends Controller
         }
     }
 
+//thanh toán momo
+    public function processMomo(Request $request)
+    {
+        try {
+            $data                = $request->except('_token');
+            $data['created_at']  = Carbon::now();
+            $data['money']       = $request->gia;
+            $data['user_id']     = get_data_user('web');
+            $data['total_money'] = $data['money'];
+            $data['type']        = 4;
+            $data['code']        = generateRandomString(15) . $data['user_id'];
+        
+            $rechargeHistory     = RechargeHistory::create($data);
+            $this->createPaymentMomo($rechargeHistory);
+        } catch (\Exception $exception) {
+            Log::error("---------------------  " . $exception->getMessage());
+        }
 
+        return redirect()->back();
+    }
+
+    protected function createPaymentMomo($rechargeHistory){
+       
+
+        include "../common/helper.php";
+
+        $endpoint = "https://test-payment.momo.vn/gw_payment/transactionProcessor";
+
+
+        $partnerCode = "MOMOBKUN20180529";
+        $accessKey = "klm05TvNBzhg7h7j";
+        $secretKey = "at67qH6mk8w5Y1nAyMoYKMWACiEi2bsa";
+        $orderInfo = "Thanh toán qua MoMo";
+        $amount = "10000";
+        $orderId = time() ."";
+        $returnUrl = "http://localhost:8000/atm/result_atm.php";
+        $notifyurl = "http://localhost:8000/atm/ipn_momo.php";
+        // Lưu ý: link notifyUrl không phải là dạng localhost
+        $bankCode = "SML";
+
+        if (!empty($_POST)) {
+            $partnerCode = $_POST["partnerCode"];
+                $accessKey = $_POST["accessKey"];
+                $serectkey = $_POST["secretKey"];
+                $orderid = time()."";
+                $orderInfo = $_POST["orderInfo"];
+                $amount = $_POST["amount"];
+                $bankCode = $_POST['bankCode'];
+                $returnUrl = $_POST['returnUrl'];
+                $requestId = time()."";
+                $requestType = "payWithMoMoATM";
+                $extraData = "";
+                //before sign HMAC SHA256 signature
+                $rawHashArr =  array(
+                                'partnerCode' => $partnerCode,
+                                'accessKey' => $accessKey,
+                                'requestId' => $requestId,
+                                'amount' => $amount,
+                                'orderId' => $orderid,
+                                'orderInfo' => $orderInfo,
+                                'bankCode' => $bankCode,
+                                'returnUrl' => $returnUrl,
+                                'notifyUrl' => $notifyurl,
+                                'extraData' => $extraData,
+                                'requestType' => $requestType
+                                );
+                // echo $serectkey;die;
+                $rawHash = "partnerCode=".$partnerCode."&accessKey=".$accessKey."&requestId=".$requestId."&bankCode=".$bankCode."&amount=".$amount."&orderId=".$orderid."&orderInfo=".$orderInfo."&returnUrl=".$returnUrl."&notifyUrl=".$notifyurl."&extraData=".$extraData."&requestType=".$requestType;
+                $signature = hash_hmac("sha256", $rawHash, $serectkey);
+
+                $data =  array('partnerCode' => $partnerCode,
+                                'accessKey' => $accessKey,
+                                'requestId' => $requestId,
+                                'amount' => $amount,
+                                'orderId' => $orderid,
+                                'orderInfo' => $orderInfo,
+                                'returnUrl' => $returnUrl,
+                                'bankCode' => $bankCode,
+                                'notifyUrl' => $notifyurl,
+                                'extraData' => $extraData,
+                                'requestType' => $requestType,
+                                'signature' => $signature);
+                $result = execPostRequest($endpoint, json_encode($data));
+                $jsonResult = json_decode($result,true);  // decode json
+                
+                error_log( print_r( $jsonResult, true ) );
+                header('Location: '.$jsonResult['payUrl']);
+        }
+    }
+
+
+    public function postbackMomo(Request $request)
+    {
+        try {
+            DB::beginTransaction();
+            $code = $request->vnp_TxnRef;
+            $rechargeHistory     = RechargeHistory::where('code', $code)->first();
+            
+            if (!$rechargeHistory) {
+                return redirect()->route('get_user.recharge.atm');
+            }
+            $statusCode = $request->vnp_TransactionStatus;
+          
+            if ($statusCode == '00') {
+                // tiến hành cộng tiền
+                // Tiếp hành update code
+                $rechargeHistory->status = RechargeHistory::STATUS_SUCCESS;
+                $rechargeHistory->save();
+             
+                $user = User::find($rechargeHistory->user_id);
+             
+                if (!$user) {
+                    $rechargeHistory->note   = 'User không hợp lệ';
+                    $rechargeHistory->status = RechargeHistory::STATUS_CANCEL;
+                    $rechargeHistory->save();
+                    DB::commit();
+                    // show thông báo
+                    return redirect()->route('get_user.recharge.atm');
+                } else {
+                    Log::info("--- cộng tiền");
+                    $user->account_balance += $rechargeHistory->total_money;
+                    $user->save();
+                    Toastr::success('Nạp tiền thành công', 'Thành công');
+                }
+                DB::commit();
+                return  redirect()->route('get_user.pay.index_pay');
+            }
+       
+            switch ($statusCode) {
+                case "01":
+                    $message = "Giao dịch chưa hoàn tất";
+                    break;
+                case "02":
+                    $message = "Giao dịch bị lỗi";
+                    break;
+                case "04":
+                    $message = "VGiao dịch đảo (Khách hàng đã bị trừ tiền tại Ngân hàng nhưng GD chưa thành công ở VNPAY)";
+                    break;
+                case "05":
+                    $message = "VNPAY đang xử lý giao dịch này (GD hoàn tiền)";
+                    break;
+                case "06":
+                    $message = "VNPAY đã gửi yêu cầu hoàn tiền sang Ngân hàng (GD hoàn tiền)";
+                    break;
+                case "07":
+                    $message = "Giao dịch bị nghi ngờ gian lận";
+                    break;
+                case "09":
+                    $message = "GD Hoàn trả bị từ chối";
+                    break;
+            }
+
+            $rechargeHistory->status = RechargeHistory::STATUS_ERROR;
+            $rechargeHistory->note = $message;
+            $rechargeHistory->save();
+            // show thông báo
+            DB::commit();
+            return redirect()->route('get_user.pay.index_pay');
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            Log::error("------------ postbackAtm" . $exception->getMessage());
+            return redirect()->route('get_user.recharge.atm');
+        }
+    }
 
 }

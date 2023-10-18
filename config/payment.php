@@ -5,7 +5,7 @@ return [
     'method' => [
         [
             'name'   => 'Chuyển khoản',
-            'avatar' => 'https://phongtro123.com/images/payment-method.svg',
+            'avatar' => '/images/payment-method.png',
             'code'   => 1
         ],
         [
@@ -15,16 +15,22 @@ return [
         ],
         [
             'name'   => 'Thẻ ATM Internet Banking',
-            'avatar' => 'https://phongtro123.com/images/bank-transfer.png',
+            'avatar' => 'images/bank-transfer.png',
          
             'code'   => 3
+        ],
+        [
+            'name'   => 'MoMo',
+            'avatar' => '/images/momo.png',
+         
+            'code'   => 4
         ],
     ],
     'type_price' => [
         1 => 2000,
-        2 => 20000,
-        3 => 30000,
-        4 => 50000,
+        2 => 10000,
+        3 => 20000,
+        4 => 40000,
         5 => 80000
     ]
 ];

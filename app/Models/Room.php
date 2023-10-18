@@ -62,7 +62,7 @@ class Room extends Model
     }
     public function paymentHistory()
     {
-        return $this->hasMany(PaymentHistory::class, 'user_id');
+        return $this->hasMany(PaymentHistory::class, 'room_id');
     }
     public function district()
     {

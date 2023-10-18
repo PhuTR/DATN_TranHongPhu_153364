@@ -231,9 +231,9 @@ class UserRoomController extends Controller
 
       
         $totalMoney = $day * $price;
-       
+     
         $sodukhadung = Auth::user()->account_balance;
-        // dd($sodukhadung);
+   
         if ($sodukhadung < $totalMoney) {
             return redirect()->back();
         }
@@ -260,7 +260,12 @@ class UserRoomController extends Controller
       
             $timeStop     = $timeStartNow->addDay($request->day);
             // Update tin
-            $room->status      = Room::STATUS_PAID;
+            if($totalMoney>40000){
+                $room->status      = Room::STATUS_ACTIVE;
+            }else{
+                $room->status      = Room::STATUS_PAID;
+            }
+          
             $room->time_start  = Carbon::parse($request->thoigian_batdau);
           
             $room->time_stop   = $timeStop->format('Y-m-d');

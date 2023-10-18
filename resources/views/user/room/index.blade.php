@@ -120,7 +120,7 @@
                                         hoặc gia hạn</a>
                                         <a href="{{route('get_user.room.update',$item->id)}}" class="edit btn-properties"><i class="fa-solid fa-pen icon"></i></i>Sửa tin</a>
                                     @endif
-                                    @if ($item->status == \App\Models\Room::STATUS_DEFAULT &&
+                                    @if ($item->status == \App\Models\Room::STATUS_DEFAULT && 
                                     ($item->paymentHistory->count() ?? 0) > 0)
                                      <a href="{{ route('get_user.room.active', $item->id) }}" class="edit btn-properties"><i class="fa-solid fa-eye icon"></i> Hiển thị</a>
                                     @endif
@@ -134,7 +134,7 @@
                      <td>{{$item->time_stop}}</td>
                      <td >
                         <span class="{{ $item->getStatus($item->trangthai)['class'] ?? '...' }}">{{ $item->getStatus($item->trangthai)['name'] ?? "..." }}</span>
-                       
+
                      </td>
                  </tr>
                 @endforeach

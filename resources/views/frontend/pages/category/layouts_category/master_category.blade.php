@@ -33,6 +33,8 @@
     <link rel="stylesheet" href="{{asset('css/slick.css')}}">
     <link rel="stylesheet" href="{{asset('css/styles.css')}}">
     <link rel="stylesheet" id="color" href="{{asset('css/default.css')}}">
+   
+   
 </head>
 <body class="inner-pages homepage-4 agents hp-6 full hd-white">
     <div id="wrapper" >
@@ -64,7 +66,9 @@
     <script src="{{asset('js/newsletter.js')}}"></script>
     <script src="{{asset('js/inner.js')}}"></script>
     <script src="{{asset('js/color-switcher.js')}}"></script>
+    <script src="{{asset('js/favorite.js')}}" type="text/javascript"></script>
     <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+
     {!! Toastr::message() !!}
 
     <script>
