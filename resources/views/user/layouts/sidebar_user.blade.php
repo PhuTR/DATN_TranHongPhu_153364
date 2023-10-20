@@ -14,7 +14,8 @@
         </div>
       
         <div class="active-user">
-            <h2>{{{Auth::user()->name}}}</h2>
+            <h2 style="margin-bottom:0px">{{{Auth::user()->name}}}</h2>
+            <h2 style="margin-bottom:0px">TK chính: {{number_format(Auth::user()->account_balance,0,',','.') }} vnđ</h2>
         </div>
         <div class="detail clearfix">
             <ul class="mb-0">
@@ -49,12 +50,12 @@
                     </a>
                 </li>
                 <li>
-                    <a href="payment-method.html">
+                    <a href="{{route('get.pricelist.index')}}" target="_blank">
                         <i class="fa-solid fa-table-list"></i></i>bảng giá dịch vụ
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('get_user.contact')}}">
+                    <a href="{{route('get_user.contact')}}" target="_blank">
                         <i class="fa-solid fa-address-book"></i></i>Liên hệ
                     </a>
                 </li>

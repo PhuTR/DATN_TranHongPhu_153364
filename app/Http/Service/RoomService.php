@@ -81,8 +81,9 @@ class RoomService
         if ($range_area = Arr::get($params, 'range_area')) {
             $rooms->where('range_area', $range_area);
         }
-
-        $rooms = $rooms->select($self->column)->orderByDesc('service_hot')->paginate(10);
+        $orderBy = $request->input('sort', 'desc'); 
+        
+        $rooms = $rooms->select($self->column)->orderBy('service_hot', $orderBy)->paginate(10);
 
         return $rooms;
     }

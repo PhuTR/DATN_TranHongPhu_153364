@@ -32,7 +32,6 @@ class CategoryController extends Controller
         ]);
         $viewData = [
             'room' => $room,
-     
             'rooms_hot' => $rooms_hot,
             'rooms_new' => $rooms_new,
             'category' => $category,

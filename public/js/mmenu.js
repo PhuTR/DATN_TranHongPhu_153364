@@ -62,23 +62,22 @@ $(document).ready(function(){
 	/*----------------------------------------------------*/
 	/*  Sticky Header
 	/*----------------------------------------------------*/
-	$( "#header" ).not( "#header-container.header-style-2 #header" ).clone(true).addClass('cloned unsticky').insertAfter( "#header" );
-	$( "#navigation.style-2" ).clone(true).addClass('cloned unsticky').insertAfter( "#navigation.style-2" );
+	// $( "#header" ).not( "#header-container.header-style-2 #header" ).clone(true).addClass('cloned unsticky').insertAfter( "#header" );
+	// $( "#navigation.style-2" ).clone(true).addClass('cloned unsticky').insertAfter( "#navigation.style-2" );
 
 	// Logo for header style 2
 	$( "#logo .sticky-logo" ).clone(true).prependTo("#navigation.style-2.cloned ul#responsive");
 
 
 	// sticky header script
-	var headerOffset = $("#header-container").height() * 2; // height on which the sticky header will shows
+	var headerOffset = $("#header-container").height(); // height on which the sticky header will shows
 
 	$(window).scroll(function(){
-		if($(window).scrollTop() >= headerOffset){
-			$("#header.cloned").addClass('sticky').removeClass("unsticky");
-			$("#navigation.style-2.cloned").addClass('sticky').removeClass("unsticky");
+		if($(window).scrollTop()-1 >= headerOffset){
+			$("#header-nav").addClass('header-nav__fixed').removeClass("header-nav");
+		
 		} else {
-			$("#header.cloned").addClass('unsticky').removeClass("sticky");
-			$("#navigation.style-2.cloned").addClass('unsticky').removeClass("sticky");
+			$("#header-nav").addClass('header-nav').removeClass("header-nav__fixed");
 		}
 	});
 

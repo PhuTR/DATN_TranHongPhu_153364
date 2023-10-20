@@ -1,5 +1,5 @@
-@extends('frontend.layouts.master')
-@section('content')
+@extends('frontend.pages.category.layouts_category.master_category')
+@section('content_category')
 <div class="inner-pages">
     <section class="headings">
         <div class="text-heading text-center">

@@ -2,7 +2,7 @@
 
 @section('content_category')
        <!-- START SECTION PROPERTIES LISTING -->
-    <section class="properties-right list featured portfolio blog pt-5">
+    <section class="properties-right list featured portfolio blog pt-4">
         <div class="container">
             @include('frontend.pages.category.layouts_category.form_search')
 
@@ -11,33 +11,26 @@
             @include('frontend.pages.category.layouts_category.location_hot')
             
                 <div class="row">
-                    <div class="col-lg-8 col-md-12 blog-pots">
-                      <div id="row_wishlist"></div>
-                        <section class="headings-2 pt-0">
+                    <div class="col-lg-8 col-md-12 blog-pots cotent">
+                      {{-- <div id="row_wishlist"></div> --}}
+                        <section class="headings-2 pt-0" style="background-color: #fff">
                             <div class="pro-wrapper">
                                 <div class="detail-wrapper-body">
                                     <div class="listing-title-bar">
                                         <div class="text-heading text-left">
                                             <p class="font-weight-bold mb-0 mt-3" style="font-size:18px;">Tổng: {{$rooms->total()}} kết quả</p>
                                         </div>
+                                        <div class="text-heading text-left">
+                                            <p class="font-weight-bold mb-0 mt-3" style="font-size:18px;">Sắp xếp:
+                                                <a class="sort-link active" href="">Mặc định</a>
+                                                <a class="sort-link" href="">Mới nhất</a>
+                                                <a class="sort-link" href="">Xem nhiều nhất</a>
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="cod-pad single detail-wrapper mr-2 mt-0 d-flex justify-content-md-end align-items-center grid">
-                                    <div class="input-group border rounded input-group-lg w-auto mr-4">
-                                        <label class="input-group-text bg-transparent border-0 text-uppercase {
-                                            letter-spacing-093 pr-1 pl-3" for="inputGroupSelect01"><i class="fas fa-align-left fs-16 pr-2"></i>Sắp xếp:</label>
-                                        <select class=" form-control border-0 bg-transparent shadow-none p-0 selectpicker sortby" data-style="bg-transparent border-0 font-weight-600 btn-lg pl-0 pr-3" id="inputGroupSelect01" name="sortby">
-                                            <option value="1" >Mặc định</option>
-                                            <option value="2">Mới nhất</option>
-                                            <option value="3">Xem nhiều nhất</option>
-                                           
-                                        </select>
-                               
-                                        
-                                    </div>
-                                 
-                                   
-                                </div>
+                                
+                             
                             </div>
                         </section>
 
@@ -86,7 +79,7 @@
                                         </h3>
                                         <p class="homes-address mb-3">
                                             <a >
-                                                <i class="fa fa-map-marker"></i><span>{{$item->district->name}} - {{$item->city->name}}</span>
+                                                <i class="fa fa-map-marker"></i><span >{{$item->district->name}} - {{$item->city->name}}</span>
                                             </a>
                                             <a style="float: right">
                                                 <span><?php echo time_elapsed_string($item->time_start); ?></span>
@@ -236,36 +229,23 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
-            var savedOption = localStorage.getItem('selectedOption'); // Lấy tùy chọn đã lưu
-            var selectElement = $('#inputGroupSelect01'); // Lấy trường select
-    
-            // Thiết lập tùy chọn đã lưu nếu có
-            if (savedOption) {
-                selectElement.val(savedOption);
-            }
-    
-            // Lắng nghe sự kiện khi người dùng thay đổi giá trị chọn
-            selectElement.on('change', function() {
-                var selectedValue = $(this).val(); // Lấy giá trị của option đã chọn
-    
-                // Chuyển hướng URL dựa trên giá trị đã chọn
+            var sortLinks = $('.sort-link');
+
+            sortLinks.on('click', function(e) {
+                e.preventDefault();
+                var selectedValue = $(this).index() + 1; 
                 if (selectedValue == 1) {
-                    window.location.href = '?sort=asc'; // Chuyển hướng đến URL với tham số sắp xếp 'asc'
-                    localStorage.setItem('selectedOption', selectedValue);
+                    window.location.href = '?sort=desc'; 
+                    // $('.sort-link').removeClass('active');
                 } else if (selectedValue == 2) {
-                    window.location.href = '?sort=desc'; // Chuyển hướng đến URL với tham số sắp xếp 'desc'
-                    localStorage.setItem('selectedOption', selectedValue);
+                    window.location.href = '?sort=asc'; 
+                    // $('.sort-link').addClass('active');
+                }
+                else if (selectedValue == 3) {
+                    window.location.href = '?sort=desc'; 
+                    // $('.sort-link').addClass('active');
                 }
             });
         });
     </script>
-    
-
-  
-    
-    
-    
-    
-
-
 @endsection

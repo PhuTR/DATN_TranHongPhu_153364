@@ -21,7 +21,6 @@ class PageCategoryService
         ]);
         return [
             'category' => $category,
-            
             'locaties' => $locaties, 
             'rooms'    => $rooms,
             'rooms_new'    => $rooms_new,

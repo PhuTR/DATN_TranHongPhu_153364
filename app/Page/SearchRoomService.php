@@ -15,6 +15,7 @@ class SearchRoomService
         if (isset($params['	district_id'])) $params["	district_id"] = $params['district_id'];
         if (isset($params['price'])) $params["price"] = $params['price'];
         if (isset($params['area'])) $params["area"] = $params['area'];
+        if (isset($params['area'])) $params["area"] = $params['area'];
         $rooms_new      = RoomService::getRoomsNew($limit =  10);
         $rooms    = RoomService::getListsRoom($request, $params);
         return [

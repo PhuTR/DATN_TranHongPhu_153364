@@ -256,7 +256,7 @@ img {
 
 @media screen and (min-width: 1025px) {
   .container-header {
-    max-width: 1660px;
+    max-width: 1300px;
   }
 
   #logo {
@@ -6838,7 +6838,7 @@ a.button,
 }
 
 .homepage-4 .portfolio .project-single {
-  border-radius: 0 0 8px 8px;
+  border-radius: 8px 8px 8px 8px;
 }
 
 .homepage-4 .portfolio .homes-content .homes-address .fa-map-marker {
@@ -8030,7 +8030,7 @@ html input[disabled] {
 }
 @media screen and (min-width: 1024px) {
   .header-user-menu ul {
-    left: -80px !important;
+    left: 120px !important;
   }
 }
 @media screen and (max-width: 768px) {
@@ -18486,7 +18486,7 @@ a.button {
 /*------------------------------------*/
 .user-page.section-padding {
   padding: 1rem 0;
-  margin-top: 90px;
+  /* margin-top: 90px; */
   background: #f5f7fb;
 }
 
@@ -18777,7 +18777,7 @@ body.dashboard-bd {
         -ms-flex: 0 0 82.5%;
             flex: 0 0 82.5%;
     max-width: 82.5%;
-    padding-top: 30px;
+    /* padding-top: 30px; */
   }
 
   .dashboard-bd .left-side {
@@ -18856,7 +18856,7 @@ body.dashboard-bd {
   position: relative;
   top: 10px;
   margin-left: 0px;
-  margin-right: 50px;
+ 
 }
 
 .header-user-name {
