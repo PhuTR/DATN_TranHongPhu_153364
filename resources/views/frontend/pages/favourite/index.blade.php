@@ -16,13 +16,18 @@
                 <div class="row">
                     <div class="col-lg-8 col-md-12 blog-pots cotent">
                         <div class="row featured portfolio-items">
-                            <div class="text-center" style="width: 100%">
-                                <img style="max-width: 100px; display: block; margin: 15px auto;" src="{{asset('/images/favourite.svg')}}">
-                                <p style="color: #ee664c; text-align: center; font-size: 1.2rem; font-weight: bold;">Danh sách rỗng.</p>
-                            </div>
-                            <div id="row_wishlist">
-
-                            </div>
+                            
+                            <p id="change-item-favourite">
+                                @if(Session::has('Favourite') != null)
+                                    @include('frontend.pages.favourite.item-litst')
+                                @else
+                                    <div class="text-center" style="width: 100%">
+                                        <img style="max-width: 100px; display: block; margin: 15px auto;" src="{{asset('/images/favourite.svg')}}">
+                                        <p style="color: #ee664c; text-align: center; font-size: 1.2rem; font-weight: bold;">Danh sách rỗng.</p>
+                                    </div>
+                                @endif
+                                
+                            </p>
                         </div>
                     </div>
               
@@ -41,7 +46,7 @@
         </div>
     </section>
   
-    <<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
 
    
 

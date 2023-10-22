@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Frontend;
 use App\Page\PageFavouriteService;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Models\Favourite;
 
 class FavouriteController extends Controller
 {
@@ -13,5 +15,16 @@ class FavouriteController extends Controller
         return view('frontend.pages.favourite.index',$data);
     }
 
-    
+    public function addfavorites($id,Request $request){
+        $room = DB::table('rooms')->where('id',$id)->first();
+        if($room != null){
+                $oldFavourite = Session('Favourite') ? Session('Favourite') : null;
+                $newFavourite = new Favourite($oldFavourite);
+                $newFavourite->AddFavorite($room,$id);
+                $request->session()->put('Favourite',$newFavourite);
+        }
+        return view('frontend.pages.favourite.item-favourite');
+     
+    }
+
 }

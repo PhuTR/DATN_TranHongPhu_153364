@@ -58,8 +58,8 @@
                                                     </a>
                                                 </div>
                                                 <div class="button-effect">
-                                                    <button class="img-poppu btn" id="{{$item->id}}"><i id="icon-heart{{$item->id}}" class="fa-solid fa-heart"></i></button>
-                                                    {{--<button class="img-poppu btn" id="{{$item->id}}" onclick="add_wistlist(this.id)"><i class="fa-solid fa-heart"></i></button> --}}
+                                                    <a onclick="AddFavorite({{$item->id}})"  href="javascript:" class="img-poppu btn" id="{{$item->id}}"><i id="icon-heart{{$item->id}}" class="fa-solid fa-heart"></i></a>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -142,8 +142,7 @@
                                                     </a>
                                                 </div>
                                                 <div class="button-effect">
-                                                    
-                                                   <button class="img-poppu btn" id="{{$item->id}}" ><i id="icon-heart{{$item->id}}" class="fa-solid fa-heart"></i></button>
+                                                    <a onclick="AddFavorite({{$item->id}})"  href="javascript:" class="img-poppu btn" id="{{$item->id}}"><i id="icon-heart{{$item->id}}" class="fa-solid fa-heart"></i></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -213,7 +212,7 @@
                              
                             @endforeach
                         </div>
-
+                    
                         
                     </div>
                    @include('frontend.pages.category.layouts_category.sidebar')
@@ -248,4 +247,6 @@
             });
         });
     </script>
+
+   
 @endsection

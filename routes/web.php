@@ -68,6 +68,7 @@ Route::group(['namespace' => 'Frontend'], function(){
 
 //favourite
     Route::get('tin-da-luu.html','FavouriteController@index')->name('get.home.favourite');
+    Route::get('/add-favourite/{id}','FavouriteController@addfavorites')->name('get.home.addfavourite');
 });
 
 

@@ -11,6 +11,7 @@ use App\Models\Category;
 
 class PageFavouriteService
 {
+
     public static function index(Request $request)
     {
         $roomHots    = RoomService::getRoomsHot($limit = 6);
@@ -36,4 +37,5 @@ class PageFavouriteService
 
         return $viewData;
     }
+
 }
