@@ -48,7 +48,26 @@ Route::group(['namespace' => 'Frontend'], function(){
 
     Route::get('bang-gia-đich-vu', 'PriceListController@index')->name('get.pricelist.index');
 
+    Route::get('tinh-thanh-pho/{slug}-{id}', 'LocationController@getRoomByCity')
+    ->name('get.room.by_city')
+    ->where(['slug' => '[a-z-0-9-]+', 'id' => '[0-9]+',]);
 
+    Route::get('quan-huyen/{slug}-{id}', 'LocationController@getRoomByDistrict')
+    ->name('get.room.by_districts')
+    ->where(['slug' => '[a-z-0-9-]+', 'id' => '[0-9]+',]);
+
+    Route::get('phuong-xa/{slug}-{id}', 'LocationController@getRoomByWards')
+        ->name('get.room.by_wards')
+        ->where(['slug' => '[a-z-0-9-]+', 'id' => '[0-9]+',]);
+
+//location category
+    Route::get('tinh-thanh/{id}-{category_id}-{slug}', 'LocationController@getRoomByCityCategory')
+        ->name('get.room.by_city_category')
+        ->where(['slug' => '[a-z-0-9-]+', 'id' => '[0-9]+',]);
+
+
+//favourite
+    Route::get('tin-da-luu.html','FavouriteController@index')->name('get.home.favourite');
 });
 
 

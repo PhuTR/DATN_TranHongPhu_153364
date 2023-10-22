@@ -11,7 +11,7 @@
                         <div class=" d-xl-flex" style="float:right">
                             <!-- Header Widget -->
                             <div class="header-widget">
-                                <a href="{{route('get.register')}}" class="btn-header "><i class="fa-regular fa-heart icon"></i>Yêu thích</a>
+                                <a href="{{route('get.home.favourite')}}" class="btn-header "><i class="fa-regular fa-heart icon"></i>Yêu thích</a>
                                 <span class="number-count js-save-post-total">3</span>
                             </div>
                             <div class="header-widget">
@@ -42,7 +42,7 @@
                         <div class="d-xl-flex" style="float:right">
                             <!-- Header Widget -->
                             <div class="header-widget">
-                                <a href="{{route('get.register')}}" class="btn-header "><i class="fa-regular fa-heart icon"></i>Yêu thích</a>
+                                <a href="{{route('get.home.favourite')}}" class="btn-header "><i class="fa-regular fa-heart icon"></i>Yêu thích</a>
                                 <span class="number-count js-save-post-total">3</span>
                             </div>
 

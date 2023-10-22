@@ -7,7 +7,7 @@ use Illuminate\Support\Arr;
 
 class RoomService
 {
-    protected $column = ['id', 'avatar', 'name', 'description', 'full_address', 'price', 'updated_at', 'area', 'slug', 'service_hot','auth_id','count_view','city_id','district_id','wards_id','created_at','time_start','time_stop' ];
+    protected $column = ['id', 'avatar', 'name', 'description', 'full_address', 'price', 'updated_at', 'area', 'slug', 'service_hot','auth_id','count_view','city_id','district_id','wards_id','created_at','time_start','time_stop','category_id' ];
 
     public static function getRoomsHot($limit = 8)
     {
@@ -70,15 +70,17 @@ class RoomService
             $rooms->where('city_id', $cityId);
         }
 
-        if ($phuongxa_id = Arr::get($params, 'district_id')) {
-            $rooms->where('district_id', $phuongxa_id);
+        if ($district_id = Arr::get($params, 'district_id')) {
+            $rooms->where('district_id', $district_id);
         }
-
+        if ($wards_id = Arr::get($params, 'wards_id')) {
+            $rooms->where('wards_id', $wards_id);
+        }
         if ($range_price = Arr::get($params, 'price')) {
             $rooms->where('range_price', $range_price);
         }
 
-        if ($range_area = Arr::get($params, 'range_area')) {
+        if ($range_area = Arr::get($params, 'area')) {
             $rooms->where('range_area', $range_area);
         }
         $orderBy = $request->input('sort', 'desc'); 

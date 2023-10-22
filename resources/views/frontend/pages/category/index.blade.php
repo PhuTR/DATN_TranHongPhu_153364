@@ -58,7 +58,7 @@
                                                     </a>
                                                 </div>
                                                 <div class="button-effect">
-                                                    <button class="img-poppu btn" id="{{$item->id}}" onclick="add_wistlist(this.id)"><i id="icon-heart{{$item->id}}" class="fa-solid fa-heart"></i></button>
+                                                    <button class="img-poppu btn" id="{{$item->id}}"><i id="icon-heart{{$item->id}}" class="fa-solid fa-heart"></i></button>
                                                     {{--<button class="img-poppu btn" id="{{$item->id}}" onclick="add_wistlist(this.id)"><i class="fa-solid fa-heart"></i></button> --}}
                                                 </div>
                                             </div>
@@ -143,7 +143,7 @@
                                                 </div>
                                                 <div class="button-effect">
                                                     
-                                                   <button class="img-poppu btn" id="{{$item->id}}" onclick="add_wistlist(this.id)"><i id="icon-heart{{$item->id}}" class="fa-solid fa-heart"></i></button>
+                                                   <button class="img-poppu btn" id="{{$item->id}}" ><i id="icon-heart{{$item->id}}" class="fa-solid fa-heart"></i></button>
                                                 </div>
                                             </div>
                                         </div>

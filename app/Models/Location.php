@@ -21,13 +21,17 @@ class Location extends Model
         return Arr::get($this->setType,$this->type, '.....');
     }
 
-    public function roomDistricts()
+    public function roomsC()
     {
         return $this->hasMany(Room::class, 'city_id');
     }
 
-    public function rooms()
+    public function roomsD()
     {
         return $this->hasMany(Room::class, 'district_id');
+    }
+    public function roomsW()
+    {
+        return $this->hasMany(Room::class, 'wards_id');
     }
 }

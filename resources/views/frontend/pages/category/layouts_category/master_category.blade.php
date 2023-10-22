@@ -66,7 +66,7 @@
     <script src="{{asset('js/newsletter.js')}}"></script>
     <script src="{{asset('js/inner.js')}}"></script>
     <script src="{{asset('js/color-switcher.js')}}"></script>
-    <script src="{{asset('js/favorite.js')}}" type="text/javascript"></script>
+    {{-- <script src="{{asset('js/favorite.js')}}" type="text/javascript"></script> --}}
     <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
 
     {!! Toastr::message() !!}
