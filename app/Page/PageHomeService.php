@@ -17,23 +17,67 @@ class PageHomeService
         $roomVipFive = RoomService::getListsRoomVip($limit = 6, [
             'service_hot' => 5
         ]);
-        // $category = Category::find($id);
         $locaties = Location::where('hot',1)->get();
         $rooms_new     = RoomService::getRoomsNewVip($limit =  10);
-        $roomNew      = RoomService::getRoomsNew($limit =  10);
         $locationsHot = LocationService::getLocationsHot(3);
-        $rooms    = RoomService::getListsRoom($request, $params = [
-            
-        ]);
-        $viewData = [
-            'roomHots'     => $roomHots,
-            'rooms'     => $rooms,
-            'locaties'     => $locaties,
-            'rooms_new'      => $rooms_new,
-            'roomVipFive'  => $roomVipFive,
-            'locationsHot' => $locationsHot
-        ];
-
-        return $viewData;
+        
+        if($request->price && $request->area){
+            $rooms    = RoomService::getListsRoom($request, $params = [
+                'price' => ($request->price ? $request->price : -1),
+                'area' => ($request->area ? $request->area : -1), 
+            ]);
+            return [
+                'roomHots'     => $roomHots,
+                'rooms'     => $rooms,
+                'locaties'     => $locaties,
+                'rooms_new'      => $rooms_new,
+                'roomVipFive'  => $roomVipFive,
+                'locationsHot' => $locationsHot,
+                'query'    => $request->query()
+            ];
+        }
+        elseif($request->price){
+            $rooms    = RoomService::getListsRoom($request, $params = [
+                'price' => ($request->price ? $request->price : -1),
+            ]);
+            return [
+                'roomHots'     => $roomHots,
+                'rooms'     => $rooms,
+                'locaties'     => $locaties,
+                'rooms_new'      => $rooms_new,
+                'roomVipFive'  => $roomVipFive,
+                'locationsHot' => $locationsHot,
+                'query'    => $request->query()
+            ];
+        }
+        elseif($request->area){
+            $rooms    = RoomService::getListsRoom($request, $params = [
+                'area' => ($request->area ? $request->area : -1), 
+            ]);
+            return [
+                'roomHots'     => $roomHots,
+                'rooms'     => $rooms,
+                'locaties'     => $locaties,
+                'rooms_new'      => $rooms_new,
+                'roomVipFive'  => $roomVipFive,
+                'locationsHot' => $locationsHot,
+                'query'    => $request->query()
+            ];
+        }
+        else{
+            $rooms    = RoomService::getListsRoom($request, $params = [
+            ]);
+            return [
+                'roomHots'     => $roomHots,
+                'rooms'     => $rooms,
+                'locaties'     => $locaties,
+                'rooms_new'      => $rooms_new,
+                'roomVipFive'  => $roomVipFive,
+                'locationsHot' => $locationsHot,
+                'query'    => $request->query()
+            ];
+    
+          
+        }
     }
 }

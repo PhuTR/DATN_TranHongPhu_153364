@@ -65,10 +65,16 @@ Route::group(['namespace' => 'Frontend'], function(){
         ->name('get.room.by_city_category')
         ->where(['slug' => '[a-z-0-9-]+', 'id' => '[0-9]+',]);
 
-
+    Route::get('quan/{id}-{category_id}-{slug}', 'LocationController@getRoomByDistrictCategory')
+        ->name('get.room.by_districts_category')
+        ->where(['slug' => '[a-z-0-9-]+', 'id' => '[0-9]+',]);
+    Route::get('phuong/{id}-{category_id}-{slug}', 'LocationController@getRoomByWardsCategory')
+        ->name('get.room.by_wards_category')
+        ->where(['slug' => '[a-z-0-9-]+', 'id' => '[0-9]+',]);
 //favourite
     Route::get('tin-da-luu.html','FavouriteController@index')->name('get.home.favourite');
     Route::get('/add-favourite/{id}','FavouriteController@addfavorites')->name('get.home.addfavourite');
+    Route::get('/delete-item-favourite/{id}','FavouriteController@deletefavorites')->name('get.home.deletefavourite');
 });
 
 

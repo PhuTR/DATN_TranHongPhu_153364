@@ -24,7 +24,22 @@ class FavouriteController extends Controller
                 $request->session()->put('Favourite',$newFavourite);
         }
         return view('frontend.pages.favourite.item-favourite');
-     
+        
+    }
+
+    public function deletefavorites($id,Request $request){
+
+        $oldFavourite = Session('Favourite') ? Session('Favourite') : null;
+        $newFavourite = new Favourite($oldFavourite);
+        $newFavourite->DeleteFavorite($id);
+        if(Count($newFavourite->rooms) > 0){
+            $request->Session()->put('Favourite',$newFavourite);
+        }
+        else{
+            $request->Session()->forget('Favourite');
+        }
+        return view('frontend.pages.favourite.item-favourite');
+
     }
 
 }

@@ -44,7 +44,6 @@ class PageLocationService
          
             return [
                 'location'  => $location,
-              
                 'rooms_new'      => $rooms_new,
                 'districts' => $districts,
                 'rooms'     => $rooms,
@@ -61,7 +60,6 @@ class PageLocationService
                 $districts =  Location::where('parent_id', $id)->get();
                 return [
                     'location'  => $location,
-                   
                     'rooms_new'      => $rooms_new,
                     'districts' => $districts,
                     'rooms'     => $rooms,
@@ -89,8 +87,7 @@ class PageLocationService
               
                 $districts =  Location::where('parent_id', $id)->get();
                 return [
-                    'location'  => $location,
-                    
+                    'location'  => $location, 
                     'districts' => $districts,
                     'rooms_new'      => $rooms_new,
                     'rooms'     => $rooms,
@@ -251,8 +248,6 @@ class PageLocationService
 
     public static function indexByCityCategory($id,$category_id, Request $request)
     {
-       
-     
         $category = Category::find($category_id);
         $location = Location::find($id);
         $districts =  Location::where('parent_id', $id)->get();
@@ -323,5 +318,149 @@ class PageLocationService
             }
         }
     }
+
+    public static function indexByDistrictCategory($id,$category_id, Request $request)
+    {
+        dd($id);
+        $category = Category::find($category_id);
+        $location = Location::find($id);
+        $rooms_new     = RoomService::getRoomsNewVip($limit =  10);
+        if ($request->price && $request->area) {
+            $rooms    = RoomService::getListsRoom($request, $params = [
+                'district_id' => $id,
+                'price' => ($request->price ? $request->price : -1),
+                'rooms_new'      => $rooms_new,
+                'category_id' =>  $category_id,
+                'area' => ($request->area ? $request->area : -1)
+            ]);
+            $wards =  Location::where('parent_id', $id)->get();
+            return [
+                'location'  => $location,
+                'wards' => $wards,
+                'category' => $category,
+                'rooms'     => $rooms,
+                'rooms_new'      => $rooms_new,
+                'query'     => $request->query()
+            ];
+        } else {
+            if ($request->price) {
+                $rooms    = RoomService::getListsRoom($request, $params = [
+                    'district_id' => $id,
+                    'category_id' =>  $category_id,
+                    'price' => ($request->price ? $request->price : -1),
+
+                ]);
+                $wards =  Location::where('parent_id', $id)->get();
+                return [
+                    'location'  => $location,
+                    'wards' => $wards,
+                    'category' => $category,
+                    'rooms_new'      => $rooms_new,
+                    'rooms'     => $rooms,
+                    'query'     => $request->query()
+                ];
+            } elseif ($request->area) {
+                $rooms    = RoomService::getListsRoom($request, $params = [
+                    'district_id' => $id,
+                    'category_id' =>  $category_id,
+                    'area' => ($request->area ? $request->area : -1)
+                ]);
+                $wards =  Location::where('parent_id', $id)->get();
+                return [
+                    'location'  => $location,
+                    'wards' => $wards,
+                    'category' => $category,
+                    'rooms_new' => $rooms_new,
+                    'rooms'     => $rooms,
+                    'query'     => $request->query()
+                ];
+            } else {
+                $rooms    = RoomService::getListsRoom($request, $params = [
+                    'district_id' => $id,
+                    'category_id' =>  $category_id,
+                ]);
+                $wards =  Location::where('parent_id', $id)->get();
+                return [
+                    'location'  => $location,
+                    'wards' => $wards,
+                    'category' => $category,
+                    'rooms_new'      => $rooms_new,
+                    'rooms'     => $rooms,
+                    'query'     => $request->query()
+                ];
+            }
+        }
+    }
+
+    public static function indexByWardsCategory($id,$category_id, Request $request)
+    {
+      
+        $category = Category::find($category_id);
+        $location = Location::find($id);
+        $rooms_new     = RoomService::getRoomsNewVip($limit =  10);
+        if ($request->price && $request->area) {
+            $rooms    = RoomService::getListsRoom($request, $params = [
+                'wards_id' => $id,
+                'price' => ($request->price ? $request->price : -1),
+                'area' => ($request->area ? $request->area : -1),
+                'category_id' =>  $category_id,
+            ]);
+            return [
+                'location'  => $location,
+                'rooms'     => $rooms,
+                'category' => $category,
+                'rooms_new' => $rooms_new,
+                'query'     => $request->query()
+            ];
+        } else {
+            if ($request->price) {
+                $rooms    = RoomService::getListsRoom($request, $params = [
+                    'wards_id' => $id,
+                    'price' => ($request->price ? $request->price : -1),
+                    'category_id' =>  $category_id,
+                ]);
+
+
+
+                return [
+                    'location'  => $location,
+                    'rooms'     => $rooms,
+                    'category' => $category,
+                    'rooms_new'      => $rooms_new,
+                    'query'     => $request->query()
+                ];
+            } elseif ($request->area) {
+                $rooms    = RoomService::getListsRoom($request, $params = [
+                    'wards_id' => $id,
+                    'area' => ($request->area ? $request->area : -1),
+                    'category_id' =>  $category_id,
+                ]);
+
+
+
+                return [
+                    'location'  => $location,
+                    'rooms'     => $rooms,
+                    'category' => $category,
+                    'rooms_new'      => $rooms_new,
+                    'query'     => $request->query()
+                ];
+            } else {
+                $rooms    = RoomService::getListsRoom($request, $params = [
+                    'wards_id' => $id,
+                    'category_id' =>  $category_id,
+                ]);
+                return [
+                    'location'  => $location,
+                    'rooms'     => $rooms,
+                    'category' => $category,
+                    'rooms_new'      => $rooms_new,
+                    'query'     => $request->query()
+                ];
+            }
+        }
+    }
+
+
 
 }

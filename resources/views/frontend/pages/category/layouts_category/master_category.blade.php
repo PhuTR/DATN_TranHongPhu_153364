@@ -117,6 +117,7 @@
         });
     </script>
     <script>
+       
         function AddFavorite(id){
             $.ajax({
                 url: 'add-favourite/'+id,
@@ -126,12 +127,20 @@
                 toastr.success('Yêu thích thành công!', 'Thành công', { positionClass: 'toast-bottom-right' });
             });
         }
-
         
+        $('#abc').on('click','.btn-close i' , function(){
+            $.ajax({
+                url: 'delete-item-favourite/'+$(this).data('id'),
+                type: 'GET',
+            }).done(function(response){
+                RenderFavorite(response);
+                toastr.success('Xoá thành công!', 'Thành công', { positionClass: 'toast-bottom-right' });
+            });
+        });
+       
         function RenderFavorite(response){
             $('#change-item-favourite').empty();
             $('#change-item-favourite').html(response);
-            console.log($('#total-quanty-favourite').val());
         }
     </script>
    

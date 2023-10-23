@@ -38,4 +38,18 @@ class LocationController extends Controller
         return view('frontend.pages.location.index', $data);
     }
 
+    public function getRoomByDistrictCategory($id,$category_id, Request $request)
+    {
+        $data = PageLocationService::indexByDistrictCategory($id,$category_id, $request);
+
+        return view('frontend.pages.location.index', $data);
+    }
+
+    public function getRoomByWardsCategory($id,$category_id, Request $request)
+    {
+        $data = PageLocationService::indexByWardsCategory($id,$category_id, $request);
+
+        return view('frontend.pages.location.index', $data);
+    }
+
 }

@@ -5,8 +5,12 @@
     <div class="container">
         @include('frontend.pages.category.layouts_category.form_search')
         @include('frontend.pages.location.info_location')
-        
-        @include('frontend.pages.location.grid_location')
+        @if(isset($category->id))
+            @include('frontend.pages.location.grid_location_category')
+        @else
+            @include('frontend.pages.location.grid_location')
+        @endif
+      
         <div class="row">
             <div class="col-lg-8 col-md-12 blog-pots cotent">
               <section class="headings-2 pt-0" style="background-color: #fff">

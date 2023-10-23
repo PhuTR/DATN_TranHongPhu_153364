@@ -15,7 +15,7 @@
             </section>
                 <div class="row">
                     <div class="col-lg-8 col-md-12 blog-pots cotent">
-                        <div class="row featured portfolio-items">
+                        <div id="abc" class="row featured portfolio-items">
                             
                             <p id="change-item-favourite">
                                 @if(Session::has('Favourite') != null)
@@ -25,8 +25,7 @@
                                         <img style="max-width: 100px; display: block; margin: 15px auto;" src="{{asset('/images/favourite.svg')}}">
                                         <p style="color: #ee664c; text-align: center; font-size: 1.2rem; font-weight: bold;">Danh sách rỗng.</p>
                                     </div>
-                                @endif
-                                
+                                @endif    
                             </p>
                         </div>
                     </div>

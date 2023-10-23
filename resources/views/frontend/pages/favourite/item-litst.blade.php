@@ -4,7 +4,6 @@
         <div class="item col-lg-5 col-md-12 col-xs-12 landscapes sale pr-0 pb-0 item-margin">
             <div class="project-single mb-0 bb-0" data-aos="fade-up">
                 <div class="project-inner project-head">
-                
                     <div class="homes">
                         <a href="{{route('get.category.detail',['slug' => $item['roomInfo']->slug,'id' => $item['roomInfo']->id])}}" class="homes-img">
                             <div id="price{{$item['roomInfo']->id}}" class="homes-price">{{number_format($item['roomInfo']->price/1000000,1)}} triệu/tháng</div>
@@ -16,8 +15,7 @@
                         </a>
                     </div>
                     <div class="button-effect">
-                        <a  href="#" class="img-poppu btn" id="{{$item['roomInfo']->id}}"><i id="icon-heart{{$item['roomInfo']->id}}" data-id="{{$item['roomInfo']->id}}" class="fa-solid fa-heart"></i></a>
-
+                        <a class="img-poppu btn btn-close " id="{{$item['roomInfo']->id}}"><i id="icon-heart{{$item['roomInfo']->id}}" data-id="{{$item['roomInfo']->id}}" class="fa-solid fa-heart"></i></a>
                     </div>
                 </div>
             </div>
@@ -96,7 +94,7 @@
                         </a>
                     </div>
                     <div class="button-effect">
-                        <a  href="#" class="img-poppu btn" id="{{$item['roomInfo']->id}}"><i id="icon-heart{{$item['roomInfo']->id}}" data-id="{{$item['roomInfo']->id}}" class="fa-solid fa-heart"></i></a>
+                        <a class="img-poppu btn btn-close " id="{{$item['roomInfo']->id}}"><i id="icon-heart{{$item['roomInfo']->id}}" data-id="{{$item['roomInfo']->id}}" class="fa-solid fa-heart"></i></a>
                     </div>
                 </div>
             </div>

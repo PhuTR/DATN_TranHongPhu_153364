@@ -34,10 +34,18 @@
     <ul class="location-district phongtro clearfix">
         @foreach($districts ?? [] as $item)
         <li>
-            <a class="district-item" title="Phòng trọ {{ $item->name }}" href="{{ route('get.room.by_districts',['id' => $item->id, 'slug' => $item->slug]) }}">{{ $item->name }}</a>
-            <span class="count">({{ $item->roomsD-> count() ?? 0 }})</span>
+            <a class="district-item" title="Phòng trọ {{ $item->name }}" href="{{ route('get.room.by_districts_category',['id' => $item->id, 'slug' => $item->slug,'category_id'=>$category->id]) }}">{{ $item->name }}</a> 
+            <span class="count">({{ $item->roomsD-> count() ?? 0 }})</span> 
         </li>
         @endforeach
+
+        {{-- @foreach ($rooms as $item )
+            <li>
+                <a class="district-item" title="Phòng trọ {{ $item->name }}" href="{{ route('get.room.by_districts',['id' => $item->id, 'slug' => $item->slug]) }}">{{ $item->district->name }}</a> 
+                <span class="count">({{ $item->district_id }})</span>
+            </li>
+        @endforeach --}}
+      
     </ul>
 </section>
 @endif
@@ -46,7 +54,7 @@
     <ul class="location-district phongtro clearfix">
         @foreach($wards ?? [] as $item)
         <li>
-            <a class="district-item" title="Phòng trọ {{ $item->name }}" href="{{ route('get.room.by_wards',['id' => $item->id, 'slug' => $item->slug]) }}">{{ $item->name }}</a>
+            <a class="district-item" title="Phòng trọ {{ $item->name }}" href="{{ route('get.room.by_wards_category',['id' => $item->id, 'slug' => $item->slug,'category_id'=>$category->id]) }}">{{ $item->name }}</a>
             <span class="count">({{ $item->roomsW-> count() ?? 0 }})</span>
         </li>
         @endforeach

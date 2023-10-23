@@ -1,4 +1,5 @@
 @if(Session::has('Favourite') != null)
+
     @foreach (Session::get('Favourite')->rooms as $item) 
     {{-- tin vip --}}
         @if ($item['roomInfo']->service_hot == 5)
