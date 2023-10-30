@@ -189,8 +189,8 @@
                         
                         <div class="property-location map">
                             <h5>Bản đồ</h5>
-                            <div class="divider-fade"></div>
-                            <div id="map-contact" class="contact-map"></div>
+                            <div id='map' class="contact-map"></div>
+                            {{-- <div id="map-detail" class="contact-map"></div> --}}
                         </div>
                        
                         
@@ -374,4 +374,6 @@
         </section>
         <!-- END SECTION PROPERTIES LISTING -->
 
+        @include('frontend.pages.detail_room.mapjs')
+   
 @endsection

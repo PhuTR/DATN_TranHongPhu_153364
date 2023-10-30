@@ -62,6 +62,9 @@
                             <input type="text" name="full_address" placeholder="" id="full_address">
                         </p>
                     </div>
+                    <div class="col-lg-4 col-md-12">
+                        <div  class="contact-map"></div>
+                    </div>
                 </div>
           
         </div>
