@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
-use App\Models\Location;
 use App\Models\Option;
 use Carbon\Carbon;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -53,32 +52,6 @@ class DatabaseSeeder extends Seeder
             }
         }
 
-
-        $LocationName = [
-            'Hà Nội',
-            'Hồ Chí Minh',
-            'Đà Nẵng',
-            'Nghệ An',
-        ];
-
-        foreach ($LocationName as $item) {
-            try {
-                dump($item);
-                Location::create([
-                    'name' => $item,
-                    'title' => $item,
-                    'description' => $item,
-                    'parent_id' => 0,
-                    'type' => 1,
-                    'slug' => Str::slug($item),
-                    'created_at' => Carbon::now()
-                ]);
-              
-            }
-            catch (\Exception $e){
-
-            }
-        }
 
         foreach (['Nam','Nữ'] as $item) {
             try {

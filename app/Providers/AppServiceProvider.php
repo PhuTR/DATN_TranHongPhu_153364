@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use App\Models\Category;
 use App\Models\Location;
 use App\Models\Articles;
+use App\Models\City;
 use Illuminate\Support\Facades\View;
 use Illuminate\Pagination\Paginator;
 use Exception;
@@ -30,7 +31,7 @@ class AppServiceProvider extends ServiceProvider
     {
         try{
             $categoriesGlobal = Category::select('id','name','slug','status')->get();
-            $locationsCity = Location::where('parent_id', 0)->select('id', 'name')->get();
+            $locationsCity = City::select('id','code','name')->get();
             $articles = Articles::orderByDesc('id')->paginate(15);
 
 

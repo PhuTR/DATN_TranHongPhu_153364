@@ -60,7 +60,7 @@ class RoomService
         // where lọc đúng 1 trường + giá trị
         // whereIn lọc 1 trường + nhiều giá trị
         $self = new self();
-        $rooms = Room::whereIn('status', [Room::STATUS_ACTIVE, Room::STATUS_EXPIRED]);
+        $rooms = Room::whereIn('status', [Room::STATUS_ACTIVE]);
 
         if ($categoryId = Arr::get($params, 'category_id')) {
             $rooms->where('category_id', $categoryId);

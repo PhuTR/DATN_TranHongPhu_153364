@@ -7,6 +7,7 @@ use App\Models\Location;
 use App\Page\SearchRoomService;
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\City;
 
 class SearchRoomController extends Controller
 {
@@ -15,7 +16,7 @@ class SearchRoomController extends Controller
         $data = SearchRoomService::index($request);
        
         if ($request->city_id) {
-            $districts = Location::where('parent_id', $request->city_id)->get();
+            $districts = City::where('code', $request->city_id)->get();
             $data['districts'] = $districts;
         }
     
