@@ -8,6 +8,7 @@ use App\Http\Service\LocationService;
 use Illuminate\Http\Request;
 use App\Models\Location;
 use App\Models\Category;
+use App\Models\City;
 
 class PageHomeService
 {
@@ -17,7 +18,7 @@ class PageHomeService
         $roomVipFive = RoomService::getListsRoomVip($limit = 6, [
             'service_hot' => 5
         ]);
-        $locaties = Location::where('hot',1)->get();
+        $locaties = City::where('hot',1)->get();
         $rooms_new     = RoomService::getRoomsNewVip($limit =  10);
         $locationsHot = LocationService::getLocationsHot(3);
         
@@ -29,7 +30,7 @@ class PageHomeService
             return [
                 'roomHots'     => $roomHots,
                 'rooms'     => $rooms,
-                'locaties'     => $locaties,
+                'locaties'     => $locationsHot,
                 'rooms_new'      => $rooms_new,
                 'roomVipFive'  => $roomVipFive,
                 'locationsHot' => $locationsHot,

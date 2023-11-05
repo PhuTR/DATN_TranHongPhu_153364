@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
-class Location extends Model
+class City extends Model
 {
     use HasFactory;
-    protected $table = "locations";
+    protected $table = "citys";
     protected $guarded = [''];
 
     protected $setType = [
@@ -20,18 +20,9 @@ class Location extends Model
     public function getType(){
         return Arr::get($this->setType,$this->type, '.....');
     }
-
     public function roomsC()
     {
-        return $this->hasMany(Room::class, 'city_id');
+        return $this->hasMany(Room::class, 'city_id','code');
     }
 
-    public function roomsD()
-    {
-        return $this->hasMany(Room::class, 'district_id');
-    }
-    public function roomsW()
-    {
-        return $this->hasMany(Room::class, 'wards_id');
-    }
 }

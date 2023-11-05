@@ -21,7 +21,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.5.2/js/fileinput.min.js" integrity="sha512-XxRivO6jA7xU9a0ozATMIFQFdNySyRrB8uE1QctFmjTTGSGUj9tC7CpnVf7xq1e/QeVhbY9ZLbxEzPFIWpW+xA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.5.2/css/fileinput-rtl.min.css" integrity="sha512-cW5eHYgf3UouIiLHYAXDLI/FFo4Mgk0S271cW6LabPtejrWYR//RTjgte7YW7Ir11EFG8H7SQgAlEWYEF3OeVA==" crossorigin="anonymous" referrerpolicy="no-referrer" /> --}}
     {{-- <script src="https://cdn.ckeditor.com/ckeditor5/39.0.2/classic/ckeditor.js"></script> --}}
-
+    <script src='https://cdn.jsdelivr.net/npm/@goongmaps/goong-js@1.0.9/dist/goong-js.js'></script>
+    <link href='https://cdn.jsdelivr.net/npm/@goongmaps/goong-js@1.0.9/dist/goong-js.css' rel='stylesheet' />
 
     <!-- FONT AWESOME -->
     <link rel="stylesheet" href="{{asset('css/fontawesome-all.min.css')}}">

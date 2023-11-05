@@ -75,14 +75,9 @@
                         #{{$item->id}}
                     </td>
                      <td class="image myelist">
-                        @if(empty($item->avatar) || is_null($item->avatar) || $item->avatar == 'no-avatar.jpg')
-                            <a href=""><img   class="img-fluid" id="output" src="{{ asset('images/no-avatar.jpg') }}"></a>
-                        @else
                         <a href="">
-                            <img   class="img-fluid" id="output" src="{{ asset('uploads/avatars/' . $item->avatar) }}">
+                            <img class="img-fluid" id="output" src="{{ pare_url_file($item->avatar) }}">
                         </a>
-                        @endif
-                         {{-- <a href="single-property-1.html"><img alt="my-properties-3" src="{{asset('images/feature-properties/fp-1.jpg')}}" class="img-fluid"></a> --}}
                      </td>
                      <td style="width:40% ">
                          <div class="inner">

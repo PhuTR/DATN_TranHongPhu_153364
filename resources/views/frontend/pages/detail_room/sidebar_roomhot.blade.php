@@ -10,12 +10,7 @@
                     {{-- <a href="blog-details.html"><img src="{{asset('images/feature-properties/fp-1.jpg')}}" alt=""></a> --}}
 
                     <a href="{{route('get.category.detail',['slug' => $item->slug,'id' => $item->id])}}" >
-                        @if(empty($item->avatar) || is_null($item->avatar) || $item->avatar == 'no-avatar.jpg')
-                            <img style="min-width: 90px; min-height:70px"   class="img-responsive" id="output1" src="{{ asset('images/no-avatar.jpg') }}">
-                        @else
-                            <img style="min-width: 90px; min-height:70px "  class="img-responsive" id="output1" src="{{ asset('uploads/avatars/' . $item->avatar) }}">
-                        @endif
-
+                        <img style="min-width: 90px; min-height:70px "  class="img-responsive" id="output1" src="{{ pare_url_file($item->avatar) }}">
                     </a>
                 </div>
                 <div class="info-img">

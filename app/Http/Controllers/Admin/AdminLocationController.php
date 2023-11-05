@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\City;
 use App\Models\Location;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -12,15 +13,14 @@ use Exception;
 class AdminLocationController extends Controller
 {
     public function index(Request $request){
-        $locations = Location::whereRaw(1);
-
+        $city = City::whereRaw(1);
         if ($request->n)
-            $locations->where('name', 'like', '%' . $request->n . '%');
+            $city->where('name', 'like', '%' . $request->n . '%');
 
-        $locations = $locations->orderByDesc('id')->paginate(10);
+        $city = $city->orderBy('id')->paginate(10);
 
         $viewData = [
-            'locations' => $locations,
+            'city' => $city,
             'query'     => $request->query()
         ];
         return view('admin.pages.location.index', $viewData);
@@ -73,11 +73,11 @@ class AdminLocationController extends Controller
 
 
     public function edit($id){
-        $location = Location::find($id);
-        $cities = Location::where('parent_id',0)->get();
+        $city = City::find($id);
+
         $viewData = [
-            'location' => $location,
-            'cities' => $cities,
+           
+            'city' => $city,
            
         ];
         return view('admin.pages.location.update',$viewData);
@@ -109,7 +109,7 @@ class AdminLocationController extends Controller
 
 
 
-            Location::find($id)->update($data);
+            City::find($id)->update($data);
            
             return redirect()->route('get_admin.location.home');
             

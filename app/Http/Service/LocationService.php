@@ -3,12 +3,12 @@
 
 namespace App\Http\Service;
 
-use App\Models\Location;
+use App\Models\City;
 
 class LocationService
 {
     public static function getLocationsHot($limit)
     {
-        return Location::withCount('roomsC')->where('hot', 1)->limit($limit)->get();
+        return City::withCount('roomsC')->where('hot', 1)->limit($limit)->get();
     }
 }

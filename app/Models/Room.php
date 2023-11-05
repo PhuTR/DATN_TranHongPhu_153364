@@ -22,7 +22,7 @@ class Room extends Model
         return $this->belongsTo(Option::class,'subject_id');
     }
     public function location(){
-        return $this->belongsTo(Location::class,'city_id');
+        return $this->belongsTo(City::class,'city_id','code');
     }
 
 
@@ -66,14 +66,14 @@ class Room extends Model
     }
     public function district()
     {
-        return $this->belongsTo(Location::class, 'district_id');
+        return $this->belongsTo(District::class, 'district_id','code');
     }
     public function wards()
     {
-        return $this->belongsTo(Location::class, 'wards_id');
+        return $this->belongsTo(Ward::class, 'wards_id','code');
     }
     public function city()
     {
-        return $this->belongsTo(Location::class, 'city_id');
+        return $this->belongsTo(City::class, 'city_id','code');
     }
 }

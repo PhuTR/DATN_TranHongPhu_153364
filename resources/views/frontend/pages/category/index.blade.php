@@ -48,13 +48,7 @@
                                                 
                                                     <a href="{{route('get.category.detail',['slug' => $item->slug,'id' => $item->id])}}" class="homes-img">
                                                         <div id="price{{$item->id}}" class="homes-price">{{number_format($item->price/1000000,1)}} triệu/tháng</div>
-                                                        @if(empty($item->avatar) || is_null($item->avatar) || $item->avatar == 'no-avatar.jpg')
-                                                            <img class="img-responsive" id="output1{{$item->id}}" src="{{ asset('images/no-avatar.jpg') }}">
-                                                        @else
-                                                            <img  class="img-responsive" id="output1{{$item->id}}" src="{{ asset('uploads/avatars/' . $item->avatar) }}">
-                                                        @endif
-
-                                        
+                                                            <img  class="img-responsive" id="output1{{$item->id}}" src="{{ pare_url_file($item->avatar) }}">
                                                     </a>
                                                 </div>
                                                 <div class="button-effect">
@@ -133,12 +127,7 @@
                                                 <div class="homes">
                                                     <!-- homes img -->
                                                     <a href="single-property-1.html" class="homes-img" style="max-height:200px">
-                                                        
-                                                        @if(empty($item->avatar) || is_null($item->avatar) || $item->avatar == 'no-avatar.jpg')
-                                                            <img  style="max-height:200px"  class="img-responsive" id="output1" src="{{ asset('images/no-avatar.jpg') }}">
-                                                        @else
-                                                            <img  style="max-height:200px"  class="img-responsive" id="output1" src="{{ asset('uploads/avatars/' . $item->avatar) }}">
-                                                        @endif
+                                                            <img  style="max-height:200px"  class="img-responsive" id="output1" src="{{ pare_url_file($item->avatar) }}">
                                                     </a>
                                                 </div>
                                                 <div class="button-effect">

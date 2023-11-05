@@ -32,9 +32,6 @@
             </form>
 
         </div>
-         <div class="btn-admin">
-             <a href="{{route('get_admin.location.create')}}"  ><i class="fa-solid fa-circle-plus icon"></i>Thêm mới</a>
-         </div>
          <div class="section-body listing-table">
              <div class="table-responsive">
                  <table class="table table-striped">
@@ -50,7 +47,7 @@
                          </tr>
                      </thead>
                      <tbody>
-                        @foreach ($locations ?? [] as $item )
+                        @foreach ($city ?? [] as $item )
                         <tr>
                             <td>{{$item->id}}</td>
                             <td>{{$item->name}}</td>
@@ -65,7 +62,6 @@
                             </td>
                             <td class="edit">{{$item->created_at}}</td>
                             <td ><a href="{{route('get_admin.location.update',$item->id)}}"><i class="fa-solid fa-pen-to-square"></i></a></td>
-                            {{-- <td><a href="{{route('get_admin.location.delete',$item->id)}}"><i class="fa-solid fa-trash-can"></i></a></td> --}}
                         </tr>
                         @endforeach
                         
@@ -76,7 +72,7 @@
          </div>
          <div class="pagination-container">
             <nav>
-              {{$locations->links()}}
+              {{$city->links()}}
             </nav>
         </div>
      </div>

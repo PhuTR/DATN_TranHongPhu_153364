@@ -61,41 +61,16 @@
      <div class="dashborad-box mb-0">
          <h4 class="heading pt-0">Cập nhật</h4>
          <div class="section-inforamation">
-             <form method="POST" enctype="multipart/form-data" action="{{route('get_admin.location.edit_location', ['id' => $location->id] )}}">
+             <form method="POST" enctype="multipart/form-data" >
                 @csrf
                  <div class="row">
                      <div class="col-sm-6">
                          <div class="form-group">
                              <label>Tên</label>
-                             <input type="text" name="name" class="form-control" placeholder="Tỉnh thành phố" value="{{old('name',$location->name ?? '')}}">
+                             <input type="text" name="name" class="form-control" placeholder="Tỉnh thành phố" value="{{old('name',$city->name ?? '')}}">
                          </div>
                      </div>
-                 
-                     <div class="col-sm-6">
-                  
-                             <div class="form-group categories select-container ">
-                                <label>Phân loại</label>
-                                <select name="type" id="type" class="nice-select form-control wide" >
-                                    <option value="1" class="option"  {{($location->type ?? 1) == 1 ? "selected" : ""}}>--Tỉnh thành--</option>
-                                    <option value="2" class="option"  {{($location->type ?? 1) == 2 ? "selected" : ""}}>--Quận huyện--</option>
-                                    <option value="3" class="option"  {{($location->type ?? 1) == 3 ? "selected" : ""}}>--Phường xã--</option>
-                                </select>
-                            </div>
                 
-                     </div>
-
-                     <div class="col-sm-6">
-                        @if(isset($location) && $location->type == 2)
-                        <div class="form-group categories select-container ">
-                           <label>Tỉnh thành</label>
-                           <select name="parent_id"  class="nice-select form-control wide" >
-                                @foreach ($cities as $item )
-                                <option value="{{$item->id}}" class="option" {{$item->id == ($location->parent_id ?? 0)  ? "selected" : ""}} >{{$item->name}}</option>
-                                @endforeach
-                              
-                           </select>
-                       </div>
-                       @endif
            
                     </div>
 

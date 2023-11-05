@@ -8,29 +8,34 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
+     *
+     * @return void
      */
-    public function up(): void
+    public function up()
     {
-        Schema::create('locations', function (Blueprint $table) {
+        Schema::create('districts', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('code')->default(0);
             $table->string('name');
-            $table->string('slug')->unique();
+            $table->string('slug')->nullable();
             $table->string('title')->nullable();
             $table->string('description')->nullable();
             $table->string('avatar')->nullable();
             $table->tinyInteger('status')->default(1);
             $table->tinyInteger('hot')->default(0);
-            $table->bigInteger('parent_id')->default(0);
-            $table->bigInteger('type')->default(1);
+            $table->bigInteger('city_code')->default(0);
+            $table->bigInteger('type')->default(2);
             $table->timestamps();
         });
     }
 
     /**
      * Reverse the migrations.
+     *
+     * @return void
      */
-    public function down(): void
+    public function down()
     {
-        Schema::dropIfExists('locations');
+        Schema::dropIfExists('districts');
     }
 };

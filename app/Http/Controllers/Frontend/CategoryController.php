@@ -10,6 +10,7 @@ use App\Models\Room;
 use App\Models\Articles;
 use App\Page\PageCategoryService;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 class CategoryController extends Controller
 {
     public function index($id,$slug,Request $request){
@@ -25,13 +26,14 @@ class CategoryController extends Controller
         $room->save();
         $category = Category::all();
         $orderBy = $request->input('sort', 'asc'); 
-      
+        $images     = DB::table('images')->where("room_id", $slug)->get();
         $rooms_new = RoomService::getRoomsNewVip($limit =  10);
         $rooms_hot = RoomService::getListsRoomVip($limit = 6, [
             'service_hot' => 5
         ]);
         $viewData = [
             'room' => $room,
+            'images' => $images,
             'rooms_hot' => $rooms_hot,
             'rooms_new' => $rooms_new,
             'category' => $category,

@@ -59,21 +59,18 @@
                                 <!-- main slider carousel items -->
                                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                                     <ol class="carousel-indicators">
-                                        @php
-                                            $room_img = json_decode($room->images, true);
-                                        @endphp
-                                
-                                        @foreach ($room_img as $index => $item)
-                                            <li data-target="#carouselExampleIndicators" data-slide-to="{{ $index }}" class="{{ $index === 0 ? 'active' : '' }}"></li>
+                                        @foreach ($images as $key => $item)
+                                            <li data-target="#carouselExampleIndicators" data-slide-to="{{ $key }}" class="{{ $key === 0 ? 'active' : '' }}"></li>
                                         @endforeach
                                     </ol>
                                     <div class="carousel-inner carus" role="listbox">
-                                        @foreach ($room_img as $index => $item)
-                                            <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
-                                                <img class="d-block img-fluid fixed-size" src="uploads/images/{{ $item }}" alt="Slide {{ $index + 1 }}">
+                                        @foreach ($images as $key => $item)
+                                            <div class="carousel-item{{ $key === 0 ? ' active' : '' }}">
+                                                <img class="d-block img-fluid fixed-size" src="{{ pare_url_file($item->path) }}" alt="Slide {{ $key + 1 }}">
                                             </div>
                                         @endforeach
                                     </div>
+                                    
                                     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                         <span class="sr-only">Previous</span>
@@ -84,11 +81,6 @@
                                     </a>
                                 </div>
                                 
-
-
-
-
-
                                 <!-- cars content -->
                                 <div class="homes-content details-2 mb-4">
                                     <!-- cars List -->

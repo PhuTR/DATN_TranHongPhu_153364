@@ -10,7 +10,7 @@
                             <select name="city_id" id="city_id" class="nice-select form-control wide">
                                 <option value="" class="option">--Chọn Tỉnh/TP--</option>
                                 @foreach ($citys ?? [] as $item)
-                                    <option value="{{$item -> id}}" {{$item->id == ($room->city_id ?? 0) ? "selected" : ""}} class="option">{{$item -> name}}</option>
+                                    <option value="{{$item -> code}}" {{$item->code == ($room->city_id ?? 0) ? "selected" : ""}} class="option">{{$item -> name}}</option>
                                 @endforeach
                             </select>
                
@@ -25,7 +25,7 @@
                             <select name="district_id" id="district_id" class="nice-select form-control wide">
                                 <option value="">Chọn quận huyện</option>
                                 @foreach ($districts ?? [] as $item)
-                                    <option value="{{$item -> id}}" {{$item->id == ($room->district_id ?? 0) ? "selected" : ""}} class="option">{{$item -> name}}</option>
+                                    <option value="{{$item -> code}}" {{$item->code == ($room->district_id ?? 0) ? "selected" : ""}} class="option">{{$item -> name}}</option>
                                 @endforeach
                             </select>
                             @if ($errors->first('district_id'))
@@ -39,7 +39,7 @@
                             <select name="wards_id" id="wards_id" class="nice-select form-control wide">
                                 <option value="" class="option">Chọn phường xã</option>
                                 @foreach ($wards ?? [] as $item)
-                                    <option value="{{$item -> id}}"  {{$item->id == ($room->wards_id ?? 0) ? "selected" : ""}} class="option">{{$item -> name}}</option>
+                                    <option value="{{$item -> code}}"  {{$item->code == ($room->wards_id ?? 0) ? "selected" : ""}} class="option">{{$item -> name}}</option>
                                 @endforeach
                             </select>
                             @if ($errors->first('wards_id'))
@@ -56,10 +56,10 @@
                             <input type="text" name="apartment_number" placeholder="" id="apartment_number" value="{{$room->apartment_number ?? ""}}">
                         </p>
                     </div>
-                    <div class="col-lg-4 col-md-12">
+                    <div class="col-lg-8 col-md-12">
                         <p class="no-mb last">
                             <label for="full_address">Địa chỉ chính xác</label>
-                            <input type="text" name="full_address" placeholder="" id="full_address">
+                            <input type="text" name="full_address" placeholder="" id="full_address" value="{{$room->full_address ?? ""}}">
                         </p>
                     </div>
                 </div>
@@ -158,12 +158,7 @@
            Ảnh bìa
         </p>
         <div class="">
-            @if(empty($room->avatar) || is_null($room->avatar) || $room->avatar == 'no-avatar.jpg')
-                <img   class="image-bg" id="output1" src="{{ asset('images/no-avatar.jpg') }}">
-             @else
-             <img  class="image-bg" id="output1" src="{{ asset('uploads/avatars/' . $room->avatar) }}">
-             @endif
-
+             <img  class="image-bg" id="output1" src="{{ pare_url_file($room->avatar) }}">
             <div>
                 <input style="width:14%" class="input-file" name="avatar" id="avatar" type="file" accept="image/*" onchange="loadFile(event)" style="display: none">
                         <script>
@@ -178,17 +173,14 @@
 
         <p style="margin-top:1%;color: #333;display: inline-block;font-size: 15px;font-weight: 600;text-transform: capitalize;">
             Ảnh chi tiết
-         </p>
-         @php
-             $room_img = json_decode($room->images, true);
-         @endphp
-         @if (isset($room_img))
-       
+        </p>
+
+         @if (isset($images))
          <div class="row" style="margin-bottom: 15px;display: flex">
-             @foreach($room_img as $index => $item)
+             @foreach($images as $item)
              <div class="col-sm-2" style="margin-right: 10px;">
                  <a href="" style="display: block;">
-                     <img src="{{ asset('uploads/images/' . $item) }}" style="width: 300px;height: auto">
+                     <img src="{{ pare_url_file($item->path) }}" style="width: 300px;height: auto">
                  </a>
              </div>
              @endforeach
@@ -197,7 +189,7 @@
          <div class="form-group">
             <label for="comment">Thêm hình ảnh:</label>
             <div class="file-loading">
-              <input id="file-5" type="file" class="file" name="images[]"  multiple 
+              <input id="file-5" type="file" class="file" name="file[]"  multiple 
               data-show-upload="false" data-show-caption="true" data-msg-placeholder="Select {files} for upload...">
             </div>
           </div>
@@ -220,7 +212,7 @@
     var URL_LOAD_WARDS = '{{route('get_user.load.wards')}}'
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-<script>
+><script>
     $(function() {
         $('#city_id').change(function() {
             let $this = $(this);
@@ -230,7 +222,7 @@
             $.ajax({
             url: URL_LOAD_DISTRICT,
                 data:{
-                    city_id: city_id
+                    city_code: city_id
                 },
                 
             })
@@ -240,7 +232,7 @@
                          let options = `<option value="0" >--Chọn Quận/Huyện--</option>`;
                          let option_name = ``;
                         data.map((item,index) =>{
-                            options = options + `<option value="${item.id}" >${item.name}</option>`
+                            options = options + `<option value="${item.code}" >${item.name}</option>`
                             option_name = option_name + `${item.name}`
                         });
                         $('#district_id').html(options);
@@ -260,18 +252,18 @@
             $.ajax({
             url: URL_LOAD_WARDS,
                 data:{
-                    district_id: district_id
+                    district_code: district_id
                 },
                 
             })
-                .done(function( data ) {
+                .done(function(data) {
                 
-                    if(data ) {
+                    if(data) {
                         
                         let options = `<option value="0" >--Chọn Phường/Xã--</option>`;
                          let option_name = ``;
                         data.map((item,index) =>{
-                            options = options + `<option value="${item.id}" >${item.name}</option>`
+                            options = options + `<option value="${item.code}" >${item.name}</option>`
                             option_name = option_name + `${item.name}`
                         });
                         $('#wards_id').html(options);
@@ -286,6 +278,7 @@
 
    
     })
+    
 </script>
 <script>
 

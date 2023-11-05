@@ -8,12 +8,14 @@ use Illuminate\Http\Request;
 use App\Models\Location;
 use App\Models\Room;
 use App\Models\Articles;
+use App\Models\City;
+
 class PageCategoryService
 {
     public static function index($id, Request $request)
     {
         $category = Category::find($id);
-        $locaties = Location::where('hot',1)->get();
+        $locaties = City::where('hot',1)->get();
        
         $rooms_new     = RoomService::getRoomsNewVip($limit =  10);
 
@@ -21,7 +23,8 @@ class PageCategoryService
             $rooms    = RoomService::getListsRoom($request, $params = [
                 'category_id' => $id,
                 'price' => ($request->price ? $request->price : -1),
-                'area' => ($request->area ? $request->area : -1)
+                'area' => ($request->area ? $request->area : -1),
+            
             ]);
             return [
                 'category' => $category,
@@ -59,7 +62,8 @@ class PageCategoryService
         }
         else{
             $rooms    = RoomService::getListsRoom($request, $params = [
-                'category_id' => $id
+                'category_id' => $id,
+               
             ]);
             return [
                 'category' => $category,

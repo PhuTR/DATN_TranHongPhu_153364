@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRoomRequest;
 use Illuminate\Http\Request;
 use App\Models\Location;
+use App\Models\City;
+use App\Models\District;
+use App\Models\Ward;
 use App\Models\Category;
 use App\Models\Room;
 use App\Models\Option;
@@ -28,9 +31,9 @@ class UserRoomController extends Controller
     }
 
     public function create(Request $request){
-        $citys = Location::select('id','name')->where('type',1)->get();
-        $districts = Location::select('id','name')->where('type',2)->get();
-        $wards = Location::select('id','name')->where('type',3)->get();
+        $citys = City::select('code','name')->where('type',1)->get();
+        $districts = District::select('code','name')->where('type',2)->get();
+        $wards = Ward::select('code','name')->where('type',3)->get();
 
         $categories = Category::select('id','name')->get();
         $optisons = Option::select('id','name')->get();
@@ -53,53 +56,22 @@ class UserRoomController extends Controller
         $data['status']     = Room::STATUS_EXPIRED;
         $data = $this->switchPrice($data);
         $data = $this->switchArea($data);
-        if ($request->hasFile('avatar')){
-            $file = $request->file('avatar');
-            var_dump($file);
-            $exten = $file->getClientOriginalExtension();
-            if($exten != 'jpg' && $exten != 'png' && $exten !='jpeg' && $exten != 'JPG' && $exten != 'PNG' && $exten !='JPEG' )
-                return redirect('user/profile/index')->with('thongbao','Bạn chỉ được upload hình ảnh có định dạng JPG,JPEG hoặc PNG');
-            $Hinh = 'avatar123-'.$request->username.'-'.time().'.'.$exten;
-            while (file_exists('uploads/avatars/'.$Hinh)) {
-                 $Hinh = 'avatar123-'.$request->username.'-'.time().'.'.$exten;
+        if ($request->avatar) {
+            $file = upload_image('avatar');
+            if (isset($file) && $file['code'] == 1) {
+                $data['avatar'] = $file['name'];
             }
-            if(file_exists('uploads/avatar/'.$request->avatar))
-               unlink('uploads/avatars/'.$request->avatar);
-
-            $file->move('uploads/avatars',$Hinh);
-            $data['avatar'] = $Hinh;
-         }  
-         $json_img ="";
-         if ($request->hasFile('hinhanh')){
-            $arr_images = array();
-            $inputfile =  $request->file('hinhanh');
-            foreach ($inputfile as $filehinh) {
-               $namefile = "phongtro-".str_random(5)."-".$filehinh->getClientOriginalName();
-               while (file_exists('uploads/images'.$namefile)) {
-                 $namefile = "phongtro-".str_random(5)."-".$filehinh->getClientOriginalName();
-               }
-              $arr_images[] = $namefile;
-              $filehinh->move('uploads/images',$namefile);
-            }
-            $json_img =  json_encode($arr_images,JSON_FORCE_OBJECT);
-         }
-         else {
-            $arr_images[] = "no_img_room.png";
-            $json_img = json_encode($arr_images,JSON_FORCE_OBJECT);
-         }
-         $data['images'] = $json_img;
-      
-
+        }
         $room = Room::create($data);
         if($room){
+            if($request->file){
+                $this->syncAlbumImageAndProduct($request->file, $room->id);
+            }
             return redirect()->route('get_user.room.home');
         }else{
            return redirect()->back();
         }
     }
-
-   
-
 
     public function edit($id,Request $request){
 
@@ -107,11 +79,12 @@ class UserRoomController extends Controller
         $room = Room::where(['id' => $id,'auth_id' => Auth::user()->id])->first();
 
         if(!$room) return abort(404);
-        $citys = Location::select('id','name')->where('type',1)->get();
-        $districts = Location::select('id','name')->where('type',2)->get();
-        $wards = Location::select('id','name')->where('type',3)->get();
+        $citys = City::select('id','code','name')->where('type',1)->get();
+        $districts = District::select('id','code','name')->where('type',2)->get();
+        $wards = Ward::select('id','code','name')->where('type',3)->get();
         $categories = Category::select('id','name')->get();
         $optisons = Option::select('id','name')->get();
+        $images     = DB::table('images')->where("room_id", $id)->get();
         $viewData = [
             'citys' => $citys,
             'districts' => $districts,
@@ -119,63 +92,34 @@ class UserRoomController extends Controller
             'categories' => $categories,
             'optisons' => $optisons,
             'room' => $room,
+            'images' => $images,
             
         ];
-
-
 
         return view ('user.room.update', $viewData);
     }
 
     public function update($id,Request $request){
         
-        $data = $request->except('_token');
+        $data = $request->except('_token','avatar','file');
         $data['updated_at'] = Carbon::now();
         $data['price'] = str_replace('.', '', $request->price);
         $data['slug'] = Str::slug($request->name);
         $data = $this->switchPrice($data);
         $data = $this->switchArea($data);
-        if ($request->hasFile('avatar')){
-            $file = $request->file('avatar');
-            var_dump($file);
-            $exten = $file->getClientOriginalExtension();
-            if($exten != 'jpg' && $exten != 'png' && $exten !='jpeg' && $exten != 'JPG' && $exten != 'PNG' && $exten !='JPEG' )
-                return redirect('user/profile/index')->with('thongbao','Bạn chỉ được upload hình ảnh có định dạng JPG,JPEG hoặc PNG');
-            $Hinh = 'avatar123-'.$request->username.'-'.time().'.'.$exten;
-            while (file_exists('uploads/avatars/'.$Hinh)) {
-                 $Hinh = 'avatar123-'.$request->username.'-'.time().'.'.$exten;
+        
+        if ($request->avatar) {
+            $file = upload_image('avatar');
+            if (isset($file) && $file['code'] == 1) {
+                $data['avatar'] = $file['name'];
             }
-            if(file_exists('uploads/avatar/'.$request->avatar))
-               unlink('uploads/avatars/'.$request->avatar);
-
-            $file->move('uploads/avatars',$Hinh);
-            $data['avatar'] = $Hinh;
-         }  
-
- 
-
-        $json_img = "";
-
-        if ($request->hasFile('images')) {
-            $arr_images = array();
-            $inputfile = $request->file('images');
-            foreach ($inputfile as $filehinh) {
-                $namefile = "phongtro-" . str_random(5) . "-" . $filehinh->getClientOriginalName();
-                while (file_exists('uploads/images' . $namefile)) {
-                    $namefile = "phongtro-" . str_random(5) . "-" . $filehinh->getClientOriginalName();
-                }
-                $arr_images[] = $namefile;
-                $filehinh->move('uploads/images', $namefile);
-            }
-            $json_img = json_encode($arr_images, JSON_FORCE_OBJECT);
-            $data['images'] = $json_img;
-
         }
-    
+
         $room = Room::where(['id' => $id,'auth_id' => Auth::user()->id])->update($data);
         if($room){
-            // $room->images = $json_img;
-            
+            if ($request->file) {
+                $this->syncAlbumImageAndProduct($request->file, $id);
+            }
             return redirect()->route('get_user.room.home');
         }else{
            return redirect()->back();
@@ -188,8 +132,8 @@ class UserRoomController extends Controller
 
     public function loadDistrict(Request $request){
         if($request->ajax()){
-            $city = $request->city_id;
-            $location = Location::where('parent_id', $city)->select('id','name','slug')->get();
+            $city = $request->city_code;
+            $location = District::where('city_code', $city)->select('code','name','slug')->get();
             return response()->json($location);
         }
 
@@ -197,8 +141,8 @@ class UserRoomController extends Controller
 
     public function loadWards(Request $request){
         if($request->ajax()){
-            $district_id = $request->district_id;
-            $location = Location::where('parent_id', $district_id)->select('id','name','slug')->get();
+            $district_id = $request->district_code;
+            $location = Ward::where('district_code', $district_id)->select('code','name','slug')->get();
             return response()->json($location);
         }
 
@@ -399,6 +343,33 @@ class UserRoomController extends Controller
         }
 
         return $data;
+    }
+
+    public function syncAlbumImageAndProduct($files, $roomID)
+    {
+        foreach ($files as $key => $fileImage) {
+            $ext    = $fileImage->getClientOriginalExtension();
+            $extend = [
+                'png', 'jpg', 'jpeg', 'PNG', 'JPG'
+            ];
+
+            if (!in_array($ext, $extend)) return false;
+
+            $filename = date('Y-m-d__') . Str::slug($fileImage->getClientOriginalName()) . '.' . $ext;
+            $path     = public_path() . '/uploads/' . date('Y/m/d/');
+            if (!File::exists($path)) {
+                mkdir($path, 0777, true);
+            }
+
+            $fileImage->move($path, $filename);
+            DB::table('images')
+                ->insert([
+                    'name'       => $fileImage->getClientOriginalName(),
+                    'path'       => $filename,
+                    'room_id'    => $roomID,
+                    'created_at' => Carbon::now()
+                ]);
+        }
     }
 
 
