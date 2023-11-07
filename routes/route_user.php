@@ -42,10 +42,6 @@ Route::group(['namespace' => 'User', 'prefix' => 'user','middleware' => 'checkLo
 
     });
 
-
-    Route::get('contact','UserContactController@index')->name('get_user.contact');
-    Route::post('contact','UserContactController@store');
-
     Route::group(['prefix' => 'pay'],function(){
        
         Route::get('depposit-history','UserPayController@deposit_history')->name('get_user.pay.deposit_history');

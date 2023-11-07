@@ -75,6 +75,9 @@ Route::group(['namespace' => 'Frontend'], function(){
     Route::get('tin-da-luu.html','FavouriteController@index')->name('get.home.favourite');
     Route::get('/add-favourite/{id}','FavouriteController@addfavorites')->name('get.home.addfavourite');
     Route::get('/delete-item-favourite/{id}','FavouriteController@deletefavorites')->name('get.home.deletefavourite');
+//contact
+    Route::get('contact','UserContactController@index')->name('get_user.contact');
+    Route::post('contact','UserContactController@store');
 });
 
 

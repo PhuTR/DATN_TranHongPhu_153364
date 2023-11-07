@@ -81,8 +81,10 @@
     border-color: $color-gray80
 }
 .nice-select.wide {
-    width: 100%
+    width: 100%;
+   
 }
+
 .nice-select.wide .list {
     left: 0!important;
     right: 0!important

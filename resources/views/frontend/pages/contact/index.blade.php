@@ -1,50 +1,17 @@
 @extends('frontend.pages.category.layouts_category.master_category')
 @section('content_category')
-
-<section class="headings">
-    <div class="text-heading text-center">
-        <div class="container">
-            <h1>Liên hệ với chúng tôi</h1>
-            <h2><a href="{{route('get.home')}}">Trang chủ </a> &nbsp;/&nbsp; Liên hệ </h2>
-        </div>
-    </div>
-</section>
-<!-- END SECTION HEADINGS -->
-
 <!-- START SECTION CONTACT US -->
-<section class="contact-us">
+<section class="contact-us" style="background: #f5f7fb;">
     <div class="container">
-        <div class="property-location mb-5">
-            <h3>Địa điểm của chúng tôi</h3>
-            <div class="divider-fade"></div>
-            <div id="map-contact" class="contact-map"></div>
-        </div>
+        <p>
+            <a href="{{route('get.home')}}" style="font-size: 17px">Trang chủ</a> &nbsp;/&nbsp;
+            <span>Liên hệ</span>
+            <h3>Liên hệ với chúng tôi</h3>
+        </p>
         <div class="row">
-            <div class="col-lg-8 col-md-12">
-                <h3 class="mb-4">Liên hệ</h3>
-                <form id="contactform" class="contact-form" name="contactform" method="post" novalidate>
-                    @csrf
-                    <div id="success" class="successform">
-                        <p class="alert alert-success font-weight-bold" role="alert">Your message was sent successfully!</p>
-                    </div>
-                    <div id="error" class="errorform">
-                        <p>Something went wrong, try refreshing and submitting the form again.</p>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" required class="form-control input-custom input-full" name="name" placeholder="Họ tên của bạn">
-                    </div>
-                    <div class="form-group">
-                        <input type="text" required class="form-control input-custom input-full" name="phone" placeholder="Số điện thoại">
-                    </div>
-                    <div class="form-group">
-                        <textarea class="form-control textarea-custom input-full" id="ccomment" name="content" required rows="8" placeholder="Nội dung"></textarea>
-                    </div>
-                    <button type="submit" id="submit-contact" class="btn btn-primary btn-lg">Gửi liên hệ</button>
-                </form>
-            </div>
-            <div class="col-lg-4 col-md-12 bgc">
+            <div class="col-lg-5 col-md-12 bg-contact">
                 <div class="call-info">
-                    <h3>Chi tiết liên hệ</h3>
+                    <h3>Thông tin liên hệ</h3>
                     <p class="mb-5">Vui lòng tìm thông tin liên hệ bên dưới và liên hệ với chúng tôi ngay hôm nay!</p>
                     <ul>
                         <li>
@@ -74,6 +41,26 @@
                     </ul>
                 </div>
             </div>
+            <div class="col-lg-6 col-md-12" style="padding: 30px 30px 0;border: 1px solid #dedede; background-color:#fff">
+                <h3 class="mb-4">Liên hệ trực tiếp</h3>
+                <form id="contactform" class="contact-form" name="contactform" method="post" novalidate>
+                    @csrf
+                    <div class="form-group">
+                        <label class="text-uppercase">Họ tên của bạn</label>
+                        <input type="text" required class="form-control input-custom input-full form-input" name="name" >
+                    </div>
+                    <div class="form-group">
+                        <label class="text-uppercase">Số điện thoại</label>
+                        <input type="text" required class="form-control input-custom input-full form-input" name="phone" >
+                    </div>
+                    <div class="form-group">
+                        <label class="text-uppercase">Nội dung</label>
+                        <textarea class="form-control textarea-custom input-full form-input" id="ccomment" name="content" required></textarea>
+                    </div>
+                    <button type="submit" id="submit-contact" class="btn btn-primary btn-lg" style="width:100%">Gửi liên hệ</button>
+                </form>
+            </div>
+            
         </div>
     </div>
 </section>

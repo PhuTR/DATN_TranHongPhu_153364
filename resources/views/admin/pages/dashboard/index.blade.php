@@ -1,184 +1,201 @@
 @extends('admin.layouts.app_master')
 @section('content_admin')
-
-<div class="col-lg-9 col-md-12 col-xs-12 pl-0 user-dash2">
-    <div class="col-lg-12 mobile-dashbord dashbord">
-         <div class="dashboard_navigationbar dashxl">
-             <div class="dropdown">
-                 <button onclick="myFunction()" class="dropbtn"><i class="fa fa-bars pr10 mr-2"></i> Dashboard Navigation</button>
-                 <ul id="myDropdown" class="dropdown-content">
-                     <li>
-                         <a class="active" href="dashboard.html">
-                             <i class="fa fa-map-marker mr-3"></i> Dashboard
-                         </a>
-                     </li>
-                     <li>
-                         <a href="user-profile.html">
-                             <i class="fa fa-user mr-3"></i>Profile
-                         </a>
-                     </li>
-                     <li>
-                         <a href="my-listings.html">
-                             <i class="fa fa-list mr-3" aria-hidden="true"></i>My Properties
-                         </a>
-                     </li>
-                     <li>
-                         <a href="favorited-listings.html">
-                             <i class="fa fa-heart mr-3" aria-hidden="true"></i>Favorited Properties
-                         </a>
-                     </li>
-                     <li>
-                         <a href="add-property.html">
-                             <i class="fa fa-list mr-3" aria-hidden="true"></i>Add Property
-                         </a>
-                     </li>
-                     <li>
-                         <a href="payment-method.html">
-                             <i class="fas fa-credit-card mr-3"></i>Payments
-                         </a>
-                     </li>
-                     <li>
-                         <a href="invoice.html">
-                             <i class="fas fa-paste mr-3"></i>Invoices
-                         </a>
-                     </li>
-                     <li>
-                         <a href="change-password.html">
-                             <i class="fa fa-lock mr-3"></i>Change Password
-                         </a>
-                     </li>
-                     <li>
-                         <a href="index-2.html">
-                             <i class="fas fa-sign-out-alt mr-3"></i>Log Out
-                         </a>
-                     </li>
-                 </ul>
-             </div>
-        </div>
-    </div>
-    <div class="dashborad-box stat bg-white">
-         <h4 class="title">Trang quản lý</h4>
-         <div class="section-body">
-             <div class="row">
-                 <div class="col-lg-3 col-md-6 col-xs-12 dar pro mr-3">
-                     <div class="item">
-                         <div class="icon">
-                            <i style="color: #ffff" class="fa-solid fa-users"></i>
-                         </div>
-                         <div class="info">
-                             <h6 class="number">{{ $totalUser ?? 0 }}</h6>
-                             <a href="{{route('get_admin.user.index')}}" class="type ml-1">Tổng số thành viên</a>
-                         </div>
-                     </div>
-                 </div>
-                 <div class="col-lg-3 col-md-6 col-xs-12 dar rev mr-3">
-                     <div class="item">
-                         <div class="icon">
-                            <i class="fa-solid fa-newspaper" style="color: #ffff"></i>
-                         </div>
-                         <div class="info">
-                             <h6 class="number">{{ $totalRoom ?? 0 }}</h6>
-                             <a href="{{route('get_admin.room.index')}}" class="type ml-1">Tổng tin đăng</a>
-                         </div>
-                     </div>
-                 </div>
-                 <div class="col-lg-3 col-md-6 dar com mr-3">
-                     <div class="item mb-0">
-                         <div class="icon">
-                            <i class="fa-solid fa-money-bills" style="color: #ffff"></i>
-                         </div>
-                         <div class="info">
-                             <h6 class="number">{{ $totalPay }}</h6>
-                             <a href="{{route('get_admin.pay.paymet_history')}}" class="type ml-1">Giao dịch thanh toán</a>
-                         </div>
-                     </div>
-                 </div>
-                 <div class="col-lg-3 col-md-6 dar booked">
-                     <div class="item mb-0">
-                         <div class="icon">
-                            <i class="fa-regular fa-credit-card" style="color: #ffff"></i>
-                         </div>
-                         <div class="info">
-                             <h6 class="number">{{$totalRechargeHistory}}</h6>
-                             <a href="{{route('get_admin.pay.deposit_history')}}" class="type ml-1">Lịch sử nạp tiền</a>
-                         </div>
-                     </div>
-                 </div>
-             </div>
-         </div>
-    </div>
-    
-    <div class="row">
-        <div class="col-xl-6">
-            <h5 class="mt-3" style="display: flex;justify-content: space-between"><span>Thành viên mới</span></h5>
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Ảnh đại diện</th>
-                        <th>Thông tin</th>
-                        <th>Số điện thoại</th>
-                        <th>Ngày tạo</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($users ?? [] as $item)
-                    <tr>
-                        <td scope="row">{{ $item->id }}</td>
-                        <td scope="row">
-                            @if(empty($item->avatar) || is_null($item->avatar) || $item->avatar == 'no-avatar.jpg')
-                                <img   style="width: 60px;height: 60px;border-radius: 50%" id="output" src="{{ asset('images/no-avatar.jpg') }}">
-                            @else
-                                <img   style="width: 60px;height: 60px;border-radius: 50%" id="output" src="../uploads/avatars/{{ $item->avatar }}">
-                            @endif
-                           
-                        </td>
-                        <td scope="row">{{ $item->name }} <br>{{ $item->email }}</td>
-                        <td scope="row">{{ $item->phone }}</td>
-                        <td scope="row">{{ $item->created_at }}</td>
-    
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
-            <div class="row">
-                <div class="col-12">
-                    <div class="total-money">
-                        @php
-                        $total = 0;
-                        @endphp
-    
-                        @foreach ($rechargeHistory ?? [] as $item)
-                        @php
-                        $total += $item->money;
-                        @endphp
-                        @endforeach
-    
-                        <p>
-                            Tổng số tiền khách nạp:
-                            <span class="text-danger text-bold">{{ number_format($total, 0, ',', '.') }}đ</span>
-                        </p>
-                    </div>
-                </div>
+ <div class="main_content_iner overly_inner">
+    <div class="container-fluid p-0">
+      <div class="row">
+        <div class="col-12">
+          <div class="page_title_box d-flex flex-wrap align-items-center justify-content-between">
+            <div class="page_title_left d-flex align-items-center">
+              <h3 class="f_s_25 f_w_700 dark_text mr_30">Dashboard</h3>
             </div>
+            <div class="page_title_right">
+              <div class="page_date_button d-flex align-items-center">
+                <img src="{{asset('asset_admin/img/icon/calender_icon.svg')}}" alt />
+                August 1, 2020 - August 31, 2020
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-8">
+          <div class="white_card mb_30 card_height_100">
+            <div class="white_card_header">
+              <div class="row align-items-center justify-content-between flex-wrap">
+                <div class="col-lg-4">
+                  <div class="main-title">
+                    <h3 class="m-0">Thống kê doanh thu</h3>
+                  </div>
+                </div>
+                <div class="col-lg-4 text-end d-flex justify-content-end">
+                  <select class="nice_Select2 max-width-220">
+                    <option value="1">Show by month</option>
+                    <option value="1">Show by year</option>
+                    <option value="1">Show by day</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="white_card_body">
+              <div id="management_bar"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-4">
+          <div class="white_card card_height_100 mb_30 user_crm_wrapper">
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="single_crm">
+                  <div class="crm_head d-flex align-items-center justify-content-between">
+                    <div class="thumb">
+                      <img src="{{asset('asset_admin/img/crm/businessman.svg')}}" alt />
+                    </div>
+                    <i class="fas fa-ellipsis-h f_s_11 white_text"></i>
+                  </div>
+                  <div class="crm_body">
+                    <h4>{{ $totalUser ?? 0 }}</h4>
+                    <p>Người đăng ký</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="single_crm">
+                  <div class="crm_head crm_bg_1 d-flex align-items-center justify-content-between">
+                    <div class="thumb">
+                      <img src="{{asset('asset_admin/img/crm/customer.svg')}}" alt />
+                    </div>
+                    <i class="fas fa-ellipsis-h f_s_11 white_text"></i>
+                  </div>
+                  <div class="crm_body">
+                    <h4>{{ $totalRoom ?? 0 }}</h4>
+                    <p>Tổng số tin đăng</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="single_crm">
+                  <div class="crm_head crm_bg_2 d-flex align-items-center justify-content-between">
+                    <div class="thumb">
+                      <img src="{{asset('asset_admin/img/crm/infographic.svg')}}" alt />
+                    </div>
+                    <i class="fas fa-ellipsis-h f_s_11 white_text"></i>
+                  </div>
+                  <div class="crm_body">
+                    <h4>{{ $totalPay }}</h4>
+                    <p>Giao dịch thanh toán</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="single_crm">
+                  <div class="crm_head crm_bg_3 d-flex align-items-center justify-content-between">
+                    <div class="thumb">
+                      <img src="{{asset('asset_admin/img/crm/sqr.svg')}}" alt />
+                    </div>
+                    <i class="fas fa-ellipsis-h f_s_11 white_text"></i>
+                  </div>
+                  <div class="crm_body">
+                    @php
+                    $total = 0;
+                    @endphp
+
+                    @foreach ($rechargeHistory ?? [] as $item)
+                    @php
+                    $total += $item->money;
+                    @endphp
+                    @endforeach
+                    <h4>{{ number_format($total, 0, ',', '.') }}đ</h4>
+                    <p>Tổng tiền khách nạp</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="crm_reports_bnner">
+              <div class="row justify-content-end">
+                <div class="col-lg-6">
+                  <h4>Create CRM Reports</h4>
+                  <p>Outlines keep you and honest indulging honest.</p>
+                  <a href="#"
+                    >Read More <i class="fas fa-arrow-right"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="col-xl-6">
-            <h5 class="mt-3" style="display: flex;justify-content: space-between"><span>Giao dịch mới</span></h5>
-            <table class="table table-hover">
-                <thead>
+          <div class="white_card card_height_100 mb_30">
+            <div class="white_card_header">
+              <div class="row align-items-center">
+                <div class="col-lg-4">
+                  <div class="main-title">
+                    <h3 class="m-0">Người dùng mới</h3>
+                  </div>
+                </div>
+
+              </div>
+            
+            </div>
+            <div class="white_card_body">
+                @foreach($users ?? [] as $item)
+                    <div class="single_user_pil d-flex align-items-center justify-content-between">
+                        <div class="user_pils_thumb d-flex align-items-center">
+                            <div class="thumb_34 mr_15 mt-0">
+                                <img class="img-fluid radius_50" src="{{pare_url_file($item->avatar)}}" alt/>
+                            </div>
+                            <span class="f_s_14 f_w_400 text_color_11" >{{$item->name}}</span >
+                        </div>
+                        <div class="user_info">{{$item->email}}</div>
+                        <div class="user_info">{{$item->phone}}</div>
+                        <div class="action_btns d-flex">
+                            <a href="#" class="action_btn mr_10"><i class="far fa-edit"></i> </a>
+                            <a href="#" class="action_btn"> <i class="fas fa-trash"></i> </a>
+                        </div>
+                    </div>
+                @endforeach
+              
+            </div>
+          </div>
+        </div>
+     
+
+        <div class="col-lg-6">
+          <div class="white_card card_height_100 mb_20">
+            <div class="white_card_header">
+              <div class="box_header m-0">
+                <div class="main-title">
+                  <h3 class="m-0">Giao dịch mới</h3>
+                </div>
+                <div class="header_more_tool">
+                  <div class="dropdown">
+                    <span class="dropdown-toggle" id="dropdownMenuButton" data-bs-toggle="dropdown" >
+                      <i class="ti-more-alt"></i>
+                    </span>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton" >
+                      <a class="dropdown-item" href="#"> <i class="ti-eye"></i> Action</a >
+                      <a class="dropdown-item" href="#"> <i class="ti-printer"></i> Print</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="white_card_body QA_section">
+              <div class="QA_table">
+                <table class="table lms_table_active2 p-0">
+                  <thead>
                     <tr>
-                        <th style="text-align: left">Mã giao dịch</th>
-                        <th class="text-center">Loại</th>
-                        <th class="text-center">Tổng tiền</th>
-                        <th class="text-center">Tin</th>
-                        <th class="text-center">Ngày tạo</th>
+                      <th scope="col">Mã giao dịch</th>
+                      <th scope="col">Loại</th>
+                      <th scope="col">Tổng tiền</th>
+                      <th scope="col">Tin</th>
+                      <th scope="col">Ngày tạo</th>
                     </tr>
-                </thead>
-                <tbody>
+                  </thead>
+                  <tbody>
                     @foreach($paymentHistory ?? [] as $item)
-                    <tr style="text-align: center">
-                        <td style="text-align: left" scope="row">{{ $item->id }}</td>
-                        <td>
+                        <tr>
+                        <td class="f_s_12 f_w_400 color_text_6">#{{$item->id}}</td>
+                        <td class="f_s_12 f_w_400 color_text_7">
                             @if ($item->type == 1)
                             <span>Tin tường</span>
                             @elseif($item->type == 2)
@@ -191,25 +208,23 @@
                             <span>Đặc biệt</span>
                             @endif
                         </td>
-                        <td scope="row"><span
-                                class="text-danger text-bold">{{ number_format($item->money,0,',','.') }}đ</span></td>
-                        <td scope="row">
-                            <a href="">{{ $item->room_id }}</a>
-                        </td>
-                        <td scope="">
-                            {{ $item->created_at }}
-                        </td>
-                    </tr>
+                        <td class="f_s_12 f_w_400">{{ number_format($item->money,0,',','.') }}đ</td>
+                        <td class="f_s_12 f_w_400 "> {{ $item->room_id }} </td>
+                        <td class="f_s_12 f_w_400 "> {{ $item->created_at }} </td>
+                        </tr>
                     @endforeach
-                </tbody>
-            </table>
-            
+           
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
         </div>
-    
+      
+        
+      </div>
     </div>
-
-
- </div>
+</div>
 
 
 @endsection

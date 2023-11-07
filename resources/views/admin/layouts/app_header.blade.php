@@ -1,59 +1,61 @@
-  <!-- Header Container
-        ================================================== -->
-        <div class="dash-content-wrap">
-            <header id="header-container" class="db-top-header">
-                <!-- Header -->
-                <div id="header">
-                    <div class="container-fluid">
-                        <!-- Left Side Content -->
-                        <div class="left-side">
-                            <!-- Logo -->
-                            <div id="logo">
-                                <a href="index-2.html"><img src="images/logo.svg" alt=""></a>
+        <div class="container-fluid g-0">
+            <div class="row">
+              <div class="col-lg-12 p-0">
+                <div class="header_iner d-flex justify-content-between align-items-center">
+                  <div class="sidebar_icon d-lg-none">
+                    <i class="ti-menu"></i>
+                  </div>
+                  <div class="line_icon open_miniSide d-none d-lg-block">
+                    <img src="{{asset('asset_admin/img/line_img.png')}}" alt />
+                  </div>
+                
+                  <div class="header_right d-flex justify-content-between align-items-center" >
+                    <div class="header_notification_warp d-flex align-items-center">
+                      <li>
+                        <a class="bell_notification_clicker" href="#">
+                          <img src="{{asset('asset_admin/img/icon/bell.svg')}}" alt />
+                          <span>2</span>
+                        </a>
+    
+                        <div class="Menu_NOtification_Wrap">
+                          <div class="notification_Header">
+                            <h4>Thông báo</h4>
+                          </div>
+                          <div class="Notification_body">
+                            <div class="single_notify d-flex align-items-center">
+                              <div class="notify_thumb">
+                                <a href="#"><img src="img/staf/2.png" alt /></a>
+                              </div>
+                              <div class="notify_content">
+                                <a href="#"><h5>Cool Marketing</h5></a>
+                                <p>Lorem ipsum dolor sit amet</p>
+                              </div>
                             </div>
-                            <!-- Mobile Navigation -->
-                            <div class="mmenu-trigger">
-                                <button class="hamburger hamburger--collapse" type="button">
-                                    <span class="hamburger-box">
-							<span class="hamburger-inner"></span>
-                                    </span>
-                                </button>
+                          </div>
+                          <div class="nofity_footer">
+                            <div class="submit_button text-center pt_20">
+                              <a href="#" class="btn_1">Xem thêm</a>
                             </div>
-                            <!-- Main Navigation -->
-                            <nav id="navigation" class="style-1">
-                                {{-- <ul id="responsive">
-                                <li><a href="#">Trang chủ</a></li>
-                                <li><a href="#">Location</a></li>
-                                <li><a href="#">user</a></li>
-                                <li><a href="#">category</a></li>
-                                
-                                <li class="d-none d-xl-none d-block d-lg-block"><a href="login.html">Login</a></li>
-                                <li class="d-none d-xl-none d-block d-lg-block"><a href="register.html">Register</a></li>
-                                <li class="d-none d-xl-none d-block d-lg-block mt-5 pb-4 ml-5 border-bottom-0"><a href="add-property.html" class="button border btn-lg btn-block text-center">Add Listing<i class="fas fa-laptop-house ml-2"></i></a></li>
-                            </ul> --}}
-                            </nav>
-                            <div class="clearfix"></div>
-                            <!-- Main Navigation / End -->
+                          </div>
                         </div>
-                        <!-- Left Side Content / End -->
-                        <!-- Right Side Content / --> 
-                        <div class="header-user-menu user-menu">
-                            <div class="header-user-name">
-                                <span><img src="{{asset('images/testimonials/ts-1.jpg')}}" alt=""></span>Hi, Mary!
-                            </div>
-                            <ul>
-                                <li><a href="user-profile.html"> Edit profile</a></li>
-                                <li><a href="add-property.html"> Add Property</a></li>
-                                <li><a href="payment-method.html">  Payments</a></li>
-                                <li><a href="change-password.html"> Change Password</a></li>
-                                <li><a href="#">Log Out</a></li>
-                            </ul>
-                        </div>
-                        <!-- Right Side Content / End -->
+                      </li>
                     </div>
+                    <div class="profile_info">
+                      <img src="{{ pare_url_file(Auth::guard('admins')->user()->avatar) }}" alt="#" />
+                      <div class="profile_info_iner">
+                        <div class="profile_author_name">
+                          <p>Quản trị viên</p>
+                          <h5>{{Auth::guard('admins')->user()->name}}</h5>
+                        </div>
+                        <div class="profile_info_details">
+                          <a href="{{route('get_admin.profile.index')}}">Hồ sơ</a>
+                          <a href="{{route('get_admin.profile.update_password')}}">Đổi mật khẩu</a>
+                          <a href="{{route('get_admin.logout')}}">Đăng xuất </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <!-- Header / End -->
-            </header>
-        </div>
-        <div class="clearfix"></div>
-        <!-- Header Container / End -->
+              </div>
+            </div>
+          </div>

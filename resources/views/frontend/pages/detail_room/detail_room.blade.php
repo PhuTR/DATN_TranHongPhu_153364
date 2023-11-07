@@ -117,7 +117,7 @@
                         <div class="single homes-content details mb-30">
                             <!-- title -->
                             <h5 class="mb-4">Đặc điểm tin đăng</h5>
-                            <ul class="homes-list clearfix">
+                            {{-- <ul class="homes-list clearfix">
                                 <li>
                                     <span class="font-weight-bold mr-1">Mã tin:</span>
                                     <span class="det">#{{$room->id}}</span>
@@ -162,18 +162,79 @@
                                 
                                
                                 
-                            </ul>
+                            </ul> --}}
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <tbody>
+                                        <tr>
+                                            <td>Mã tin:</td>
+                                            <td>#{{$room->id}}</td>              
+                                        </tr>
+                                        <tr>
+                                            <td>Khu vực:</td>
+                                            <td>{{$room->location->name}}</td>              
+                                        </tr>
+                                        <tr>
+                                            <td>Loại tin rao:</td>
+                                            <td>{{$room->category->name}}</td>              
+                                        </tr>
+                                        <tr>
+                                            <td>Đối tượng thuê:</td>
+                                            <td>{{$room->option->name ?? 'Tất cả'}}</td>              
+                                        </tr>
+                                        <tr>
+                                            <td>Gói tin:</td>
+                                            <td>
+                                                @if ($room->service_hot == 1)
+                                                <span style="color:#055699">Tin thường</span>
+                                                @elseif($room->service_hot == 2)
+                                                <span style="color:#055699">Tin Vip 3</span>
+                                                @elseif($room->service_hot == 3)
+                                                <span style="color:#f60">Tin Vip 2</span>
+                                                @elseif($room->service_hot == 4)
+                                                <span style="color:#ea2e9d">Tin Vip 1</span>
+                                                @else
+                                                <span style="color:#E13427">Tin Đặc biệt</span>
+                                                @endif    
+                                            </td>              
+                                        </tr>
+                                        <tr>
+                                            <td>Ngày đăng:</td>
+                                            <td>{{$room->time_start}}</td>              
+                                        </tr>
+                                        <tr>
+                                            <td>Ngày hết hạn:</td>
+                                            <td>{{$room->time_stop}}</td>              
+                                        </tr>
+                                       
+                                    </tbody>
+                                </table>
+                            </div>    
+                       
                             <!-- title -->
                             <h5 class="mt-5">Thông tin liên hệ</h5>
                             <!-- cars List -->
                             <div class="">
                                 <div class="sidebar-widget author-widget2">
-                                    <ul class="author__contact">
-                                        <li><span class="la la-map-marker" style="margin-right: 12%"> <span class="font-weight-bold mr-1" >Liên hệ: </span></span>{{$room->user->name}}</li>
-                                        <li><span class="la la-phone" style="margin-right: 9%"><span class="font-weight-bold mr-1" >Điện thoại: </span></span>{{$room->user->phone}}</li>
-                                        <li><span class="la la-envelope-o" style="margin-right: 14.7%"><span class="font-weight-bold mr-1" >Zalo: </span></span>{{$room->user->phone}}</li>
-                                    </ul>
-                                    
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
+                                            <tbody>
+                                                <tr>
+                                                    <td>Liên hệ:</td>
+                                                    <td>{{$room->user->name}}</td>              
+                                                </tr>
+                                                <tr>
+                                                    <td>Điện thoại:</td>
+                                                    <td>{{$room->user->phone}}</td>              
+                                                </tr>
+                                                <tr>
+                                                    <td>Zalo:</td>
+                                                    <td>{{$room->user->phone}}</td>              
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+    
                                 </div>
                             </div>
                         </div>
@@ -181,8 +242,13 @@
                         
                         <div class="property-location map">
                             <h5>Bản đồ</h5>
+                            <label for="">Địa chỉ: {{$room->full_address}}</label>
                             <div id='map' class="contact-map"></div>
-                            {{-- <div id="map-detail" class="contact-map"></div> --}}
+                            <p >Bạn đang xem nội dung tin đăng: "{{$room->name}} - Mã tin: {{$room->id}}". 
+                                Mọi thông tin liên quan đến tin đăng này chỉ mang tính chất tham khảo. Nếu bạn có phản hồi với tin đăng này (báo xấu, tin đã cho thuê, không liên lạc được,...), 
+                                vui lòng thông báo để có thể xử lý.
+                            </p>
+                            <a href="{{route('get_user.contact')}}" class="btn-outline"><i class="fa-solid fa-flag icon"></i>Gửi phản hồi</a>
                         </div>
                        
                         
