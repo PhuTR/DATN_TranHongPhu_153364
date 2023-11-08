@@ -38,17 +38,17 @@
                                 <p  style="color: #333;display: inline-block;font-size: 15px;font-weight: 600;text-transform: capitalize;">
                                     Ảnh địa danh
                                 </p>
-                                <div class="">
-                                    <img  class="image-bg" id="output1" src="{{ pare_url_file($city->avatar) }}" >
-                                    <div>
-                                        <input style="width:14%" class="input-file" name="avatar" id="avatar" type="file" accept="image/*" onchange="loadFile(event)" style="display: none">
-                                                <script>
-                                                var loadFile = function(event) {
-                                                    var output = document.getElementById('output1');
-                                                    output.src = URL.createObjectURL(event.target.files[0]);
-                                                };
-                                                </script>
+                                @if (isset($city->avatar))
+                                <div class="row" style="margin-bottom: 15px;display: flex">
+                                    <div class="col-sm-2" style="margin-right: 10px;">
+                                        <a href="" style="display: block;">
+                                            <img src="{{ asset('uploads/avatars/' . $city->avatar) }}" style="width: 300px;height: auto">
+                                        </a>
                                     </div>
+                                </div>
+                                @endif
+                                <div class="file-loading">
+                                    <input id="file-5" type="file" class="file input_file" name="avatar"  multiple data-show-upload="false" data-show-caption="true" data-msg-placeholder="Select {files} for upload...">
                                 </div>
 
                             </div>

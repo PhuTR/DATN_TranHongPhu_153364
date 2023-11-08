@@ -1874,6 +1874,10 @@ span > .bg-secondary {
     top: -3px;
     margin-right: 5px;
 }
+.input_file{
+    height: 27px !important;
+    line-height: 27px !important;
+}
 .common_input input {
     height: 47px;
     line-height: 47px;

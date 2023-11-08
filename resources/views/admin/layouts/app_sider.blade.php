@@ -88,6 +88,16 @@
             </a>
         </li>
         <li class>
+          <a href="{{route('get_admin.contact.index')}}" aria-expanded="false">
+            <div class="nav_icon_small">
+              <i class="fa-solid fa-message"></i>
+            </div>
+            <div class="nav_title">
+              <span>Liên hệ khách hàng</span>
+            </div>
+          </a>
+      </li>
+        <li class>
             <a href="{{route('get_admin.profile.index')}}" aria-expanded="false">
               <div class="nav_icon_small">
                 <i class="fa fa-user"></i>

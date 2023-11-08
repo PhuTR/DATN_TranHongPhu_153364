@@ -67,7 +67,6 @@
                                     <td>
                                             <img src="{{ pare_url_file($item->avatar) }}" style="width:80px; height:80px; border-radius:50%" alt="">
                                     </td>
-                                    {{-- <td style="vertical-align: middle">{{$item->name}}</td> --}}
                                     <td style="vertical-align: middle; width:40%">
                                         <a href="" target="_blank"
                                             style="color: #007aff;text-decoration: none">
@@ -104,9 +103,6 @@
                                             <a href="{{ route('get_admin.room.hide', $item->id) }}" class="text-secondary"
                                                 style="margin-right:8px; font-size: 13px;text-decoration: none"> <i class="fa fa-eye-slash"></i> Ẩn tin</a>
                                             @endif
-                                            <!-- <a href="" class="text-danger"
-                                                style="font-size: 13px;text-decoration: none;font-weight: 500"><i class="fa fa-times"></i>
-                                                Huỷ</a> -->
                                             <a href="{{ route('get_admin.room.delete', $item->id) }}" class="text-danger"
                                                 style="margin-right:8px; font-size: 13px;text-decoration: none;font-weight: 500"> <i
                                                     class="fa fa-trash"></i> Delete</a>

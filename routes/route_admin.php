@@ -22,6 +22,9 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin',], function(){
     Route::get('doi-mat-khau.html','AdminProfileController@updatePassword')->name('get_admin.profile.update_password');
     Route::post('doi-mat-khau.html','AdminProfileController@changeUpdate');
 
+    Route::get('cap-nhat-so-dien-thoai.html','AdminProfileController@updatePhone')->name('get_admin.profile.update_phone');
+    Route::post('cap-nhat-so-dien-thoai.html','AdminProfileController@processUpdate');
+
 
     Route::group(['prefix' => 'location'],function(){
 
@@ -76,6 +79,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin',], function(){
     Route::group(['prefix' => 'user'],function(){
 
         Route::get('','AdminUserController@index')->name('get_admin.user.index');
+        Route::get('delete/{id}', 'AdminUserController@delete')->name('get_admin.user.delete');
 
     });
 
@@ -105,6 +109,13 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin',], function(){
 
         Route::get('delete/{id}', 'AdminArticlesController@delete')->name('get_admin.article.delete');
 
+
+    });
+
+    Route::group(['prefix' => 'contact'],function(){
+
+        Route::get('','AdminContactController@index')->name('get_admin.contact.index');
+        Route::get('delete/{id}', 'AdminContactController@delete')->name('get_admin.contact.delete');
 
     });
    

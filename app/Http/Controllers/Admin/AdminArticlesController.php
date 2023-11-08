@@ -55,7 +55,8 @@ class AdminArticlesController extends Controller
 
             $file->move('uploads/avatars',$Hinh);
             $data['avatar'] = $Hinh;
-        }  
+        } 
+    
         $articles = Articles::create($data);
         if($articles){
             return redirect()->route('get_admin.article.index');
@@ -93,10 +94,6 @@ class AdminArticlesController extends Controller
             $data['avatar'] = $Hinh;
          }  
 
- 
-
-       
-    
         $article = Articles::where(['id' => $id])->update($data);
         if($article){
             return redirect()->route('get_admin.article.index');

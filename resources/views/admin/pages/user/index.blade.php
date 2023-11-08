@@ -53,13 +53,28 @@
                                         <img src="{{  pare_url_file($item->avatar) }}" style="width:60px; height:60px; border-radius:50%" alt="">
 
                                     </td>
-                                    <td>{{$item->name}}</td>
+                                    <td>
+                                        {{$item->name}}
+                                        <p style="margin-bottom: 2px">
+                                            @if ($item->status != \App\Models\User::STATUS_ACTIVE)
+                                            <a href="{{ route('get_admin.room.expires', $item->id) }}" class="text-warning"
+                                                style="margin-right:8px; font-size: 13px;text-decoration: none;font-weight: 500"><i
+                                                    class="fa fa-credit-card"></i> Khoá tài khoản</a>
+                                            @endif
+                                            @if ($item->status == \App\Models\User::STATUS_ACTIVE)
+                                            <a href="{{ route('get_admin.room.hide', $item->id) }}" class="text-secondary"
+                                                style="margin-right:8px; font-size: 13px;text-decoration: none"> <i class="fa-solid fa-unlock-keyhole"></i> Mở khoá</a>
+                                            @endif
+                                            <a href="{{ route('get_admin.user.delete', $item->id) }}" class="text-danger"
+                                                style="margin-right:8px; font-size: 13px;text-decoration: none;font-weight: 500"> <i
+                                                    class="fa fa-trash"></i> Xoá</a>
+                                        </p>
+                                    </td>
                                     <td>{{$item->email}}</td>
                                     <td>{{$item->phone}}</td>
                                     <td class="edit">{{$item->created_at}}</td>
                                     <td >
-                                        <a href="#"><i class="fa-regular fa-pen-to-square " style="margin-right: 20px"></i></a>
-                                        <a href="#"><i class="fa-solid fa-trash"></i></a>
+                                        <span class="{{ $item->getStatus($item->trangthai)['class'] ?? '...' }}">{{ $item->getStatus($item->trangthai)['name'] ?? "..." }}</span> 
                                     </td>
                                 </tr>
                                 @endforeach

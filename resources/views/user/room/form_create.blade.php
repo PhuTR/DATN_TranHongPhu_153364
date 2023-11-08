@@ -199,7 +199,7 @@
                 <input id="file-5" type="file" class="file" name="file[]"  multiple 
                 data-show-upload="false" data-show-caption="true" data-msg-placeholder="Select {files} for upload...">
             </div>
-          </div>
+        </div>
           
     </div>
 
