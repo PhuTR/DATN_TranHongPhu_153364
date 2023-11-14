@@ -19,7 +19,8 @@
 		   container: 'map',
 		   style: 'https://tiles.goong.io/assets/goong_map_web.json', 
 		   center: [data.lng,data.lat],
-		   zoom: 15
+		   zoom: 15,
+		   
 	    });
 		var marker = new goongjs.Marker()
 		  .setLngLat(latlng)

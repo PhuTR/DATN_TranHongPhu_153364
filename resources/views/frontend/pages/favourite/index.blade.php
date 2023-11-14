@@ -18,14 +18,15 @@
                         <div id="abc" class="row featured portfolio-items">
                             
                             <p id="change-item-favourite">
-                                @if(Session::has('Favourite') != null)
+                                {{-- @if(Session::has('Favourite') != null)
                                     @include('frontend.pages.favourite.item-litst')
-                                @else
+                                @else --}}
+                                <p id="row_wishlist" class="col-lg-12"></p>
                                     <div class="text-center" style="width: 100%">
                                         <img style="max-width: 100px; display: block; margin: 15px auto;" src="{{asset('/images/favourite.svg')}}">
                                         <p style="color: #ee664c; text-align: center; font-size: 1.2rem; font-weight: bold;">Danh sách rỗng.</p>
                                     </div>
-                                @endif    
+                                {{-- @endif     --}}
                             </p>
                         </div>
                     </div>

@@ -2,7 +2,8 @@
     @csrf
     <div class="single-add-property">
         <h3>Địa chỉ cho thuê</h3>
-        <div class="property-form-group">
+        <div style="display:flex">
+            <div class="property-form-group" style="width:70%">
                 <div class="row">
                     <div class="col-lg-4 col-md-12 dropdown faq-drop">
                         <label for="area">Tỉnh/Thành phố</label>
@@ -63,8 +64,32 @@
                         </p>
                     </div>
                 </div>
-          
+                <div class="row">
+                    <?php 
+                    $arrmap =  json_decode($room->map,true);
+                    ?>
+                  
+                    <div class="col-lg-4 col-md-12">
+                        <p class="no-mb">
+                            <input  type="text" name="txtlat" placeholder="" id="txtlat" value="<?php echo $arrmap[0]?>">
+                        </p>
+                    </div>
+                    <div class="col-lg-4 col-md-12">
+                        <p class="no-mb last">
+                            <input  type="text" name="txtlng" placeholder="" id="txtlng" value="<?php echo $arrmap[1]?>">
+                        </p>
+                    </div>
+                    <div class="col-lg-4 col-md-12">
+                        <p class="no-mb last">
+                            <input hidden type="text" name="txtaddress" placeholder="" id="txtaddress">
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div id="map" style="width:30%;height:396px;"></div>
         </div>
+      
+
     </div>
     <div class="single-add-property">
         <h3>Thông tin mô tả</h3>
@@ -280,13 +305,18 @@
     })
     
 </script>
-<script>
 
-</script>
 <script>
 	ClassicEditor
 		.create( document.querySelector( '#description' ) )
 		.catch( error => {
 			console.error( error );
 		} );
+</script>
+
+@include('user.room.searchmapjs')
+<script>
+    const address = $('#full_address').val();
+    initializeMap(address);
+
 </script>

@@ -121,7 +121,11 @@ class UserRoomController extends Controller
                 $data['avatar'] = $file['name'];
             }
         }
-
+        $arrlatlng = array();
+        $arrlatlng[] = $request->txtlat;
+        $arrlatlng[] = $request->txtlng;
+        $json_latlng = json_encode($arrlatlng,JSON_FORCE_OBJECT);
+        $data['map'] = $json_latlng;
         $room = Room::where(['id' => $id,'auth_id' => Auth::user()->id])->update($data);
         if($room){
             if ($request->file) {

@@ -6,7 +6,6 @@ use App\Http\Service\RoomService;
 use App\Http\Service\LocationService;
 
 use Illuminate\Http\Request;
-use App\Models\Location;
 use App\Models\Category;
 
 class PageFavouriteService
@@ -19,7 +18,7 @@ class PageFavouriteService
             'service_hot' => 5
         ]);
         // $category = Category::find($id);
-        $locaties = Location::where('hot',1)->get();
+        // $locaties = Location::where('hot',1)->get();
         $rooms_new     = RoomService::getRoomsNewVip($limit =  10);
         $roomNew      = RoomService::getRoomsNew($limit =  10);
         $locationsHot = LocationService::getLocationsHot(3);
@@ -29,7 +28,7 @@ class PageFavouriteService
         $viewData = [
             'roomHots'     => $roomHots,
             'rooms'     => $rooms,
-            'locaties'     => $locaties,
+            // 'locaties'     => $locaties,
             'rooms_new'      => $rooms_new,
             'roomVipFive'  => $roomVipFive,
             'locationsHot' => $locationsHot

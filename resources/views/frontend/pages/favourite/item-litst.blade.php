@@ -7,11 +7,7 @@
                     <div class="homes">
                         <a href="{{route('get.category.detail',['slug' => $item['roomInfo']->slug,'id' => $item['roomInfo']->id])}}" class="homes-img">
                             <div id="price{{$item['roomInfo']->id}}" class="homes-price">{{number_format($item['roomInfo']->price/1000000,1)}} triệu/tháng</div>
-                            @if(empty($item['roomInfo']->avatar) || is_null($item['roomInfo']->avatar) || $item['roomInfo']->avatar == 'no-avatar.jpg')
-                                <img class="img-responsive" id="output1{{$item['roomInfo']->id}}" src="{{ asset('images/no-avatar.jpg') }}">
-                            @else
-                                <img  class="img-responsive" id="output1{{$item['roomInfo']->id}}" src="{{ asset('uploads/avatars/' . $item['roomInfo']->avatar) }}">
-                            @endif
+                                <img  class="img-responsive" id="output1{{$item['roomInfo']->id}}" src="{{ pare_url_file($item['roomInfo']->avatar) }}">
                         </a>
                     </div>
                     <div class="button-effect">
@@ -35,6 +31,8 @@
             <p class="homes-address mb-3">
                 <a >
                     {{-- <i class="fa fa-map-marker"></i><span >{{$item['roomInfo']->district->name}} - {{$item['roomInfo']->city->name}}</span> --}}
+                                    
+
                 </a>
                 <a style="float: right">
                     <span><?php echo time_elapsed_string($item['roomInfo']->time_start); ?></span>
@@ -75,6 +73,8 @@
                 <a href="tel:{{$item['roomInfo']->user->phone ?? 'N\A'}}" target="_blank" class="btn-contact-phone">Gọi  {{$item->user->phone ?? 'N\A'}}</a>
             
             </div>
+
+
         </div>      
     @endif
 

@@ -118,6 +118,7 @@
             }
         });
     </script>
+    @include('frontend.pages.favourite.localStorage_favourite')
     <script>
        
         function AddFavorite(id){
