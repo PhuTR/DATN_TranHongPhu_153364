@@ -121,15 +121,15 @@
     @include('frontend.pages.favourite.localStorage_favourite')
     <script>
        
-        function AddFavorite(id){
-            $.ajax({
-                url: 'add-favourite/'+id,
-                type: 'GET',
-            }).done(function(response){
-                RenderFavorite(response);
-                toastr.success('Yêu thích thành công!', 'Thành công', { positionClass: 'toast-bottom-right' });
-            });
-        }
+        // function AddFavorite(id){
+        //     $.ajax({
+        //         url: 'add-favourite/'+id,
+        //         type: 'GET',
+        //     }).done(function(response){
+        //         RenderFavorite(response);
+        //         toastr.success('Yêu thích thành công!', 'Thành công', { positionClass: 'toast-bottom-right' });
+        //     });
+        // }
         
         $('#abc').on('click','.btn-close i' , function(){
             $.ajax({

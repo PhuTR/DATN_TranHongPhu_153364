@@ -15,18 +15,18 @@
             </section>
                 <div class="row">
                     <div class="col-lg-8 col-md-12 blog-pots cotent">
-                        <div id="abc" class="row featured portfolio-items">
+                        <div class="row featured portfolio-items">
                             
                             <p id="change-item-favourite">
-                                {{-- @if(Session::has('Favourite') != null)
-                                    @include('frontend.pages.favourite.item-litst')
-                                @else --}}
-                                <p id="row_wishlist" class="col-lg-12"></p>
-                                    <div class="text-center" style="width: 100%">
-                                        <img style="max-width: 100px; display: block; margin: 15px auto;" src="{{asset('/images/favourite.svg')}}">
-                                        <p style="color: #ee664c; text-align: center; font-size: 1.2rem; font-weight: bold;">Danh sách rỗng.</p>
-                                    </div>
-                                {{-- @endif     --}}
+                                <p id="row_wishlist5" class="col-lg-12"></p>
+                                <p id="row_wishlist4" class="col-lg-12"></p>
+                                <p id="row_wishlist3" class="col-lg-12"></p>
+                                <p id="row_wishlist2" class="col-lg-12"></p>
+                                <p id="row_wishlist1" class="col-lg-12"></p>
+                                <div id="no-favourite" class="text-center" style="width: 100%">
+                                    
+                                </div>    
+                               
                             </p>
                         </div>
                     </div>
