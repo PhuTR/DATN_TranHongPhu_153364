@@ -56,12 +56,19 @@ class UserRoomController extends Controller
         $data['status']     = Room::STATUS_EXPIRED;
         $data = $this->switchPrice($data);
         $data = $this->switchArea($data);
+
+        $arrlatlng = array();
+        $arrlatlng[] = $request->txtlat;
+        $arrlatlng[] = $request->txtlng;
+        $json_latlng = json_encode($arrlatlng,JSON_FORCE_OBJECT);
+        $data['map'] = $json_latlng;
         if ($request->avatar) {
             $file = upload_image('avatar');
             if (isset($file) && $file['code'] == 1) {
                 $data['avatar'] = $file['name'];
             }
         }
+        
         $room = Room::create($data);
         if($room){
             if($request->file){

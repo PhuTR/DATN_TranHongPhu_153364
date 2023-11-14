@@ -77,7 +77,7 @@
                     </div>
                 </div>
             </div>
-            <div id="map" style="width:30%;min-height:390px;"></div>
+            <div id="map" style="width:30%;height:396px;"></div>
         </div>
        
     </div>
@@ -348,10 +348,29 @@
     var printResult = () => {
         if ($("#district").find(':selected').data('id') != "" && $("#city").find(':selected').data('id') != "" &&
             $("#ward").find(':selected').data('id') != "") {
-            let result = $("#apartment_number").val() + " , " +$("#ward option:selected").text() + " , " + $("#district option:selected").text() + " , " + $("#city option:selected").text();
-            $("#full_address").val(result)
+                if($("#district option:selected").val()==''&& $("#ward option:selected").val()==''){
+                    let result = $("#city option:selected").text();
+                    $("#full_address").val(result)
+                    initializeMap(result);
+                }
+                else if($("#ward option:selected").val()==''&& $("#apartment_number").val() ==''){
+                    let result =  $("#district option:selected").text() + " , " + $("#city option:selected").text();
+                    $("#full_address").val(result)
+                    initializeMap(result);
+                }else if($("#apartment_number").val() ==''){
+                    let result = $("#ward option:selected").text() + " , " + $("#district option:selected").text() + " , " + $("#city option:selected").text();
+                    $("#full_address").val(result)
+                    initializeMap(result);
+                }
+                else if($("#apartment_number").val()!=''){
+                    let result = $("#apartment_number").val() + " , " +$("#ward option:selected").text() + " , " + $("#district option:selected").text() + " , " + $("#city option:selected").text();
+                    $("#full_address").val(result)
+                    initializeMap(result);
+                    
+                }
+               
         }
     
     }
 </script>
-{{-- @include('user.room.searchmapjs') --}}
+@include('user.room.searchmapjs')
