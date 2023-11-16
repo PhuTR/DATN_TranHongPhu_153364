@@ -21,23 +21,39 @@
         <div class="col-xl-8">
           <div class="white_card mb_30 card_height_100">
             <div class="white_card_header">
-              <div class="row align-items-center justify-content-between flex-wrap">
-                <div class="col-lg-4">
-                  <div class="main-title">
+              <form autocomplete="off">
+                @csrf
+                <div class="row align-items-center justify-content-between flex-wrap">
+                  <div class="main-title text-center">
                     <h3 class="m-0">Thống kê doanh thu</h3>
                   </div>
+                  <div class="col-lg-6">
+                    <div class="main-title d-flex">
+                      <div class="common_input mb_15">
+                        <label for="">Từ ngày:</label>
+                        <input type="text" id="datepicker1">
+                      </div>
+                      <div class="common_input ml_15" style="margin-right:15px">
+                        <label for="">Tới ngày:</label>
+                        <input type="text" id="datepicker2">
+                      </div>
+                      <div class="col-lg-3 ml_15 " style="margin:auto 0">
+                        <input id="btn-filter" class="btn btn-primary rounded-pill col-12" type="button" value="Lọc kết quả">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 text-end d-flex justify-content-end ">
+                    <select class="nice_Select2 max-width-220">
+                      <option value="1">Hiển thị theo tháng</option>
+                      <option value="1">Hiển thị theo năm</option>
+                      <option value="1">Hiển thị theo ngày</option>
+                    </select>
+                  </div>
                 </div>
-                <div class="col-lg-4 text-end d-flex justify-content-end">
-                  <select class="nice_Select2 max-width-220">
-                    <option value="1">Show by month</option>
-                    <option value="1">Show by year</option>
-                    <option value="1">Show by day</option>
-                  </select>
-                </div>
-              </div>
+              </form>
             </div>
-            <div class="white_card_body">
-              <div id="management_bar"></div>
+            <div class="white_card_body col-lg-12">
+              <div id="chart"></div>
             </div>
           </div>
         </div>
@@ -123,7 +139,55 @@
             </div>
           </div>
         </div>
-        <div class="col-xl-6">
+        <div class="col-xl-4">
+          <div class="white_card card_height_100 mb_30">
+            <div class="white_card_header">
+              <div class="box_header m-0">
+                <div class="main-title">
+                  <h3 class="m-0">Thống kê phòng cho thuê bài viết</h3>
+                </div>
+                <div class="header_more_tool">
+                  <div class="dropdown">
+                    <span class="dropdown-toggle" id="dropdownMenuButton"  data-bs-toggle="dropdown"  >
+                      <i class="ti-more-alt"></i>
+                    </span>
+                    <div class="dropdown-menu dropdown-menu-right"  aria-labelledby="dropdownMenuButton" >
+                      <a class="dropdown-item" href="#"><i class="ti-eye"></i> Action</a >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="white_card_body">
+              <div id="chart1" ></div>
+              {{-- <div class="monthly_plan_wraper">
+                <div class="single_plan d-flex align-items-center justify-content-between"  >
+                  <div class="plan_left d-flex align-items-center">
+                    <div class="thumb">
+                      <img src="img/icon2/7.svg" alt />
+                    </div>
+                    <div>
+                      <h5>Most Sales</h5>
+                      <span>Authors with the best sales</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="single_plan d-flex align-items-center justify-content-between" >
+                  <div class="plan_left d-flex align-items-center">
+                    <div class="thumb">
+                      <img src="img/icon2/6.svg" alt />
+                    </div>
+                    <div>
+                      <h5>Total sales lead</h5>
+                      <span>40% increased on week-to-week reports</span>
+                    </div>
+                  </div>
+                </div>
+              </div> --}}
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-8">
           <div class="white_card card_height_100 mb_30">
             <div class="white_card_header">
               <div class="row align-items-center">
@@ -159,7 +223,7 @@
         </div>
      
 
-        <div class="col-lg-6">
+        <div class="col-lg-12">
           <div class="white_card card_height_100 mb_20">
             <div class="white_card_header">
               <div class="box_header m-0">
@@ -226,5 +290,86 @@
     </div>
 </div>
 
+
+<script type="text/javascript">
+  $(function(){
+      $('#datepicker1').datepicker();
+      $('#datepicker2').datepicker();
+    });
+</script>
+<script type="text/javascript">
+  $(document).ready(function(){
+    chart30daysorder();
+    var chart =new Morris.Bar({
+                element: 'chart',
+                xkey: 'period',
+                ykeys: ['a'],
+                labels: ['Total Income'],
+                fillOpacity: 0.6,
+                hideHover: 'auto',
+                behaveLikeLine: true,
+                parseTime: false,
+                resize: true,
+                pointFillColors:['#ffffff'],
+                pointStrokeColors: ['black'],
+                lineColors:['#819C79','#fc8710','#FF6541','#A4ADD3','#766B56']
+              });
+
+    function chart30daysorder(){
+      var _token = $('input[name="_token"]').val();
+      $.ajax({
+        url:"{{url('admin/days-order')}}",
+        method:"post",
+        dataType:"json",
+        data:{_token:_token},
+        success: function(data)
+        {
+          chart.setData(data);
+        }
+      });
+      
+    }
+
+   new Morris.Donut({
+      element: 'chart1',
+      resize: true,
+      colors: [
+        '#ce616a',
+        '#61a1ce',
+        '#ce8f61',
+        '#f5b942',
+        '#4842f5',
+      ],
+      labelColor:"#cccccc",
+      backgroundColor:"#33333",
+      data: [
+        {label: "Bài đăng", value: <?php echo $totalRoom?>},
+        {label: "Tin tức", value: <?php echo $totalUser?>},
+        {label: "Người dùng", value: <?php echo $totalUser?>},
+        {label: "Giao dịch thanh toán", value: <?php echo $totalPay?>}
+      ]
+    
+    });
+
+    $('#btn-filter').click(function(){
+      var _token = $('input[name="_token"]').val();
+      var from_date = $('#datepicker1').val();
+      var to_date = $('#datepicker2').val();
+      $.ajax({
+        url:"{{url('/admin/filter-by-date')}}",
+        method:"POST",
+        dataType:"json",
+        data:{from_date:from_date,to_date:to_date,_token:_token},
+        success:function(data){
+          chart.setData(data);
+        },
+      
+      })
+
+    }) 
+
+  });
+
+</script>
 
 @endsection

@@ -8,7 +8,7 @@ use App\Models\RechargeHistory;
 use App\Models\Room;
 use App\Models\User;
 use Illuminate\Http\Request;
-
+use Carbon\Carbon;
 class AdminDashboardController extends Controller
 {
     public function index(){
@@ -31,4 +31,35 @@ class AdminDashboardController extends Controller
         ];
         return view('admin.pages.dashboard.index',$viewData);
     }
+    public function filter_by_date(Request $request){
+        $data = $request->all();
+        $from_date = $data['from_date'];
+        $to_date = $data['to_date'];
+        $get = RechargeHistory::whereBetween('create_at',[$from_date,$to_date])->orderBy('money','ASC')->get();
+        foreach($get as $key=>$val){
+            $chart_data[] = array(
+                'period' => $val->created_at->format('d-m-Y'),
+                'a'=> $val->total_money
+
+            );
+        }
+        echo $data = json_encode($chart_data);
+
+    }
+
+    public function days_order(Request $request){
+        $sub30days = Carbon::now('Asia/Ho_Chi_Minh')->subdays(30)->toDateString();
+        $now = Carbon::now('Asia/Ho_Chi_Minh')->toDateString();
+        $get = RechargeHistory::get();
+        foreach($get as $key=>$val){
+            $chart_data[] = array(
+                'period' => $val->created_at->format('d-m-Y'),
+                'a'=> $val->total_money
+
+            );
+        }
+        echo $data = json_encode($chart_data);
+    }
+
+    
 }

@@ -1,111 +1,3 @@
-{{-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="description" content="html 5 template">
-    <meta name="author" content="">
-    <title>Admin</title>
-    <!-- FAVICON -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{asset('asset_admin/{{asset('favicon.ico')}}">
-    <link rel="stylesheet" href="{{asset('asset_admin/{{asset('css/jquery-ui.css')}}">
-    <!-- GOOGLE FONTS -->
-    <link href="{{asset('asset_admin/https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i%7CMontserrat:600,800" rel="stylesheet">
-    <!-- FONT AWESOME -->
-    <link rel="stylesheet" href="{{asset('asset_admin/{{asset('css/fontawesome-all.min.css')}}">
-    <link rel="stylesheet" href="{{asset('asset_admin/{{asset('css/font-awesome.min.css')}}">
-    <link rel="stylesheet" href="{{asset('asset_admin/https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- ARCHIVES CSS -->
-    <link rel="stylesheet" href="{{asset('asset_admin/{{asset('css/search.css')}}">
-    <link rel="stylesheet" href="{{asset('asset_admin/{{asset('css/dashbord-mobile-menu.css')}}">
-    <link rel="stylesheet" href="{{asset('asset_admin/{{asset('css/animate.css')}}">
-    <link rel="stylesheet" href="{{asset('asset_admin/{{asset('css/swiper.min.css')}}">
-    <link rel="stylesheet" href="{{asset('asset_admin/{{asset('css/magnific-popup.css')}}">
-    <link rel="stylesheet" href="{{asset('asset_admin/{{asset('css/lightcase.css')}}">
-    <link rel="stylesheet" href="{{asset('asset_admin/{{asset('css/owl-carousel.css')}}">
-    <link rel="stylesheet" href="{{asset('asset_admin/{{asset('css/owl.carousel.min.css')}}">
-    <link rel="stylesheet" href="{{asset('asset_admin/{{asset('css/bootstrap.min.css')}}">
-    <link rel="stylesheet" href="{{asset('asset_admin/{{asset('css/menu.css')}}">
-    <link rel="stylesheet" href="{{asset('asset_admin/{{asset('css/slick.css')}}">
-    <link rel="stylesheet" href="{{asset('asset_admin/{{asset('css/styles.css')}}">
-    <link rel="stylesheet" id="color" href="{{asset('asset_admin/{{asset('css/default.css')}}">
-    <script src="{{asset('asset_admin/{{asset('js/ckeditor.js')}}"></script>
-    <script src="{{asset('asset_admin/https://code.jquery.com/jquery-3.6.0.min.js"></script>
-</head>
-<body class="inner-pages maxw1600 m0a dashboard-bd">
-    <div id="wrapper" class="int_main_wraapper">
-        @include('admin.layouts.app_header')
-        <section class="user-page section-padding">
-            <div class="container-fluid">
-                <div class="row">
-                    @include('admin.layouts.app_sider')
-                    @yield('content_admin')
-                   
-                </div>
-            </div>
-        </section>
-
-
-        <a data-scroll href="{{asset('asset_admin/#wrapper" class="go-up"><i class="fa fa-angle-double-up" aria-hidden="true"></i></a>
-        <!-- END FOOTER -->
-
-        <!-- START PRELOADER -->
-        <div id="preloader">
-            <div id="status">
-                <div class="status-mes"></div>
-            </div>
-        </div>
-        <!-- END PRELOADER -->
-     
-        <!-- ARCHIVES JS -->
-        <script src="{{asset('asset_admin/{{asset('js/jquery-3.5.1.min.js')}}"></script>
-        <script src="{{asset('asset_admin/{{asset('js/jquery-ui.js')}}"></script>
-        <script src="{{asset('asset_admin/{{asset('js/tether.min.js')}}"></script>
-        <script src="{{asset('asset_admin/{{asset('js/moment.js')}}"></script>
-        <script src="{{asset('asset_admin/{{asset('js/bootstrap.min.js')}}"></script>
-        <script src="{{asset('asset_admin/{{asset('js/mmenu.min.js')}}"></script>
-        <script src="{{asset('asset_admin/{{asset('js/mmenu.js')}}"></script>
-        <script src="{{asset('asset_admin/{{asset('js/swiper.min.js')}}"></script>
-        <script src="{{asset('asset_admin/{{asset('js/swiper.js')}}"></script>
-        <script src="{{asset('asset_admin/{{asset('js/slick.min.js')}}"></script>
-        <script src="{{asset('asset_admin/{{asset('js/slick2.js')}}"></script>
-        <script src="{{asset('asset_admin/{{asset('js/fitvids.js')}}"></script>
-        <script src="{{asset('asset_admin/{{asset('js/jquery.waypoints.min.js')}}"></script>
-        <script src="{{asset('asset_admin/{{asset('js/jquery.counterup.min.js')}}"></script>
-        <script src="{{asset('asset_admin/{{asset('js/imagesloaded.pkgd.min.js')}}"></script>
-        <script src="{{asset('asset_admin/{{asset('js/isotope.pkgd.min.js')}}"></script>
-        <script src="{{asset('asset_admin/{{asset('js/smooth-scroll.min.js')}}"></script>
-        <script src="{{asset('asset_admin/{{asset('js/lightcase.js')}}"></script>
-        <script src="{{asset('asset_admin/{{asset('js/search.js')}}"></script>
-        <script src="{{asset('asset_admin/{{asset('js/owl.carousel.js')}}"></script>
-        <script src="{{asset('asset_admin/{{asset('js/jquery.magnific-popup.min.js')}}"></script>
-        <script src="{{asset('asset_admin/{{asset('js/ajaxchimp.min.js')}}"></script>
-        <script src="{{asset('asset_admin/{{asset('js/newsletter.js')}}"></script>
-        <script src="{{asset('asset_admin/{{asset('js/jquery.form.js')}}"></script>
-        <script src="{{asset('asset_admin/{{asset('js/jquery.validate.min.js')}}"></script>
-        <script src="{{asset('asset_admin/{{asset('js/searched.js')}}"></script>
-        <script src="{{asset('asset_admin/{{asset('js/dashbord-mobile-menu.js')}}"></script>
-        <script src="{{asset('asset_admin/{{asset('js/forms-2.js')}}"></script>
-        <script src="{{asset('asset_admin/{{asset('js/color-switcher.js')}}"></script>
-
-        <script>
-            $(".header-user-name").on("click", function() {
-                $(".header-user-menu ul").toggleClass("hu-menu-vis");
-                $(this).toggleClass("hu-menu-visdec");
-            });
-
-        </script>
-
-        <!-- MAIN JS -->
-        <script src="{{asset('asset_admin/http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
-
-        <script src="{{asset('asset_admin/{{asset('js/script.js')}}"></script>
-        {!! Toastr::message() !!}
-    </div>
-</body>
-</html> --}}
-
 <!DOCTYPE html>
 <html lang="zxx">
   <head>
@@ -142,6 +34,11 @@
     <link rel="stylesheet" href="{{asset('asset_admin/css/fileinput.css')}}">
     <script src="{{asset('js/ckeditor.js')}}"></script>
 
+    {{-- morris chartjs --}}
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
   
   </head>
   <body class="crm_body_bg">
@@ -180,16 +77,11 @@
     <script src="{{asset('asset_admin/vendors/am_chart/amcharts.js')}}"></script>
     <script src="{{asset('asset_admin/vendors/scroll/perfect-scrollbar.min.js')}}"></script>
     <script src="{{asset('asset_admin/vendors/scroll/scrollable-custom.js')}}"></script>
-    {{-- <script src="{{asset('asset_admin/vendors/vectormap-home/vectormap-2.0.2.min.js')}}"></script> --}}
-    {{-- <script src="{{asset('asset_admin/vendors/vectormap-home/vectormap-world-mill-en.js')}}"></script> --}}
-    <script src="{{asset('asset_admin/vendors/apex_chart/apex-chart2.js')}}"></script>
-    <script src="{{asset('asset_admin/vendors/apex_chart/apex_dashboard.js')}}"></script>
     <script src="{{asset('asset_admin/vendors/chart_am/core.js')}}"></script>
     <script src="{{asset('asset_admin/vendors/chart_am/charts.js')}}"></script>
     <script src="{{asset('asset_admin/vendors/chart_am/animated.js')}}"></script>
     <script src="{{asset('asset_admin/vendors/chart_am/kelly.js')}}"></script>
     <script src="{{asset('asset_admin/vendors/chart_am/chart-custom.js')}}"></script>
-    {{-- <script src="{{asset('asset_admin/js/dashboard_init.js')}}"></script> --}}
     <script src="{{asset('asset_admin/js/custom.js')}}"></script>
     <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
     {!! Toastr::message() !!}

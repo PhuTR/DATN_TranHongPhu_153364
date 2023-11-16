@@ -4,7 +4,7 @@
         if(localStorage.getItem('data') != null){
             var data  = JSON.parse(localStorage.getItem('data'));
             for(i=0;i<data.length;i++){
-                
+                var id = data[i].id
                 var name = data[i].name;
                 var price = data[i].price;
                 var image = data[i].image;
@@ -32,7 +32,7 @@
                                             </a> \
                                         </div> \
                                         <div class="button-effect"> \
-                                            <a class="img-poppu btn btn-close "><i id="icon-heart"  class="fa-solid fa-heart"></i></a> \
+                                            <a class="img-poppu btn btn-close delete_wishlist" data-id="'+id+'"><i id="icon-heart"  class="fa-solid fa-heart"></i></a> \
                                         </div> \
                                     </div> \
                                 </div> \
@@ -98,7 +98,7 @@
                                             </a>\
                                         </div>\
                                         <div class="button-effect">\
-                                            <a class="img-poppu btn btn-close" ><i id="icon-heart" class="fa-solid fa-heart"></i></a>\
+                                            <a class="img-poppu btn btn-close delete_wishlist" data-id="'+id+'"><i id="icon-heart" class="fa-solid fa-heart"></i></a>\
                                         </div>\
                                     </div>\
                                 </div>\
@@ -154,7 +154,7 @@
                                             </a>\
                                         </div>\
                                         <div class="button-effect">\
-                                            <a class="img-poppu btn btn-close" ><i id="icon-heart" class="fa-solid fa-heart"></i></a>\
+                                            <a class="img-poppu btn btn-close delete_wishlist" data-id="'+id+'"><i id="icon-heart" class="fa-solid fa-heart"></i></a>\
                                         </div>\
                                     </div>\
                                 </div>\
@@ -209,7 +209,7 @@
                                             </a>\
                                         </div>\
                                         <div class="button-effect">\
-                                            <a class="img-poppu btn btn-close" ><i id="icon-heart" class="fa-solid fa-heart"></i></a>\
+                                            <a class="img-poppu btn btn-close delete_wishlist" data-id="'+id+'"><i id="icon-heart" class="fa-solid fa-heart"></i></a>\
                                         </div>\
                                     </div>\
                                 </div>\
@@ -263,7 +263,7 @@
                                             </a>\
                                         </div>\
                                         <div class="button-effect">\
-                                            <a class="img-poppu btn btn-close" ><i id="icon-heart" class="fa-solid fa-heart"></i></a>\
+                                            <a class="img-poppu btn btn-close delete_wishlist" data-id="'+id+'" ><i id="icon-heart" class="fa-solid fa-heart"></i></a>\
                                         </div>\
                                     </div>\
                                 </div>\
@@ -312,6 +312,9 @@
                 <p style="color: #ee664c; text-align: center; font-size: 1.2rem; font-weight: bold;">Danh sách rỗng.</p>\
             ');
         }
+        count=JSON.parse(localStorage.getItem('data')).length;
+        $('#total-favourite').append(count);
+       
     }
     view();
 
@@ -319,6 +322,7 @@
 
 
     function add_wistlist(clicked_id){
+        $('#icon-heart').css('color','red');
         var id = clicked_id;
         var url = $('#link-room' + id).attr('href');
         var image = $('#output1' + id).attr('src');
@@ -361,11 +365,30 @@
         })
 
         if(matches.length) {
-            alert('da them')
+            toastr.warning('Thông tin đã có trong danh sách yêu thích', 'Thông báo', { positionClass: 'toast-bottom-right' });
         }else {
+            toastr.success('Thông tin đã được thêm vào danh sách yêu thích', 'Thông báo', { positionClass: 'toast-bottom-right' });
             old_data.push(newItem);
+            count=JSON.parse(localStorage.getItem('data')).length;
+            $('#total-favourite').append(count);
            
         }
         localStorage.setItem('data',JSON.stringify(old_data));
     }
+    $(document).on('click','.delete_wishlist',function(event){
+        event.preventDefault();
+        var id = $(this).data('id');
+        if (localStorage.getItem('data') != null) {
+            var data = JSON.parse(localStorage.getItem('data'));
+            if (data.length) {
+                    for (i = 0; i < data.length; i++) {
+                        if (data[i].id == id) {
+                            data.splice(i,1);
+                        }
+                    }
+            }   
+            localStorage.setItem('data',JSON.stringify(data));  
+            window.location.reload();
+        }
+    });
 </script>

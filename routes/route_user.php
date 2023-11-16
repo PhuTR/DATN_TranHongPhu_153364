@@ -63,7 +63,7 @@ Route::group(['namespace' => 'User', 'prefix' => 'user','middleware' => 'checkLo
         ->where(['slug' => '[a-z-0-9-]+', 'id' => '[0-9]+',]);
     
         Route::get('momo-payment', 'UserPayController@momoPayment')->name('get_user.recharge.momo');
-
+        Route::post('momo-payment', 'UserPayController@processMomo');
     });
 
    

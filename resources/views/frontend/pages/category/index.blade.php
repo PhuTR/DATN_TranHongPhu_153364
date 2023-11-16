@@ -12,7 +12,7 @@
             
                 <div class="row">
                     <div class="col-lg-8 col-md-12 blog-pots cotent">
-                      {{-- <div id="row_wishlist"></div> --}}
+                     
                         <section class="headings-2 pt-0" style="background-color: #fff">
                             <div class="pro-wrapper">
                                 <div class="detail-wrapper-body">
@@ -49,7 +49,6 @@
                                                     </a>
                                                 </div>
                                                 <div class="button-effect">
-                                                    {{-- <a onclick="AddFavorite({{$item->id}})"  href="javascript:" class="img-poppu btn" id="{{$item->id}}"><i id="icon-heart{{$item->id}}" class="fa-solid fa-heart"></i></a> --}}
                                                     <button class="img-poppu btn" id="{{$item->id}}" onclick="add_wistlist(this.id)"><i id="icon-heart" class="fa-solid fa-heart"></i></button>
                                                 </div>
                                             </div>
