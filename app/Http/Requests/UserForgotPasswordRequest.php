@@ -4,12 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserUpdatePasswordRequest extends FormRequest
+class UserForgotPasswordRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
+     *
+     * @return bool
      */
-    public function authorize(): bool
+    public function authorize()
     {
         return true;
     }
@@ -17,12 +19,11 @@ class UserUpdatePasswordRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
+     * @return array<string, mixed>
      */
-    public function rules(): array
+    public function rules()
     {
         return [
-            'password' => 'required',
             'password_new' => 'required',
             'password_confirm' => 'required|same:password_new', 
         ];
@@ -30,7 +31,6 @@ class UserUpdatePasswordRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'password.required' => 'Trường này không được để trống',
             'password_new.required' => 'Trường này không được để trống',
             'password_confirm.required' => 'Trường này không được để trống',
             'password_confirm.same' => 'Mật khẩu xác nhận không đúng',

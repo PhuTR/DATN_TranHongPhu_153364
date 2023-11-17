@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class UserRoomController extends Controller
 {
@@ -228,7 +229,12 @@ class UserRoomController extends Controller
             $room->updated_at  = Carbon::now();
             $room->save();
             DB::commit();
-
+            // Mail invoce
+            $name = 'hello';
+            Mail::send('frontend.pages.email.invoiceroom',compact('name'),function($email) use ($name){
+                $email->subject('Hoá đơn thanh toán bài đăng');
+                $email->to('datn153364@gmail.com', $name);
+            });
             return redirect()->route('get_user.room.home');
         } catch (\Exception $exception) {
             DB::rollBack();
@@ -381,6 +387,9 @@ class UserRoomController extends Controller
                     'created_at' => Carbon::now()
                 ]);
         }
+    }
+    public function invoice(){
+        return view ('frontend.pages.email.invoiceroom');
     }
 
 

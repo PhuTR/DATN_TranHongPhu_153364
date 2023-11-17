@@ -19998,8 +19998,8 @@ header.payment-card-header .pull-right img {
 }
 
 .inner-pages .headings {
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(18, 27, 34, 0.6)), to(rgba(18, 27, 34, 0.6))), url(../images/bg/bg-details.jpg) no-repeat center center;
-  background: linear-gradient(rgba(18, 27, 34, 0.6), rgba(18, 27, 34, 0.6)), url(../images/bg/bg-details.jpg) no-repeat center center;
+  /* background: -webkit-gradient(linear, left top, left bottom, from(rgba(18, 27, 34, 0.6)), to(rgba(18, 27, 34, 0.6))), url(../images/bg/bg-details.jpg) no-repeat center center; */
+  /* background: linear-gradient(rgba(18, 27, 34, 0.6), rgba(18, 27, 34, 0.6)), url(../images/bg/bg-details.jpg) no-repeat center center; */
   width: 100%;
   height: 30vh;
 }
@@ -20528,14 +20528,19 @@ section.pricing-table {
 /*---------------------------------------*/
 #login .login,
 #register .login {
-  width: 430px;
-  padding: 45px 60px 60px;
+  width: 600px;
+  padding: 30px 30px 100px;
   overflow-y: auto;
   background-color: #fff;
+  margin: 20px 0;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #dedede;
+  border-radius: 8px;
 }
 
 #login {
-  background-color: #fff;
+  background-color: #f5f7fb;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

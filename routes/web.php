@@ -23,7 +23,14 @@ Route::group(['namespace' => 'Auth'], function(){
     
     Route::get('dang-xuat.html','LoginController@logout')->name('get.logout');
 
+    Route::get('quen-mat-khau','ForgotPasswordController@index')->name('get.forgotpassword');
+    Route::post('quen-mat-khau','ForgotPasswordController@forgotpassword')->name('get.forgotpassword');
 
+    Route::get('ma-xac-thuc','ForgotPasswordController@codevalidation')->name('get.codevalidation');
+    Route::post('ma-xac-thuc','ForgotPasswordController@codevalidationpost')->name('get.codevalidation');
+
+    Route::get('mat-khau-moi/{user}/{token}','ForgotPasswordController@newpassword')->name('get.newpassword');
+    Route::post('mat-khau-moi/{user}/{token}','ForgotPasswordController@newpasswordpost')->name('get.newpassword');
  
 
 });
@@ -78,7 +85,13 @@ Route::group(['namespace' => 'Frontend'], function(){
 //contact
     Route::get('contact','UserContactController@index')->name('get_user.contact');
     Route::post('contact','UserContactController@store');
+
+//mail
+    // Route::get('test-email','HomeController@testEmail');
+
 });
+
+
 
 
 @include 'route_user.php';

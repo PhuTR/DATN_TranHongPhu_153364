@@ -79,26 +79,27 @@ class UserProfileController extends Controller
         if(!$user) return abort(404);
         $otp = rand(100000,999999);
         $time = time();
-
+        $currentTime = now()->format('H:i d/m/Y'); 
         Code::updateorCreate(
             ['user_id' => $user->id],
             [
             'code' => $otp,
+            'type' => 2,
+            'status' => 1,
+            'service' => 1,
             'created_at' => $time
             ]
         );
-        // Mail::send('emails.otp', ['otp' => $otp], function ($message) use ($user) {
-        //     $message->to($user->email)
-        //             ->subject('Mã OTP của bạn');
-        // });
+        $name='helllo';
+        Mail::send('frontend.pages.email.updatephone',compact('user','otp','currentTime'),function($email) use ($user,$otp,$currentTime){
+            $email->subject('Đổi số điện thoại');
+            $email->to($user->email, $otp);
+        });
+        Toastr::success('Mã xác thực đã gửi tới email. Vui lòng nhập mã vào bên dưới để xác thực ', 'Thông báo');
       
         return redirect()->back();
        
     }
-
-
-
-
 
     public function updatePassword(){
         $user = User::find(Auth::user()->id);

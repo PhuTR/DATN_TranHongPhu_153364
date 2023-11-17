@@ -17,10 +17,13 @@ class LoginController extends Controller
 
         $data = $request->except('_token');
         if(Auth::attempt($data)){
-            Toastr::success('Đăng nhập thành công', 'Thành công');
+            Toastr::success('Đăng nhập thành công', 'Thông báo');
             return redirect()->to('/');
+        }else{
+            Toastr::warning('Vui lòng kiểm tra lại tài khoản hoặc mật khẩu', 'Thông báo');
+            return redirect()->back();
         }
-        return redirect()->back();
+        
 
     }
 
