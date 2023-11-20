@@ -37,7 +37,7 @@
                                         <input style="height:50px" type="number" class="form-control" placeholder="" name="gia" value="">
                                     </div>
                                     <div class="form-group">
-                                        <button type="submit" class="btn-atm" style="width:20%"> Tiếp tục </button>
+                                        <button type="submit" class="btn-atm" style="width:20%" name="payUrl"> Tiếp tục </button>
                                     </div>
                                 </form>
                             </div>

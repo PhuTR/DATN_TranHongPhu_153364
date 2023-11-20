@@ -67,6 +67,7 @@ Route::group(['namespace' => 'User', 'prefix' => 'user','middleware' => 'checkLo
     
         Route::get('momo-payment', 'UserPayController@momoPayment')->name('get_user.recharge.momo');
         Route::post('momo-payment', 'UserPayController@processMomo');
+        Route::get('post-back-momo', 'UserPayController@postbackMomo');
     });
 
    
