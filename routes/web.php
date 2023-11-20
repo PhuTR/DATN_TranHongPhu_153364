@@ -31,6 +31,14 @@ Route::group(['namespace' => 'Auth'], function(){
 
     Route::get('mat-khau-moi/{user}/{token}','ForgotPasswordController@newpassword')->name('get.newpassword');
     Route::post('mat-khau-moi/{user}/{token}','ForgotPasswordController@newpasswordpost')->name('get.newpassword');
+
+    //login google
+    Route::get('auth/google', 'LoginGoogleController@redirectToGoogle')->name('get.login.google');
+    Route::get('auth/google/callback', 'LoginGoogleController@handleGoogleCallback');
+
+    //login facebook
+    Route::get('auth/facebook', 'LoginFacebookController@redirectToFacebook')->name('get.login.facebook');
+    Route::get('auth/facebook/callback', 'LoginFacebookController@handleFacebookCallback');
  
 
 });

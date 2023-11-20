@@ -10,8 +10,8 @@
             <form autocomplete="off" method="POST">
                 @csrf
                 <div class="access_social">
-                    <a href="#0" class="social_bt facebook">Đăng nhập với Facebook</a>
-                    <a href="#0" class="social_bt google">Đăng nhập với Google</a> 
+                    <a href="{{route('get.login.facebook')}}" class="social_bt facebook">Đăng nhập với Facebook</a>
+                    <a href="{{ route('get.login.google') }}" class="social_bt google">Đăng nhập với Google</a> 
                 </div>
                 <p>Hoặc</p>
                 <div class="form-group">

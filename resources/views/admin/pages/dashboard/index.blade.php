@@ -45,8 +45,8 @@
                   <div class="col-lg-4 text-end d-flex justify-content-end ">
                     <select class="nice_Select2 max-width-220">
                       <option value="1">Hiển thị theo tháng</option>
-                      <option value="1">Hiển thị theo năm</option>
-                      <option value="1">Hiển thị theo ngày</option>
+                      <option value="2">Hiển thị theo năm</option>
+                      <option value="3">Hiển thị theo ngày</option>
                     </select>
                   </div>
                 </div>

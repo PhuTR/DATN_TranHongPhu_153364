@@ -13,6 +13,7 @@ use App\Models\Category;
 use App\Models\Room;
 use App\Models\Option;
 use App\Models\PaymentHistory;
+use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Date;
@@ -230,10 +231,11 @@ class UserRoomController extends Controller
             $room->save();
             DB::commit();
             // Mail invoce
-            $name = 'hello';
-            Mail::send('frontend.pages.email.invoiceroom',compact('name'),function($email) use ($name){
+            $user = User::find(Auth::user()->id);
+            $currentTime = now()->format('H:i d/m/Y'); 
+            Mail::send('frontend.pages.email.invoiceroom',compact('user','room','currentTime'),function($email) use ($user){
                 $email->subject('Hoá đơn thanh toán bài đăng');
-                $email->to('datn153364@gmail.com', $name);
+                $email->to('datn153364@gmail.com', $user);
             });
             return redirect()->route('get_user.room.home');
         } catch (\Exception $exception) {

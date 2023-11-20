@@ -40,7 +40,7 @@ Route::group(['namespace' => 'User', 'prefix' => 'user','middleware' => 'checkLo
         Route::get('hide/{id}', 'UserRoomController@hideRoom')->name('get_user.room.hide');
         Route::get('active/{id}', 'UserRoomController@activeRoom')->name('get_user.room.active');
 
-        Route::get('invoice', 'UserRoomController@invoice')->name('get_user.room.invoice');
+        // Route::get('invoice', 'UserRoomController@invoice')->name('get_user.room.invoice');
 
 
     });
