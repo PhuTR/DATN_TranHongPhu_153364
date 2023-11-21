@@ -25,6 +25,8 @@ return new class extends Migration
             $table->string('password');
             $table->tinyInteger('status')->default(3);
             $table->rememberToken();
+            $table->string('google_id');
+            $table->string('facebook_id');
             $table->timestamps();
         });
     }
