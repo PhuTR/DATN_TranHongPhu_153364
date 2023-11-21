@@ -1,12 +1,5 @@
 <?php
 
-/**
- * Created by PhpStorm .
- * User: trungphuna .
- * Date: 4/20/21 .
- * Time: 6:01 PM .
- */
-
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Auth;
@@ -120,17 +113,6 @@ if (!function_exists('apart_time')) {
     }
 }
 
-// if (!function_exists('detect_category_expenditure')) {
-//     function detect_category_expenditure($id)
-//     {
-//         $categories = (new \TrungPhuNA\Admin\Entities\Expenditure())->getCategories();
-//         foreach ($categories as $item) {
-//             if ($item['id'] === $id) return $item;
-//         }
-//         return  "[N\A]";
-//     }
-// }
-
 
 if (!function_exists('get_name_short')) {
     function get_name_short($name)
@@ -198,4 +180,6 @@ function time_elapsed_string($datetime, $full = false) {
     if (!$full) $string = array_slice($string, 0, 1);
     return $string ? implode(', ', $string) . ' trước' : 'Vừa xong';
 }
+
+
  

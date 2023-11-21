@@ -19,6 +19,9 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin',], function(){
 
     Route::post('days-order','AdminDashboardController@days_order');
 
+    Route::post('dashboard-filter','AdminDashboardController@dashboard_filter');
+
+
     Route::get('cap-nhat.html','AdminProfileController@index')->name('get_admin.profile.index');
     Route::post('cap-nhat.html','AdminProfileController@update')->name('get_admin.profile.edit');
 

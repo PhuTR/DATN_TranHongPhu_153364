@@ -38,7 +38,7 @@
                                 @foreach ($paymentHistory as $item )
                                 <tr>
                                     <td> {{$item->id}} </td>
-                                    <td class="rating"><span>ID: {{$item->room_id}} - {{$item->user->name}} </span></td>
+                                    <td class="rating"><span>ID: {{$item->room_id}} - {{$item->user->name ?? 'N\A'}} </span></td>
                                     <td class="status" style="color: #FF0000;font-weight:600"><span>{{ number_format($item->money,0,',','.') }}đ</span></td>
                                     <td class="edit">
                                 

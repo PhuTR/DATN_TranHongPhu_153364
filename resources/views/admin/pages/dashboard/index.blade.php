@@ -43,10 +43,12 @@
                     </div>
                   </div>
                   <div class="col-lg-4 text-end d-flex justify-content-end ">
-                    <select class="nice_Select2 max-width-220">
-                      <option value="1">Hiển thị theo tháng</option>
-                      <option value="2">Hiển thị theo năm</option>
-                      <option value="3">Hiển thị theo ngày</option>
+                    <select class="nice_Select2 max-width-220 dashboard-filter">
+                      <option >--chọn--</option>
+                      <option value="7ngay">7 ngày</option>
+                      <option value="thangtruoc">Tháng trước</option>
+                      <option value="thangnay">Tháng này</option>
+                      <option value="365ngayqua">365 ngày qua</option>
                     </select>
                   </div>
                 </div>
@@ -160,30 +162,7 @@
             </div>
             <div class="white_card_body">
               <div id="chart1" ></div>
-              {{-- <div class="monthly_plan_wraper">
-                <div class="single_plan d-flex align-items-center justify-content-between"  >
-                  <div class="plan_left d-flex align-items-center">
-                    <div class="thumb">
-                      <img src="img/icon2/7.svg" alt />
-                    </div>
-                    <div>
-                      <h5>Most Sales</h5>
-                      <span>Authors with the best sales</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="single_plan d-flex align-items-center justify-content-between" >
-                  <div class="plan_left d-flex align-items-center">
-                    <div class="thumb">
-                      <img src="img/icon2/6.svg" alt />
-                    </div>
-                    <div>
-                      <h5>Total sales lead</h5>
-                      <span>40% increased on week-to-week reports</span>
-                    </div>
-                  </div>
-                </div>
-              </div> --}}
+      
             </div>
           </div>
         </div>
@@ -304,7 +283,7 @@
                 element: 'chart',
                 xkey: 'period',
                 ykeys: ['a'],
-                labels: ['Total Income'],
+                labels: ['Total Income','abc'],
                 fillOpacity: 0.6,
                 hideHover: 'auto',
                 behaveLikeLine: true,
@@ -367,6 +346,21 @@
       })
 
     }) 
+
+    $('.dashboard-filter').change(function(){
+      var dashboard_value = $(this).val();
+      var _token = $('input[name="_token"]').val();
+      
+      $.ajax({
+        url:"{{url('/admin/dashboard-filter')}}",
+        method:"POST",
+        dataType:"json",
+        data:{dashboard_value:dashboard_value,_token:_token},
+        success:function(data){
+          chart.setData(data);
+        },
+      })
+    });
 
   });
 

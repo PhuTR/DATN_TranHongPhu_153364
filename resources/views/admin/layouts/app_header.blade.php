@@ -24,7 +24,7 @@
                           <div class="Notification_body">
                             <div class="single_notify d-flex align-items-center">
                               <div class="notify_thumb">
-                                <a href="#"><img src="img/staf/2.png" alt /></a>
+                                <a href="#"><img src="" alt /></a>
                               </div>
                               <div class="notify_content">
                                 <a href="#"><h5>Cool Marketing</h5></a>

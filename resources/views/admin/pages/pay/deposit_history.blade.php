@@ -55,7 +55,8 @@
                                         <span>Tiền mặt</span>
                                         @elseif($item->type == 3)
                                         <span>Thẻ ATM Internet Banking</span>
-                                        @else
+                                        @elseif($item->type == 4)
+                                        <span>Momo</span>
                                         @endif
                                     </td>
                                     <td>
