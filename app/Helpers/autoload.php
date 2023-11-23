@@ -180,6 +180,31 @@ function time_elapsed_string($datetime, $full = false) {
     if (!$full) $string = array_slice($string, 0, 1);
     return $string ? implode(', ', $string) . ' trước' : 'Vừa xong';
 }
+function getListDayInMonth(){
+    $arrayDay = [];
+    $month = date('m');
+    $year = date('Y');
+    $daysInMonth = date('t');
+    
+    for ($day = 1; $day <= $daysInMonth; $day++) {
+        $time = mktime(12, 0, 0, $month, $day, $year);
+        $arrayDay[] = date('Y-m-d', $time);
+    }
+    
+    return $arrayDay;
+}
+
+
+function getListMonthsInYear() {
+    $arrayMonths = [];
+    $year = date('Y');
+    for ($month = 1; $month <= 12; $month++) {
+        $time = mktime(12, 0, 0, $month, 1, $year);
+        $arrayMonths[] = date('m', $time);
+    }
+
+    return $arrayMonths;
+}
 
 
  

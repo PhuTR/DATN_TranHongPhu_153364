@@ -66,7 +66,7 @@
                                     <td class="edit">{{ number_format($item->discount,0,',','.') }}đ</td>
                                     <td class="edit">{{ number_format($item->total_money,0,',','.') }}đ</td>
                                     <td>
-                                        <span class="{{ $item->getStatus($item->status)['class'] }}">{{ $item->getStatus($item->status)['name'] }}</span>          
+                                        <span class="{{ $item->getStatus($item->status)['class'] ?? ''}}">{{ $item->getStatus($item->status)['name'] ?? '' }}</span>          
                                     </td>
                                     <td>
                                         @if ($item->status == \App\Models\RechargeHistory::STATUS_CANCEL)

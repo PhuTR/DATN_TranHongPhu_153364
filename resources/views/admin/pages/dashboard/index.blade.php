@@ -44,17 +44,14 @@
                   </div>
                   <div class="col-lg-4 text-end d-flex justify-content-end ">
                     <select class="nice_Select2 max-width-220 dashboard-filter">
-                      <option >--chọn--</option>
-                      <option value="7ngay">7 ngày</option>
-                      <option value="thangtruoc">Tháng trước</option>
-                      <option value="thangnay">Tháng này</option>
-                      <option value="365ngayqua">365 ngày qua</option>
+                      <option selected value="ngay">Hiển thị theo ngày</option>
+                      <option value="thang">Hiển thị theo tháng</option>
                     </select>
                   </div>
                 </div>
               </form>
             </div>
-            <div class="white_card_body col-lg-12">
+            <div class="white_card_body col-lg-12" >
               <div id="chart"></div>
             </div>
           </div>
@@ -279,11 +276,11 @@
 <script type="text/javascript">
   $(document).ready(function(){
     chart30daysorder();
-    var chart =new Morris.Bar({
+    var chart =new Morris.Line({
                 element: 'chart',
-                xkey: 'period',
-                ykeys: ['a'],
-                labels: ['Total Income','abc'],
+                xkey: ['period'],
+                ykeys: ['a','b','c'],
+                labels: ['VNPay','Tiền mặt','Momo'],
                 fillOpacity: 0.6,
                 hideHover: 'auto',
                 behaveLikeLine: true,
