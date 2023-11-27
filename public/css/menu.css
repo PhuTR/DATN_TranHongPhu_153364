@@ -1,6 +1,29 @@
 /* ---------------------------------- */
 /* Header
 ------------------------------------- */
+
+.chothuenhanh-label{
+    width: 90px;
+    height: 90px;
+    pointer-events: none;
+    background: url("/images/chothuenhanh-label.png") center no-repeat;
+    background-size: contain;
+    position: absolute;
+    top: -7px;
+    left: -7px;
+    z-index: 2;
+}
+.chothuenhanh{
+    width: 70px;
+    height: 70px;
+    pointer-events: none;
+    background: url("/images/chothuenhanh-label.png") center no-repeat;
+    background-size: contain;
+    position: absolute;
+    top: -6px;
+    left: -6px;
+    z-index: 2;
+}
 .la-zalo i{
     width: 25px !important;
     height: 25px !important;

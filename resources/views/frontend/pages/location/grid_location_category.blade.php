@@ -24,8 +24,9 @@
     }
 
     .location-district li {
-        width: 170px;
+        min-width: 170px;
         float: left;
+        margin-right: 10px;
         text-align: left;
     }
 </style>

@@ -2928,7 +2928,7 @@ section.portfolio {
 /*----- HOVER EFFECT -----*/
 .portfolio .project-single {
   position: relative;
-  overflow: hidden;
+  /* overflow: hidden; */
   -webkit-transition: all 0.4s ease;
   transition: all 0.4s ease;
   border: 1px solid #e7e7e7;
@@ -6821,7 +6821,7 @@ a.button,
 
 .homepage-4 .portfolio .project-head {
   background-color: #1d293e;
-  border-radius: 8px 8px 0 0;
+  border-radius: 8px 8px 8px 8px;
 }
 
 .homepage-4 .portfolio .homes-price {

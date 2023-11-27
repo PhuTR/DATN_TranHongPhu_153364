@@ -81,6 +81,15 @@
                                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                         <span class="sr-only">Next</span>
                                     </a>
+                                    @php
+                                        $timeStart = \Carbon\Carbon::parse($room->time_start);
+                                        $timeStop = \Carbon\Carbon::parse($room->time_stop);
+                                        $daysDifference = $timeStop->diffInDays($timeStart);
+                                    @endphp
+                                    @if ($daysDifference<=5)
+                                    <span class="chothuenhanh-label"></span>
+                                    @endif
+                                   
                                 </div>
                                 
                                 <!-- cars content -->
