@@ -7,7 +7,7 @@
                 <!-- Image Box -->
                 <div class="bg-location">
                     @if (isset($category->id))
-                        <a href="{{route('get.room.by_city_category',['id' => $item->code, 'slug' => $item->slug,'category_id'=>$category->id,])}}" class="img-box hover-effect" style="height: 180px">
+                        <a href="{{route('get.room.by_city_category',['id' => $item->code, 'category_id'=>$category->id,])}}" class="img-box hover-effect" style="height: 180px">
                     @else
                         <a href="{{route('get.room.by_city',['id' => $item->code, 'slug' => $item->slug])}}" class="img-box hover-effect" style="height: 180px">
                     @endif

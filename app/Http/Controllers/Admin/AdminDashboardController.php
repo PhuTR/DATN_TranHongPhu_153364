@@ -38,14 +38,14 @@ class AdminDashboardController extends Controller
         $from_date = $data['from_date'];
         $to_date = $data['to_date'];
         $listDay = getListDayInMonth();
-        $get = RechargeHistory::where('status',2)
+        $vnpay = RechargeHistory::where('status',2)
             ->whereBetween('created_at',[$from_date,$to_date])
             ->orderBy('created_at', 'ASC')
             ->where('type',3)
             ->selectRaw('DATE(created_at) as day, SUM(total_money) as total_money_per_day')
             ->groupBy('day')
             ->get();
-        $get1 = RechargeHistory::where('status',2)
+        $tienmat = RechargeHistory::where('status',2)
             ->whereBetween('created_at',[$from_date,$to_date])
             ->orderBy('created_at', 'ASC')
             ->where('type',2)
@@ -56,7 +56,7 @@ class AdminDashboardController extends Controller
         $listDay = getListDayInMonth();
         foreach ($listDay as $day){
             $total = 0;
-            foreach($get as $key=>$val){
+            foreach($vnpay as $key=>$val){
                 if($val['day'] == $day){
                     $total = $val['total_money_per_day'];
                     break;
@@ -65,7 +65,7 @@ class AdminDashboardController extends Controller
             }
 
             $total1 = 0;
-            foreach($get1 as $key=>$val){
+            foreach($tienmat as $key=>$val){
                 if($val['day'] == $day){
                     $total1 = $val['total_money_per_day'];
                     break;

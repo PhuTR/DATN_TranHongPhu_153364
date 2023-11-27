@@ -1,4 +1,5 @@
 @extends('frontend.pages.category.layouts_category.master_category')
+@section('title', 'Tin quan tâm - DATN')
 @section('content_category')
        <!-- START SECTION PROPERTIES LISTING -->
     <section class="properties-right list featured portfolio blog pt-4">

@@ -67,25 +67,21 @@ Route::group(['namespace' => 'Frontend'], function(){
     ->name('get.room.by_city')
     ->where(['slug' => '[a-z-0-9-]+', 'id' => '[0-9]+',]);
 
-    Route::get('quan-huyen/{slug}-{id}', 'LocationController@getRoomByDistrict')
-    ->name('get.room.by_districts')
-    ->where(['slug' => '[a-z-0-9-]+', 'id' => '[0-9]+',]);
+    Route::get('quan-huyen/{id}', 'LocationController@getRoomByDistrict')
+    ->name('get.room.by_districts');
 
-    Route::get('phuong-xa/{slug}-{id}', 'LocationController@getRoomByWards')
-        ->name('get.room.by_wards')
-        ->where(['slug' => '[a-z-0-9-]+', 'id' => '[0-9]+',]);
+    Route::get('phuong-xa/{id}', 'LocationController@getRoomByWards')
+        ->name('get.room.by_wards');
+      
 
 //location category
-    Route::get('tinh-thanh/{id}-{category_id}-{slug}', 'LocationController@getRoomByCityCategory')
-        ->name('get.room.by_city_category')
-        ->where(['slug' => '[a-z-0-9-]+', 'id' => '[0-9]+',]);
-
-    Route::get('quan/{id}-{category_id}-{slug}', 'LocationController@getRoomByDistrictCategory')
-        ->name('get.room.by_districts_category')
-        ->where(['slug' => '[a-z-0-9-]+', 'id' => '[0-9]+',]);
-    Route::get('phuong/{id}-{category_id}-{slug}', 'LocationController@getRoomByWardsCategory')
-        ->name('get.room.by_wards_category')
-        ->where(['slug' => '[a-z-0-9-]+', 'id' => '[0-9]+',]);
+    Route::get('tinh-thanh/{id}-{category_id}', 'LocationController@getRoomByCityCategory')
+        ->name('get.room.by_city_category');
+        
+    Route::get('quan/{id}-{category_id}', 'LocationController@getRoomByDistrictCategory')
+        ->name('get.room.by_districts_category');
+    Route::get('phuong/{id}-{category_id}', 'LocationController@getRoomByWardsCategory')
+        ->name('get.room.by_wards_category');
 //favourite
     Route::get('tin-da-luu.html','FavouriteController@index')->name('get.home.favourite');
     Route::get('/add-favourite/{id}','FavouriteController@addfavorites')->name('get.home.addfavourite');

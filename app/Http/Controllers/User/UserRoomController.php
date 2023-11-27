@@ -24,14 +24,25 @@ use Illuminate\Support\Facades\Mail;
 
 class UserRoomController extends Controller
 {
+   
     public function index(Request $request){
+        // $this->checkTimeRoom();
         $rooms = Room::with('category:id,name')->where("auth_id", Auth::user()->id)->orderByDesc("id")->paginate(4);
         $viewData = [
             'rooms' => $rooms,
         ];
         return view('user.room.index',$viewData);
     }
-
+    public function checkTimeRoom(){
+        $today         = Date::today()->format('Y-m-d');
+        $checkTimeRoom = Room::whereDate('time_stop', '<=', $today)->get();
+        if ($checkTimeRoom->isNotEmpty()) {
+            dd($checkTimeRoom);
+        } else {
+            dd('Không có phòng nào có thời gian dừng nhỏ hơn hoặc bằng ngày hiện tại.');
+        }
+            
+    }
     public function create(Request $request){
         $citys = City::select('code','name')->where('type',1)->get();
         $districts = District::select('code','name')->where('type',2)->get();

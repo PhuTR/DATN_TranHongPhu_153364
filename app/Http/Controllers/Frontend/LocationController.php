@@ -15,14 +15,14 @@ class LocationController extends Controller
         return view('frontend.pages.location.index', $data);
     }
 
-    public function getRoomByDistrict($slug, $id, Request $request)
+    public function getRoomByDistrict($id, Request $request)
     {
         $data = PageLocationService::indexByDistrict($id, $request);
 
         return view('frontend.pages.location.index', $data);
     }
 
-    public function getRoomByWards($slug, $id, Request $request)
+    public function getRoomByWards( $id, Request $request)
     {
         $data = PageLocationService::indexByWards($id, $request);
 
@@ -34,7 +34,6 @@ class LocationController extends Controller
     public function getRoomByCityCategory($id,$category_id, Request $request)
     {
         $data = PageLocationService::indexByCityCategory($id,$category_id, $request);
-
         return view('frontend.pages.location.index', $data);
     }
 

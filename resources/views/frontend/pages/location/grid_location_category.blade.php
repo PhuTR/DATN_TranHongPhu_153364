@@ -29,33 +29,25 @@
         text-align: left;
     }
 </style>
-@if (isset($districts) && !$districts->IsEmpty())
+@if (isset($room_districts) && !$room_districts->IsEmpty())
 <section class="section section-top-location">
     <ul class="location-district phongtro clearfix">
-        @foreach($districts ?? [] as $item)
+        @foreach($room_districts ?? [] as $item)
         <li>
-            <a class="district-item" title="Phòng trọ {{ $item->name }}" href="{{ route('get.room.by_districts_category',['id' => $item->id, 'slug' => $item->slug,'category_id'=>$category->id]) }}">{{ $item->name }}</a> 
-            <span class="count">({{ $item->roomsD-> count() ?? 0 }})</span> 
+            <a class="district-item" title="Phòng trọ" href=" {{ route('get.room.by_districts_category',['id' => $item->district_id, 'category_id'=>$category->id]) }}">{{ $item->district->name }}</a> 
+            <span class="count">({{ $item->room_count ?? 0 }})</span> 
         </li>
         @endforeach
-
-        {{-- @foreach ($rooms as $item )
-            <li>
-                <a class="district-item" title="Phòng trọ {{ $item->name }}" href="{{ route('get.room.by_districts',['id' => $item->id, 'slug' => $item->slug]) }}">{{ $item->district->name }}</a> 
-                <span class="count">({{ $item->district_id }})</span>
-            </li>
-        @endforeach --}}
-      
     </ul>
 </section>
 @endif
-@if (isset($wards) && !$wards->IsEmpty())
+@if (isset($room_wards) && !$room_wards->IsEmpty())
 <section class="section section-top-location">
     <ul class="location-district phongtro clearfix">
-        @foreach($wards ?? [] as $item)
+        @foreach($room_wards ?? [] as $item)
         <li>
-            <a class="district-item" title="Phòng trọ {{ $item->name }}" href="{{ route('get.room.by_wards_category',['id' => $item->id, 'slug' => $item->slug,'category_id'=>$category->id]) }}">{{ $item->name }}</a>
-            <span class="count">({{ $item->roomsW-> count() ?? 0 }})</span>
+            <a class="district-item" title="Phòng trọ {{ $item->name }}" href="{{ route('get.room.by_wards_category',['id' => $item->wards_id,'category_id'=>$category->id]) }}">{{ $item->wards->name }}</a>
+            <span class="count">({{ $item->room_count ?? 0 }})</span>
         </li>
         @endforeach
     </ul>

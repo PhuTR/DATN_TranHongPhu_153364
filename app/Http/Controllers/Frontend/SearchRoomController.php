@@ -15,10 +15,10 @@ class SearchRoomController extends Controller
     {
         $data = SearchRoomService::index($request);
        
-        if ($request->city_id) {
-            $districts = City::where('code', $request->city_id)->get();
-            $data['districts'] = $districts;
-        }
+        // if ($request->city_id) {
+        //     $districts = City::where('code', $request->city_id)->get();
+        //     $data['districts'] = $districts;
+        // }
     
         return view('frontend.pages.search_room.index', $data);
     }

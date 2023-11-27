@@ -21,11 +21,4 @@ class HomeController extends Controller
         $data = PageViewAllService::index($request);
         return view('frontend.pages.home.full_item',$data);
     }
-    // public function testEmail(){
-    //     $name = 'Trần Hồng Phú';
-    //     Mail::send('frontend.pages.email.test',compact('name'),function($email) use ($name){
-    //         $email->subject('Demo test mail');
-    //         $email->to('datn153364@gmail.com', $name);
-    //     });
-    // }
 }

@@ -1,5 +1,6 @@
 @extends('frontend.pages.category.layouts_category.master_category')
 
+@section('title', 'Bảng giá dịch vụ')
 
 @section('content_category')
 <style>

@@ -24,8 +24,10 @@
                                 <span>
                                     @if(empty(Auth::user()->avatar) || is_null(Auth::user()->avatar) || Auth::user()->avatar == 'no-avatar.jpg')
                                     <img  class="author__img" id="output" src="{{ asset('images/no-avatar.jpg') }}">
-                                    @else
+                                    @elseif( Str::startsWith(Auth::user()->avatar, 'avatar'))
                                     <img  class="author__img" id="output" src="{{ asset('uploads/avatars/' . Auth::user()->avatar) }}">
+                                    @else
+                                    <img  class="author__img" id="output" src="{{ Auth::user()->avatar }}">
                                     @endif
                                 </span>
                                 Xin chào, {{Auth::user()->name ?? "..."}}!

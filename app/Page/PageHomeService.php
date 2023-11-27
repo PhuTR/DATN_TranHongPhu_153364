@@ -2,18 +2,22 @@
 
 namespace App\Page;
 
-use App\Http\Service\RoomService;
-use App\Http\Service\LocationService;
-
-use Illuminate\Http\Request;
-use App\Models\Location;
-use App\Models\Category;
 use App\Models\City;
+use App\Models\Room;
+
+use App\Models\Category;
+use App\Models\Location;
+use Illuminate\Http\Request;
+use App\Http\Service\RoomService;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Date;
+use App\Http\Service\LocationService;
 
 class PageHomeService
 {
     public static function index(Request $request)
-    {
+    {   
+        $appUrl = parse_url( env('APP_URL'), PHP_URL_HOST);
         $roomHots    = RoomService::getRoomsHot($limit = 6);
         $roomVipFive = RoomService::getListsRoomVip($limit = 6, [
             'service_hot' => 5
@@ -28,6 +32,7 @@ class PageHomeService
                 'area' => ($request->area ? $request->area : -1), 
             ]);
             return [
+                'appUrl' => $appUrl,
                 'roomHots'     => $roomHots,
                 'rooms'     => $rooms,
                 'locaties'     => $locationsHot,
@@ -42,6 +47,7 @@ class PageHomeService
                 'price' => ($request->price ? $request->price : -1),
             ]);
             return [
+                'appUrl' => $appUrl,
                 'roomHots'     => $roomHots,
                 'rooms'     => $rooms,
                 'locaties'     => $locaties,
@@ -56,6 +62,7 @@ class PageHomeService
                 'area' => ($request->area ? $request->area : -1), 
             ]);
             return [
+                'appUrl' => $appUrl,
                 'roomHots'     => $roomHots,
                 'rooms'     => $rooms,
                 'locaties'     => $locaties,
@@ -69,6 +76,7 @@ class PageHomeService
             $rooms    = RoomService::getListsRoom($request, $params = [
             ]);
             return [
+                'appUrl' => $appUrl,
                 'roomHots'     => $roomHots,
                 'rooms'     => $rooms,
                 'locaties'     => $locaties,

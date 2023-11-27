@@ -4,6 +4,7 @@ namespace App\Http\Service;
 
 use App\Models\Room;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Date;
 
 class RoomService
 {
@@ -56,9 +57,7 @@ class RoomService
 
     public static function getListsRoom($request, $params = [])
     {
-        // seft gọi đến chính nó
-        // where lọc đúng 1 trường + giá trị
-        // whereIn lọc 1 trường + nhiều giá trị
+
         $self = new self();
         $rooms = Room::whereIn('status', [Room::STATUS_ACTIVE]);
 

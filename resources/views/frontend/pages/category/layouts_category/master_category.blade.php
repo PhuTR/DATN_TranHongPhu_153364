@@ -6,11 +6,10 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="description" content="html 5 template">
     <meta name="author" content="">
-    <title>Find Houses - HTML5 Template</title>
+    <title>@yield('title','DATN - Kênh Thông Tin Phòng Trọ Số 1 Việt Nam')</title>
     <!-- FAVICON -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{asset('favicon.ico')}}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{asset('images/logo-icon.png')}}">
     <link rel="stylesheet" href="{{asset('css/jquery-ui.css')}}">
-    {{-- <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"> --}}
     <!-- GOOGLE FONTS -->
     <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i%7CMontserrat:600,800" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
@@ -18,7 +17,6 @@
 
     <!-- FONT AWESOME -->
     <link rel="stylesheet" href="{{asset('css/fontawesome-all.min.css')}}">
-    {{-- <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}"> --}}
     <!-- ARCHIVES CSS -->
     <link rel="stylesheet" href="{{asset('css/search.css')}}">
     <link rel="stylesheet" href="{{asset('css/dashbord-mobile-menu.css')}}">
@@ -120,16 +118,6 @@
     </script>
     @include('frontend.pages.favourite.localStorage_favourite')
     <script>
-       
-        // function AddFavorite(id){
-        //     $.ajax({
-        //         url: 'add-favourite/'+id,
-        //         type: 'GET',
-        //     }).done(function(response){
-        //         RenderFavorite(response);
-        //         toastr.success('Yêu thích thành công!', 'Thành công', { positionClass: 'toast-bottom-right' });
-        //     });
-        // }
         
         $('#abc').on('click','.btn-close i' , function(){
             $.ajax({

@@ -1,5 +1,5 @@
 @extends('frontend.pages.category.layouts_category.master_category')
-
+@section('title', 'Tin tức thị trường, chia sẻ kinh nghiệm bất động sản')
 @section('content_category')
 
 <section class="blog blog-section">

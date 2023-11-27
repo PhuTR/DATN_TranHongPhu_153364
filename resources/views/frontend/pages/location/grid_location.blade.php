@@ -24,30 +24,31 @@
     }
 
     .location-district li {
-        width: 170px;
+        min-width: 170px;
         float: left;
+        margin-right: 10px;
         text-align: left;
     }
 </style>
-@if (isset($districts) && !$districts->IsEmpty())
+@if (isset($room_districts) && !$room_districts->IsEmpty())
 <section class="section section-top-location">
     <ul class="location-district phongtro clearfix">
-        @foreach($districts ?? [] as $item)
+        @foreach($room_districts ?? [] as $item)
         <li>
-            <a class="district-item" title="Phòng trọ {{ $item->name }}" href="{{ route('get.room.by_districts',['id' => $item->id, 'slug' => $item->slug]) }}">{{ $item->name }}</a>
-            <span class="count">({{ $item->roomsD-> count() ?? 0 }})</span>
+            <a class="district-item" title="Phòng trọ " href="{{ route('get.room.by_districts',['id' => $item->district_id]) }}">{{ $item->district->name }}</a>
+            <span class="count">({{ $item->room_count ?? 0 }})</span>
         </li>
         @endforeach
     </ul>
 </section>
 @endif
-@if (isset($wards) && !$wards->IsEmpty())
+@if (isset($room_wards) && !$room_wards->IsEmpty())
 <section class="section section-top-location">
     <ul class="location-district phongtro clearfix">
-        @foreach($wards ?? [] as $item)
+        @foreach($room_wards ?? [] as $item)
         <li>
-            <a class="district-item" title="Phòng trọ {{ $item->name }}" href="{{ route('get.room.by_wards',['id' => $item->id, 'slug' => $item->slug]) }}">{{ $item->name }}</a>
-            <span class="count">({{ $item->roomsW-> count() ?? 0 }})</span>
+            <a class="district-item" title="Phòng trọ" href="{{ route('get.room.by_wards',['id' => $item->wards_id]) }}">{{ $item->wards->name }}</a>
+            <span class="count">({{ $item->room_count ?? 0 }})</span>
         </li>
         @endforeach
     </ul>

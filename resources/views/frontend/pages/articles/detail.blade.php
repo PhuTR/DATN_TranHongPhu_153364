@@ -1,5 +1,5 @@
 @extends('frontend.pages.category.layouts_category.master_category')
-
+@section('title', $article->name)
 @section('content_category')
 <style>
 h1{

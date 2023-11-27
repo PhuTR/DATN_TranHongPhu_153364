@@ -2,13 +2,15 @@
 
 namespace App\Page;
 
-use App\Http\Service\RoomService;
-use App\Models\Category;
 use App\Models\City;
+use App\Models\Room;
+use App\Models\Ward;
+use App\Models\Category;
 use App\Models\District;
 use App\Models\Location;
-use App\Models\Ward;
 use Illuminate\Http\Request;
+use App\Http\Service\RoomService;
+use Illuminate\Support\Facades\DB;
 
 class PageLocationService
 {
@@ -19,21 +21,29 @@ class PageLocationService
         $params['location_city_id'] = $id;
 
         $rooms    = RoomService::getListsRoom($request, $params);
-        $districts = Location::withCount('roomDistricts')->where('parent_id', $id)
-            ->limit(24)->get();
+        // $districts = Location::withCount('roomDistricts')->where('parent_id', $id)
+        //     ->limit(24)->get();
 
         // dd($districts);
         return [
             'location'  => $location,
             'rooms'     => $rooms,
-            'districts' => $districts,
+            // 'districts' => $districts,
             'query'     => $request->query()
         ];
     }
     public static function indexByCity($id, Request $request)
     {
-        $city = City::find($id);
+        $city = City::where('code',$id)->first();
         $districts =  District::where('city_code', $id)->get();
+        $room_districts = Room::whereNotNull('district_id')
+            ->where('city_id',$id)
+            ->select(
+                'district_id',
+                DB::raw('COUNT(id) as room_count')
+            )
+            ->groupBy('district_id')
+            ->get();
         $rooms_new     = RoomService::getRoomsNewVip($limit =  10);
         if ($request->price && $request->area) {
             $rooms    = RoomService::getListsRoom($request, $params = [
@@ -47,6 +57,7 @@ class PageLocationService
          
             return [
                 'location'  => $city,
+                'room_districts' => $room_districts,
                 'rooms_new'      => $rooms_new,
                 'districts' => $districts,
                 'rooms'     => $rooms,
@@ -62,6 +73,7 @@ class PageLocationService
                 return [
                     'location'  => $city,
                     'rooms_new'      => $rooms_new,
+                    'room_districts' => $room_districts,
                     'districts' => $districts,
                     'rooms'     => $rooms,
                     'query'     => $request->query()
@@ -74,6 +86,7 @@ class PageLocationService
                 return [
                     'location'  => $city,
                     'districts' => $districts,
+                    'room_districts' => $room_districts,
                     'rooms_new'      => $rooms_new,
                     'rooms'     => $rooms,
                     'query'     => $request->query()
@@ -87,6 +100,7 @@ class PageLocationService
                 return [
                     'location'  => $city, 
                     'districts' => $districts,
+                    'room_districts' => $room_districts,
                     'rooms_new'      => $rooms_new,
                     'rooms'     => $rooms,
                     'query'     => $request->query()
@@ -97,9 +111,19 @@ class PageLocationService
 
     public static function indexByDistrict($id, Request $request)
     {
-        $location = District::find($id);
+        $location = District::where('code',$id)->first();
         $rooms_new     = RoomService::getRoomsNewVip($limit =  10);
         $wards =  Ward::where('district_code', $id)->get();
+
+        $room_wards = Room::whereNotNull('wards_id')
+            ->where('district_id', $id)
+            ->select(
+                'wards_id',
+                DB::raw('COUNT(id) as room_count')
+            )
+            ->groupBy('wards_id')
+            ->get();
+
         if ($request->price && $request->area) {
             $rooms    = RoomService::getListsRoom($request, $params = [
                 'district_id' => $id,
@@ -113,6 +137,7 @@ class PageLocationService
                 'wards' => $wards,
                 'rooms'     => $rooms,
                 'rooms_new'      => $rooms_new,
+                'room_wards' => $room_wards,
                 'query'     => $request->query()
             ];
         } else {
@@ -128,6 +153,7 @@ class PageLocationService
                     'wards' => $wards,
                     'rooms_new'      => $rooms_new,
                     'rooms'     => $rooms,
+                    'room_wards' => $room_wards,
                     'query'     => $request->query()
                 ];
             } elseif ($request->area) {
@@ -141,6 +167,7 @@ class PageLocationService
                     'wards' => $wards,
                     'rooms_new'      => $rooms_new,
                     'rooms'     => $rooms,
+                    'room_wards' => $room_wards,
                     'query'     => $request->query()
                 ];
             } else {
@@ -153,6 +180,7 @@ class PageLocationService
                     'wards' => $wards,
                     'rooms_new'      => $rooms_new,
                     'rooms'     => $rooms,
+                    'room_wards' => $room_wards,
                     'query'     => $request->query()
                 ];
             }
@@ -161,7 +189,7 @@ class PageLocationService
 
     public static function indexByWards($id, Request $request)
     {
-        $location = Ward::find($id);
+        $location = Ward::where('code',$id)->first();
         $rooms_new     = RoomService::getRoomsNewVip($limit =  10);
         if ($request->price && $request->area) {
             $rooms    = RoomService::getListsRoom($request, $params = [
@@ -248,7 +276,16 @@ class PageLocationService
     public static function indexByCityCategory($id,$category_id, Request $request)
     {
         $category = Category::find($category_id);
-        $location = City::find($id);
+        $location = City::where('code',$id)->first();
+        $room_districts = Room::whereNotNull('district_id')
+            ->where('city_id',$id)
+            ->where('category_id',$category_id)
+            ->select(
+                'district_id',
+                DB::raw('COUNT(id) as room_count')
+            )
+            ->groupBy('district_id')
+            ->get();
         $districts =  District::where('city_code', $id)->get();
         $rooms_new     = RoomService::getRoomsNewVip($limit =  10);
         if ($request->price && $request->area) {
@@ -259,10 +296,11 @@ class PageLocationService
                 'price' => ($request->price ? $request->price : -1),
                 'area' => ($request->area ? $request->area : -1)
             ]);
-            $districts =  Location::where('parent_id', $id)->get();
+          
          
             return [
                 'location'  => $location,
+                'room_districts'  => $room_districts,
                 'rooms_new'      => $rooms_new,
                 'districts' => $districts,
                 'rooms'     => $rooms,
@@ -276,10 +314,10 @@ class PageLocationService
 
                 ]);
              
-                $districts =  Location::where('parent_id', $id)->get();
+               
                 return [
                     'location'  => $location,
-                   
+                    'room_districts'  => $room_districts,
                     'rooms_new'      => $rooms_new,
                     'districts' => $districts,
                     'rooms'     => $rooms,
@@ -291,9 +329,10 @@ class PageLocationService
                     'area' => ($request->area ? $request->area : -1)
                 ]);
                
-                $districts =  Location::where('parent_id', $id)->get();
+             
                 return [
                     'location'  => $location,
+                    'room_districts'  => $room_districts,
                     'districts' => $districts,
                     'rooms_new'      => $rooms_new,
                     'rooms'     => $rooms,
@@ -308,6 +347,7 @@ class PageLocationService
                 $districts =  District::where('city_code', $id)->get();
                 return [
                     'location'  => $location,
+                    'room_districts'  => $room_districts,
                     'category' => $category,
                     'districts' => $districts,
                     'rooms_new'      => $rooms_new,
@@ -322,7 +362,15 @@ class PageLocationService
     {
      
         $category = Category::find($category_id);
-        $location = District::find($id);
+        $location = District::where('code',$id)->first();
+        $room_wards = Room::whereNotNull('wards_id')
+            ->where('district_id', $id)
+            ->select(
+                'wards_id',
+                DB::raw('COUNT(id) as room_count')
+            )
+            ->groupBy('wards_id')
+            ->get();
         $rooms_new     = RoomService::getRoomsNewVip($limit =  10);
         $wards =  Ward::where('district_code', $id)->get();
         if ($request->price && $request->area) {
@@ -336,6 +384,7 @@ class PageLocationService
             
             return [
                 'location'  => $location,
+                'room_wards' => $room_wards,
                 'wards' => $wards,
                 'category' => $category,
                 'rooms'     => $rooms,
@@ -353,6 +402,7 @@ class PageLocationService
                 
                 return [
                     'location'  => $location,
+                    'room_wards' => $room_wards,
                     'wards' => $wards,
                     'category' => $category,
                     'rooms_new'      => $rooms_new,
@@ -368,6 +418,7 @@ class PageLocationService
                 
                 return [
                     'location'  => $location,
+                    'room_wards' => $room_wards,
                     'wards' => $wards,
                     'category' => $category,
                     'rooms_new' => $rooms_new,
@@ -382,6 +433,7 @@ class PageLocationService
                 
                 return [
                     'location'  => $location,
+                    'room_wards' => $room_wards,
                     'wards' => $wards,
                     'category' => $category,
                     'rooms_new'      => $rooms_new,
@@ -396,7 +448,7 @@ class PageLocationService
     {
       
         $category = Category::find($category_id);
-        $location = Ward::find($id);
+        $location = Ward::where('code',$id)->first();
         $rooms_new     = RoomService::getRoomsNewVip($limit =  10);
         if ($request->price && $request->area) {
             $rooms    = RoomService::getListsRoom($request, $params = [

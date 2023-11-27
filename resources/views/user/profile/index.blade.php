@@ -10,9 +10,11 @@
          <div class="author-box clearfix">
             @if(empty(Auth::user()->avatar) || is_null(Auth::user()->avatar) || Auth::user()->avatar == 'no-avatar.jpg')
                 <img  class="author__img" id="output" src="{{ asset('images/no-avatar.jpg') }}">
+            @elseif( Str::startsWith(Auth::user()->avatar, 'avatar'))
+                <img  class="author__img" id="output" src="{{ asset('uploads/avatars/' . Auth::user()->avatar) }}">
             @else
-                <img  class="author__img" id="output" src="../uploads/avatars/{{ $user->avatar }}">
-             @endif
+                <img  class="author__img" id="output" src="{{ Auth::user()->avatar }}">
+            @endif
              <h4 class="author__title" >{{$user->name}}</h4>
              <p class="author__meta">#{{$user->id}}</p>
          </div>
@@ -46,10 +48,11 @@
                 <div class="" style="margin-left: 17%;margin-top:-3%">
                     @if(empty(Auth::user()->avatar) || is_null(Auth::user()->avatar) || Auth::user()->avatar == 'no-avatar.jpg')
                         <img  class="author__img" id="output" src="{{ asset('images/no-avatar.jpg') }}">
-                     @else
-                        <img  class="author__img" id="output" src="../uploads/avatars/{{ $user->avatar }}">
-                    @endif
-
+                    @elseif( Str::startsWith(Auth::user()->avatar, 'avatar'))
+                        <img  class="author__img" id="output" src="{{ asset('uploads/avatars/' . Auth::user()->avatar) }}">
+                    @else
+                        <img  class="author__img" id="output" src="{{ Auth::user()->avatar }}">
+                    @endif  
                     <div>
                         <input style="width:14%" class="input-file" name="avatar" id="avatar" type="file" accept="image/*" onchange="loadFile(event)" style="display: none">
 								<script>
