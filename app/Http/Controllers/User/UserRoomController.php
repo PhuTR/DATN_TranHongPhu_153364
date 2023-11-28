@@ -121,7 +121,7 @@ class UserRoomController extends Controller
 
     public function update($id,Request $request){
         
-        $data = $request->except('_token','avatar','file');
+        $data = $request->except('_token','avatar','file','txtlat','txtlng','txtaddress');
         $data['updated_at'] = Carbon::now();
         $data['price'] = str_replace('.', '', $request->price);
         $data['slug'] = Str::slug($request->name);
@@ -139,6 +139,7 @@ class UserRoomController extends Controller
         $arrlatlng[] = $request->txtlng;
         $json_latlng = json_encode($arrlatlng,JSON_FORCE_OBJECT);
         $data['map'] = $json_latlng;
+        // dd($data);
         $room = Room::where(['id' => $id,'auth_id' => Auth::user()->id])->update($data);
         if($room){
             if ($request->file) {

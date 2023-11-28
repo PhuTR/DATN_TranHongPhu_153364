@@ -46,7 +46,9 @@ class CategoryController extends Controller
         $images     = DB::table('images')->where("room_id", $slug)->get();
         $rooms_new = RoomService::getRoomsNewVip($limit =  10);
         $rooms_hot = RoomService::getListsRoomVip($limit = 6, [
-            'service_hot' => 5
+            'service_hot' => 3,
+            'category_id'      => $room->category_id,
+            // 'city_id' => $room->city_id,
         ]);
 
         $roomsSuggests = RoomService::getListsRoom($request, $params = [

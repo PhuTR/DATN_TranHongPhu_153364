@@ -10,7 +10,7 @@
 
     <title>Find Houses - HTML5 Template</title>
     <!-- FAVICON -->
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="{{asset('images/logo-v1.png')}}">
     <link rel="stylesheet" href="{{asset('css/jquery-ui.css')}}">
     <!-- GOOGLE FONTS -->
     <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i%7CMontserrat:600,800" rel="stylesheet">

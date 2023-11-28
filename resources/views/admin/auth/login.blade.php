@@ -56,17 +56,11 @@
                         <input type="password" class="form-control" name="password" id="password" value="">
                         <i class="icon_lock_alt"></i>
                     </div>
-                    <div class="fl-wrap filter-tags clearfix add_bottom_30">
-                        {{-- <div class="checkboxes float-left">
-                            <div class="filter-tags-wrap">
-                                <input id="check-b" type="checkbox" name="check">
-                                <label for="check-b">Remember me</label>
-                            </div>
-                        </div> --}}
+                    {{-- <div class="fl-wrap filter-tags clearfix add_bottom_30">
                         <div class="float-right mt-1"><a id="forgot" href="javascript:void(0);">Bạn quên mật khẩu?</a></div>
-                    </div>
+                    </div> --}}
                     <button type="submit" class="btn_1 rounded full-width">Đăng nhập</button>
-                    <div class="text-center add_top_10"><strong><a href="{{route('get_admin.register')}}">Tạo tài khoản mới!</a></strong></div>
+                    {{-- <div class="text-center add_top_10"><strong><a href="{{route('get_admin.register')}}">Tạo tài khoản mới!</a></strong></div> --}}
                 </form>
             </div>
         </div>

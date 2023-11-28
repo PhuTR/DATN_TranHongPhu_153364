@@ -71,12 +71,12 @@
                   
                     <div class="col-lg-4 col-md-12">
                         <p class="no-mb">
-                            <input  type="text" name="txtlat" placeholder="" id="txtlat" value="<?php echo $arrmap[0]?>">
+                            <input hidden type="text" name="txtlat" placeholder="" id="txtlat" value="<?php echo $arrmap[0]?>">
                         </p>
                     </div>
                     <div class="col-lg-4 col-md-12">
                         <p class="no-mb last">
-                            <input  type="text" name="txtlng" placeholder="" id="txtlng" value="<?php echo $arrmap[1]?>">
+                            <input hidden type="text" name="txtlng" placeholder="" id="txtlng" value="<?php echo $arrmap[1]?>">
                         </p>
                     </div>
                     <div class="col-lg-4 col-md-12">

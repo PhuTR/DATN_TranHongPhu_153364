@@ -5,7 +5,7 @@
             <div style="width:100%;position: absolute;">
                 <div class="container container-header">
                     <div id="logo">
-                        <a href="index-2.html"><img src="{{asset('images/logo-phongtro.svg')}}" alt=""></a>
+                        <a href="index-2.html"><img src="{{asset('images/logo-datn.png')}}" alt=""></a>
                     </div>
                     @if (isset(Auth::user()->name))
                         <div class=" d-xl-flex" style="float:right">

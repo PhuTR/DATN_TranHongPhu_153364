@@ -33,9 +33,20 @@ class RoomService
         $self = new self();
         $room =  Room::whereIn('status', [Room::STATUS_ACTIVE, Room::STATUS_EXPIRED]);
 
-        if ($service_hot =  Arr::get($params, 'service_hot'))
-            $room->where('service_hot', $service_hot);
+        if ($service_hot =  Arr::get($params, 'service_hot')){
+            $room->where('service_hot','>=', $service_hot);
+        }
+        if ($categoryId = Arr::get($params, 'category_id')) {
+            $room->where('category_id', $categoryId);
+        }
 
+        if ($cityId = Arr::get($params, 'city_id')) {
+            $room->where('city_id', $cityId);
+        }
+
+        if ($district_id = Arr::get($params, 'district_id')) {
+            $room->where('district_id', $district_id);
+        }
         return $room
             ->limit($limit)
             ->select($self->column)
@@ -46,12 +57,12 @@ class RoomService
     public static function getRoomsNewVip($limit = 10, $params = [])
     {
         $self = new self();
-        $room =  Room::whereIn('status', [Room::STATUS_ACTIVE, Room::STATUS_EXPIRED]);
-        $room->whereBetween('service_hot', [2, 4]);
+        $room =  Room::whereIn('status', [Room::STATUS_ACTIVE]);
+        // $room->whereBetween('service_hot', [2, 4]);
 
         return $room
             ->select($self->column)
-            ->orderByDesc('service_hot')
+            ->orderByDesc('created_at')
             ->paginate($limit);
     }
 

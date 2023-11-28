@@ -137,14 +137,14 @@
         <p class="homes-address mb-3">
             
             <ul class="homes-list clearfix pb-2" >
-                <li class="the-icons" style="margin-top: -5%">
+                <li class="the-icons" style="margin-top: -5%;width:30%">
                     <span id="price{{$item->id}}" style="font-size: 1rem;font-weight: 700;color: #16c784;">{{number_format($item->price/1000000,1)}} triệu/tháng</span>
                 </li>
-                <li class="the-icons" style="margin-top: -5%">
+                <li class="the-icons" style="margin-top: -5%;width:15%">
                     <i class="fa fa-object-group mr-1" aria-hidden="true"></i>
                     <span id="area{{$item->id}}">{{$item->area}}m²</span>
                 </li>
-                <li class="the-icons" style="margin-top: -5%">
+                <li class="the-icons" style="margin-top: -5%;width:55%">
                     <i class="fa fa-map-marker"></i><span id="address{{$item->id}}">{{$item->district->name}} - {{$item->city->name}}</span>
                 </li>
                 <li class="the-icons" style="width:100% !important; margin-top:-3%;margin-bottom:-4%">

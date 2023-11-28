@@ -37,6 +37,7 @@ class PageLocationService
         $city = City::where('code',$id)->first();
         $districts =  District::where('city_code', $id)->get();
         $room_districts = Room::whereNotNull('district_id')
+            ->where('status',Room::STATUS_ACTIVE)
             ->where('city_id',$id)
             ->select(
                 'district_id',
@@ -117,6 +118,7 @@ class PageLocationService
 
         $room_wards = Room::whereNotNull('wards_id')
             ->where('district_id', $id)
+            ->where('status',Room::STATUS_ACTIVE)
             ->select(
                 'wards_id',
                 DB::raw('COUNT(id) as room_count')
@@ -279,6 +281,7 @@ class PageLocationService
         $location = City::where('code',$id)->first();
         $room_districts = Room::whereNotNull('district_id')
             ->where('city_id',$id)
+            ->where('status',Room::STATUS_ACTIVE)
             ->where('category_id',$category_id)
             ->select(
                 'district_id',
@@ -365,6 +368,7 @@ class PageLocationService
         $location = District::where('code',$id)->first();
         $room_wards = Room::whereNotNull('wards_id')
             ->where('district_id', $id)
+            ->where('status',Room::STATUS_ACTIVE)
             ->select(
                 'wards_id',
                 DB::raw('COUNT(id) as room_count')

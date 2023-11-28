@@ -35,7 +35,8 @@
               <div class="col-lg-12">
                   <div class="common_input mb_15">
                     <label for="title">Mội dung</label>
-                    <textarea style="min-height: 300px" id="description" name="contents" placeholder="">{{$article->contents ?? ""}}</textarea>
+                    <textarea id="summernote" name="contents">{{$article->contents ?? ""}}</textarea>
+                    {{-- <textarea style="min-height: 300px" id="description" name="contents" placeholder="">{{$article->contents ?? ""}}</textarea> --}}
                     @if ($errors->first('description'))
                         <span class="text-error" style="color: #FF385C">{{$errors->first('description')}}</span>
                     @endif
