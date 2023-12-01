@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use App\Models\Room;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CheckUserStatus
@@ -17,7 +18,7 @@ class CheckUserStatus
      */
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->check() && auth()->user()->status == Room::STATUS_ACTIVE) {
+        if (auth()->check() && auth()->user()->status == User::STATUS_ACTIVE) {
             return $next($request);
         }
         return redirect()->route('get.home.lockaccount');
