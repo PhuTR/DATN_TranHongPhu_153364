@@ -40,6 +40,7 @@
                                     <th>Thực nhận</th>
                                     <th>Trạng thái</th>
                                     <th>Ghi chú</th>
+                                    <th>Tuỳ chọn</th>
                                 </tr>
                             </thead>
                             <tbody>

@@ -41,6 +41,7 @@
                                     <th>Email</th>
                                     <th>Số điện thoại</th>
                                     <th>Ngày tạo</th>
+                                    <th>Trạng thái</th>
                                     <th>Tuỳ chọn</th>
                                 
                                 </tr>
@@ -50,19 +51,23 @@
                                 <tr>
                                     <td>{{$item->id}}</td>
                                     <td>
-                                        <img src="{{  pare_url_file($item->avatar) }}" style="width:60px; height:60px; border-radius:50%" alt="">
-
+                                        @if(empty($item->avatar) || is_null($item->avatar) || $item->avatar == 'no-avatar.jpg')
+                                            <img  style="width:60px; height:60px; border-radius:50%" id="output" src="{{ asset('images/no-avatar.jpg') }}">
+                                        @elseif( Str::startsWith($item->avatar, 'avatar'))
+                                            <img  style="width:60px; height:60px; border-radius:50%" id="output" src="{{ asset('uploads/avatars/' . $item->avatar) }}">
+                                        @else
+                                            <img  style="width:60px; height:60px; border-radius:50%" id="output" src="{{ $item->avatar }}">
+                                        @endif
                                     </td>
                                     <td>
                                         {{$item->name}}
                                         <p style="margin-bottom: 2px">
-                                            @if ($item->status != \App\Models\User::STATUS_ACTIVE)
-                                            <a href="{{ route('get_admin.room.expires', $item->id) }}" class="text-warning"
+                                            @if ($item->status == \App\Models\User::STATUS_ACTIVE)
+                                            <a href="{{ route('get_admin.user.lock', $item->id) }}" class="text-warning"
                                                 style="margin-right:8px; font-size: 13px;text-decoration: none;font-weight: 500"><i
                                                     class="fa fa-credit-card"></i> Khoá tài khoản</a>
-                                            @endif
-                                            @if ($item->status == \App\Models\User::STATUS_ACTIVE)
-                                            <a href="{{ route('get_admin.room.hide', $item->id) }}" class="text-secondary"
+                                            @elseif ($item->status == \App\Models\User::STATUS_DEFAULT)
+                                            <a href="{{ route('get_admin.user.unlock', $item->id) }}" class="text-secondary"
                                                 style="margin-right:8px; font-size: 13px;text-decoration: none"> <i class="fa-solid fa-unlock-keyhole"></i> Mở khoá</a>
                                             @endif
                                             <a href="{{ route('get_admin.user.delete', $item->id) }}" class="text-danger"
@@ -74,8 +79,9 @@
                                     <td>{{$item->phone}}</td>
                                     <td class="edit">{{$item->created_at}}</td>
                                     <td >
-                                        <span class="{{ $item->getStatus($item->trangthai)['class'] ?? '...' }}">{{ $item->getStatus($item->trangthai)['name'] ?? "..." }}</span> 
+                                        <span class="{{ $item->getStatus($item->status)['class'] ?? '...' }}">{{ $item->getStatus($item->status)['name'] ?? "..." }}</span> 
                                     </td>
+                                    <td><a href="{{route('get_admin.user.detail',$item->id)}}"><i class="fa-solid fa-list"></i></a></td>
                                 </tr>
                                 @endforeach
                                 

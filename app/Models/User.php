@@ -29,7 +29,7 @@ class User extends Authenticatable
 
     protected $setStatus = [
         self::STATUS_DEFAULT => [
-            'name' => 'Khởi tạo',
+            'name' => 'Tài khoản đã bị khoá',
             'class' => 'text-black-50'
         ],
         self::STATUS_EXPIRED => [
@@ -41,7 +41,7 @@ class User extends Authenticatable
             'class' => 'text-info'
         ],
         self::STATUS_ACTIVE => [
-            'name' => 'Hiển thị',
+            'name' => 'Hoạt động',
             'class' => 'text-success'
         ],
         self::STATUS_CANCEL => [

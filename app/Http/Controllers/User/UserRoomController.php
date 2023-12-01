@@ -242,10 +242,11 @@ class UserRoomController extends Controller
             $room->updated_at  = Carbon::now();
             $room->save();
             DB::commit();
+            $otp = rand(100000,999999);
             // Mail invoce
             $user = User::find(Auth::user()->id);
             $currentTime = now()->format('H:i d/m/Y'); 
-            Mail::send('frontend.pages.email.invoiceroom',compact('user','room','currentTime'),function($email) use ($user){
+            Mail::send('frontend.pages.email.invoiceroom',compact('user','room','currentTime','otp'),function($email) use ($user){
                 $email->subject('Hoá đơn thanh toán bài đăng');
                 $email->to('datn153364@gmail.com', $user);
             });

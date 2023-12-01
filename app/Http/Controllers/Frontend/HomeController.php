@@ -21,4 +21,7 @@ class HomeController extends Controller
         $data = PageViewAllService::index($request);
         return view('frontend.pages.home.full_item',$data);
     }
+    public function lockaccount(){
+        return view('frontend.pages.error.lock_account');
+    }
 }

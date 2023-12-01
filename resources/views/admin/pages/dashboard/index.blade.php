@@ -57,111 +57,140 @@
           </div>
         </div>
         <div class="col-xl-4">
-          <div class="white_card card_height_100 mb_30 user_crm_wrapper">
-            <div class="row">
-              <div class="col-lg-6">
-                <div class="single_crm">
-                  <div class="crm_head d-flex align-items-center justify-content-between">
-                    <div class="thumb">
-                      <img src="{{asset('asset_admin/img/crm/businessman.svg')}}" alt />
-                    </div>
-                    <i class="fas fa-ellipsis-h f_s_11 white_text"></i>
-                  </div>
-                  <div class="crm_body">
-                    <h4>{{ $totalUser ?? 0 }}</h4>
-                    <p>Người đăng ký</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-6">
-                <div class="single_crm">
-                  <div class="crm_head crm_bg_1 d-flex align-items-center justify-content-between">
-                    <div class="thumb">
-                      <img src="{{asset('asset_admin/img/crm/customer.svg')}}" alt />
-                    </div>
-                    <i class="fas fa-ellipsis-h f_s_11 white_text"></i>
-                  </div>
-                  <div class="crm_body">
-                    <h4>{{ $totalRoom ?? 0 }}</h4>
-                    <p>Tổng số tin đăng</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-6">
-                <div class="single_crm">
-                  <div class="crm_head crm_bg_2 d-flex align-items-center justify-content-between">
-                    <div class="thumb">
-                      <img src="{{asset('asset_admin/img/crm/infographic.svg')}}" alt />
-                    </div>
-                    <i class="fas fa-ellipsis-h f_s_11 white_text"></i>
-                  </div>
-                  <div class="crm_body">
-                    <h4>{{ $totalPay }}</h4>
-                    <p>Giao dịch thanh toán</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-6">
-                <div class="single_crm">
-                  <div class="crm_head crm_bg_3 d-flex align-items-center justify-content-between">
-                    <div class="thumb">
-                      <img src="{{asset('asset_admin/img/crm/sqr.svg')}}" alt />
-                    </div>
-                    <i class="fas fa-ellipsis-h f_s_11 white_text"></i>
-                  </div>
-                  <div class="crm_body">
-                    @php
-                    $total = 0;
-                    @endphp
-
-                    @foreach ($rechargeHistory ?? [] as $item)
-                    @php
-                    $total += $item->money;
-                    @endphp
-                    @endforeach
-                    <h4>{{ number_format($total, 0, ',', '.') }}đ</h4>
-                    <p>Tổng tiền khách nạp</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="crm_reports_bnner">
-              <div class="row justify-content-end">
+            <div class="white_card card_height_100 mb_30 user_crm_wrapper">
+              <div class="row">
                 <div class="col-lg-6">
-                  <h4>Create CRM Reports</h4>
-                  <p>Outlines keep you and honest indulging honest.</p>
-                  <a href="#"
-                    >Read More <i class="fas fa-arrow-right"></i>
-                  </a>
+                  <div class="single_crm">
+                    <div class="crm_head d-flex align-items-center justify-content-between">
+                      <div class="thumb">
+                        <img src="{{asset('asset_admin/img/crm/businessman.svg')}}" alt />
+                      </div>
+                      {{-- <i class="fas fa-ellipsis-h f_s_11 white_text"></i> --}}
+                      <div class="header_more_tool">
+                          <div class="dropdown">
+                            <span class="dropdown-toggle" id="dropdownMenuButton"  data-bs-toggle="dropdown" style="background: #ff7ea5; cursor:pointer" >
+                              <i class="ti-more-alt"></i>
+                            </span>
+                            <div class="dropdown-menu dropdown-menu-right"  aria-labelledby="dropdownMenuButton" >
+                              <a class="dropdown-item" href="{{route('get_admin.user.index')}}"><i class="ti-eye"></i> Xem chi tiết</a >
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    <div class="crm_body">
+                      <h4>{{ $totalUser ?? 0 }}</h4>
+                      <p>Người đăng ký</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="single_crm">
+                    <div class="crm_head crm_bg_1 d-flex align-items-center justify-content-between">
+                      <div class="thumb">
+                        <img src="{{asset('asset_admin/img/crm/customer.svg')}}" alt />
+                      </div>
+                      <div class="header_more_tool">
+                        <div class="dropdown">
+                          <span class="dropdown-toggle" id="dropdownMenuButton"  data-bs-toggle="dropdown" style="background: #20deff;cursor:pointer " >
+                            <i class="ti-more-alt"></i>
+                          </span>
+                          <div class="dropdown-menu dropdown-menu-right"  aria-labelledby="dropdownMenuButton" >
+                            <a class="dropdown-item" href="{{route('get_admin.room.index')}}"><i class="ti-eye"></i> Xem chi tiết</a >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="crm_body">
+                      <h4>{{ $totalRoom ?? 0 }}</h4>
+                      <p>Tổng số tin đăng</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="single_crm">
+                    <div class="crm_head crm_bg_2 d-flex align-items-center justify-content-between">
+                      <div class="thumb">
+                        <img src="{{asset('asset_admin/img/crm/infographic.svg')}}" alt />
+                      </div>
+                      <div class="header_more_tool">
+                        <div class="dropdown">
+                          <span class="dropdown-toggle" id="dropdownMenuButton"  data-bs-toggle="dropdown" style="background: #c388f6;cursor:pointer " >
+                            <i class="ti-more-alt"></i>
+                          </span>
+                          <div class="dropdown-menu dropdown-menu-right"  aria-labelledby="dropdownMenuButton" >
+                            <a class="dropdown-item" href="{{route('get_admin.pay.paymet_history')}}"><i class="ti-eye"></i> Xem chi tiết</a >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="crm_body">
+                      <h4>{{ $totalPay }}</h4>
+                      <p>Giao dịch thanh toán</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="single_crm">
+                    <div class="crm_head crm_bg_3 d-flex align-items-center justify-content-between">
+                      <div class="thumb">
+                        <img src="{{asset('asset_admin/img/crm/sqr.svg')}}" alt />
+                      </div>
+                      <i class="fas fa-ellipsis-h f_s_11 white_text"></i>
+                    </div>
+                    <div class="crm_body">
+                      @php
+                      $total = 0;
+                      @endphp
+  
+                      @foreach ($rechargeHistory ?? [] as $item)
+                      @php
+                      $total += $item->money;
+                      @endphp
+                      @endforeach
+                      <h4>{{ number_format($total, 0, ',', '.') }}đ</h4>
+                      <p>Tổng tiền khách nạp</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="crm_reports_bnner">
+                <div class="row justify-content-end">
+                  <div class="col-lg-6">
+                    <h4>Create CRM Reports</h4>
+                    <p>Outlines keep you and honest indulging honest.</p>
+                    <a href="#"
+                      >Read More <i class="fas fa-arrow-right"></i>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
         </div>
         <div class="col-xl-4">
-          <div class="white_card card_height_100 mb_30">
-            <div class="white_card_header">
-              <div class="box_header m-0">
-                <div class="main-title">
-                  <h3 class="m-0">Thống kê phòng cho thuê bài viết</h3>
-                </div>
-                <div class="header_more_tool">
-                  <div class="dropdown">
-                    <span class="dropdown-toggle" id="dropdownMenuButton"  data-bs-toggle="dropdown"  >
-                      <i class="ti-more-alt"></i>
-                    </span>
-                    <div class="dropdown-menu dropdown-menu-right"  aria-labelledby="dropdownMenuButton" >
-                      <a class="dropdown-item" href="#"><i class="ti-eye"></i> Action</a >
+            <div class="white_card card_height_100 mb_30">
+              <div class="white_card_header">
+                <div class="box_header m-0">
+                  <div class="main-title">
+                    <h3 class="m-0">Thống kê phòng cho thuê bài viết</h3>
+                  </div>
+                  <div class="header_more_tool">
+                    <div class="dropdown">
+                      <span class="dropdown-toggle" id="dropdownMenuButton"  data-bs-toggle="dropdown"  >
+                        <i class="ti-more-alt"></i>
+                      </span>
+                      <div class="dropdown-menu dropdown-menu-right"  aria-labelledby="dropdownMenuButton" >
+                        <a class="dropdown-item" href="#"><i class="ti-eye"></i> Action</a >
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
+              <div class="white_card_body">
+                <div id="chart1" ></div>
+        
+              </div>
             </div>
-            <div class="white_card_body">
-              <div id="chart1" ></div>
-      
-            </div>
-          </div>
+          </a>
         </div>
         <div class="col-xl-8">
           <div class="white_card card_height_100 mb_30">
@@ -181,7 +210,14 @@
                     <div class="single_user_pil d-flex align-items-center justify-content-between">
                         <div class="user_pils_thumb d-flex align-items-center">
                             <div class="thumb_34 mr_15 mt-0">
-                                <img class="img-fluid radius_50" src="{{pare_url_file($item->avatar)}}" alt/>
+                                {{-- <img class="img-fluid radius_50" src="{{pare_url_file($item->avatar)}}" alt/> --}}
+                                @if(empty($item->avatar) || is_null($item->avatar) || $item->avatar == 'no-avatar.jpg')
+                                    <img class="img-fluid radius_50" id="output" src="{{ asset('images/no-avatar.jpg') }}">
+                                @elseif( Str::startsWith($item->avatar, 'avatar'))
+                                    <img class="img-fluid radius_50" id="output" src="{{ asset('uploads/avatars/' . $item->avatar) }}">
+                                @else
+                                    <img class="img-fluid radius_50" id="output" src="{{ $item->avatar }}">
+                                @endif
                             </div>
                             <span class="f_s_14 f_w_400 text_color_11" >{{$item->name}}</span >
                         </div>
@@ -257,8 +293,15 @@
                   </tbody>
                 </table>
               </div>
+              <div class="pagination-container">
+                <nav>
+                {{$paymentHistory->links()}}
+                </nav>
+              </div>
             </div>
+            
           </div>
+         
         </div>
       
         

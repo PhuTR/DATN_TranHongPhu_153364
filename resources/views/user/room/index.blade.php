@@ -2,7 +2,7 @@
 @section('content_user')
 
 <div class="col-lg-9 col-md-12 col-xs-12 pl-0 user-dash2">
-    <div class="col-lg-12 mobile-dashbord dashbord">
+    {{-- <div class="col-lg-12 mobile-dashbord dashbord">
          <div class="dashboard_navigationbar dashxl">
              <div class="dropdown">
                  <button onclick="myFunction()" class="dropbtn"><i class="fa fa-bars pr10 mr-2"></i> Quản lý thông tin</button>
@@ -51,7 +51,7 @@
                  </ul>
              </div>
          </div>
-     </div>
+    </div> --}}
      <div class="my-properties">
          <table class="table-responsive">
              <thead>
@@ -62,6 +62,7 @@
                      <th>Mã tin</th>
                      <th>Ảnh đại diện</th>
                      <th>Tiêu đề</th>
+                     <th>Gói tin</th>
                      <th>Giá</th>
                      <th>Ngày bắt đầu</th>
                      <th>Ngày hết hạn</th>
@@ -81,13 +82,12 @@
                      </td>
                      <td style="width:40% ">
                          <div class="inner">
-                             <a href="single-property-1.html">
+                             <a href="{{route('get.category.detail',['slug' => $item->slug,'id' => $item->id])}}">
                                 <h2>
                                    <span class="label label-danger-warning">
                                     {{$item->category->name ?? "[N\A]"}}
                                     </span>                                 
                                     {{$item->name}}
-                                
                                 </h2>
                              </a>
                              <p style="font-size: 14px;font-weight: 400;color: #212121;text-decoration: none;margin-bottom: 5px">
@@ -123,13 +123,24 @@
                             
                          </div>
                      </td>
-                    
+                    <td>
+                        @if ($item->service_hot == 1)
+                        <span style="color:#055699"> Thường</span>
+                        @elseif($item->service_hot == 2)
+                        <span style="color:#055699"> Vip 3</span>
+                        @elseif($item->service_hot == 3)
+                        <span style="color:#f60"> Vip 2</span>
+                        @elseif($item->service_hot == 4)
+                        <span style="color:#ea2e9d"> Vip 1</span>
+                        @else
+                        <span style="color:#E13427"> Đặc biệt</span>
+                        @endif
+                    </td>
                      <td>{{number_format($item->price /1000000,1)}} triệu/tháng</td>
                      <td>{{$item->time_start}}</td>
                      <td>{{$item->time_stop}}</td>
                      <td >
                         <span class="{{ $item->getStatus($item->trangthai)['class'] ?? '...' }}">{{ $item->getStatus($item->trangthai)['name'] ?? "..." }}</span>
-
                      </td>
                  </tr>
                 @endforeach

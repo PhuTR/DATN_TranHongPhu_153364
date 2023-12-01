@@ -41,7 +41,7 @@
                                     <th>Trạng thái</th>
                                     <th>Nổi bật</th>
                                     <th>Ngày tạo</th>
-                                
+                                    <th>Tuỳ chọn</th>
                                 </tr>
                             </thead>
                             <tbody>

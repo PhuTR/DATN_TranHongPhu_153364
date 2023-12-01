@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Room;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminRoomController extends Controller
@@ -67,6 +68,7 @@ class AdminRoomController extends Controller
 
         return redirect()->back();
     }
+    
 
     public function cancel($id)
     {
@@ -97,6 +99,8 @@ class AdminRoomController extends Controller
         Room::find($id)->delete();
         return redirect()->back();
     }
+    
+
     
 
 }

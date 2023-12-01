@@ -9,10 +9,10 @@
                                 <div>
                                     <div style="display: flex;flex-wrap:wrap; padding: 3rem;">
                                         <div style="width: 50%;">
-                                            <img src="images/logo.svg" width="80" alt="Logo">
+                                            <img src="https://phongtro123.com/images/logo-phongtro.svg" width="80" alt="Logo">
                                         </div>
                                         <div style="width: 50%;text-align: right;" >
-                                            <p style="margin-bottom: 0.25rem;" >Hoá đơn #550</p>
+                                            <p style="margin-bottom: 0.25rem;" >Hoá đơn #{{$otp}}</p>
                                             <p style="color: #6c757d;">Gửi ngày: {{$currentTime}}</p>
                                         </div>
                                     </div>
@@ -30,10 +30,22 @@
 
                                         <div style="width: 50%; text-align: right;">
                                             <h3 style="margin-bottom: 1.5rem;font-size: calc(1.3rem + .6vw);">Chi Tiết Thanh Toán</h3>
-                                            <p style="margin-bottom: 0.25rem"><span style="color: #6c757d">LOẠI TIN: </span></p>
-                                            <p style="margin-bottom: 0.25rem"><span style="color: #6c757d">GÓI TIN: </span> 10253642</p>
+                                            <p style="margin-bottom: 0.25rem"><span style="color: #6c757d">LOẠI TIN: </span>{{$room->category->name ?? "[N\A]"}}</p>
+                                            <p style="margin-bottom: 0.25rem"><span style="color: #6c757d">GÓI TIN: </span> 
+                                                @if ($room->service_hot == 1)
+                                                <span style="color:#055699">Tin thường</span>
+                                                @elseif($room->service_hot == 2)
+                                                <span style="color:#055699">Tin Vip 3</span>
+                                                @elseif($room->service_hot == 3)
+                                                <span style="color:#f60">Tin Vip 2</span>
+                                                @elseif($room->service_hot == 4)
+                                                <span style="color:#ea2e9d">Tin Vip 1</span>
+                                                @else
+                                                <span style="color:#E13427">Tin Đặc biệt</span>
+                                                @endif
+                                            </p>
                                             <p style="margin-bottom: 0.25rem"><span style="color: #6c757d">Payment Type: </span> Root</p>
-                                            <p style="margin-bottom: 0.25rem"><span style="color: #6c757d">Name: </span> John Doe</p>
+                                            <p style="margin-bottom: 0.25rem"><span style="color: #6c757d">Họ và tên: </span> {{$user->name}}</p>
                                         </div>
                                     </div>
 
@@ -53,9 +65,15 @@
                                                 <tbody>
                                                     <tr>
                                                         <td style="padding: 0.5rem 0.5rem">#{{$room->id}}</td>
-                                                        <td style="padding: 0.5rem 0.5rem">{{$room->price}}</td>
-                                                        <td style="padding: 0.5rem 0.5rem">$7.55</td>
-                                                        <td style="padding: 0.5rem 0.5rem">$47.55</td>
+                                                        <td style="padding: 0.5rem 0.5rem">
+                                                            {{-- <img  class="img-responsive" src="{{ pare_url_file($room->avatar) }}"> --}}
+                                                            <img  class="img-responsive" src="{{asset('images/logo-datn.png')}}">    
+    
+                                                        </td>
+                                                        <td style="padding: 0.5rem 0.5rem">{{$room->name}}</td>
+                                                        <td style="padding: 0.5rem 0.5rem">{{number_format($room->price/1000000,1)}} triệu/tháng</td>
+                                                        <td style="padding: 0.5rem 0.5rem">{{$room->time_start}}</td>
+                                                        <td style="padding: 0.5rem 0.5rem">{{$room->time_stop}}</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -63,20 +81,7 @@
                                     </div>
 
                                     <div style="background-color: #212529;color: #fff;flex-direction: row-reverse;display: flex;padding: 1.5rem">
-                                        <div style="padding: 1rem 3rem;text-align: right;">
-                                            <div style="margin-bottom: 0.5rem">Grand Total</div>
-                                            <div style="font-size: calc(1.325rem + .9vw);line-height: 1.2;">$42.79</div>
-                                        </div>
-
-                                        <div style="padding: 1rem 3rem;text-align: right;">
-                                            <div style="margin-bottom: 0.5rem">Discount</div>
-                                            <div style="font-size: calc(1.325rem + .9vw);line-height: 1.2;">10%</div>
-                                        </div>
-
-                                        <div style="padding: 1rem 3rem;text-align: right;">
-                                            <div style="margin-bottom: 0.5rem">Sub - Total</div>
-                                            <div style="font-size: calc(1.325rem + .9vw);line-height: 1.2;">$47.55</div>
-                                        </div>
+                                       
                                     </div>
                                 </div>
                             </div>

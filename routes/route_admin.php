@@ -85,7 +85,14 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin',], function(){
     Route::group(['prefix' => 'user'],function(){
 
         Route::get('','AdminUserController@index')->name('get_admin.user.index');
+
         Route::get('delete/{id}', 'AdminUserController@delete')->name('get_admin.user.delete');
+
+        Route::get('lock/{id}', 'AdminUserController@lockuser')->name('get_admin.user.lock');
+
+        Route::get('unlock/{id}', 'AdminUserController@unlockuser')->name('get_admin.user.unlock');
+
+        Route::get('user-detail/{id}', 'AdminUserController@userdetail')->name('get_admin.user.detail');
 
     });
 

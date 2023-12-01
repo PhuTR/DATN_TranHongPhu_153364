@@ -21,7 +21,7 @@ Route::group(['namespace' => 'User', 'prefix' => 'user','middleware' => 'checkLo
     // Route::get('/resend-otp','UserProfileController@sendcode')->name('resendOtp');
 
     
-    Route::group(['prefix' => 'room'],function(){
+    Route::group(['prefix' => 'room','middleware' => 'checkUserStatus'],function(){
         Route::get('','UserRoomController@index')->name('get_user.room.home');
 
 

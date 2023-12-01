@@ -17,7 +17,7 @@ class AdminDashboardController extends Controller
         $totalPay             = PaymentHistory::select('id')->count();
         $totalRechargeHistory = RechargeHistory::select('id')->count();
         $users = User::orderByDesc('id')->limit(20)->get();
-        $paymentHistory = PaymentHistory::orderByDesc('id')->limit(20)->get();
+        $paymentHistory = PaymentHistory::orderByDesc('id')->paginate(10);
         $rechargeHistory = RechargeHistory::with('user:id,name')->orderByDesc('id')->where('status',2)->get();
         $listMonth = getListMonthsInYear();
     

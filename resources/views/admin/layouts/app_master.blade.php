@@ -47,7 +47,6 @@
         @include('admin.layouts.app_header')
         @yield('content_admin')
     </section>
-
     <script src="{{asset('asset_admin/js/jquery1-3.4.1.min.js')}}"></script>
     <script src="{{asset('asset_admin/js/popper1.min.js')}}"></script>
     <script src="{{asset('asset_admin/js/bootstrap1.min.js')}}"></script>
@@ -84,6 +83,7 @@
     <script src="{{asset('asset_admin/vendors/chart_am/chart-custom.js')}}"></script>
     <script src="{{asset('asset_admin/js/custom.js')}}"></script>
     <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+    
     {!! Toastr::message() !!}
   </body>
 
