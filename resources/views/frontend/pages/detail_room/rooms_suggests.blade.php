@@ -65,11 +65,7 @@
                 
                     <div style="padding-top: 0px" class="footer">
                         <a >
-                            @if(empty( $item->user->avatar) || is_null( $item->user->avatar) ||  $item->user->avatar == 'no-avatar.jpg') --}}
-                            <img id="avatar{{$item->id}}" class="author__img" id="output" src="{{ asset('images/no-avatar.jpg') }}">
-                            @else
-                            <img id="avatar{{$item->id}}" src="{{ asset('uploads/avatars/' . $item->user->avatar) }}" alt="" class="mr-2">
-                            @endif
+                            <img id="avatar{{$item->id}}" src="{{ pare_url_file($item->user->avatar) }}" alt="" class="mr-2">
                             <span  style="margin-top:0;float:none" id="username{{$item->id}}">{{$item->user->name ?? 'N\A'}}</span> 
                         </a>
                         <span id="time_start{{$item->id}}"><?php echo time_elapsed_string($item->time_start); ?></span>

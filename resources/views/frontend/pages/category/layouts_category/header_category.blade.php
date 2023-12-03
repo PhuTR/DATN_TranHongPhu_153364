@@ -22,13 +22,10 @@
                         <div class="header-user-menu user-menu ">
                             <div class="header-user-name">
                                 <span>
-                                    @if(empty(Auth::user()->avatar) || is_null(Auth::user()->avatar) || Auth::user()->avatar == 'no-avatar.jpg')
-                                    <img  class="author__img" id="output" src="{{ asset('images/no-avatar.jpg') }}">
-                                    @elseif( Str::startsWith(Auth::user()->avatar, 'avatar'))
-                                    <img  class="author__img" id="output" src="{{ asset('uploads/avatars/' . Auth::user()->avatar) }}">
-                                    @else
+                                    <img  class="author__img" id="output" src="{{ pare_url_file(Auth::user()->avatar) }}">
+                                    {{-- @else
                                     <img  class="author__img" id="output" src="{{ Auth::user()->avatar }}">
-                                    @endif
+                                    @endif --}}
                                 </span>
                                 Xin chào, {{Auth::user()->name ?? "..."}}!
                             </div>

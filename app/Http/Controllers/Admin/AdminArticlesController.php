@@ -40,23 +40,13 @@ class AdminArticlesController extends Controller
         $data['created_at'] = Carbon::now();
         $data['slug'] = Str::slug($request->name);
         // $data['status']     = Room::STATUS_EXPIRED;
-        if ($request->hasFile('avatar')){
-            $file = $request->file('avatar');
-            var_dump($file);
-            $exten = $file->getClientOriginalExtension();
-            if($exten != 'jpg' && $exten != 'png' && $exten !='jpeg' && $exten != 'JPG' && $exten != 'PNG' && $exten !='JPEG' )
-                return redirect('user/profile/index')->with('thongbao','Bạn chỉ được upload hình ảnh có định dạng JPG,JPEG hoặc PNG');
-            $Hinh = 'avatar123-'.$request->name.'-'.time().'.'.$exten;
-            while (file_exists('uploads/avatars/'.$Hinh)) {
-                 $Hinh = 'avatar123-'.$request->name.'-'.time().'.'.$exten;
+        if ($request->avatar) {
+            $file = upload_image('avatar');
+            if (isset($file) && $file['code'] == 1) {
+               $data['avatar'] = $file['name'];
             }
-            if(file_exists('uploads/avatar/'.$request->avatar))
-               unlink('uploads/avatars/'.$request->avatar);
-
-            $file->move('uploads/avatars',$Hinh);
-            $data['avatar'] = $Hinh;
         } 
-        dd($data);
+       
         $articles = Articles::create($data);
         if($articles){
             return redirect()->route('get_admin.article.index');
@@ -77,22 +67,12 @@ class AdminArticlesController extends Controller
         $data = $request->except('_token');
         $data['updated_at'] = Carbon::now();
         $data['slug'] = Str::slug($request->name);
-        if ($request->hasFile('avatar')){
-            $file = $request->file('avatar');
-            var_dump($file);
-            $exten = $file->getClientOriginalExtension();
-            if($exten != 'jpg' && $exten != 'png' && $exten !='jpeg' && $exten != 'JPG' && $exten != 'PNG' && $exten !='JPEG' )
-                return redirect('user/profile/index')->with('thongbao','Bạn chỉ được upload hình ảnh có định dạng JPG,JPEG hoặc PNG');
-            $Hinh = 'avatar123-'.$request->name.'-'.time().'.'.$exten;
-            while (file_exists('uploads/avatars/'.$Hinh)) {
-                 $Hinh = 'avatar123-'.$request->name.'-'.time().'.'.$exten;
+        if ($request->avatar) {
+            $file = upload_image('avatar');
+            if (isset($file) && $file['code'] == 1) {
+               $data['avatar'] = $file['name'];
             }
-            if(file_exists('uploads/avatar/'.$request->avatar))
-               unlink('uploads/avatars/'.$request->avatar);
-
-            $file->move('uploads/avatars',$Hinh);
-            $data['avatar'] = $Hinh;
-         }  
+        }  
 
         $article = Articles::where(['id' => $id])->update($data);
         if($article){

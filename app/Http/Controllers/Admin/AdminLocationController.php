@@ -90,25 +90,12 @@ class AdminLocationController extends Controller
             $data = $request->except('_token');
             $data['slug'] = Str::slug($request->name);
             $data['udpated_at'] = Carbon::now();
-            if ($request->hasFile('avatar')){
-                $file = $request->file('avatar');
-                var_dump($file);
-                $exten = $file->getClientOriginalExtension();
-                if($exten != 'jpg' && $exten != 'png' && $exten !='jpeg' && $exten != 'JPG' && $exten != 'PNG' && $exten !='JPEG' )
-                    return redirect('user/profile/index')->with('thongbao','Bạn chỉ được upload hình ảnh có định dạng JPG,JPEG hoặc PNG');
-                $Hinh = 'avatar123-'.$request->username.'-'.time().'.'.$exten;
-                while (file_exists('uploads/avatars/'.$Hinh)) {
-                     $Hinh = 'avatar123-'.$request->username.'-'.time().'.'.$exten;
+            if ($request->avatar) {
+                $file = upload_image('avatar');
+                if (isset($file) && $file['code'] == 1) {
+                    $data['avatar'] = $file['name'];
                 }
-                if(file_exists('uploads/avatar/'.$request->avatar))
-                   unlink('uploads/avatars/'.$request->avatar);
-    
-                $file->move('uploads/avatars',$Hinh);
-                $data['avatar'] = $Hinh;
-             }  
-
-
-
+            }  
             City::find($id)->update($data);
            
             return redirect()->route('get_admin.location.home');

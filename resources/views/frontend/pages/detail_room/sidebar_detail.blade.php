@@ -10,13 +10,7 @@
                 <div class="widget-boxed-body">
                     <div class="sidebar-widget author-widget2">
                         <div class="author-box clearfix">                           
-                                @if(empty($room->user->avatar) || is_null($room->user->avatar) || $room->user->avatar == 'no-avatar.jpg')
-                                    <img   class="author__img" id="output1" src="{{ asset('images/no-avatar.jpg') }}">
-                                @else
-                                    <img  class="author__img" id="output1" src="{{ asset('uploads/avatars/' . $room->user->avatar) }}">
-                                @endif
-
-                           
+                            <img  class="author__img" id="output1" src="{{ pare_url_file($room->user->avatar) }}"> 
                             <h4 class="author__title">{{$room->user->name ?? 'N\A'}}</h4>
                             <p class="author__meta"><i class="fa-solid fa-hashtag"></i>{{$room->user->id ?? 'N\A'}}</p>
                         </div>

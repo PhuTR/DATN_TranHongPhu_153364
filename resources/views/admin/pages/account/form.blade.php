@@ -21,63 +21,42 @@
                 <div class="white_card_header">
                   <div class="box_header m-0">
                     <div class="main-title">
+                      @if(isset($all_column_roles))
+                      <h3 class="m-0">Thông tin {{$all_column_roles->name}}</h3>
+                      @else
                       <h3 class="m-0">Thông tin quản trị viên</h3>
+                      @endif
                     </div>
                   </div>
                 </div>
-
-                <div class="col-md-6 col-lg-6 col-xl-4 box-col-6" style="margin:0 auto">
-                  <div class="card custom-card">
-                    <div class="card-profile">
-                        <img  style="width:150px" class="rounded-circle" id="output" src="{{ pare_url_file($admin->avatar) }}">
-                    </div>
-                    <div class="text-center profile-details">
-                      <h4>{{$admin->name}}</h4>
-                      <h5><i class="fa-solid fa-envelope icon"></i>{{$admin->email}}</h5>
-                      <h6><i class="fa-solid fa-phone icon"></i>{{$admin->phone}}</h6>
-                    </div>
-                  </div>
-                </div>
-                <div class="white_card_header">
-                  <div class="box_header m-0">
-                    <div class="main-title">
-                      <h3 class="m-0">Cập nhật thông tin quản trị viên</h3>
-                    </div>
-                  </div>
-                </div>
-                <form name="contact_form" action="{{route('get_admin.profile.edit')}}" method="POST" autocomplete="off" enctype="multipart/form-data">  
+                <form name="contact_form"  method="POST" autocomplete="off" enctype="multipart/form-data">  
                   @csrf
                   <div class="white_card_body">
                     <div class="row"> 
                         <div class="col-lg-6">
                           <div class="common_input mb_15">
-                            <label for="area">Mã quản trị viên</label>
-                            <input type="text" placeholder="id" name="id" value="#{{$admin->id}}"/>
-                          </div>
-                        </div>
-                        <div class="col-lg-6">
-                          <div class="common_input mb_15">
                             <label for="area">Tên hiển thị</label>
-                            <input type="text" placeholder="Tên hiển thị" name="name" value="{{$admin->name}}" />
+                            <input type="text" placeholder="Tên hiển thị" name="name" value="{{$admin->name ??''}}" />
                           </div>
                         </div>
                         <div class="col-lg-6">
                           <div class="common_input mb_15">
                             <label for="area">Số điện thoại</label>
-                            <input type="text" placeholder="Số điện thoại" value="{{$admin->phone}}" name="phone" disabled/>
-                            <a href="{{route('get_admin.profile.update_phone')}}">Đổi số điện thoại</a>
+                            <input type="text" placeholder="Số điện thoại" value="{{$admin->phone ??''}}" name="phone" />
+                            
                           </div>
                         </div>
                         <div class="col-lg-6">
-                          <div class="common_input mb_15">
+                          <div class="common_input mb_15 ">
                             <label for="area">Email</label>
-                            <input type="text" placeholder="Email" value="{{$admin->email}}" name="email" />
+                            <input type="text" placeholder="Email" value="{{$admin->email ??''}}" name="email" />
                           </div>
                         </div>
                         <div class="col-lg-6">
-                          <div class="common_input mb_15">
+                          <div class="common_input mb_15 position-relative">
                             <label for="area">Mật khẩu:</label>
-                            <a href="{{route('get_admin.profile.update_password')}}" style="margin-left:10%">Đổi mật khẩu</a>
+                            <input id="password" type="password" placeholder="password" value="" name="password" />
+                            <i id="togglePassword" class="fa-solid fa-eye-slash position-absolute" style="top:39px; right:12px;cursor: pointer;"></i>
                           </div>
                         </div>
                         <div class="col-lg-12">
@@ -85,7 +64,7 @@
                             <label for="area">Ảnh đại diện</label>
                             @if (isset($admin->avatar))
                             <div class="row" style="margin-bottom: 15px;display: flex">
-                              
+          
                                 <div class="col-sm-2" style="margin-right: 10px;">
                                     <a href="" style="display: block;">
                                         <img src="{{ pare_url_file($admin->avatar) }}" style="width: 300px;height: auto">
@@ -98,10 +77,42 @@
                               <input id="file-5" type="file" class="file" name="avatar"  multiple data-show-upload="false" data-show-caption="true" data-msg-placeholder="Select {files} for upload...">
                             </div>
                           </div>
+                          <div class="col-lg-12 d-flex" style="justify-content: space-between">
+                            @foreach ($roles as $item )
+                              @if (isset($all_column_roles))
+                                <div class="mb-3 form-check">
+                                  <input name="role" type="radio" {{$item->id==$all_column_roles->id ? 'checked' : ''}} class="form-check-input" id="{{$item->id}}" value="{{$item->name}}">
+                                  <label class="form-label form-check-label" for="{{$item->id}}">{{$item->name}}</label>
+                                </div>
+                              @else
+                                <div class="mb-3 form-check">
+                                  <input name="role" type="radio"  class="form-check-input" id="{{$item->id}}" value="{{$item->name}}">
+                                  <label class="form-label form-check-label" for="{{$item->id}}">{{$item->name}}</label>
+                                </div>
+                              @endif
+                              
+                            @endforeach
+                            
+                          </div>
+                          <div class="col-lg-12 d-flex" style="flex-wrap:wrap;" >
+                            @foreach ( $permissions as $item)
+                              <div class="mb-3 form-check" style="margin-right:70px">
+                                <input type="checkbox"  class="form-check-input" 
+                                  @foreach ( $get_permission_via_role as $get )
+                                    @if ($get->id == $item->id )
+                                        checked
+                                    @endif
+                                  @endforeach
+                                
+                                id="{{$item->id}}" value="{{$item->name}}">
+                                <label class="form-label form-check-label" for="{{$item->id}}">{{$item->name}}</label>
+                              </div>
+                            @endforeach
+                          </div>
                         </div>
                         <div class="col-6" style="margin: 0 auto">
                           <div class="create_report_btn mt_30">
-                            <button type="submit" class="btn btn-primary rounded-pill mb-3 col-12">Cập nhật thông tin</button >
+                            <button type="submit" class="btn btn-primary rounded-pill mb-3 col-12">Lưu thông tin thông tin</button >
                           </div>
                         </div>
                     </div>
@@ -120,5 +131,18 @@
     showUpload: false,
     allowedFileExtensions: ['jpg', 'png', 'gif']
   });
+</script>
+<script>
+    $(document).ready(function() {
+        const $togglePassword = $('#togglePassword');
+        const $password = $('#password');
+
+        $togglePassword.on('click', function() {
+          // Toggle the type attribute using prop() method
+          const type = $password.prop('type') === 'password' ? 'text' : 'password';
+          $password.prop('type', type);
+          $(this).toggleClass('fa-eye');
+        });
+    });
 </script>
 @endsection

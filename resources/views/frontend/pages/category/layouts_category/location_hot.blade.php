@@ -11,12 +11,7 @@
                     @else
                         <a href="{{route('get.room.by_city',['id' => $item->code, 'slug' => $item->slug])}}" class="img-box hover-effect" style="height: 180px">
                     @endif
-                        @if(empty($item->avatar) || is_null($item->avatar) || $item->avatar == 'no-avatar.jpg')
-                            <img   class="img-responsive" id="output1" src="{{ asset('images/no-avatar.jpg') }}">
-                        @else
-                            <img  class="img-responsive" id="output1" src="{{ asset('uploads/avatars/' . $item->avatar) }}">
-                        @endif
-                       
+                    <img  class="img-responsive" id="output1" src="{{ pare_url_file($item->avatar) }}">
                     </a>
                     <p class="txt-title">
                         @if(isset($category->name))

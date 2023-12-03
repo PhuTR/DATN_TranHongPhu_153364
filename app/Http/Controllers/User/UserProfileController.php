@@ -25,22 +25,12 @@ class UserProfileController extends Controller
         $user = User::find(Auth::user()->id);
         if(!$user) return abort(404);
         
-        if ($request->hasFile('avatar')){
-            $file = $request->file('avatar');
-            var_dump($file);
-            $exten = $file->getClientOriginalExtension();
-            if($exten != 'jpg' && $exten != 'png' && $exten !='jpeg' && $exten != 'JPG' && $exten != 'PNG' && $exten !='JPEG' )
-                return redirect('user/profile/index')->with('thongbao','Bạn chỉ được upload hình ảnh có định dạng JPG,JPEG hoặc PNG');
-            $Hinh = 'avatar-'.$user->username.'-'.time().'.'.$exten;
-            while (file_exists('uploads/avatars/'.$Hinh)) {
-                 $Hinh = 'avatar-'.$user->username.'-'.time().'.'.$exten;
+        if ($request->avatar) {
+            $file = upload_image('avatar');
+            if (isset($file) && $file['code'] == 1) {
+                $user->avatar = $file['name'];
             }
-            if(file_exists('uploads/avatar/'.$user->avatar))
-               unlink('uploads/avatars/'.$user->avatar);
-
-            $file->move('uploads/avatars',$Hinh);
-            $user->avatar = $Hinh;
-         }   
+        }   
         //  dd($request->hasFile('avatar'));
         $user->name = $request->name;
         $user->email = $request->email;

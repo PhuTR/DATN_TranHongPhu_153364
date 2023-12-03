@@ -6,13 +6,10 @@
             </a>
          </div>
         <div class="header clearfix">
-            @if(empty(Auth::user()->avatar) || is_null(Auth::user()->avatar) || Auth::user()->avatar == 'no-avatar.jpg')
-                <img  class="img-fluid profile-img" id="output" src="{{ asset('images/no-avatar.jpg') }}">
-            @elseif( Str::startsWith(Auth::user()->avatar, 'avatar'))
-                <img  class="img-fluid profile-img" id="output" src="{{ asset('uploads/avatars/' . Auth::user()->avatar) }}">
-            @else
+                <img  class="img-fluid profile-img" id="output" src="{{ pare_url_file(Auth::user()->avatar) }}">
+            {{-- @else
                 <img  class="img-fluid profile-img" id="output" src="{{ Auth::user()->avatar }}">
-            @endif
+            @endif --}}
         </div>
       
         <div class="active-user">

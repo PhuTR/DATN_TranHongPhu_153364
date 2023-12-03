@@ -2,14 +2,16 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
+use Exception;
+use App\Models\City;
+use App\Models\Role;
+use App\Models\Articles;
 use App\Models\Category;
 use App\Models\Location;
-use App\Models\Articles;
-use App\Models\City;
-use Illuminate\Support\Facades\View;
 use Illuminate\Pagination\Paginator;
-use Exception;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\ServiceProvider;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -33,7 +35,7 @@ class AppServiceProvider extends ServiceProvider
             $categoriesGlobal = Category::select('id','name','slug','status')->get();
             $locationsCity = City::select('id','code','name')->get();
             $articles = Articles::orderByDesc('id')->paginate(15);
-
+            
 
 
         }catch(Exception $e){

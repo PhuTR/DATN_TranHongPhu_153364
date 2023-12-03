@@ -51,7 +51,7 @@
                      
                       <div class="col-sm-2" style="margin-right: 10px;">
                           <a href="" style="display: block;">
-                              <img src="{{ asset('uploads/avatars/' . $article->avatar) }}" style="width: 300px;height: auto">
+                              <img src="{{ pare_url_file($article->avatar) }}" style="width: 300px;height: auto">
                           </a>
                       </div>
        

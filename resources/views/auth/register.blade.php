@@ -25,10 +25,10 @@
                     <input class="form-control-1" required type="text" name="phone">
                     <i class="ti-user"></i>
                 </div>
-                <div class="form-group">
+                <div class="form-group position-relative">
                     <label>Tạo mật khẩu</label>
-                    <input class="form-control-1" required type="password" id="password1" name="password">
-                    <i class="icon_lock_alt"></i>
+                    <input class="form-control-1" required type="password" id="password" name="password">
+                    <i id="togglePassword" class="fa-solid  fa-eye-slash position-absolute " style="top:45px; right:12px;cursor: pointer;"></i>
                 </div>
              
                 <div id="pass-info" class="clearfix"></div>

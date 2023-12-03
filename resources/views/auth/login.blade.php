@@ -19,10 +19,10 @@
                     <input type="text" class="form-control-1" required name="phone" id="phone">
                     <i class="icon_mail_alt"></i>
                 </div>
-                <div class="form-group">
+                <div class="form-group position-relative">
                     <label>Mật khẩu</label>
-                    <input type="password" class="form-control-1" required name="password" id="password" value="">
-                    <i class="icon_lock_alt"></i>
+                    <input id="password" type="password" class="form-control-1" required name="password"  value="">
+                    <i id="togglePassword" class="fa-solid  fa-eye-slash position-absolute " style="top:45px; right:12px;cursor: pointer;"></i>
                 </div>
                 <div class="fl-wrap filter-tags clearfix add_bottom_30">
                     <div class="float-right mt-1"><a id="forgot" href="{{route('get.forgotpassword')}}">Bạn quên mật khẩu?</a></div>

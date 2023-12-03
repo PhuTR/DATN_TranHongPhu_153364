@@ -96,7 +96,37 @@
               <span>Liên hệ khách hàng</span>
             </div>
           </a>
-      </li>
+        </li>
+        <li class>
+          <a href="{{route('get_admin.permission.index')}}" aria-expanded="false">
+            <div class="nav_icon_small">
+              <i class="fa-solid fa-user-shield"></i>
+            </div>
+            <div class="nav_title">
+              <span>Quản lý nhóm quyền</span>
+            </div>
+          </a>
+        </li>
+        <li class>
+          <a href="{{route('get_admin.role.index')}}" aria-expanded="false">
+            <div class="nav_icon_small">
+              <i class="fa-solid fa-clipboard-list"></i>
+            </div>
+            <div class="nav_title">
+              <span>Quản lý quyền</span>
+            </div>
+          </a>
+        </li>
+        <li class>
+          <a href="{{route('get_admin.account.index')}}" aria-expanded="false">
+            <div class="nav_icon_small">
+              <i class="fa-solid fa-users-gear"></i>
+            </div>
+            <div class="nav_title">
+              <span>Quản lý tài khoản</span>
+            </div>
+          </a>
+        </li>
         <li class>
             <a href="{{route('get_admin.profile.index')}}" aria-expanded="false">
               <div class="nav_icon_small">

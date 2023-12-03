@@ -134,6 +134,19 @@
             $('#change-item-favourite').html(response);
         }
     </script>
+    <script>
+        $(document).ready(function() {
+            const $togglePassword = $('#togglePassword');
+            const $password = $('#password');
+    
+            $togglePassword.on('click', function() {
+              // Toggle the type attribute using prop() method
+              const type = $password.prop('type') === 'password' ? 'text' : 'password';
+              $password.prop('type', type);
+              $(this).toggleClass('fa-eye');
+            });
+        });
+    </script>
    
 
 </body>

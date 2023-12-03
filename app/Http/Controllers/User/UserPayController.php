@@ -89,7 +89,6 @@ class UserPayController extends Controller
             $data['total_money'] = $data['money'];
             $data['type']        = 3;
             $data['code']        = generateRandomString(15) . $data['user_id'];
-           
             $rechargeHistory     = RechargeHistory::create($data);
             $this->createPaymentAtm($rechargeHistory);
         } catch (\Exception $exception) {
@@ -209,9 +208,7 @@ class UserPayController extends Controller
                 // Tiếp hành update code
                 $rechargeHistory->status = RechargeHistory::STATUS_SUCCESS;
                 $rechargeHistory->save();
-             
-                $user = User::find($rechargeHistory->user_id);
-             
+                    $user = User::find($rechargeHistory->user_id);
                 if (!$user) {
                     $rechargeHistory->note   = 'User không hợp lệ';
                     $rechargeHistory->status = RechargeHistory::STATUS_CANCEL;
@@ -227,7 +224,7 @@ class UserPayController extends Controller
                 }
                 DB::commit();
                 return  redirect()->route('get_user.pay.index_pay');
-            }
+					}
        
             switch ($statusCode) {
                 case "01":

@@ -42,7 +42,7 @@
                                 <div class="row" style="margin-bottom: 15px;display: flex">
                                     <div class="col-sm-2" style="margin-right: 10px;">
                                         <a href="" style="display: block;">
-                                            <img src="{{ asset('uploads/avatars/' . $city->avatar) }}" style="width: 300px;height: auto">
+                                            <img src="{{ pare_url_file($city->avatar) }}" style="width: 300px;height: auto">
                                         </a>
                                     </div>
                                 </div>

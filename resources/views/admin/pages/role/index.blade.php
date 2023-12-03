@@ -8,30 +8,19 @@
             <div class="col-12">
                 <div class="page_title_box d-flex flex-wrap align-items-center justify-content-between">
                   <div class="page_title_left d-flex align-items-center">
-                    <h3 class="f_s_25 f_w_700 dark_text mr_30">Danh sách tin tức</h3>
+                    <h3 class="f_s_25 f_w_700 dark_text mr_30">Danh sách </h3>
                     <ol class="breadcrumb page_bradcam mb-0">
                       <li class="breadcrumb-item">
                         <a href="{{route('get_admin.admin.dashbord')}}">Trang chính</a>
                       </li>
-                      <li class="breadcrumb-item active">Quản lý tin tức</li>
+                      <li class="breadcrumb-item active">Quản lý quyền</li>
                     </ol>
                   </div>
                 </div>
             </div>
             <div class="dashborad-box">
-                <div class="header-widget">
-                    <form action="" class="row">
-                        <div class="col-sm-3">
-                            <input type="text" placeholder="" value="{{ Request::get('n') }}" name="n" class="form-control">
-                        </div>
-                        <div class="col-sm-3">
-                            <button type="submit" class="btn btn-primary">Tìm kiếm</button>
-                        </div>
-                    </form>
-
-                </div>
-                <div class="btn-admin">
-                    <a class="text-white" href="{{route('get_admin.article.create')}}"  ><i class="fa-solid fa-circle-plus icon"></i>Thêm mới</a>
+                <div class=" btn-admin">
+                    <a href="{{route('get_admin.role.create')}}" class="text-white" ><i class="fa-solid fa-circle-plus icon"></i>Thêm mới</a>
                 </div>
                 <div class="section-body listing-table">
                     <div class="table-responsive">
@@ -39,28 +28,27 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Hình ảnh</th>
-                                    <th>Tiêu đề</th>
-                                    <th>Mô tả</th> 
+                                    <th>Tên</th>
+                                    <th>Quyền</th>
                                     <th>Ngày tạo</th>
-                                    <th>Tuỳ chọn</th>
-                                
+                                    <td>Tuỳ chọn</td>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($articles ?? [] as $item )
+                                @foreach ($roles ?? [] as $item )
                                 <tr>
                                     <td>{{$item->id}}</td>
-                                    <td>
-                                        <img src="{{ pare_url_file($item->avatar) }}" style="width:100px; height:100px; border-radius:4px" alt="">
-                                    </td>
-                                
                                     <td>{{$item->name}}</td>
-                                    <td style="max-width:400px">{{$item->description}}</td>
+                                    <td style="width:50%; line-height: 2" >
+                                        @foreach ($item->permissions as $permission )
+                                            <span style="background: green; color: #fff;  padding: 3px 10px;border-radius: 8px;">{{$permission->name}}</span>
+                                        @endforeach
+                                    </td>
                                     <td class="edit">{{$item->created_at}}</td>
                                     <td >
-                                        <a href="{{route('get_admin.article.edit',$item->id)}}"><i class="fa-regular fa-pen-to-square " style="margin-right: 20px"></i></a>
-                                        <a href="{{route('get_admin.article.delete',$item->id)}}"><i class="fa-solid fa-trash"></i></a>
+                                        <a href="{{route('get_admin.role.update',$item->id)}}" style="margin-right: 20px"><i class="fa-solid fa-pen-to-square"></i></a>
+                                        <a href="{{route('get_admin.role.delete',$item->id)}}"><i class="fa-solid fa-trash"></i></a>
+
                                     </td>
                                 </tr>
                                 @endforeach
@@ -72,7 +60,7 @@
                 </div>
                 <div class="pagination-container">
                     <nav>
-                    {{$articles->links()}}
+                    {{$roles->links()}}
                     </nav>
                 </div>
             </div>
