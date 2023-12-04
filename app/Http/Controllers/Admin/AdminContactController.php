@@ -28,4 +28,12 @@ class AdminContactController extends Controller
         Contact::find($id)->delete();
         return redirect()->back();
     }
+
+    public function contactview(Request $request){
+        $contact_id = $request->contact_id;
+        $contact = Contact::find($contact_id);
+        $output['contact_desc'] = $contact->content;
+        echo json_encode($output);
+
+    }
 }

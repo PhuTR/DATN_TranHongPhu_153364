@@ -157,6 +157,11 @@
                 <span  style="margin-top:0;float:none" id="username{{$item->id}}">{{$item->user->name ?? 'N\A'}}</span> 
             </a>
             <span id="time_start{{$item->id}}"><?php echo time_elapsed_string($item->time_start); ?></span>
+
+            <button type="button"  class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalLong2" >
+                Launch demo modal
+            </button>
         </div>
     </div>
 @endif
+@include('common.modal.modal_room')

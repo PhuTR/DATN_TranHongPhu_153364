@@ -42,11 +42,13 @@
                                     <th>Số điện thoại</th>
                                     <th>Nội dung</th>
                                     <th>Ngày tạo</th>
-                                    <th>Trạng thái</th>
+                                    <th>Tuỳ chọn</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($contact ?? [] as $item )
+                                <form autocomplete="off">
+                                    @csrf
                                 <tr>
                                     <td>{{$item->id}}</td> 
                                     <td>{{$item->ip_address}}</td>
@@ -56,10 +58,11 @@
                                     <td>{{$item->content}}</td>
                                     <td class="edit">{{$item->created_at}}</td>
                                     <td >
-                                        <a href="#"><i class="fa-regular fa-pen-to-square " style="margin-right: 20px"></i></a>
+                                        <a class="view_contact" type="button" data-bs-toggle="modal" data-bs-target="#exampleModalCenter" data-id_contact="{{$item->id}}"><i class="fa-solid fa-eye" style="margin-right: 20px"></i></a>
                                         <a href="{{route('get_admin.contact.delete',$item->id)}}"><i class="fa-solid fa-trash"></i></a>
                                     </td>
                                 </tr>
+                                </form>
                                 @endforeach
                                 
                             
@@ -67,6 +70,7 @@
                         </table>
                     </div>
                 </div>
+               
                 <div class="pagination-container">
                     <nav>
                     {{$contact->links()}}
@@ -80,5 +84,21 @@
     </div>
 </div>
 
-
+@include('admin.pages.common.modal')
+<script type="text/javascript">
+    $('.view_contact').click(function(){
+        var contact_id = $(this).data('id_contact');
+        var _token = $('input[name="_token"]').val();
+        console.log(_token);
+        $.ajax({
+            url:"{{url('admin/contact/contact-view')}}",
+            method:"POST",
+            dataType:"json",
+            data:{contact_id:contact_id, _token:_token},
+            success:function(data){
+                $('#description').html(data.contact_desc)
+            }
+        });
+    })
+</script>
 @endsection

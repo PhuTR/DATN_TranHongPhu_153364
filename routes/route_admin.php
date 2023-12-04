@@ -129,6 +129,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin',], function(){
 
         Route::get('','AdminContactController@index')->name('get_admin.contact.index');
         Route::get('delete/{id}', 'AdminContactController@delete')->name('get_admin.contact.delete');
+        Route::post('/contact-view','AdminContactController@contactview')->name('get_admin.contact.view');
 
     });
    

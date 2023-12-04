@@ -390,7 +390,6 @@
     $('.dashboard-filter').change(function(){
       var dashboard_value = $(this).val();
       var _token = $('input[name="_token"]').val();
-      
       $.ajax({
         url:"{{url('/admin/dashboard-filter')}}",
         method:"POST",
