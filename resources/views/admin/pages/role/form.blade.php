@@ -34,14 +34,23 @@
                         <div class="row">
                             <div class="col-lg-12">
                               <div class="common_input mb_15">
+                                @if(isset($roles))
                                   <input name="name" type="text" placeholder="Tên..." value="{{old('name',$roles->name ?? '')}}"/>
+                                @else
+                                  <input name="name" type="text" placeholder="Tên..." value=""/>
+                                @endif
+                                  
                               </div>
                             </div>
                             <div class="col-lg-12 d-flex" style="flex-wrap:wrap;" >
                               @foreach ( $permissions as $item)
                                 <div class="mb-3 form-check" style="margin-right:70px">
-                                  <input type="checkbox" name="permission[]" class="form-check-input" {{ $roles->hasPermissionTo($item->name) ? 'checked' : '' }} id="{{$item->id}}" value="{{$item->name}}">
-                                  <label class="form-label form-check-label" for="{{$item->id}}">{{$item->name}}</label>
+                                  @if (isset($role))
+                                    <input type="checkbox" name="permission[]" class="form-check-input" {{ $roles->hasPermissionTo($item->name) ? 'checked' : '' }} id="{{$item->id}}" value="{{$item->name}}">
+                                  @else
+                                    <input type="checkbox" name="permission[]" class="form-check-input"  id="{{$item->id}}" value="{{$item->name}}">
+                                  @endif
+                                    <label class="form-label form-check-label" for="{{$item->id}}">{{$item->name}}</label>
                                 </div>
                               @endforeach   
                             </div>

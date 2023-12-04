@@ -14,8 +14,10 @@ class Authenticate extends Middleware
      */
     protected function redirectTo($request)
     {
-        if (! $request->expectsJson()) {
-            return route('login');
+        if (! $request->expectsJson() && $request->routeIs('get_admin.*')) {
+            return route('get_admin.login'); // Đổi 'admin.login' thành tên tuyến đăng nhập cho guard 'admins'
         }
+
+        return route('login');
     }
 }

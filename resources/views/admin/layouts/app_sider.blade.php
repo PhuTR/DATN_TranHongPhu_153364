@@ -17,6 +17,7 @@
               </div>
             </a>
         </li>
+        @role('SupperAdmin|CTV','admins')
         <li class>
             <a href="{{route('get_admin.room.index')}}" aria-expanded="false">
               <div class="nav_icon_small">
@@ -26,7 +27,7 @@
                 <span>Quản lý bài đăng</span>
               </div>
             </a>
-        </li>
+        </li> 
         <li class>
             <a href="{{route('get_admin.user.index')}}" aria-expanded="false">
               <div class="nav_icon_small">
@@ -37,6 +38,8 @@
               </div>
             </a>
         </li>
+        @endrole
+        @role('SupperAdmin','admins')
         <li class>
             <a href="{{route('get_admin.pay.paymet_history')}}" aria-expanded="false">
               <div class="nav_icon_small">
@@ -57,6 +60,7 @@
               </div>
             </a>
         </li>
+        @endrole
         <li class>
             <a href="{{route('get_admin.category.index')}}" aria-expanded="false">
               <div class="nav_icon_small">
@@ -67,7 +71,8 @@
               </div>
             </a>
         </li>
-        <li class>
+        @role('SupperAdmin|CTV','admins')
+          <li class>
             <a href="{{route('get_admin.location.home')}}" aria-expanded="false">
               <div class="nav_icon_small">
                 <i class="fa-solid fa-location-dot"></i>
@@ -76,7 +81,9 @@
                 <span>Quản lý địa điểm</span>
               </div>
             </a>
-        </li>
+          </li>
+        @endrole
+        @role('SupperAdmin|CTV|CTV bài viết','admins')
         <li class>
             <a href="{{route('get_admin.article.index')}}" aria-expanded="false">
               <div class="nav_icon_small">
@@ -87,6 +94,8 @@
               </div>
             </a>
         </li>
+        @endrole
+        @role('SupperAdmin|CTV','admins')
         <li class>
           <a href="{{route('get_admin.contact.index')}}" aria-expanded="false">
             <div class="nav_icon_small">
@@ -97,13 +106,15 @@
             </div>
           </a>
         </li>
+        @endrole
+        @role('SupperAdmin|Thêm permission','admins')
         <li class>
           <a href="{{route('get_admin.permission.index')}}" aria-expanded="false">
             <div class="nav_icon_small">
               <i class="fa-solid fa-user-shield"></i>
             </div>
             <div class="nav_title">
-              <span>Quản lý nhóm quyền</span>
+              <span>Quản lý quyền</span>
             </div>
           </a>
         </li>
@@ -113,10 +124,12 @@
               <i class="fa-solid fa-clipboard-list"></i>
             </div>
             <div class="nav_title">
-              <span>Quản lý quyền</span>
+              <span>Quản lý nhóm quyền</span>
             </div>
           </a>
         </li>
+        @endrole
+        @role('SupperAdmin','admins')
         <li class>
           <a href="{{route('get_admin.account.index')}}" aria-expanded="false">
             <div class="nav_icon_small">
@@ -127,6 +140,7 @@
             </div>
           </a>
         </li>
+        @endrole
         <li class>
             <a href="{{route('get_admin.profile.index')}}" aria-expanded="false">
               <div class="nav_icon_small">

@@ -30,7 +30,7 @@
                                     <th>#</th>
                                     <th>Tên</th>
                                     <th>Guest</th>
-                                    <th>Group</th>
+                                   
                                     <th>Ngày tạo</th>
                                     <td>Tuỳ chọn</td>
                                 </tr>
@@ -41,7 +41,7 @@
                                     <td>{{$item->id}}</td>
                                     <td>{{$item->name}}</td>
                                     <td>{{$item->guard_name}}</td>
-                                    <td>{{$item->type}}</td>
+                                   
                                     <td class="edit">{{$item->created_at}}</td>
                                     <td >
                                         <a href="{{route('get_admin.permission.update',$item->id)}}" style="margin-right: 20px"><i class="fa-solid fa-pen-to-square"></i></a>

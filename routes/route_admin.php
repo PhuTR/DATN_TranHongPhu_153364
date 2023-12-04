@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin',], function(){
     
@@ -13,12 +13,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin',], function(){
     
     Route::get('dang-xuat.html','LoginAdminController@logout')->name('get_admin.logout');
 
-    // Route::group(['middleware' => ['permission: 12']], function () {
-    //     Route::get('home','AdminDashboardController@index')->name('get_admin.admin.dashbord');
-    // });
-    
-
-    Route::get('home','AdminDashboardController@index')->name('get_admin.admin.dashbord');
+    Route::get('home','AdminDashboardController@index')->name('get_admin.admin.dashbord')->middleware('role:SupperAdmin');
     Route::post('filter-by-date','AdminDashboardController@filter_by_date');
 
     Route::post('days-order','AdminDashboardController@days_order');
@@ -35,8 +30,9 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin',], function(){
     Route::get('cap-nhat-so-dien-thoai.html','AdminProfileController@updatePhone')->name('get_admin.profile.update_phone');
     Route::post('cap-nhat-so-dien-thoai.html','AdminProfileController@processUpdate');
 
+    Route::get('khong-co-quyen-truy-cap.html','AdminDashboardController@inaccessible')->name('get_admin.inaccessible');
 
-    Route::group(['prefix' => 'location'],function(){
+    Route::group(['prefix' => 'location','middleware'=>['role:SupperAdmin|CTV']],function(){
 
         Route::get('','AdminLocationController@index')->name('get_admin.location.home');
 
@@ -51,7 +47,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin',], function(){
     });
 
 
-    Route::group(['prefix' => 'category'],function(){
+    Route::group(['prefix' => 'category','middleware'=>['role:SupperAdmin|CTV']],function(){
 
         Route::get('','AdminCategoryController@index')->name('get_admin.category.index');
 
@@ -66,7 +62,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin',], function(){
     });
 
 
-    Route::group(['prefix' => 'room'],function(){
+    Route::group(['prefix' => 'room','middleware'=>['role:SupperAdmin|CTV']],function(){
 
         Route::get('','AdminRoomController@index')->name('get_admin.room.index');
 
@@ -86,7 +82,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin',], function(){
 
 
    
-    Route::group(['prefix' => 'user'],function(){
+    Route::group(['prefix' => 'user','middleware'=>['role:SupperAdmin|CTV']],function(){
 
         Route::get('','AdminUserController@index')->name('get_admin.user.index');
 
@@ -101,7 +97,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin',], function(){
     });
 
 
-    Route::group(['prefix' => 'pay'],function(){
+    Route::group(['prefix' => 'pay','middleware'=>['role:SupperAdmin']],function(){
         Route::get('depposit-history','AdminPayController@deposit_history')->name('get_admin.pay.deposit_history');
         Route::get('payment-history','AdminPayController@payment_history')->name('get_admin.pay.paymet_history');
 
@@ -114,7 +110,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin',], function(){
 
     });
 
-    Route::group(['prefix' => 'article'],function(){
+    Route::group(['prefix' => 'article','middleware'=>['role:SupperAdmin|CTV|CTV bài viết']],function(){
 
         Route::get('','AdminArticlesController@index')->name('get_admin.article.index');
 
@@ -129,14 +125,14 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin',], function(){
 
     });
 
-    Route::group(['prefix' => 'contact'],function(){
+    Route::group(['prefix' => 'contact','middleware'=>['role:SupperAdmin|CTV']],function(){
 
         Route::get('','AdminContactController@index')->name('get_admin.contact.index');
         Route::get('delete/{id}', 'AdminContactController@delete')->name('get_admin.contact.delete');
 
     });
    
-    Route::group(['prefix' => 'permission'],function(){
+    Route::group(['prefix' => 'permission','middleware'=>['role:SupperAdmin|Thêm permission']],function(){
 
         Route::get('','AdminPermissionController@index')->name('get_admin.permission.index');
 
@@ -150,7 +146,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin',], function(){
 
     });
 
-    Route::group(['prefix' => 'role'],function(){
+    Route::group(['prefix' => 'role','middleware'=>['role:SupperAdmin|Thêm permission']],function(){
 
         Route::get('','AdminRoleController@index')->name('get_admin.role.index');
 
@@ -164,7 +160,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin',], function(){
 
     });
 
-    Route::group(['prefix' => 'account'],function(){
+    Route::group(['prefix' => 'account','middleware'=>['role:SupperAdmin|CTV']],function(){
 
         Route::get('','AdminAccountController@index')->name('get_admin.account.index');
 

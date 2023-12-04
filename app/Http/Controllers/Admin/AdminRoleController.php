@@ -29,9 +29,9 @@ class AdminRoleController extends Controller
 
     public function create(){
         
-      
+        $permissions = Permission::orderByDesc('id')->get();
         $viewData = [
-          
+            'permissions' => $permissions,
         ];
         return view('admin.pages.role.create',$viewData);
     }
@@ -41,7 +41,11 @@ class AdminRoleController extends Controller
             $data = $request->except('_token');
             $data['guard_name'] = 'admins';
             $data['created_at'] = Carbon::now();
-            Role::create($data);
+            $role = Role::create(['name' => $request->name, 'guard_name' => 'admins']);
+            $permissions = $data['permission'];
+            if (!empty($permissions)) {
+                $role->syncPermissions($permissions);
+            }
             return redirect()->route('get_admin.role.index');
             
         }catch(Exception $e){
@@ -53,8 +57,6 @@ class AdminRoleController extends Controller
     public function edit($id){
         $roles = Role::find($id);
         $permissions = Permission::orderByDesc('id')->get();
-        // $get_permission_via_role = $roles->getPermissionsViaRoles();
-        // dd($get_permission_via_role);
         $viewData = [
             'permissions' => $permissions,
             'roles' => $roles, 

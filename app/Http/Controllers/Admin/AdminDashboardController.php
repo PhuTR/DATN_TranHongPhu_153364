@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Models\PaymentHistory;
-use App\Models\RechargeHistory;
+use Carbon\Carbon;
 use App\Models\Room;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Carbon\Carbon;
+use App\Models\PaymentHistory;
+use App\Models\RechargeHistory;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+
 class AdminDashboardController extends Controller
 {
     public function index(){
+
         $totalUser            = User::select('id')->count();
         $totalRoom            = Room::select('id')->count();
         $totalPay             = PaymentHistory::select('id')->count();
@@ -296,6 +299,10 @@ class AdminDashboardController extends Controller
         
         }
 
+    }
+
+    public function inaccessible(){
+        return view('admin.pages.inaccessible.index');
     }
     
 }
