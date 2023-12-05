@@ -94,6 +94,8 @@ Route::group(['namespace' => 'Frontend'], function(){
     // Route::get('test-email','HomeController@testEmail');
 //lock account
     Route::get('khong-the-truy-cap-trang-nay.html','HomeController@lockaccount')->name('get.home.lockaccount');
+//modal room
+    Route::post('/view-room','HomeController@viewroom')->name('get.viewroom');
 });
 
 

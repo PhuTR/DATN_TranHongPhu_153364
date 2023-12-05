@@ -33,13 +33,14 @@
     <link rel="stylesheet" id="color" href="{{asset('css/default.css')}}">
     <script src='https://cdn.jsdelivr.net/npm/@goongmaps/goong-js@1.0.9/dist/goong-js.js'></script>
     <link href='https://cdn.jsdelivr.net/npm/@goongmaps/goong-js@1.0.9/dist/goong-js.css' rel='stylesheet' />
-   
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
    
 </head>
 <body class="inner-pages homepage-4 agents hp-6 full hd-white">
     <div id="wrapper" >
         @include('frontend.pages.category.layouts_category.header_category')
           @yield('content_category')
+          @include('common.modal.modal_room')   
         @include('frontend.pages.category.layouts_category.footer_category')
     </div>
 
@@ -148,6 +149,29 @@
         });
     </script>
    
-
+   {{-- modal room --}}
+   <script type="text/javascript">
+        $('.view_room').click(function(){
+            var room_id = $(this).data('id_room');
+            var _token = $('input[name="_token"]').val();
+            $.ajax({
+                url:"{{url('/view-room')}}",
+                method:"POST",
+                dataType:"json",
+                data:{room_id:room_id, _token:_token},
+                success:function(data){
+                    // console.log(data);
+                    $('#name').html(data.name)
+                    $('#address').html(data.address)
+                    $('#area').html(data.area)
+                    $('#price').html(data.price)
+                    $('#description').html(data.description)
+                    $('#star').html(data.star)
+                    $('#href').html(data.href)
+                    $('#images').html(data.image)
+                }
+            });
+        })
+    </script>
 </body>
 </html>
