@@ -66,17 +66,20 @@
                 </div>
                 <div class="row">
                     <?php 
-                    $arrmap =  json_decode($room->map,true);
+                    if (is_array(json_decode($room->map,true)) && count(json_decode($room->map,true)) >= 2) {
+                        $arrmap =  json_decode($room->map,true);
+                    }
+                    
                     ?>
                   
                     <div class="col-lg-4 col-md-12">
                         <p class="no-mb">
-                            <input hidden type="text" name="txtlat" placeholder="" id="txtlat" value="<?php echo $arrmap[0]?>">
+                            <input hidden type="text" name="txtlat" placeholder="" id="txtlat" value="<?php echo isset($arrmap) ? $arrmap[0] : ''; ?>">
                         </p>
                     </div>
                     <div class="col-lg-4 col-md-12">
                         <p class="no-mb last">
-                            <input hidden type="text" name="txtlng" placeholder="" id="txtlng" value="<?php echo $arrmap[1]?>">
+                            <input hidden type="text" name="txtlng" placeholder="" id="txtlng" value="<?php echo isset($arrmap) ? $arrmap[1] : ''; ?>">
                         </p>
                     </div>
                     <div class="col-lg-4 col-md-12">
@@ -205,7 +208,11 @@
              @foreach($images as $item)
              <div class="col-sm-2" style="margin-right: 10px;">
                  <a href="" style="display: block;">
-                     <img src="{{ pare_url_file($item->path) }}" style="width: 300px;height: auto">
+                    @if( Str::startsWith($item->path, 'https'))
+                        <img src="{{ ($item->path) }}" style="width: 300px;height: auto">
+                    @else
+                        <img src="{{ pare_url_file($item->path) }}" style="width: 300px;height: auto">
+                    @endif
                  </a>
              </div>
              @endforeach

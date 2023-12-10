@@ -6,8 +6,23 @@
                 <div class="project-inner project-head">
                     <div class="homes">
                         <!-- homes img -->
+                        @php
+                            $firstImage = $item->images->first();
+                        @endphp
                         <a href="{{route('get.category.detail',['slug' => $item->slug,'id' => $item->id])}}" class="homes-img">
-                            <img  class="img-responsive" id="output1{{$item->id}}" src="{{ pare_url_file($item->avatar) }}">
+                            @if (empty($item->avatar) || is_null($item->avatar))
+                                @if ($firstImage && !is_null($firstImage->path))
+                                    @if (Str::startsWith($firstImage->path, 'https'))
+                                    <img  class="img-responsive" id="output1{{$item->id}}" src="{{ ($firstImage->path) }}">
+                                    @else
+                                        <img  class="img-responsive" id="output1{{$item->id}}" src="{{ pare_url_file($firstImage->path) }}">
+                                    @endif
+                                @else
+                                    <img  class="img-responsive" id="output1{{$item->id}}" src="{{ pare_url_file($item->avatar) }}">
+                                @endif
+                            @else
+                                <img  class="img-responsive" id="output1{{$item->id}}" src="{{ pare_url_file($item->avatar) }}">
+                            @endif
                         </a>
                     </div>
                     <div class="button-effect">
@@ -72,8 +87,12 @@
             </ul>
             <div class="footer ">
                 <a>
-                    <img id="avatar{{$item->id}}" src="{{ pare_url_file($item->user->avatar) }}" alt="" class="mr-2">
-                    <span  style="margin-top:0;float:none" id="username{{$item->id}}">{{$item->user->name ?? 'N\A'}}</span> 
+                    @if( Str::startsWith($item->user->avatar, 'https'))
+                        <img id="avatar{{$item->id}}" src="{{ ($item->user->avatar) }}" alt="" class="mr-2">
+                    @else
+                        <img id="avatar{{$item->id}}" src="{{ pare_url_file($item->user->avatar) }}" alt="" class="mr-2">
+                    @endif
+                    <span  style="margin-top:0;float:none" id="username{{$item->id}}">{{$item->user->name ?? 'N\A'}}</span>
                 </a>
               
                 <a href="https://zalo.me/{{$item->user->phone ?? 'N\A'}}" target="_blank" class="btn-contact-zalo">Nhắn Zalo</a>
@@ -90,8 +109,23 @@
                 <div class="project-inner project-head" style="max-height:200px">
                     <div class="homes">
                         <!-- homes img -->
-                        <a href="single-property-1.html" class="homes-img" style="max-height:200px">
-                            <img style="max-height:200px"  class="img-responsive" id="output1{{$item->id}}" src="{{ pare_url_file($item->avatar) }}">
+                        @php
+                            $firstImage = $item->images->first();
+                        @endphp
+                        <a href="single-property-1.html" class="homes-img" style="max-height: 200px">
+                            @if (empty($item->avatar) || is_null($item->avatar))
+                                @if ($firstImage && !is_null($firstImage->path))
+                                    @if (Str::startsWith($firstImage->path, 'https'))
+                                        <img style="max-height: 200px" class="img-responsive" id="output1{{$item->id}}" src="{{ $firstImage->path }}"> 
+                                    @else
+                                        <img style="max-height: 200px" class="img-responsive" id="output1{{$item->id}}" src="{{ pare_url_file($firstImage->path) }}">
+                                    @endif
+                                @else
+                                    <img style="max-height: 200px" class="img-responsive" id="output1{{$item->id}}" src="{{ pare_url_file($item->avatar) }}">
+                                @endif
+                            @else
+                                <img style="max-height: 200px" class="img-responsive" id="output1{{$item->id}}" src="{{ pare_url_file($item->avatar) }}">
+                            @endif
                         </a>
                     </div>
                     <div class="button-effect">

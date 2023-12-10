@@ -44,6 +44,7 @@ class CategoryController extends Controller
         $room->save();
         $category = Category::all();
         $images     = DB::table('images')->where("room_id", $slug)->get();
+        // dd($images);
         $rooms_new = RoomService::getRoomsNewVip($limit =  10);
         $rooms_hot = RoomService::getListsRoomVip($limit = 6, [
             'service_hot' => 3,

@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use App\Models\Image;
 use Illuminate\Support\Arr;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Room extends Model
 {
@@ -75,5 +76,9 @@ class Room extends Model
     public function city()
     {
         return $this->belongsTo(City::class, 'city_id','code');
+    }
+    public function images()
+    {
+        return $this->hasMany(Image::class, 'room_id', 'id');
     }
 }

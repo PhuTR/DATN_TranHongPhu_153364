@@ -42,7 +42,7 @@
                 </div>
          
             <nav aria-label="..." class="pt-3">
-               {{$rooms->links()}}
+               {{-- {{$rooms->links()}} --}}
             </nav>
         </div>
     </section>

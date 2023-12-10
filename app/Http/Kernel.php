@@ -66,6 +66,7 @@ class Kernel extends HttpKernel
         'checkLoginUser' => \App\Http\Middleware\CheckLoginUser::class,
         'checkLoginAdmin' => \App\Http\Middleware\CheckLoginAdmin::class,
         'checkUserStatus' => \App\Http\Middleware\CheckUserStatus::class,
+        'checkUserPhone' => \App\Http\Middleware\CheckUserPhone::class,
         'role' => \Spatie\Permission\Middleware\RoleMiddleware::class,
         'permission' => \Spatie\Permission\Middleware\PermissionMiddleware::class,
         'role_or_permission' => \Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class,

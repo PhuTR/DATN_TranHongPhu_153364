@@ -14,6 +14,10 @@ class PageCategoryService
 {
     public static function index($id, Request $request)
     {
+        $room_expriry = Room::where('time_stop','<=',now())->get();
+        foreach ($room_expriry as $room) {
+            $room->update(['status' => Room::STATUS_EXPIRED,'service_hot' => 0]);
+        }
         $category = Category::find($id);
         $locaties = City::where('hot',1)->get();
        

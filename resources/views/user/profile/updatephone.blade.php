@@ -7,10 +7,10 @@
      </div>
      <div class="sidebar-widget author-widget2">
          <div class="author-box clearfix">
-            @if(empty(Auth::user()->avatar) || is_null(Auth::user()->avatar) || Auth::user()->avatar == 'no-avatar.jpg')
-                <img   class="author__img" id="output" src="{{ asset('images/no-avatar.jpg') }}">
+            @if( Str::startsWith(Auth::user()->avatar, 'https'))
+                <img   class="author__img" id="output" src="{{ Auth::user()->avatar }}">
             @else
-                <img   class="author__img" id="output" src="{{ asset('uploads/avatars/' . Auth::user()->avatar) }}">
+                <img   class="author__img" id="output" src="{{ pare_url_file(Auth::user()->avatar) }}">
             @endif
              {{-- <img src="{{asset('images/testimonials/ts-1.jpg')}}" alt="author-image" class="author__img"> --}}
              <h4 class="author__title" >{{$user->name}}</h4>

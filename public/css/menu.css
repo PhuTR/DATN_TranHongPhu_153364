@@ -1,7 +1,45 @@
 /* ---------------------------------- */
 /* Header
 ------------------------------------- */
-
+#calculated-area{
+    display: flex;
+}
+.calculation-box {
+    
+    top:0;
+    height: 120px;
+    width: 300px;
+    position: absolute;
+    bottom: 40px;
+    left: 10px;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 15px;
+    
+}
+.detail-expired{
+    display: flex;
+    align-items: center;
+    margin: 0 0 10px;
+    padding: 15px;
+    color: red;
+    border-radius: 5px;
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+}
+.detail-expired p{
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: bold;
+    display: inline-block;
+}
+.icon-megaphone{
+    width: 30px;
+    height: 30px;
+    background: url(https://phongtro123.com/images/megaphone.svg) center no-repeat;
+    background-size: contain;
+    display: inline-block;
+    margin-right: 10px;
+}
 .chothuenhanh-label{
     width: 90px;
     height: 90px;

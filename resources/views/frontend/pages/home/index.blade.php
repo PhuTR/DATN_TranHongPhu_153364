@@ -21,14 +21,14 @@
                                     </div>
                                     <div class="text-heading text-left">
                                         <p class="font-weight-bold mb-0 mt-3" style="font-size:18px;">Sắp xếp:
-                                            <a class="sort-link active" href="">Mặc định</a>
-                                            <a class="sort-link" href="">Mới nhất</a>
-                                            <a class="sort-link" href="">Xem nhiều nhất</a>
+                                            <a class="sort-link df" href="?sort=desc">Mặc định</a>
+                                            <a class="sort-link" href="?new=asc">Mới nhất</a>
+                                            <a class="sort-link" href="?view=desc">Xem nhiều nhất</a>
                                         </p>
+                                        
                                     </div>
                                 </div>
                             </div>
-                            
                          
                         </div>
                     </section>
@@ -53,29 +53,31 @@
     </section>
   
     <<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
     <script type="text/javascript">
+        $(document).ready(function() {
+            var active = location.search;
+            if(active == ''||active =='?sort=desc'){
+                $('.sort-link.df').addClass('active');
+            }
+            console.log(active);
+            $('.sort-link[href="' + active + '"]').addClass('active');
+         })
+
         $(document).ready(function() {
             var sortLinks = $('.sort-link');
 
             sortLinks.on('click', function(e) {
                 e.preventDefault();
-                var selectedValue = $(this).index() + 1; 
-                if (selectedValue == 1) {
-                    window.location.href = '?sort=desc'; 
-                    // $('.sort-link').removeClass('active');
-                } else if (selectedValue == 2) {
-                    window.location.href = '?sort=asc'; 
-                    // $('.sort-link').addClass('active');
-                }
-                else if (selectedValue == 3) {
-                    window.location.href = '?sort=desc'; 
-                    // $('.sort-link').addClass('active');
+                var selectedValue = $(this).attr('href');
+                if(selectedValue !=0){
+                    var url = selectedValue;
+                    window.location.replace(url);
+                }else{
+                    alert('Please select');
                 }
             });
         });
-    </script>
-        
+    </script>        
 
     
 @endsection

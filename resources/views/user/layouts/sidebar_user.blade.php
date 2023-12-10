@@ -6,10 +6,11 @@
             </a>
          </div>
         <div class="header clearfix">
+            @if( Str::startsWith(Auth::user()->avatar, 'https'))
+                <img  class="img-fluid profile-img" id="output" src="{{ (Auth::user()->avatar) }}">
+            @else
                 <img  class="img-fluid profile-img" id="output" src="{{ pare_url_file(Auth::user()->avatar) }}">
-            {{-- @else
-                <img  class="img-fluid profile-img" id="output" src="{{ Auth::user()->avatar }}">
-            @endif --}}
+            @endif
         </div>
       
         <div class="active-user">

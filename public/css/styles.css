@@ -15207,7 +15207,10 @@ a.button {
   z-index: 99999;
   width: auto;
 }
-
+.inner-pages .nice-select.open .list {
+  height: 300px;
+  overflow: scroll;
+}
 @media screen and (max-width: 1024px) {
   .single.detail-wrapper.grid {
     margin-left: 10rem;
@@ -17374,6 +17377,7 @@ div.datedropper.my-style.picker-lkd .pick-submit {
 }
 
 .contact-map {
+  position: relative;
   width: 100%;
   height: 400px;
 }
@@ -18348,7 +18352,7 @@ ul.the-agents-details li a {
 }
 
 section.single-proper.details {
-  padding: 6rem 0 !important;
+  padding: 3rem 0 !important;
 }
 
 .agents.det .portfolio {

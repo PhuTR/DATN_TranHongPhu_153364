@@ -6,6 +6,15 @@
         <section class="single-proper blog details">
            
             <div class="container">
+                @if($room->status == -2)
+                    <div class="row">
+                        <div class="detail-expired col-12">
+                            <i class="icon-megaphone"></i>
+                            <p>Bạn đang xem tin cũ tại DATN, tin đăng này đã hết hạn.</p>
+                        </div>  
+                    </div>
+                @endif
+                
                 <section class="headings-2 pt-0 pb-0">
                     <div class="pro-wrapper">
                         <div class="detail-wrapper-body">
@@ -59,38 +68,45 @@
                                     </div>
                                 </section>
                                 <!-- main slider carousel items -->
-                                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                                    <ol class="carousel-indicators">
-                                        @foreach ($images as $key => $item)
-                                            <li data-target="#carouselExampleIndicators" data-slide-to="{{ $key }}" class="{{ $key === 0 ? 'active' : '' }}"></li>
-                                        @endforeach
-                                    </ol>
-                                    <div class="carousel-inner carus" role="listbox">
-                                        @foreach ($images as $key => $item)
-                                            <div class="carousel-item{{ $key === 0 ? ' active' : '' }}">
-                                                <img class="d-block img-fluid fixed-size" src="{{ pare_url_file($item->path) }}" alt="Slide {{ $key + 1 }}">
-                                            </div>
-                                        @endforeach
-                                    </div>
+                                @if($images->isNotEmpty())
+                                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                                        <ol class="carousel-indicators">
+                                            @foreach ($images as $key => $item)
+                                                <li data-target="#carouselExampleIndicators" data-slide-to="{{ $key }}" class="{{ $key === 0 ? 'active' : '' }}"></li>
+                                            @endforeach
+                                        </ol>
+                                        <div class="carousel-inner carus" role="listbox">
+                                            @foreach ($images as $key => $item)
+                                                <div class="carousel-item{{ $key === 0 ? ' active' : '' }}">
+                                                    @if( Str::startsWith($item->path, 'https'))
+                                                        <img class="d-block img-fluid fixed-size" src="{{ ($item->path) }}" alt="Slide {{ $key + 1 }}">
+                                                    @else
+                                                        <img class="d-block img-fluid fixed-size" src="{{ pare_url_file($item->path) }}" alt="Slide {{ $key + 1 }}">
+                                                    @endif
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                        
+                                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                        @php
+                                            $timeStart = \Carbon\Carbon::parse($room->time_start);
+                                            $timeStop = \Carbon\Carbon::parse($room->time_stop);
+                                            $daysDifference = $timeStop->diffInDays($timeStart);
+                                        @endphp
+                                        @if ($daysDifference<=5)
+                                        <span class="chothuenhanh-label"></span>
+                                        @endif
                                     
-                                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                        <span class="sr-only">Previous</span>
-                                    </a>
-                                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                        <span class="sr-only">Next</span>
-                                    </a>
-                                    @php
-                                        $timeStart = \Carbon\Carbon::parse($room->time_start);
-                                        $timeStop = \Carbon\Carbon::parse($room->time_stop);
-                                        $daysDifference = $timeStop->diffInDays($timeStart);
-                                    @endphp
-                                    @if ($daysDifference<=5)
-                                    <span class="chothuenhanh-label"></span>
-                                    @endif
-                                   
-                                </div>
+                                    </div>
+                                @endif
+                                
                                 
                                 <!-- cars content -->
                                 <div class="homes-content details-2 mb-4">
@@ -208,7 +224,14 @@
                         <div class="property-location map">
                             <h5>Bản đồ</h5>
                             <label for="">Địa chỉ: {{$room->full_address}}</label>
-                            <div id='map' class="contact-map"></div>
+                            <div id='map' class="contact-map">
+                                <div class="calculation-box">
+                                    <div id="calculated-area">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            
                             <p >Bạn đang xem nội dung tin đăng: "{{$room->name}} - Mã tin: {{$room->id}}". 
                                 Mọi thông tin liên quan đến tin đăng này chỉ mang tính chất tham khảo. Nếu bạn có phản hồi với tin đăng này (báo xấu, tin đã cho thuê, không liên lạc được,...), 
                                 vui lòng thông báo để có thể xử lý.

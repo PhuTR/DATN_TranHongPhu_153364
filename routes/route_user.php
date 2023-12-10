@@ -10,7 +10,8 @@ Route::group(['namespace' => 'User', 'prefix' => 'user','middleware' => 'checkLo
     Route::get('cap-nhat-so-dien-thoai.html','UserProfileController@updatePhone')->name('get_user.profile.update_phone');
     Route::post('cap-nhat-so-dien-thoai.html','UserProfileController@processUpdate');
 
-    
+    Route::get('them-so-dien-thoai.html','UserProfileController@createphone')->name('get_user.profile.create_phone');
+    Route::post('them-so-dien-thoai.html','UserProfileController@postphone');
 
     Route::get('doi-mat-khau.html','UserProfileController@updatePassword')->name('get_user.profile.update_password');
     Route::post('doi-mat-khau.html','UserProfileController@changeUpdate');
@@ -24,12 +25,15 @@ Route::group(['namespace' => 'User', 'prefix' => 'user','middleware' => 'checkLo
     Route::group(['prefix' => 'room','middleware' => 'checkUserStatus'],function(){
         Route::get('','UserRoomController@index')->name('get_user.room.home');
 
+        Route::group(['middleware' => 'checkUserPhone'],function(){
+            Route::get('create','UserRoomController@create')->name('get_user.room.create');
+            Route::post('create','UserRoomController@store')->name('get_user.room.create_post');
+            Route::get('update/{id}','UserRoomController@edit')->name('get_user.room.update');
+            Route::post('update/{id}','UserRoomController@update')->name('get_user.room.edit_room');
+        });
+       
 
-        Route::get('create','UserRoomController@create')->name('get_user.room.create');
-        Route::post('create','UserRoomController@store')->name('get_user.room.create_post');
-
-        Route::get('update/{id}','UserRoomController@edit')->name('get_user.room.update');
-        Route::post('update/{id}','UserRoomController@update')->name('get_user.room.edit_room');
+        
 
         Route::get('district','UserRoomController@loadDistrict')->name('get_user.load.district');
         Route::get('wards','UserRoomController@loadWards')->name('get_user.load.wards');

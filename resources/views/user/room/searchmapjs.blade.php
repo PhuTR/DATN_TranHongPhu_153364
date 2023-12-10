@@ -46,7 +46,5 @@
           });
       }
   };
-  // const ad = 'Thành phố Hà Nội'
-  // console.log($ )
   initializeMap();
 </script>

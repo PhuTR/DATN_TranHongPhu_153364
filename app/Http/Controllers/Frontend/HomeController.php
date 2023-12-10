@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Models\Room;
 use App\Models\Location;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Page\PageHomeService;
 use App\Page\PageViewAllService;
@@ -37,11 +38,16 @@ class HomeController extends Controller
             $output['star'] .= '<i style="color: #fed553" class="fa fa-star"></i>';
         }
         
-
         foreach ($images as $key => $item) {
-            $output['image'] .= '<div class="' . ($key === 0 ? 'active' : '') . ' item carousel-item text-center">
-                <img style="width: 100%; height: 800px; border-radius: 0%" src="' . pare_url_file($item->path) . '" class="img-fluid" alt="slider-listing">
-            </div>';
+            $output['image'] .= '<div class="' . ($key === 0 ? 'active' : '') . ' item carousel-item text-center">';
+            
+            if (Str::startsWith($item->path, 'https')) {
+                $output['image'] .= '<img style="width: 80%; height: 600px; border-radius: 0%" src="' . ($item->path) . '" class="img-fluid" alt="slider-listing">';
+            }else{
+                $output['image'] .= '<img style="width: 80%; height: 600px; border-radius: 0%" src="' . pare_url_file($item->path) . '" class="img-fluid" alt="slider-listing">';
+            }
+            
+            $output['image'] .= '</div>';
         }
         
         $output['service_hot'] = $room->service_hot;

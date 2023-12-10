@@ -18,7 +18,7 @@
                                 </select>
                             </div>
                             
-                            <div class="rld-single-select ml-22">
+                            <div class="rld-single-select ml-22 scroll">
                                 <select class="select single-select " name="city_id">
                                     <option value="">Chọn thành phố</option>
                                     @foreach($locationsCity ?? [] as $item)

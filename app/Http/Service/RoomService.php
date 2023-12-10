@@ -70,7 +70,7 @@ class RoomService
     {
 
         $self = new self();
-        $rooms = Room::whereIn('status', [Room::STATUS_ACTIVE]);
+        $rooms = Room::whereIn('status', [Room::STATUS_ACTIVE,Room::STATUS_EXPIRED]);
 
         if ($categoryId = Arr::get($params, 'category_id')) {
             $rooms->where('category_id', $categoryId);
@@ -93,9 +93,29 @@ class RoomService
         if ($range_area = Arr::get($params, 'area')) {
             $rooms->where('range_area', $range_area);
         }
-        $orderBy = $request->input('sort', 'desc'); 
+
+        if(isset($_GET['sort'])){
+            $sort = $_GET['sort'];
+            $orderBy = $request->input( 'sort', $sort); 
+            $rooms = $rooms->select($self->column)->orderBy('service_hot', $orderBy)->paginate(10);
+        }elseif(isset($_GET['view'])){
+            $sort = $_GET['view'];
+            $orderBy = $request->input( 'sort', $sort); 
+            $rooms = $rooms->select($self->column)->orderBy('count_view', $orderBy)->paginate(10);
+        }elseif(isset($_GET['new'])){
+            $sort = $_GET['new'];
+            $orderBy = $request->input( 'sort', $sort); 
+            $rooms = $rooms->select($self->column)->orderBy('created_at', $orderBy)->paginate(10);
+        }
+        else{
+            $orderBy = $request->input('sort', 'desc'); 
+            $rooms = $rooms->select($self->column)->orderBy('service_hot', $orderBy)->paginate(10);
+        }
         
-        $rooms = $rooms->select($self->column)->orderBy('service_hot', $orderBy)->paginate(10);
+
+       
+        
+        
 
         return $rooms;
     }

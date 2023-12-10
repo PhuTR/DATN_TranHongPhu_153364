@@ -26,7 +26,6 @@ class User extends Authenticatable
     const STATUS_ACTIVE = 3; // đã duyệt
     const STATUS_CANCEL = -1; // huỷ bỏ
 
-
     protected $setStatus = [
         self::STATUS_DEFAULT => [
             'name' => 'Tài khoản đã bị khoá',

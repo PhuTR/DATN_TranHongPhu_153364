@@ -29,12 +29,7 @@
                         <div class="news-item news-item-sm">
                             <a href="{{route('get.articles.detail',['slug' => $item->slug,'id' => $item->id])}}" class="news-img-link">
                                 <div class="news-item-img">
-                                    @if(empty($item->avatar) || is_null($item->avatar) || $item->avatar == 'no-avatar.jpg')
-                                            <img src="{{ asset('images/no-avatar.jpg') }}" alt="home-1" class="resp-img">
-                                    @else
-                                            <img src="{{ asset('uploads/avatars/' . $item->avatar) }}" alt="home-1" class="resp-img">
-
-                                    @endif   
+                                    <img src="{{pare_url_file($item->avatar) }}" alt="home-1" class="resp-img">  
                                     {{-- <img class="resp-img" src="images/blog/b-1.jpg" alt="blog image"> --}}
                                 </div>
                             </a>

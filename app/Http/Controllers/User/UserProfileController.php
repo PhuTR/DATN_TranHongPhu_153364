@@ -1,18 +1,20 @@
 <?php
 
 namespace App\Http\Controllers\User;
-use Illuminate\Support\Facades\Storage;
+use App\Models\Code;
+use App\Models\User;
+use Illuminate\Http\Request;
+use App\Mail\VerificationMail;
 use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\UserCreatePhoneRequest;
 use App\Http\Requests\UserUpdatePhoneRequest;
 use App\Http\Requests\UserUpdatePasswordRequest;
-use App\Models\Code;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Http\Request;
-use App\Models\User;
-use Illuminate\Support\Facades\Auth;
-use Brian2694\Toastr\Facades\Toastr;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\VerificationMail;
+
 class UserProfileController extends Controller
 {
     public function index(){
@@ -112,6 +114,19 @@ class UserProfileController extends Controller
         Toastr::error('Mật khẩu không chính xác', 'Thất bại');
         return redirect()->back();
        
+    }
+
+    public function createphone(){
+        $user = User::find(Auth::user()->id);
+        if(!$user) return abort(404);
+        return view('user.profile.create_phone',compact('user'));
+    }
+    public function postphone(UserCreatePhoneRequest $request){
+        $user = User::find(Auth::user()->id);
+        $user->phone = $request->phone;
+        // dd($user->phone);
+        $user->save();
+        return redirect()->route('get_user.profile.index');
     }
 
 

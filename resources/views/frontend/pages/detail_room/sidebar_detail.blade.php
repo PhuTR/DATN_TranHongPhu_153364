@@ -9,8 +9,13 @@
                 </div>
                 <div class="widget-boxed-body">
                     <div class="sidebar-widget author-widget2">
-                        <div class="author-box clearfix">                           
-                            <img  class="author__img" id="output1" src="{{ pare_url_file($room->user->avatar) }}"> 
+                        <div class="author-box clearfix">
+                            @if( Str::startsWith($room->user->avatar, 'https'))
+                                <img  class="author__img" id="output1" src="{{ ($room->user->avatar) }}">
+                            @else
+                                <img  class="author__img" id="output1" src="{{ pare_url_file($room->user->avatar) }}">
+                            @endif
+                             
                             <h4 class="author__title">{{$room->user->name ?? 'N\A'}}</h4>
                             <p class="author__meta"><i class="fa-solid fa-hashtag"></i>{{$room->user->id ?? 'N\A'}}</p>
                         </div>

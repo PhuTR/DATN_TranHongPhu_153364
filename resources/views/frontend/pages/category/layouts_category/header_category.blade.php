@@ -22,10 +22,11 @@
                         <div class="header-user-menu user-menu ">
                             <div class="header-user-name">
                                 <span>
-                                    <img  class="author__img" id="output" src="{{ pare_url_file(Auth::user()->avatar) }}">
-                                    {{-- @else
-                                    <img  class="author__img" id="output" src="{{ Auth::user()->avatar }}">
-                                    @endif --}}
+                                    @if( Str::startsWith(Auth::user()->avatar, 'https'))
+                                        <img  class="author__img" id="output" src="{{ (Auth::user()->avatar) }}">
+                                    @else
+                                        <img  class="author__img" id="output" src="{{ pare_url_file(Auth::user()->avatar) }}">
+                                    @endif
                                 </span>
                                 Xin chào, {{Auth::user()->name ?? "..."}}!
                             </div>
