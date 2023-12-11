@@ -53,10 +53,10 @@
                                     <td>
                                         @if(empty($item->avatar) || is_null($item->avatar) || $item->avatar == 'no-avatar.jpg')
                                             <img  style="width:60px; height:60px; border-radius:50%" id="output" src="{{ asset('images/no-avatar.jpg') }}">
-                                        @elseif( Str::startsWith($item->avatar, 'avatar'))
-                                            <img  style="width:60px; height:60px; border-radius:50%" id="output" src="{{ asset('uploads/avatars/' . $item->avatar) }}">
+                                        @elseif( Str::startsWith($item->avatar, 'https'))
+                                            <img  style="width:60px; height:60px; border-radius:50%" id="output" src="{{ ($item->avatar) }}">
                                         @else
-                                            <img  style="width:60px; height:60px; border-radius:50%" id="output" src="{{ $item->avatar }}">
+                                            <img  style="width:60px; height:60px; border-radius:50%" id="output" src="{{ pare_url_file($item->avatar) }}">
                                         @endif
                                     </td>
                                     <td>

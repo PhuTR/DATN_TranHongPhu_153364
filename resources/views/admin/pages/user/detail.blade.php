@@ -31,10 +31,10 @@
                     <div class="card-profile">
                         @if(empty($user->avatar) || is_null($user->avatar) || $user->avatar == 'no-avatar.jpg')
                             <img  style="width:150px"   class="rounded-circle" id="output" src="{{ asset('images/no-avatar.jpg') }}">
-                        @elseif( Str::startsWith($user->avatar, 'avatar'))
-                            <img  style="width:150px"   class="rounded-circle" id="output" src="{{ asset('uploads/avatars/' . $user->avatar) }}">
+                        @elseif( Str::startsWith($user->avatar, 'https'))
+                            <img  style="width:150px"   class="rounded-circle" id="output" src="{{ ( $user->avatar) }}">
                         @else
-                            <img  style="width:150px"   class="rounded-circle" id="output" src="{{ $user->avatar }}">
+                            <img  style="width:150px"   class="rounded-circle" id="output" src="{{ pare_url_file($user->avatar) }}">
                         @endif
                     </div>
                     <div class="text-center profile-details">
@@ -75,10 +75,28 @@
                                                         </thead>
                                                         <tbody>
                                                             @foreach ($rooms ?? [] as $item )
+                                                            @php
+                                                                $firstImage = $item->images->first();
+                                                            @endphp
                                                             <tr>
                                                                 <td style="vertical-align: middle">{{$item->id}}</td>
                                                                 <td>
-                                                                        <img src="{{ pare_url_file($item->avatar) }}" style="width:80px; height:80px; border-radius:50%" alt="">
+                                                                  @if (empty($item->avatar) || is_null($item->avatar))
+                                                                      @if ($firstImage && !is_null($firstImage->path))
+                                                                          @if (Str::startsWith($firstImage->path, 'https'))
+                                                                            <img src="{{($firstImage->path) }}" style="width:80px; height:80px; border-radius:0%" alt="">
+                                                                           
+                                                                          @else
+                                                                          <img src="{{ pare_url_file($firstImage->path) }}" style="width:80px; height:80px; border-radius:0%" alt="">
+                                                                          @endif
+                                                                      @else
+                                                                          <img src="{{ pare_url_file($item->avatar) }}" style="width:80px; height:80px; border-radius:0%" alt="">
+                                                                        
+                                                                      @endif
+                                                                  @else
+                                                                      <img src="{{ pare_url_file($item->avatar) }}" style="width:80px; height:80px; border-radius:0%" alt="">
+                                                                  @endif
+                                                                      
                                                                 </td>
                                                                 <td style="vertical-align: middle; width:40%">
                                                                     <a href="{{route('get.category.detail',['slug' => $item->slug,'id' => $item->id])}}" target="_blank"
