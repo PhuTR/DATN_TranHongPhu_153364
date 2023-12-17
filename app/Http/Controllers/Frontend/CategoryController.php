@@ -54,7 +54,7 @@ class CategoryController extends Controller
 
         $roomsSuggests = RoomService::getListsRoom($request, $params = [
             'category_id'      => $room->category_id,
-            'city_id' => $room->city_id,
+            'district_id' => $room->district_id,
         ]);
 
         $viewData = [

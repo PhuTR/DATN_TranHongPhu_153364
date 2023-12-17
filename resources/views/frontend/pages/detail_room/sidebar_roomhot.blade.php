@@ -5,11 +5,26 @@
     <div >
         <div class="recent-post" style="line-height:1.3;">
             @foreach ($rooms_hot as $item )
+            @php
+                $firstImage = $item->images->first();
+            @endphp
             <div class="recent-main" style="border-bottom: 1px solid #eaeff5;margin-bottom:10px">
                 @if($item->service_hot >=5)
                     <div class="recent-img" style="background: #fff9f3">
                         <a href="{{route('get.category.detail',['slug' => $item->slug,'id' => $item->id])}}" >
-                            <img style="min-width: 90px; min-height:70px;border-radius:3px "  class="img-responsive" id="output1" src="{{ pare_url_file($item->avatar) }}">
+                            @if (empty($item->avatar) || is_null($item->avatar))
+                                @if ($firstImage && !is_null($firstImage->path))
+                                    @if (Str::startsWith($firstImage->path, 'https'))
+                                    <img style="min-width: 90px; min-height:70px;border-radius:3px "  class="img-responsive" id="output1{{$item->id}}" src="{{ ($firstImage->path) }}">
+                                    @else
+                                        <img style="min-width: 90px; min-height:70px;border-radius:3px "  class="img-responsive" id="output1{{$item->id}}" src="{{ pare_url_file($firstImage->path) }}">
+                                    @endif
+                                @else
+                                    <img style="min-width: 90px; min-height:70px;border-radius:3px "  class="img-responsive" id="output1" src="{{ pare_url_file($item->avatar) }}">
+                                @endif
+                            @else
+                                <img style="min-width: 90px; min-height:70px;border-radius:3px "  class="img-responsive" id="output1" src="{{ pare_url_file($item->avatar) }}">
+                            @endif
                         </a>
                     </div>
                     <div class="info-img" style="background: #fff9f3;width:100%">
@@ -27,7 +42,19 @@
                 @else
                     <div class="recent-img">
                         <a href="{{route('get.category.detail',['slug' => $item->slug,'id' => $item->id])}}" >
-                            <img style="min-width: 90px; min-height:70px;border-radius:3px "  class="img-responsive" id="output1" src="{{ pare_url_file($item->avatar) }}">
+                            @if (empty($item->avatar) || is_null($item->avatar))
+                                @if ($firstImage && !is_null($firstImage->path))
+                                    @if (Str::startsWith($firstImage->path, 'https'))
+                                    <img style="min-width: 90px; min-height:70px;border-radius:3px "  class="img-responsive" id="output1{{$item->id}}" src="{{ ($firstImage->path) }}">
+                                    @else
+                                        <img style="min-width: 90px; min-height:70px;border-radius:3px "  class="img-responsive" id="output1{{$item->id}}" src="{{ pare_url_file($firstImage->path) }}">
+                                    @endif
+                                @else
+                                    <img style="min-width: 90px; min-height:70px;border-radius:3px "  class="img-responsive" id="output1" src="{{ pare_url_file($item->avatar) }}">
+                                @endif
+                            @else
+                                <img style="min-width: 90px; min-height:70px;border-radius:3px "  class="img-responsive" id="output1" src="{{ pare_url_file($item->avatar) }}">
+                            @endif
                         </a>
                     </div>
                     <div class="info-img" style="width:100%">

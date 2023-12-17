@@ -214,7 +214,7 @@
                     </td>
                 </tr>
                  
-                <tr>
+                {{-- <tr>
                     <td>
                         <label for="">Giá tháng (30 ngày)</label>
                         <br>
@@ -245,7 +245,7 @@
                         <span style="color: #4caf50;">Giảm 25% chỉ còn</span>
                         <h5>45.000đ</h5>
                     </td>
-                </tr>
+                </tr> --}}
                  
                 <tr>
                     <td><label for="">Giá đẩy tin</label></td>
@@ -307,7 +307,7 @@
                 @for($i = 1 ; $i <= 5 ; $i ++)
                 <span style="color: #fed553;font-size:15px" class="fa fa-star"></span>
                 @endfor
-                <p><span style="color:#E13427;font-weight:bold">TIÊU ĐỀ IN HOA MÀU ĐỎ</span>, gắn biểu tượng 5 ngôi sao màu vàng và hiển thị to và nhiều hình hơn các tin khác. Nằm trên tất cả các tin khác, được hưởng nhiều ưu tiên và hiệu quả giao dịch cao nhất.</p>
+                <p><span style="color:#E13427;font-weight:bold">TIÊU ĐỀ IN HOA MÀU ĐỎ</span>, gắn biểu tượng 5 ngôi sao màu vàng và hiển thị to hơn các tin khác. Nằm trên tất cả các tin khác, được hưởng nhiều ưu tiên và hiệu quả giao dịch cao nhất.</p>
                 <p>Đồng thời xuất hiện đầu tiên ở mục tin nổi bật xuyên suốt khu vực chuyên mục đó</p>
                 <div class="img">
                     <img src="{{asset('uploads/img_demo/demo-vipnoibat.jpg')}}" alt="">
@@ -317,7 +317,7 @@
     
             <div class="vip"  >
                 <h5 style="margin-bottom: 0px" id="vip-1">Tin VIP 1</h5>
-                @for($i = 1 ; $i <= 5 ; $i ++)
+                @for($i = 1 ; $i <= 4 ; $i ++)
                 <span style="color: #fed553;font-size:15px" class="fa fa-star"></span>
                 @endfor
                 <p><span style="color:#ea2e9d;font-weight:bold">TIÊU ĐỀ IN HOA MÀU HỒNG</span>, gắn biểu tượng 4 ngôi sao màu vàng ở tiêu đề tin đăng. Hiển thị sau tin VIP nổi bật, Tin VIP 1 và trên các tin khác.</p>
@@ -329,10 +329,10 @@
     
             <div class="vip">
                 <h5 style="margin-bottom: 0px"  id="vip-2">Tin VIP 2</h5>
-                @for($i = 1 ; $i <= 4 ; $i ++)
+                @for($i = 1 ; $i <= 3 ; $i ++)
                 <span style="color: #fed553;font-size:15px" class="fa fa-star"></span>
                 @endfor
-                <p><span style="color:#E13427;font-weight:bold">TIÊU ĐỀ IN HOA MÀU CAM</span>, gắn biểu tượng 3 ngôi sao màu vàng ở tiêu đề tin đăng. Hiển thị sau tin VIP nổi bật, Tin VIP 1, Tin VIP 2 và trên các tin khác.</p>
+                <p><span style="color:#f60;font-weight:bold">TIÊU ĐỀ IN HOA MÀU CAM</span>, gắn biểu tượng 3 ngôi sao màu vàng ở tiêu đề tin đăng. Hiển thị sau tin VIP nổi bật, Tin VIP 1, Tin VIP 2 và trên các tin khác.</p>
                 <div class="img">
                     <img src="{{asset('uploads/img_demo/demo-vip2.jpg')}}" alt="">
                   
@@ -341,7 +341,7 @@
     
             <div class="vip">
                 <h5 style="margin-bottom: 0px"  id="vip-3">Tin VIP 3</h5>
-                @for($i = 1 ; $i <= 3 ; $i ++)
+                @for($i = 1 ; $i <= 2 ; $i ++)
                 <span style="color: #fed553;font-size:15px" class="fa fa-star"></span>
                 @endfor
                 <p><span style="color:#007BFF;font-weight:bold">TIÊU ĐỀ IN HOA MÀU XANH</span>, gắn biểu tượng 2 ngôi sao màu vàng ở tiêu đề tin đăng. Hiển thị sau tin VIP nổi bật, Tin VIP 1, Tin VIP 2, Tin VIP 3 và trên các tin khác.</p>

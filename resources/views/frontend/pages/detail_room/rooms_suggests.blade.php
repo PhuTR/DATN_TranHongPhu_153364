@@ -3,13 +3,29 @@
         <h5>Có thể bạn quan tâm </h5>
         <div class="row featured portfolio-items">
             @foreach ($roomsSuggests ?? [] as $item )
+                @php
+                    $firstImage = $item->images->first();
+                @endphp
                 <div class="item col-lg-5-3 col-md-12 col-xs-12 landscapes sale pr-0 pb-0 item-margin" style="max-height:200px">
                     <div class="project-single mb-0 bb-0" data-aos="fade-up">
                         <div class="project-inner project-head" style="max-height:200px">
                             <div class="homes">
                                 <!-- homes img -->
                                 <a href="single-property-1.html" class="homes-img" style="max-height:200px">
-                                    <img style="max-height:200px;height:200px"  class="img-responsive" id="output1{{$item->id}}" src="{{ pare_url_file($item->avatar) }}">
+                                    @if (empty($item->avatar) || is_null($item->avatar))
+                                        @if ($firstImage && !is_null($firstImage->path))
+                                            @if (Str::startsWith($firstImage->path, 'https'))
+                                            <img style="max-height:200px;height:200px"  class="img-responsive" id="output1{{$item->id}}" src="{{ ($firstImage->path) }}">
+                                            @else
+                                                <img style="max-height:200px;height:200px"  class="img-responsive" id="output1{{$item->id}}" src="{{ pare_url_file($firstImage->path) }}">
+                                            @endif
+                                        @else
+                                            <img style="max-height:200px;height:200px"  class="img-responsive" id="output1{{$item->id}}" src="{{ pare_url_file($item->avatar) }}">
+                                        @endif
+                                    @else
+                                        <img style="max-height:200px;height:200px"  class="img-responsive" id="output1{{$item->id}}" src="{{ pare_url_file($item->avatar) }}">
+                                    @endif
+
                                 </a>
                             </div>
                             <div class="button-effect">

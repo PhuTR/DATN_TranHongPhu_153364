@@ -46,14 +46,14 @@
         <div class="col-lg-7 col-md-12 homes-content pb-0 mb-44 item-margin" data-aos="fade-up" style="background-color: #FFF9F3">
     
             <h3>
-                <a id="link-room{{$item->id}}" style="color: #FF385C" href="{{route('get.category.detail',['slug' => $item->slug,'id' => $item->id])}}">
+                <a class="text-uppercase" id="link-room{{$item->id}}" style="color: #FF385C;font-size:1rem;" href="{{route('get.category.detail',['slug' => $item->slug,'id' => $item->id])}}">
                     @if ($item->service_hot > 0)
                     @for($i = 1 ; $i <= $item->service_hot ; $i ++)
                         <span style="color: #fed553;font-size:15px" class="fa fa-star"></span>
                     @endfor
                     @endif
                 <span id="service_hot{{$item->id}}" hidden>{{$item->service_hot}}</span>
-                <span id="name{{$item->id}}" class="title-long"> {{$item->name}}</span>
+                <span  id="name{{$item->id}}" class="title-long "> {{$item->name}}</span>
                 </a>
             </h3>
             <p class="homes-address mb-3">
@@ -149,13 +149,13 @@
             <!-- homes address -->
             <h3>
                 @if ($item->service_hot == 4)
-                    <a id="link-room{{$item->id}}" style="font-size:0.9em;color:#ea2e9d" href="{{route('get.category.detail',['slug' => $item->slug,'id' => $item->id])}}">
+                    <a class="text-uppercase" id="link-room{{$item->id}}" style="font-size:1rem;color:#ea2e9d" href="{{route('get.category.detail',['slug' => $item->slug,'id' => $item->id])}}">
                 @elseif ($item->service_hot == 3)
-                    <a id="link-room{{$item->id}}" style="font-size:0.9em;color:#f60" href="{{route('get.category.detail',['slug' => $item->slug,'id' => $item->id])}}">
+                    <a class="text-uppercase" id="link-room{{$item->id}}" style="font-size:1rem;color:#f60" href="{{route('get.category.detail',['slug' => $item->slug,'id' => $item->id])}}">
                 @elseif ($item->service_hot == 2)
-                    <a id="link-room{{$item->id}}" style="font-size:0.9em;color:#3763e0" href="{{route('get.category.detail',['slug' => $item->slug,'id' => $item->id])}}">
+                    <a class="text-uppercase" id="link-room{{$item->id}}" style="font-size:1rem;color:#3763e0" href="{{route('get.category.detail',['slug' => $item->slug,'id' => $item->id])}}">
                 @else
-                    <a id="link-room{{$item->id}}" style="font-size:0.9em;color:#055699" href="{{route('get.category.detail',['slug' => $item->slug,'id' => $item->id])}}">
+                    <a id="link-room{{$item->id}}" style="font-size:1rem;color:#055699" href="{{route('get.category.detail',['slug' => $item->slug,'id' => $item->id])}}">
                 @endif
                     @if ($item->service_hot > 0)
                     @for($i = 1 ; $i <= $item->service_hot ; $i ++)

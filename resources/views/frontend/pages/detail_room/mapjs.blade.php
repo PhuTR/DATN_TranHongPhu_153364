@@ -58,6 +58,3 @@
 		window.open(directionsURL, '_blank');
 	}
 </script>
-//   .setPopup(new goongjs.Popup({ offset: 2 })
-		// 	.setHTML(content)
-		//   )

@@ -63,12 +63,28 @@
                             <tbody>
                                 @foreach ($rooms ?? [] as $item )
                                 <tr>
+                                    @php
+                                        $firstImage = $item->images->first();
+                                    @endphp
                                     <td style="vertical-align: middle">{{$item->id}}</td>
                                     <td>
-                                            <img src="{{ pare_url_file($item->avatar) }}" style="width:80px; height:80px; border-radius:50%" alt="">
+                                        @if (empty($item->avatar) || is_null($item->avatar))
+                                            @if ($firstImage && !is_null($firstImage->path))
+                                                @if (Str::startsWith($firstImage->path, 'https'))
+                                                <img  style="width:80px; height:80px; border-radius:50%" alt="" src="{{ ($firstImage->path) }}">
+                                                @else
+                                                    <img  style="width:80px; height:80px; border-radius:50%" alt="" src="{{ pare_url_file($firstImage->path) }}">
+                                                @endif
+                                            @else
+                                                <img  style="width:80px; height:80px; border-radius:50%" alt="" src="{{ pare_url_file($item->avatar) }}">
+                                            @endif
+                                        @else
+                                            <img  style="width:80px; height:80px; border-radius:50%" alt="" src="{{ pare_url_file($item->avatar) }}">
+                                        @endif
+                        
                                     </td>
                                     <td style="vertical-align: middle; width:40%">
-                                        <a href="" target="_blank"
+                                        <a href="{{route('get.category.detail',['slug' => $item->slug,'id' => $item->id])}}" target="_blank"
                                             style="color: #007aff;text-decoration: none">
                                             @if ($item->service_hot > 0)
                                             @for($i = 1 ; $i <= $item->service_hot ; $i ++)
