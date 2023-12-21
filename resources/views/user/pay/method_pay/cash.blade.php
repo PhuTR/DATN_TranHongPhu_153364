@@ -36,12 +36,12 @@
                             </style>
                             <div class="alert alert-warning" role="alert">
                                 <h3 class="mt-4">Thanh toán tại văn phòng công ty</h3>
-                                <p>Bạn vui lòng đến địa chỉ văn phòng công ty LBKCorp theo địa chỉ sau:</p>
-                                <p>48 Cao Thắng, Hải Châu, Đà Nẵng</p>
-                                <p>Số điện thoại: 0942274558</p>
+                                <p>Bạn vui lòng đến địa chỉ văn phòng công ty ABCD theo địa chỉ sau:</p>
+                                <p>131 230 Định Công Thượng, Định Công, Hoàng Mai, Hà Nội</p>
+                                <p>Số điện thoại: 0327006685</p>
                                 <h3 class="mt-5">Thu tiền tận nơi</h3>
-                                <p>Áp dụng cho khu vực Tp.Đà Nẵng và số tiền thanh toán lớn hơn 500.000đ</p>
-                                <p>Liên hệ: 0942274558 để chúng tôi hỗ trợ bạn</p>
+                                <p>Áp dụng cho khu vực Tp.Hà Nội và số tiền thanh toán lớn hơn 500.000đ</p>
+                                <p>Liên hệ: 0327006685 để chúng tôi hỗ trợ bạn</p>
                                 <p>Xin cảm ơn!</p>
                             </div>
                     </div>

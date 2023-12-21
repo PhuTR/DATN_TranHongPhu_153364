@@ -198,7 +198,6 @@ class UserRoomController extends Controller
         $price           = $configPriceType[$roomType];
         $day             = $request->day;
 
-      
         $totalMoney = $day * $price;
      
         $sodukhadung = Auth::user()->account_balance;

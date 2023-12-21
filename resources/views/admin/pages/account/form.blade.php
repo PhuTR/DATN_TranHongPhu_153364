@@ -94,21 +94,7 @@
                             @endforeach
                             
                           </div>
-                          <div class="col-lg-12 d-flex" style="flex-wrap:wrap;" >
-                            @foreach ( $permissions as $item)
-                              <div class="mb-3 form-check" style="margin-right:70px">
-                                <input type="checkbox"  class="form-check-input" 
-                                  @foreach ( $get_permission_via_role as $get )
-                                    @if ($get->id == $item->id )
-                                        checked
-                                    @endif
-                                  @endforeach
-                                
-                                id="{{$item->id}}" value="{{$item->name}}">
-                                <label class="form-label form-check-label" for="{{$item->id}}">{{$item->name}}</label>
-                              </div>
-                            @endforeach
-                          </div>
+                          
                         </div>
                         <div class="col-6" style="margin: 0 auto">
                           <div class="create_report_btn mt_30">

@@ -12,23 +12,41 @@
                 @csrf
                 <div class="form-group">
                     <label>Họ tên</label>
-                    <input class="form-control-1" required type="text" name="name">
-                    <i class="ti-user"></i>
+                    <input class="form-control-1"  type="text" name="name">
+                    @if ($errors->has('name'))
+                        <span class="text-error" style="color: #FF385C">{{$errors->first('name')}}</span>
+                    @endif
+
                 </div>
                 <div class="form-group">
                     <label>Email</label>
-                    <input class="form-control-1" required type="email" name="email">
-                    <i class="icon_mail_alt"></i>
+                    <input class="form-control-1"  type="email" name="email">
+                    @if ($errors->has('email'))
+                        <span class="text-error" style="color: #FF385C">{{$errors->first('email')}}</span>
+                    @endif
                 </div>
                 <div class="form-group">
                     <label>Số điện thoại</label>
-                    <input class="form-control-1" required type="text" name="phone">
-                    <i class="ti-user"></i>
+                    <input class="form-control-1"  type="text" name="phone">
+                    @if ($errors->has('phone'))
+                        <span class="text-error" style="color: #FF385C">{{$errors->first('phone')}}</span>
+                    @endif
                 </div>
                 <div class="form-group position-relative">
                     <label>Tạo mật khẩu</label>
-                    <input class="form-control-1" required type="password" id="password" name="password">
+                    <input class="form-control-1" type="password" id="password" name="password">
                     <i id="togglePassword" class="fa-solid  fa-eye-slash position-absolute " style="top:45px; right:12px;cursor: pointer;"></i>
+                    @if ($errors->has('password'))
+                        <span class="text-error" style="color: #FF385C">{{$errors->first('password')}}</span>
+                    @endif
+                </div>
+                <div class="form-group position-relative">
+                    <label>Nhập lại mật khẩu</label>
+                    <input class="form-control-1" type="password" id="cfpassword" name="cfpassword">
+                    <i id="togglePassword" class="fa-solid  fa-eye-slash position-absolute " style="top:45px; right:12px;cursor: pointer;"></i>
+                    @if ($errors->has('cfpassword'))
+                        <span class="text-error" style="color: #FF385C">{{$errors->first('cfpassword')}}</span>
+                    @endif
                 </div>
              
                 <div id="pass-info" class="clearfix"></div>

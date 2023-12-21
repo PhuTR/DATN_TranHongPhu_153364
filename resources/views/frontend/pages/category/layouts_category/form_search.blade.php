@@ -22,7 +22,7 @@
                                 <select class="select single-select " name="city_id">
                                     <option value="">Chọn thành phố</option>
                                     @foreach($locationsCity ?? [] as $item)
-                                    <option value="{{ $item->id }}" {{ $item->id == ($room->city_id ?? (Request::get('city_id'))) ? "selected" : ""}}>
+                                    <option value="{{ $item->code }}" {{ $item->code == ($room->city_id ?? (Request::get('city_id'))) ? "selected" : ""}}>
                                         {{ $item->name }}
                                     </option>
                                     @endforeach

@@ -15,14 +15,19 @@
                 </div>
                 <p>Hoặc</p>
                 <div class="form-group">
-                    <label>Số điện thoại</label>
-                    <input type="text" class="form-control-1" required name="phone" id="phone">
-                    <i class="icon_mail_alt"></i>
+                    <label>Email</label>
+                    <input type="email" class="form-control-1"  name="email" id="email">
+                    @if ($errors->has('email'))
+                        <span class="text-error" style="color: #FF385C">{{$errors->first('email')}}</span>
+                    @endif
                 </div>
                 <div class="form-group position-relative">
                     <label>Mật khẩu</label>
-                    <input id="password" type="password" class="form-control-1" required name="password"  value="">
+                    <input id="password" type="password" class="form-control-1"  name="password"  value="">
                     <i id="togglePassword" class="fa-solid  fa-eye-slash position-absolute " style="top:45px; right:12px;cursor: pointer;"></i>
+                    @if ($errors->has('password'))
+                        <span class="text-error" style="color: #FF385C">{{$errors->first('password')}}</span>
+                    @endif
                 </div>
                 <div class="fl-wrap filter-tags clearfix add_bottom_30">
                     <div class="float-right mt-1"><a id="forgot" href="{{route('get.forgotpassword')}}">Bạn quên mật khẩu?</a></div>

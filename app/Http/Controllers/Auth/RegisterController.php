@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 use Carbon\Carbon;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RegisterRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -14,7 +15,7 @@ class RegisterController extends Controller
         return view('auth.register');
     }
 
-    public function register(Request $request){
+    public function register(RegisterRequest $request){
         $data = $request->except('_token');
         $data['password'] = bcrypt($request->password);
         $data['created_at'] = Carbon::now();

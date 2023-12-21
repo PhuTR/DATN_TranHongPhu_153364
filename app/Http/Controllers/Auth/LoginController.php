@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\LoginRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Brian2694\Toastr\Facades\Toastr;
@@ -12,7 +13,7 @@ class LoginController extends Controller
         return view('auth.login');
     }
     
-    public function login(Request $request){
+    public function login(LoginRequest $request){
 
 
         $data = $request->except('_token');

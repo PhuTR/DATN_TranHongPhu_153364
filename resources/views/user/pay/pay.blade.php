@@ -72,7 +72,9 @@
                                             <input style="max-width:50%" type="text" class="form-control" id="total">
                                         </div>
                                     </div>
-                                    <button type="submit" class="btn btn-success" style="margin-bottom: 20px;">Lưu dữ liệu</button>
+                                    <button type="button" class="btn btn-success" style="margin-bottom: 20px;" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Đăng ký</button>
+                                    
+                                    @include('common.modal.modal-confirm_payroom')
                                 </div>
                             </div>
                         </form>
@@ -85,11 +87,11 @@
          </div>
         
      </section>
+
      <!-- END SECTION PAYMENT-METHOD -->
+    
 
-
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" crossorigin="anonymous"
-    referrerpolicy="no-referrer"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
 $(function() {
     $('.js-change-type').change(function() {
