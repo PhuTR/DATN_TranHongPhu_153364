@@ -18,38 +18,12 @@
                 </div>
             </div>
             <div class="dashborad-box">
-                
-                <div class="header-widget">
-                    <form action="" class="row">
-                        
-                        <div class="col-sm-3">
-                            <input type="text" placeholder="Tên tiêu đề" value="{{ Request::get('n') }}" name="n" class="form-control">
-                        </div>
-                        <div class="col-sm-3">
-                            <select class="nice_Select2 wide" name="category_id" id="">
-                                <option value="">Danh mục</option>
-                                @foreach($categories as $item)
-                                <option {{ Request::get('category_id') == $item->id ? "selected" : "" }} value="{{ $item->id }}">
-                                    {{ $item->name }}
-                                </option>
-                                @endforeach
-                            </select>
-                                
-                          
-                        </div>
-                        <div class="col-sm-3">
-                            <button type="submit" class="btn btn-primary">Tìm kiếm</button>
-                        </div>
-                        
-                    </form>
-                    
-                </div>
                 <div class="section-body listing-table">
                     <div class="table-responsive">
-                        <table class="table table-striped">
+                        <table id="example" class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>#</th>
+                                    <th>Stt</th>
                                     <th>Hình ảnh</th>
                                     <th>Thông tin</th>
                                     <th>Danh mục</th>
@@ -66,7 +40,8 @@
                                     @php
                                         $firstImage = $item->images->first();
                                     @endphp
-                                    <td style="vertical-align: middle">{{$item->id}}</td>
+                                    {{-- <td style="vertical-align: middle">{{$item->id}}</td> --}}
+                                    <td>{{$loop->index+1}}</td>
                                     <td>
                                         @if (empty($item->avatar) || is_null($item->avatar))
                                             @if ($firstImage && !is_null($firstImage->path))
@@ -148,11 +123,11 @@
                         </table>
                     </div>
                 </div>
-                <div class="pagination-container">
+                {{-- <div class="pagination-container">
                     <nav>
                     {{$rooms->links()}}
                     </nav>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>

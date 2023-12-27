@@ -46,7 +46,9 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" >
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
-
+    {{-- table --}}
+    <link rel="stylesheet" href="{{asset('css/datatable/dataTables.bootstrap5.min.css')}}">
+    <script src="{{asset('js/datatables/jquery.dataTables.min.js')}}"></script>
     
 
 </head>
@@ -144,5 +146,8 @@
         $(this).toggleClass("hu-menu-visdec");
     });
 
+</script>
+<script>
+    new DataTable('#example');
 </script>
 </html>

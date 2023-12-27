@@ -16,7 +16,7 @@ class AdminCategoryController extends Controller
 
         if ($request->n)
             $categories->where('name', 'like', '%' . $request->n . '%');
-        $categories = $categories->orderByDesc('id')->paginate(15);;
+        $categories = $categories->orderByDesc('id')->get();
      
         $viewData = [
             'categories' => $categories,

@@ -15,7 +15,7 @@ class AdminPermissionController extends Controller
     public function index(Request $request){
 
         $permissions = Permission::whereRaw(1);
-        $permissions = $permissions->orderByDesc('id')->paginate(15);
+        $permissions = $permissions->orderByDesc('id')->get();
      
         $viewData = [
             'permissions' => $permissions,

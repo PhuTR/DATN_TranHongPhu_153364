@@ -3,13 +3,11 @@
 
 <div class="col-lg-9 col-md-12 col-xs-12 pl-0 user-dash2">
      <div class="my-properties">
-         <table class="table-responsive">
+        <h3>Quản lý tin đăng</h3>
+         <table id="example" class="table-responsive">
              <thead>
-                <tr>
-                    <th style="background-color: #ffff"><h3>Quản lý tin đăng</h3></th>
-                </tr>
                  <tr>
-                     <th>Mã tin</th>
+                     <th>STT</th>
                      <th>Ảnh đại diện</th>
                      <th>Tiêu đề</th>
                      <th>Gói tin</th>
@@ -23,7 +21,7 @@
                 @foreach ($rooms as $item )
                 <tr>
                     <td>
-                        #{{$item->id}}
+                        {{$loop->index+1}}
                     </td>
                     @php
                         $firstImage = $item->images->first();
@@ -99,7 +97,7 @@
                         <span style="color:#f60"> Vip 2</span>
                         @elseif($item->service_hot == 4)
                         <span style="color:#ea2e9d"> Vip 1</span>
-                        @else
+                        @elseif($item->service_hot == 5)
                         <span style="color:#E13427"> Đặc biệt</span>
                         @endif
                     </td>
@@ -115,11 +113,11 @@
                
              </tbody>
          </table>
-         <div class="pagination-container">
+         {{-- <div class="pagination-container">
              <nav>
                {{$rooms->links()}}
              </nav>
-         </div>
+         </div> --}}
      </div>
  </div>
 

@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Log;
 class AdminPayController extends Controller
 {
     public function deposit_history(){
-        $depositHistory = RechargeHistory::orderByDesc('id')->paginate(20);
+        $depositHistory = RechargeHistory::orderByDesc('id')->get();
 
     $viewData = [
         'depositHistory' => $depositHistory
@@ -25,7 +25,7 @@ class AdminPayController extends Controller
     }
   
     public function  payment_history(){
-        $paymentHistory = PaymentHistory::orderByDesc('id')->paginate(20);
+        $paymentHistory = PaymentHistory::orderByDesc('id')->get();
 
     $viewData = [
         'paymentHistory' => $paymentHistory

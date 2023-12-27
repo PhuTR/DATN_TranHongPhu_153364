@@ -22,9 +22,10 @@
          <h4 class="title">Lịch sử nạp tiền</h4>
          <div class="section-body listing-table">
              <div class="table-responsive">
-                 <table class="table table-striped">
+                 <table id="example" class="table table-striped">
                      <thead>
                          <tr>
+                            <th>Stt</th>
                              <th>Ngày nạp</th>
                              <th>Mã giao dịch</th>
                              <th>Phương thức</th>
@@ -38,6 +39,7 @@
                      <tbody>
                         @foreach ($depositHistory ?? [] as $item)
                         <tr>
+                            <td>{{$loop->index+1}}</td>
                             <td>{{$item->created_at}}</td>
                             <td>{{$item->code}}</td>
                             <td>

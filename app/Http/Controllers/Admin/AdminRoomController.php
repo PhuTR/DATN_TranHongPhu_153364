@@ -16,7 +16,7 @@ class AdminRoomController extends Controller
 
         if ($request->n)
             $rooms->where('name', 'like', '%' . $request->n . '%');
-        $rooms      = $rooms->orderByDesc('id')->paginate(10);
+        $rooms      = $rooms->orderByDesc('id')->get();
         $categories = Category::select('id', 'name')->get();
         $viewData = [
             'rooms' => $rooms,

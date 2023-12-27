@@ -19,23 +19,13 @@
                 </div>
             </div>
             <div class="dashborad-box">
-                <div class="header-widget">
-                    <form action="" class="row">
-                        <div class="col-sm-3">
-                            <input type="text" placeholder="Tên khách hàng" value="{{ Request::get('n') }}" name="n" class="form-control">
-                        </div>
-                        <div class="col-sm-3">
-                            <button type="submit" class="btn btn-primary">Tìm kiếm</button>
-                        </div>
-                    </form>
-
-                </div>
+               
                 <div class="section-body listing-table">
                     <div class="table-responsive">
-                        <table class="table table-striped">
+                        <table id="example" class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>#</th>
+                                    <th>Stt</th>
                                     <th>IP</th>
                                     <th>Tên</th>
                                     <th>Email</th>
@@ -50,7 +40,7 @@
                                 <form autocomplete="off">
                                     @csrf
                                 <tr>
-                                    <td>{{$item->id}}</td> 
+                                    <td>{{$loop->index+1}}</td>
                                     <td>{{$item->ip_address}}</td>
                                     <td>{{$item->name}}</td> 
                                     <td>{{$item->email}}</td>
@@ -71,11 +61,7 @@
                     </div>
                 </div>
                
-                <div class="pagination-container">
-                    <nav>
-                    {{$contact->links()}}
-                    </nav>
-                </div>
+              
             </div>
         
             

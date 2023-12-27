@@ -17,7 +17,7 @@
               </div>
             </a>
         </li>
-        @role('SupperAdmin|CTV','admins')
+        @role('superadmin|CTV','admins')
         <li class>
             <a href="{{route('get_admin.room.index')}}" aria-expanded="false">
               <div class="nav_icon_small">
@@ -39,7 +39,7 @@
             </a>
         </li>
         @endrole
-        @role('SupperAdmin','admins')
+        @role('superadmin','admins')
         <li class>
             <a href="{{route('get_admin.pay.paymet_history')}}" aria-expanded="false">
               <div class="nav_icon_small">
@@ -71,7 +71,7 @@
               </div>
             </a>
         </li>
-        @role('SupperAdmin|CTV','admins')
+        @role('superadmin|CTV','admins')
           <li class>
             <a href="{{route('get_admin.location.home')}}" aria-expanded="false">
               <div class="nav_icon_small">
@@ -83,7 +83,7 @@
             </a>
           </li>
         @endrole
-        @role('SupperAdmin|CTV|CTV bài viết','admins')
+        @role('superadmin|CTV|CTV bài viết','admins')
         <li class>
             <a href="{{route('get_admin.article.index')}}" aria-expanded="false">
               <div class="nav_icon_small">
@@ -95,7 +95,7 @@
             </a>
         </li>
         @endrole
-        @role('SupperAdmin|CTV','admins')
+        @role('superadmin|CTV','admins')
         <li class>
           <a href="{{route('get_admin.contact.index')}}" aria-expanded="false">
             <div class="nav_icon_small">
@@ -107,7 +107,7 @@
           </a>
         </li>
         @endrole
-        @role('SupperAdmin|Thêm permission','admins')
+        @role('superadmin|Thêm permission','admins')
         <li class>
           <a href="{{route('get_admin.permission.index')}}" aria-expanded="false">
             <div class="nav_icon_small">
@@ -129,7 +129,7 @@
           </a>
         </li>
         @endrole
-        @role('SupperAdmin','admins')
+        @role('superadmin','admins')
         <li class>
           <a href="{{route('get_admin.account.index')}}" aria-expanded="false">
             <div class="nav_icon_small">

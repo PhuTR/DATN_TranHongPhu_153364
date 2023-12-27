@@ -18,9 +18,9 @@
     <link rel="stylesheet" href="{{asset('asset_admin/vendors/datepicker/date-picker.css')}}" />
     <link rel="stylesheet" href="{{asset('asset_admin/vendors/vectormap-home/vectormap-2.0.2.css')}}" />
     <link rel="stylesheet" href="{{asset('asset_admin/vendors/scroll/scrollable.css')}}" />
-    <link rel="stylesheet" href="{{asset('asset_admin/vendors/datatable/css/jquery.dataTables.min.css')}}"/>
-    <link rel="stylesheet" href="{{asset('asset_admin/vendors/datatable/css/responsive.dataTables.min.css')}}"/>
-    <link rel="stylesheet" href="{{asset('asset_admin/vendors/datatable/css/buttons.dataTables.min.css')}}"/>
+    {{-- <link rel="stylesheet" href="{{asset('asset_admin/vendors/datatable/css/jquery.dataTables.min.css')}}"/> --}}
+    {{-- <link rel="stylesheet" href="{{asset('asset_admin/vendors/datatable/css/responsive.dataTables.min.css')}}"/> --}}
+    {{-- <link rel="stylesheet" href="{{asset('asset_admin/vendors/datatable/css/buttons.dataTables.min.css')}}"/> --}}
     <link rel="stylesheet" href="{{asset('asset_admin/vendors/text_editor/summernote-bs4.css')}}" />
     <link rel="stylesheet" href="{{asset('asset_admin/vendors/morris/morris.css')}}" />
     <link rel="stylesheet" href="{{asset('asset_admin/vendors/material_icon/material-icons.css')}}" />
@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="{{asset('asset_admin/css/colors/default.css')}}" id="colorSkinCSS" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"  />
-	<script src="{{asset('asset_admin/js/fileinput/fileinput.js')}}"></script>
+	  <script src="{{asset('asset_admin/js/fileinput/fileinput.js')}}"></script>
     <script src="{{asset('asset_admin/js/fileinput/vi.js')}}"></script>
     <link rel="stylesheet" href="{{asset('asset_admin/css/fileinput.css')}}">
     <script src="{{asset('js/ckeditor.js')}}"></script>
@@ -39,6 +39,11 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+    {{-- table --}}
+    <link rel="stylesheet" href="{{asset('css/datatable/dataTables.bootstrap5.min.css')}}">
+    <script src="{{asset('js/datatables/jquery.dataTables.min.js')}}"></script>
+    {{-- select-2 --}}
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
   
   </head>
   <body class="crm_body_bg">
@@ -83,7 +88,16 @@
     <script src="{{asset('asset_admin/vendors/chart_am/chart-custom.js')}}"></script>
     <script src="{{asset('asset_admin/js/custom.js')}}"></script>
     <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
-    
+    <script>
+      new DataTable('#example');
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+
+    <script>
+      $(document).ready(function() {
+          $('.select2').select2();
+      })
+    </script>
     {!! Toastr::message() !!}
   </body>
 

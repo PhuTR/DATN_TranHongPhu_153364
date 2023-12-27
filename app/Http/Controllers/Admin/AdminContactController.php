@@ -14,7 +14,7 @@ class AdminContactController extends Controller
         if ($request->n)
             $contact->where('name', 'like', '%' . $request->n . '%');
 
-        $contact = $contact->orderByDesc('id')->paginate(20);
+        $contact = $contact->orderByDesc('id')->get();
 
        
         $viewData =[

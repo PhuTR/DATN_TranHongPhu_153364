@@ -24,10 +24,10 @@
                 </div>
                 <div class="section-body listing-table">
                     <div class="table-responsive">
-                        <table class="table table-striped">
+                        <table id="example"  class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>#</th>
+                                    <th>Stt</th>
                                     <th>Hình ảnh</th>
                                     <th>Họ Tên</th>
                                     <th>Email</th>
@@ -42,7 +42,7 @@
                             <tbody>
                                 @foreach ($admins ?? [] as $item )
                                 <tr>
-                                    <td>{{$item->id}}</td>
+                                    <td>{{$loop->index+1}}</td>
                                     <td>
                                         <img  style="width:60px; height:60px; border-radius:50%" id="output" src="{{ pare_url_file($item->avatar) }}">
                                     </td>
@@ -74,11 +74,11 @@
                         </table>
                     </div>
                 </div>
-                <div class="pagination-container">
+                {{-- <div class="pagination-container">
                     <nav>
                     {{$admins->links()}}
                     </nav>
-                </div>
+                </div> --}}
             </div>
         
             

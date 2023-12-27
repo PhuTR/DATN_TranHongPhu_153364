@@ -60,6 +60,22 @@
                           </div>
                         </div>
                         <div class="col-lg-12">
+                          <div class="form-row">
+                            <div class="form-group col-md-6 col-sm-6">
+                                <label for="password">Cấp quyền</label>
+                                <select name="roles[]" id="roles" class="form-control select2" multiple>
+                                  @foreach ($roles as $role)
+                                      <option value="{{ $role->name }}" {{ $admin->hasRole($role->name) ? 'selected' : '' }}>{{ $role->name }}</option>
+                                  @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6 col-sm-6">
+                                <label for="username">Admin Username</label>
+                                <input type="text" class="form-control" id="username" name="username" placeholder="Enter Username" required value="{{ $admin->username }}">
+                            </div>
+                        </div>
+                        </div>
+                        <div class="col-lg-12">
                           <div class="common_input mb_15">
                             <label for="area">Ảnh đại diện</label>
                             @if (isset($admin->avatar))
@@ -77,23 +93,7 @@
                               <input id="file-5" type="file" class="file" name="avatar"  multiple data-show-upload="false" data-show-caption="true" data-msg-placeholder="Select {files} for upload...">
                             </div>
                           </div>
-                          <div class="col-lg-12 d-flex" style="justify-content: space-between">
-                            @foreach ($roles as $item )
-                              @if (isset($all_column_roles))
-                                <div class="mb-3 form-check">
-                                  <input name="role" type="radio" {{$item->id==$all_column_roles->id ? 'checked' : ''}} class="form-check-input" id="{{$item->id}}" value="{{$item->name}}">
-                                  <label class="form-label form-check-label" for="{{$item->id}}">{{$item->name}}</label>
-                                </div>
-                              @else
-                                <div class="mb-3 form-check">
-                                  <input name="role" type="radio"  class="form-check-input" id="{{$item->id}}" value="{{$item->name}}">
-                                  <label class="form-label form-check-label" for="{{$item->id}}">{{$item->name}}</label>
-                                </div>
-                              @endif
-                              
-                            @endforeach
-                            
-                          </div>
+                          
                           
                         </div>
                         <div class="col-6" style="margin: 0 auto">

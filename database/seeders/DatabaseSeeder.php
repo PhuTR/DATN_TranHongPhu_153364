@@ -14,13 +14,16 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            // CategorySeeder::class,
-            // OptionSeeder::class,
-            // LocationSeeder::class,
-            PhongTroSeeder::class,
-            NhaSeeder::class,
-            CanHoSeeder::class,
-            MatBangSeeder::class, 
+            CategorySeeder::class,
+            OptionSeeder::class,
+            LocationSeeder::class,
+            // PhongTroSeeder::class,
+            // NhaSeeder::class,
+            // CanHoSeeder::class,
+            // MatBangSeeder::class, 
+            AdminSeeder::class,
+            UserSeeder::class,
+            RolePermissionSeeder::class,
         ]);
     }
 }

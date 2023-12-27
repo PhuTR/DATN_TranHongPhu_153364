@@ -5913,7 +5913,10 @@ canvas#highlights {
     box-shadow: 0 5px 10px rgba(136, 79, 251, 0.04) !important;
 }
 .dataTables_wrapper .dataTables_paginate .paginate_button {
-    border: 0 !important;
+    border: 0 !important;   
+    cursor: pointer;
+    display: inline-block;
+
 }
 .min_400 {
     min-height: 380px;

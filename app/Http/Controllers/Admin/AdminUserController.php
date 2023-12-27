@@ -16,7 +16,7 @@ class AdminUserController extends Controller
         if ($request->n)
             $users->where('name', 'like', '%' . $request->n . '%');
 
-        $users = $users->orderByDesc('id')->paginate(20);
+        $users = $users->orderByDesc('id')->get();
 
        
         $viewData =[

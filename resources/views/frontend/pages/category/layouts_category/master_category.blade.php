@@ -18,6 +18,7 @@
     <!-- FONT AWESOME -->
     <link rel="stylesheet" href="{{asset('css/fontawesome-all.min.css')}}">
     <!-- ARCHIVES CSS -->
+    
     <link rel="stylesheet" href="{{asset('css/search.css')}}">
     <link rel="stylesheet" href="{{asset('css/dashbord-mobile-menu.css')}}">
     <link rel="stylesheet" href="{{asset('css/animate.css')}}">
@@ -34,7 +35,7 @@
     <script src='https://cdn.jsdelivr.net/npm/@goongmaps/goong-js@1.0.9/dist/goong-js.js'></script>
     <link href='https://cdn.jsdelivr.net/npm/@goongmaps/goong-js@1.0.9/dist/goong-js.css' rel='stylesheet' />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-   
+    
 </head>
 <body class="inner-pages homepage-4 agents hp-6 full hd-white">
     <div id="wrapper" >
@@ -151,8 +152,10 @@
    
    {{-- modal room --}}
    <script type="text/javascript">
+    $(document).ready(function() {
         $('.view_room').click(function(){
             var room_id = $(this).data('id_room');
+            console.log('hello');
             var _token = $('input[name="_token"]').val();
             $.ajax({
                 url:"{{url('/view-room')}}",
@@ -171,7 +174,11 @@
                     $('#images').html(data.image)
                 }
             });
-        })
+        })  
+    })
     </script>
+   
+        
+  
 </body>
 </html>

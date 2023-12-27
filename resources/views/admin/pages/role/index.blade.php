@@ -24,10 +24,10 @@
                 </div>
                 <div class="section-body listing-table">
                     <div class="table-responsive">
-                        <table class="table table-striped">
+                        <table id="example" class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>#</th>
+                                    <th>Stt</th>
                                     <th>Tên</th>
                                     <th>Quyền</th>
                                     <th>Ngày tạo</th>
@@ -37,7 +37,7 @@
                             <tbody>
                                 @foreach ($roles ?? [] as $item )
                                 <tr>
-                                    <td>{{$item->id}}</td>
+                                    <td>{{$loop->index+1}}</td>
                                     <td>{{$item->name}}</td>
                                     <td style="width:50%; line-height: 2" >
                                         @foreach ($item->permissions as $permission )
@@ -57,11 +57,6 @@
                             </tbody>
                         </table>
                     </div>
-                </div>
-                <div class="pagination-container">
-                    <nav>
-                    {{$roles->links()}}
-                    </nav>
                 </div>
             </div>
         

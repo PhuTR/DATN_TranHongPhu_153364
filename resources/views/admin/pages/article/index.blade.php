@@ -19,26 +19,15 @@
                 </div>
             </div>
             <div class="dashborad-box">
-                <div class="header-widget">
-                    <form action="" class="row">
-                        <div class="col-sm-3">
-                            <input type="text" placeholder="" value="{{ Request::get('n') }}" name="n" class="form-control">
-                        </div>
-                        <div class="col-sm-3">
-                            <button type="submit" class="btn btn-primary">Tìm kiếm</button>
-                        </div>
-                    </form>
-
-                </div>
                 <div class="btn-admin">
                     <a class="text-white" href="{{route('get_admin.article.create')}}"  ><i class="fa-solid fa-circle-plus icon"></i>Thêm mới</a>
                 </div>
                 <div class="section-body listing-table">
                     <div class="table-responsive">
-                        <table class="table table-striped">
+                        <table id="example" class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>#</th>
+                                    <th>Stt</th>
                                     <th>Hình ảnh</th>
                                     <th>Tiêu đề</th>
                                     <th>Mô tả</th> 
@@ -50,7 +39,7 @@
                             <tbody>
                                 @foreach ($articles ?? [] as $item )
                                 <tr>
-                                    <td>{{$item->id}}</td>
+                                    <td>{{$loop->index+1}}</td>
                                     <td>
                                         <img src="{{ pare_url_file($item->avatar) }}" style="width:100px; height:100px; border-radius:4px" alt="">
                                     </td>
@@ -70,11 +59,7 @@
                         </table>
                     </div>
                 </div>
-                <div class="pagination-container">
-                    <nav>
-                    {{$articles->links()}}
-                    </nav>
-                </div>
+            
             </div>
         
             

@@ -24,10 +24,10 @@
                 </div>
                 <div class="section-body listing-table">
                     <div class="table-responsive">
-                        <table class="table table-striped">
+                        <table  class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>#</th>
+                                    <th>Stt</th>
                                     <th>Tên</th>
                                     <th>Trạng thái</th>
                                     <th>Tiêu đề</th>
@@ -38,7 +38,7 @@
                             <tbody>
                                 @foreach ($categories ?? [] as $item )
                                 <tr>
-                                    <td>{{$item->id}}</td>
+                                    <td>{{$loop->index+1}}</td>
                                     <td>{{$item->name}}</td>
                                     <td class="edit">
                                         @if($item->status == 1)
@@ -58,11 +58,7 @@
                         </table>
                     </div>
                 </div>
-                <div class="pagination-container">
-                    <nav>
-                    {{$categories->links()}}
-                    </nav>
-                </div>
+                
             </div>
         
             

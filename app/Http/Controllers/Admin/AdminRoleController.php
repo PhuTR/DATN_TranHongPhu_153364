@@ -16,7 +16,7 @@ class AdminRoleController extends Controller
     public function index(Request $request){
 
         $roles = Role::whereRaw(1);
-        $roles = $roles->orderByDesc('id')->paginate(15);;
+        $roles = $roles->orderByDesc('id')->get();
      
         $viewData = [
             'roles' => $roles,
@@ -29,9 +29,11 @@ class AdminRoleController extends Controller
 
     public function create(){
         
-        $permissions = Permission::orderByDesc('id')->get();
+        $all_permissions  = Permission::all();
+        $permission_groups = Admin::getpermissionGroups();
         $viewData = [
-            'permissions' => $permissions,
+            'all_permissions' => $all_permissions,
+            'permission_groups' => $permission_groups,
         ];
         return view('admin.pages.role.create',$viewData);
     }
@@ -42,7 +44,8 @@ class AdminRoleController extends Controller
             $data['guard_name'] = 'admins';
             $data['created_at'] = Carbon::now();
             $role = Role::create(['name' => $request->name, 'guard_name' => 'admins']);
-            $permissions = $data['permission'];
+            // $permissions = $data['permission'];
+            $permissions = $request->input('permissions');
             if (!empty($permissions)) {
                 $role->syncPermissions($permissions);
             }
@@ -55,11 +58,13 @@ class AdminRoleController extends Controller
     }
 
     public function edit($id){
-        $roles = Role::find($id);
-        $permissions = Permission::orderByDesc('id')->get();
+        $role = Role::findById($id, 'admins');
+        $all_permissions = Permission::all();
+        $permission_groups = Admin::getpermissionGroups();
         $viewData = [
-            'permissions' => $permissions,
-            'roles' => $roles, 
+            'all_permissions' => $all_permissions,
+            'permission_groups' => $permission_groups,
+            'role' => $role, 
         ];
         return view('admin.pages.role.update',$viewData);
     }
@@ -69,8 +74,9 @@ class AdminRoleController extends Controller
             $data = $request->except('_token');
             $data['updated_at'] = Carbon::now();
             $data['guard_name'] = 'admins';
-            $role = Role::find($id);
-            $role->syncPermissions($data['permission']);
+            $role = Role::findById($id, 'admins');
+            $permissions = $request->input('permissions');
+            $role->syncPermissions($permissions);
             
             $role->update($data);
             

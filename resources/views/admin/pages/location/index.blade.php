@@ -19,7 +19,7 @@
                 </div>
             </div>
             <div class="dashborad-box">
-                <div class="header-widget">
+                {{-- <div class="header-widget">
                     <form action="" class="row">
                         <div class="col-sm-3">
                             <input type="text" placeholder="Tên địa điểm" value="{{ Request::get('n') }}" name="n" class="form-control">
@@ -29,13 +29,13 @@
                         </div>
                     </form>
 
-                </div>
+                </div> --}}
                 <div class="section-body listing-table">
                     <div class="table-responsive">
-                        <table class="table table-striped">
+                        <table id="example" class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>#</th>
+                                    <th>Stt</th>
                                     <th>Tên</th>
                                     <th>Phân loại</th>
                                     <th>Trạng thái</th>
@@ -47,7 +47,7 @@
                             <tbody>
                                 @foreach ($city ?? [] as $item )
                                 <tr>
-                                    <td>{{$item->id}}</td>
+                                    <td>{{$loop->index+1}}</td>
                                     <td>{{$item->name}}</td>
                                     <td class="rating"><span>{{$item->getType($item->type)}}</span></td>
                                     <td class="status"><span style="color:#1CA345">Active</span></td>
@@ -67,11 +67,6 @@
                             </tbody>
                         </table>
                     </div>
-                </div>
-                <div class="pagination-container">
-                    <nav>
-                    {{$city->links()}}
-                    </nav>
                 </div>
             </div>
         

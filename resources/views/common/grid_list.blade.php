@@ -27,7 +27,7 @@
                     </div>
                     <div class="button-effect">
                         <button class="img-poppu btn" id="{{$item->id}}" onclick="add_wistlist(this.id)"><i id="icon-heart" class="fa-solid fa-heart"></i></button>
-                        <a type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="view_room img-poppu btn " data-id_room="{{$item->id}}"><i class="fa-solid fa-eye"></i></a>
+                        <a type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="view_room img-poppu btn" data-id_room="{{$item->id}}"><i class="fa-solid fa-eye"></i></a>
                     </div>
                    
                 </div>

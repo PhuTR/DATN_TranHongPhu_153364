@@ -51,7 +51,7 @@ class UserPayController extends Controller
 
     public function deposit_history(){
         $depositHistory = RechargeHistory::where('user_id', Auth::user()->id)
-        ->orderByDesc('id')->paginate(20);
+        ->orderByDesc('id')->get();
 
         $viewData = [
             'depositHistory' => $depositHistory
@@ -61,7 +61,7 @@ class UserPayController extends Controller
   
     public function  payment_history(){
         $paymentHistory = PaymentHistory::where('user_id', Auth::user()->id)
-        ->orderByDesc('id')->paginate(20);
+        ->orderByDesc('id')->get();
 
         $viewData = [
             'paymentHistory' => $paymentHistory

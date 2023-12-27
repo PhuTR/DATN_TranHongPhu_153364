@@ -17,7 +17,7 @@ class AdminLocationController extends Controller
         if ($request->n)
             $city->where('name', 'like', '%' . $request->n . '%');
 
-        $city = $city->orderBy('id')->paginate(10);
+        $city = $city->orderBy('id')->get();
 
         $viewData = [
             'city' => $city,
@@ -27,11 +27,11 @@ class AdminLocationController extends Controller
     }
 
     public function create(){
-        $cities = Location::where('parent_id',0)->get();
-        $viewData = [
-            'cities' => $cities,
-        ];
-        return view('admin.pages.location.create',$viewData);
+        // $cities = Location::where('parent_id',0)->get();
+        // $viewData = [
+        //     'cities' => $cities,
+        // ];
+        // return view('admin.pages.location.create',$viewData);
     }
 
     public function store(Request $request){
@@ -60,7 +60,7 @@ class AdminLocationController extends Controller
 
 
 
-            $location = Location::create($data);
+            // $location = Location::create($data);
            
             return redirect()->route('get_admin.location.home');
             

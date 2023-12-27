@@ -27,7 +27,7 @@ class UserRoomController extends Controller
    
     public function index(Request $request){
         // $this->checkTimeRoom();
-        $rooms = Room::with('category:id,name')->where("auth_id", Auth::user()->id)->orderByDesc("id")->paginate(4);
+        $rooms = Room::with('category:id,name')->where("auth_id", Auth::user()->id)->orderByDesc("id")->get();
         $viewData = [
             'rooms' => $rooms,
         ];

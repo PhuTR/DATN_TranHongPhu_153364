@@ -21,9 +21,10 @@
             <div class="dashborad-box">
                 <div class="section-body listing-table">
                     <div class="table-responsive">
-                        <table class="table table-striped">
+                        <table id="example" class="table table-striped">
                             <thead>
                                 <tr>
+                                    <th>Stt</th>
                                     <th>Mã giao dịch</th>
                                     <th>Mã tin đăng</th>
                                     <th>Tổng tiền </th>
@@ -37,6 +38,7 @@
                             <tbody>
                                 @foreach ($paymentHistory as $item )
                                 <tr>
+                                    <td>{{$loop->index+1}}</td>
                                     <td> {{$item->id}} </td>
                                     <td class="rating"><span>ID: {{$item->room_id}} - {{$item->user->name ?? 'N\A'}} </span></td>
                                     <td class="status" style="color: #FF0000;font-weight:600"><span>{{ number_format($item->money,0,',','.') }}đ</span></td>
@@ -65,11 +67,6 @@
                         </table>
                     </div>
                 </div>
-            </div>
-            <div class="pagination-container">
-                <nav>
-                {{$paymentHistory->links()}}
-                </nav>
             </div>
         
         

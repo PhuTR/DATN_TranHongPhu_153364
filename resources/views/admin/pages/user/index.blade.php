@@ -19,7 +19,7 @@
                 </div>
             </div>
             <div class="dashborad-box">
-                <div class="header-widget">
+                {{-- <div class="header-widget">
                     <form action="" class="row">
                         <div class="col-sm-3">
                             <input type="text" placeholder="Tên khách hàng" value="{{ Request::get('n') }}" name="n" class="form-control">
@@ -29,14 +29,14 @@
                         </div>
                     </form>
 
-                </div>
+                </div> --}}
                 <div class="section-body listing-table">
                     <div class="table-responsive">
-                        <table class="table table-striped">
+                        <table id="example" class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>#</th>
-                                    <th>avatar</th>
+                                    <th>Stt</th>
+                                    <th>Hình ảnh</th>
                                     <th>Tên</th>
                                     <th>Email</th>
                                     <th>Số điện thoại</th>
@@ -49,7 +49,7 @@
                             <tbody>
                                 @foreach ($user ?? [] as $item )
                                 <tr>
-                                    <td>{{$item->id}}</td>
+                                    <td>{{$loop->index+1}}</td>
                                     <td>
                                         @if(empty($item->avatar) || is_null($item->avatar) || $item->avatar == 'no-avatar.jpg')
                                             <img  style="width:60px; height:60px; border-radius:50%" id="output" src="{{ asset('images/no-avatar.jpg') }}">
@@ -89,11 +89,6 @@
                             </tbody>
                         </table>
                     </div>
-                </div>
-                <div class="pagination-container">
-                    <nav>
-                    {{$user->links()}}
-                    </nav>
                 </div>
             </div>
         

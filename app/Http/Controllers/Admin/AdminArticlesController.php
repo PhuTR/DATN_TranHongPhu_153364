@@ -21,7 +21,7 @@ class AdminArticlesController extends Controller
         if ($request->n)
             $articles->where('name', 'like', '%' . $request->n . '%');
 
-        $articles = $articles->orderByDesc('id')->paginate(10);
+        $articles = $articles->orderByDesc('id')->get();
 
         $viewData = [
             'articles' => $articles,
