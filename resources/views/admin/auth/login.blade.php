@@ -47,8 +47,8 @@
                 <form  autocomplete="off" method="POST">
                 @csrf
                     <div class="form-group">
-                        <label>Số điện thoại</label>
-                        <input type="text" class="form-control" name="phone" id="phone">
+                        <label>Email</label>
+                        <input type="email" class="form-control" name="email" id="email">
                         <i class="icon_mail_alt"></i>
                     </div>
                     <div class="form-group">

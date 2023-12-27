@@ -10448,3 +10448,12 @@ table.lms_table_active3.dataTable thead .sorting_desc::after {
 .max-width-220 {
     max-width: 220px;
 }
+.note_chart{
+    margin: 0 auto;
+  }
+.block-color{
+    border-radius: 5px;
+    width: 30px;
+    height: 15px;
+    margin-right: 5px;
+}

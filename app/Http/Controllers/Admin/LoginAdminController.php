@@ -16,20 +16,7 @@ class LoginAdminController extends Controller
     public function login(Request $request){
 
 
-        // $data = $request->except('_token');
-        // $data['password'] = $request->password;
-        // dd(Auth::attempt($data));
-        
-        // if(Auth::attempt($data)){
-        //     Toastr::success('Đăng nhập thành công', 'Thành công');
-        //     // dd(Auth::attempt($data));
-        //     return redirect()->route('get_admin.admin.dashbord');
-        // }
-        
-        // return redirect()->back();
-
-        if (Auth::guard('admins')->attempt(['phone' => $request->phone, 'password' => $request->password])) {
-            // Quản trị viên đã đăng nhập thành công
+        if (Auth::guard('admins')->attempt(['email' => $request->email, 'password' => $request->password])) {
             return redirect()->route('get_admin.admin.dashbord');
         } else {
             // Đăng nhập thất bại
