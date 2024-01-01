@@ -49,6 +49,8 @@
     {{-- table --}}
     <link rel="stylesheet" href="{{asset('css/datatable/dataTables.bootstrap5.min.css')}}">
     <script src="{{asset('js/datatables/jquery.dataTables.min.js')}}"></script>
+    {{-- select2 --}}
+    {{-- <link rel="stylesheet" href="asset('css/select2/select2.min.css')"> --}}
     
 
 </head>
@@ -134,12 +136,12 @@
       allowedFileExtensions: ['jpg', 'png', 'gif']
     });
 </script>
-<script>
+{{-- <script>
     $(".dropzone").dropzone({
         dictDefaultMessage: "<i class='fa fa-cloud-upload'></i> Click here or drop files to upload",
     });
 
-</script>
+</script> --}}
 <script>
     $(".header-user-name").on("click", function() {
         $(".header-user-menu ul").toggleClass("hu-menu-vis");
@@ -150,4 +152,11 @@
 <script>
     new DataTable('#example');
 </script>
+{{-- <script src="{{asset('js/jquery-3.5.1.min.js')}}"></script> --}}
+{{-- <script src="asset('js/select2/select2.min.js')"></script> --}}
+{{-- <script>
+    $(document).ready(function() {
+        $('.select').select2();
+    })
+</script> --}}
 </html>

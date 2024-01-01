@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Date;
+use Illuminate\Support\Facades\Cookie;
 
 class CategoryController extends Controller
 {
@@ -40,8 +41,14 @@ class CategoryController extends Controller
         }
         $room = Room::whereIn('status', [Room::STATUS_ACTIVE, Room::STATUS_EXPIRED])->find($slug);
         if (!$room) return abort(404);
-        $room->count_view = $room->count_view +1;
-        $room->save();
+        // $room->count_view = $room->count_view +1;
+        $roomCookieName = 'room-'.$room->id;
+        $roomCookieValue = Cookie::get($roomCookieName);
+        if (!$roomCookieValue){
+            Cookie::queue($roomCookieName, $roomCookieName,1);
+            $room->increment('count_view',1);
+        }
+        // $room->save();
         $category = Category::all();
         $images     = DB::table('images')->where("room_id", $slug)->get();
         // dd($images);

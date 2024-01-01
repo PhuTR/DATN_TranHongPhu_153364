@@ -65,13 +65,23 @@
                                 <label for="password">Cấp quyền</label>
                                 <select name="roles[]" id="roles" class="form-control select2" multiple>
                                   @foreach ($roles as $role)
-                                      <option value="{{ $role->name }}" {{ $admin->hasRole($role->name) ? 'selected' : '' }}>{{ $role->name }}</option>
+                                      @if (isset($admin))
+                                        <option value="{{ $role->name }}" {{ $admin->hasRole($role->name) ? 'selected' : '' }}>{{ $role->name }}</option>
+                                      @else
+                                        <option value="{{ $role->name }}">{{ $role->name }}</option>
+                                      @endif
                                   @endforeach
                                 </select>
                             </div>
                             <div class="form-group col-md-6 col-sm-6">
                                 <label for="username">Admin Username</label>
+                                @if (isset($admin))
                                 <input type="text" class="form-control" id="username" name="username" placeholder="Enter Username" required value="{{ $admin->username }}">
+
+                                @else
+                                <input type="text" class="form-control" id="username" name="username" placeholder="Enter Username" required value="">
+
+                                @endif
                             </div>
                         </div>
                         </div>

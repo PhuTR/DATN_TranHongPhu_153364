@@ -5,10 +5,10 @@
             <div class="tab-content">
                 <div class="tab-pane fade show active" id="tabs_1">
                     <div class="rld-main-search">
-                        <div class="row">
+                        <div class="row" style="justify-content: space-around;">
 
                             <div class="rld-single-select ml-22">
-                                <select class="select single-select " style="width:220px" name="category_id">
+                                <select class="select single-select custom_select" style="width:220px" name="category_id">
 
                                     @foreach($categoriesGlobal ?? [] as $item)
                                     <option value="{{ $item->id }}" {{ Request::get('category_id') == $item->id ? "selected" : "" }}>
@@ -19,7 +19,7 @@
                             </div>
                             
                             <div class="rld-single-select ml-22 scroll">
-                                <select class="select single-select " name="city_id">
+                                <select class="select single-select select2" name="city_id">
                                     <option value="">Chọn thành phố</option>
                                     @foreach($locationsCity ?? [] as $item)
                                     <option value="{{ $item->code }}" {{ $item->code == ($room->city_id ?? (Request::get('city_id'))) ? "selected" : ""}}>
@@ -48,6 +48,7 @@
                                     @endforeach
                                 </select>
                             </div>
+
                             <div class="col-xl-2 col-lg-2 col-md-4 pl-0">
                                 <button type="submit" class="btn btn-yellow" ><i class="fa-solid fa-magnifying-glass icon  "></i>Tìm kiếm</button>
                             </div>
@@ -59,5 +60,11 @@
         </div>
     </div>
   </form>
- 
+
 <!--/ End Search Form -->
+
+                        
+                   
+               
+           
+        

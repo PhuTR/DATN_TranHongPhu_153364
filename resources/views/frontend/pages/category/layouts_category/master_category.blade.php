@@ -35,7 +35,8 @@
     <script src='https://cdn.jsdelivr.net/npm/@goongmaps/goong-js@1.0.9/dist/goong-js.js'></script>
     <link href='https://cdn.jsdelivr.net/npm/@goongmaps/goong-js@1.0.9/dist/goong-js.css' rel='stylesheet' />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-    
+    {{-- select 2 --}}
+    <link href="{{asset('css/select2/select2.min.css')}}" rel="stylesheet" />
 </head>
 <body class="inner-pages homepage-4 agents hp-6 full hd-white">
     <div id="wrapper" >
@@ -59,7 +60,7 @@
     <script src="{{asset('js/slick4.js')}}"></script>
     <script src="{{asset('js/smooth-scroll.min.js')}}"></script>
     <script src="{{asset('js/lightcase.js')}}"></script>
-    <script src="{{asset('js/search.js')}}"></script>
+    {{-- <script src="{{asset('js/search.js')}}"></script> --}}
     <script src="{{asset('js/light.js')}}"></script>
     <script src="{{asset('js/jquery.magnific-popup.min.js')}}"></script>
     <script src="{{asset('js/popup.js')}}"></script>
@@ -178,6 +179,13 @@
     })
     </script>
    
+   {{-- select-2 --}}
+   <script src="{{asset('js/select2/select2.min.js')}}"></script>
+   <script>
+        $(document).ready(function() {
+            $('.select').select2();
+        })
+    </script>
         
   
 </body>

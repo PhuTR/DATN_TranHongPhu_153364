@@ -8,7 +8,7 @@
                 var s = t.next(),
                     n = t.find("option"),
                     i = t.find("option:selected");
-                s.find(".current").html(i.data("display") || i.text()), n.each(function(t) {
+                s.find(".current").html(i.data("display")    || i.text()), n.each(function(t) {
                     var n = e(this),
                         i = n.data("display");
                     s.find("ul").append(e("<li></li>").attr("data-value", n.val()).attr("data-display", i || null).addClass("option" + (n.is(":selected") ? " selected" : "") + (n.is(":disabled") ? " disabled" : "")).html(n.text()))
