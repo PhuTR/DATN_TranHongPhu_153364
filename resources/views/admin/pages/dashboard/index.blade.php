@@ -58,11 +58,11 @@
                 <span>VNPAY</span>
               </div>
               <div class="note-momo d-flex" style="margin-right: 30px">
-                <div class="block-color" style="background-color: #fc8710"></div>
+                <div class="block-color" style="background-color: #FF6541"></div>
                 <span>Momo</span>
               </div>
               <div class="note-momo d-flex">
-                <div class="block-color" style="background-color: #FF6541"></div>
+                <div class="block-color" style="background-color: #fc8710"></div>
                 <span>Tiền mặt</span>
               </div>
      
